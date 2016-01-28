@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-15 06:40+0000\n"
-"PO-Revision-Date: 2016-01-02 22:27+0000\n"
+"PO-Revision-Date: 2016-01-13 15:07+0000\n"
 "Last-Translator: Goutoudis Kostas <goutoudis@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/odoo/odoo-8/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1677,22 +1677,22 @@ msgstr "Αίτηση Επιστροφής Χρημάτων"
 #. module: account
 #: model:account.account.type,name:account.data_account_type_asset
 msgid "Asset"
-msgstr "Πάγια"
+msgstr "Πάγιo"
 
 #. module: account
 #: model:account.account.type,name:account.account_type_asset_view1
 msgid "Asset View"
-msgstr "Προβολή Ενεργητικού"
+msgstr "Προβολή Παγίου"
 
 #. module: account
 #: model:account.financial.report,name:account.account_financial_report_assets0
 msgid "Assets"
-msgstr "Ενεργό"
+msgstr "Πάγια"
 
 #. module: account
 #: field:account.config.settings,module_account_asset:0
 msgid "Assets management"
-msgstr "Διαχείριση ενεργητικού"
+msgstr "Διαχείριση Παγίων"
 
 #. module: account
 #: view:account.analytic.account:account.view_account_analytic_account_search
@@ -1755,7 +1755,7 @@ msgstr "Μέση Τιμή"
 #: code:addons/account/account.py:3450 code:addons/account/account_bank.py:94
 #, python-format
 msgid "BNK"
-msgstr "Η.ΤΡΠ"
+msgstr "BNK"
 
 #. module: account
 #. openerp-web
@@ -3901,13 +3901,13 @@ msgstr "Διάρκεια"
 #: code:addons/account/account.py:3197
 #, python-format
 msgid "ECNJ"
-msgstr "Η.Π.ΑΓN"
+msgstr "ECNJ"
 
 #. module: account
 #: code:addons/account/account.py:3195
 #, python-format
 msgid "EXJ"
-msgstr "Η.ΑΓΝ"
+msgstr "EXJ"
 
 #. module: account
 #: field:account.entries.report,date:0
@@ -6250,7 +6250,7 @@ msgstr "Λογαριασμός Ζημιών από Τιμή Συναλλάγμα
 #: code:addons/account/account.py:3198
 #, python-format
 msgid "MISC"
-msgstr "Η.ΔΦΝ"
+msgstr "MISC"
 
 #. module: account
 #: field:account.sequence.fiscalyear,sequence_main_id:0
@@ -6801,7 +6801,7 @@ msgstr "OK"
 #: code:addons/account/account.py:3199
 #, python-format
 msgid "OPEJ"
-msgstr "Η.ΑΝΓ"
+msgstr "OPEJ"
 
 #. module: account
 #: selection:report.account.sales,month:0
@@ -6908,7 +6908,7 @@ msgstr "Άνοιγμα για Αποσυμφωνία"
 #: code:addons/account/account.py:435 code:addons/account/account.py:447
 #, python-format
 msgid "Opening Balance"
-msgstr "Υπόλοιπο Ανοίγματος"
+msgstr "Υπόλ. Ανοίγματος"
 
 #. module: account
 #: view:account.bank.statement:account.view_bank_statement_form2
@@ -7908,7 +7908,7 @@ msgstr "Περίοδος Επαν-έναρξης"
 #. module: account
 #: view:account.bank.statement:account.view_bank_statement_form2
 msgid "Real Closing Balance"
-msgstr "Πραγματικό Υπόλοιπο Κλεισίματος"
+msgstr "Πραγμ. Υπόλ. Κλεισ."
 
 #. module: account
 #: field:account.invoice.refund,description:0 field:cash.box.in,name:0
@@ -8386,13 +8386,13 @@ msgstr "Προεγγραφές σε εξέλιξη"
 #: code:addons/account/account.py:3194
 #, python-format
 msgid "SAJ"
-msgstr "Η.ΠΛΝ"
+msgstr "SAJ"
 
 #. module: account
 #: code:addons/account/account.py:3196
 #, python-format
 msgid "SCNJ"
-msgstr "Η.Π.ΠΛΝ"
+msgstr "SCNJ"
 
 #. module: account
 #: selection:account.analytic.journal,type:0
@@ -10090,7 +10090,7 @@ msgid ""
 "This allows you to manage the assets owned by a company or a person.\n"
 "It keeps track of the depreciation occurred on those assets, and creates account move for those depreciation lines.\n"
 "-This installs the module account_asset. If you do not check this box, you will be able to do invoicing & payments, but not accounting (Journal Items, Chart of Accounts, ...)"
-msgstr "Επιτρέπει την διαχείριση των περιουσιακών στοιχείων μιας επιχείρησης ή ενός ατόμου.\nΔιατηρεί το ιστορικό της απόσβεσης που εφαρμόστηκε σε αυτά τα στοιχεία, και δημιουργεί κινήσεις λογαριασμών γι' αυτές τις γραμμές απόσβεσης.\n-Εγκαθιστά την εφαρμογή account_asset. Εαν δεν επιλέξετε αυτό το πλαίσιο, θα μπορείτε να χειριστείτε τιμολόγηση &  πληρωμές, αλλά όχι λογιστική (Ημερολογιακές εγγραφές, Λογιστικό Σχέδιο, ...)"
+msgstr "Επιτρέπει την διαχείριση των περιουσιακών στοιχείων μιας επιχείρησης ή ενός ατόμου.\nΔιατηρεί το ιστορικό της απόσβεσης που εφαρμόστηκε σε αυτά τα στοιχεία, και δημιουργεί κινήσεις λογαριασμών γι' αυτές τις γραμμές απόσβεσης.\n-Εγκαθιστά την εφαρμογή account_asset. Εάν δεν επιλέξετε αυτό το πλαίσιο, θα μπορείτε να χειριστείτε τιμολόγηση &  πληρωμές, αλλά όχι λογιστική (Ημερολογιακές εγγραφές, Λογιστικό Σχέδιο, ...)"
 
 #. module: account
 #: help:account.chart.template,complete_tax_set:0

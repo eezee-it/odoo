@@ -19,6 +19,7 @@
 # Buket Şeker <buket_skr@hotmail.com>, 2018
 # Umur Akın <umura@projetgrup.com>, 2018
 # nle_odoo, 2018
+# Gökhan Yüksel <yg_yuksel@hotmail.com>, 2019
 # Ediz Duman <neps1192@gmail.com>, 2019
 # 
 msgid ""
@@ -105,7 +106,7 @@ msgstr "<b>Özel Görsel Ayarla ...</b>"
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.view_pos_config_kanban
 msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
 
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.customer_facing_display_snippets
@@ -1354,7 +1355,7 @@ msgstr "Teorik kapanış bakiyesi ve gerçek kapanış bakiyesi arasındaki fark
 #. module: point_of_sale
 #: model:ir.model,name:point_of_sale.model_digest_digest
 msgid "Digest"
-msgstr ""
+msgstr "Özet"
 
 #. module: point_of_sale
 #. openerp-web

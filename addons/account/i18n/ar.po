@@ -866,6 +866,17 @@ msgid "A tax fiscal position could be defined only one time on same taxes."
 msgstr "لا يمكن تحديد الموقف الضريبي لبعض الضرائب إلا مرة واحدة فقط."
 
 #. module: account
+#: code:addons/account/models/res_users.py:17
+#, python-format
+msgid ""
+"A user cannot have both Tax B2B and Tax B2C.\n"
+"Problematic user(s): %s\n"
+"You should go in General Settings, and choose to display Product Prices\n"
+"either in 'Tax-Included' or in 'Tax-Excluded' mode\n"
+"(or switch twice the mode if you are already in the desired one)."
+msgstr ""
+
+#. module: account
 #: model:res.groups,name:account.group_warning_account
 msgid "A warning can be set on a partner (Account)"
 msgstr "يمكن ضبط تحذير خاص بشريك (بحسابه)"
@@ -12033,6 +12044,22 @@ msgstr "لا يمكنك القيام بهذا الإجراء في حساب يح�
 #, python-format
 msgid "You cannot put/take money in/out for a bank statement which is closed."
 msgstr "لا يمكنك وضع/أخذ نقود في/من كشف حساب بنكي مغلق."
+
+#. module: account
+#: code:addons/account/models/account_payment.py:99
+#, python-format
+msgid ""
+"You cannot register payments for customer invoices and credit notes at the "
+"same time."
+msgstr ""
+
+#. module: account
+#: code:addons/account/models/account_payment.py:96
+#, python-format
+msgid ""
+"You cannot register payments for vendor bills and supplier refunds at the "
+"same time."
+msgstr ""
 
 #. module: account
 #: code:addons/account/models/account.py:644

@@ -15,6 +15,8 @@
 # Martin Trigaux, 2018
 # Murat Kaplan <muratk@projetgrup.com>, 2018
 # Umur Akın <umura@projetgrup.com>, 2018
+# Gökhan Yüksel <yg_yuksel@hotmail.com>, 2019
+# Ugur Yilmaz <ugurlu2001@hotmail.com>, 2019
 # Ediz Duman <neps1192@gmail.com>, 2019
 # 
 msgid ""
@@ -171,7 +173,7 @@ msgstr ""
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.payment_confirmation_status
 msgid "<b>Communication: </b>"
-msgstr ""
+msgstr "<b>İletişim: </b>"
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.confirmation
@@ -491,7 +493,7 @@ msgstr "Hesap Numarası"
 #: model_terms:ir.ui.view,arch_db:website_sale.cart_lines
 #: model_terms:ir.ui.view,arch_db:website_sale.product_quantity
 msgid "Add one"
-msgstr ""
+msgstr "Ekle"
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.product
@@ -562,6 +564,9 @@ msgid ""
 "Apply manual discounts on sales order lines or display discounts computed "
 "from pricelists (option to activate in the pricelist configuration)."
 msgstr ""
+"İskontoları; Satış siparişlerinden yada hesaplanmış iskontolardan manual "
+"olarak uygula Fiyat Listelerinden (Fiyat listesi konfigürasyonu içerisinden "
+"seçimlik olarak aktive edilir)."
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
@@ -989,7 +994,7 @@ msgstr "E-Ticaret sitesindeki görünüm sırasını belirleyin."
 #. module: website_sale
 #: model:ir.model,name:website_sale.model_digest_digest
 msgid "Digest"
-msgstr ""
+msgstr "Özet"
 
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_res_config_settings__module_website_sale_digital

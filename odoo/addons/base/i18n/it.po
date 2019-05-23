@@ -6279,18 +6279,18 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"Modulo di gestione delle adesioni\n"
+"Questo modulo consente di gestire tutte le operazioni relative alle iscrizioni\n"
 "=========================================================================\n"
 "\n"
-"Supporta diversi tipi di membri:\n"
+"Supporta vari tipi di iscrizione:\n"
 "--------------------------------------\n"
-"    * Membro gratuito\n"
-"    * Membro associato (ad esempio: un gruppo si iscrive per tutte le filiali)\n"
-"    * Membro che ha pagato\n"
-"    * Membro che beneficia di prezzi speciali\n"
+"    * Iscrizione gratuita\n"
+"    * Iscrizione associata (ad esempio: un gruppo si iscrive per tutte le filiali)\n"
+"    * Iscrizione a pagamento\n"
+"    * Iscrizione a prezzi speciali\n"
 "\n"
-"È integrato con i moduli \"Vendita\" e \"Contabilità\" per fatturare \n"
-"e per mandare automaticamente proposte di rinnovo dell'adesione.\n"
+"È integrato con i moduli \"Vendita\" e \"Contabilità\" per consentire la fatturazione\n"
+"automatica e l'invio delle proposte di rinnovo iscrizione.\n"
 "    "
 
 #. module: base
@@ -6549,8 +6549,8 @@ msgstr ""
 "Questo modulo configura i moduli necessari per le associazioni.\n"
 "==============================================================\n"
 "\n"
-"Installa il profilo per le associazioni consentendole di gestire eventi, registrazioni, adesioni, \n"
-"prodotti di adesione (programmi).\n"
+"Installa il profilo per associazioni che consente di gestire eventi, registrazioni, \n"
+"adesioni, piani di iscrizione.\n"
 "    "
 
 #. module: base
@@ -9370,7 +9370,7 @@ msgstr "Auto ricerca"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_automation
 msgid "Automated Action Rules"
-msgstr "Regole Azione Automatiche"
+msgstr "Regole per azioni automatiche"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_automation_hr_contract
@@ -9380,7 +9380,7 @@ msgstr "Azione Automatica basata sui Contratti dei Dipendenti"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_gengo
 msgid "Automated Translations through Gengo API"
-msgstr "Tradotto Automaticamente con Gengo API"
+msgstr "Traduzioni automatiche con le API Gengo"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_module_module__auto_install
@@ -10803,7 +10803,7 @@ msgstr "Passaggi Procedura guidata di configurazione"
 #. module: base
 #: model:ir.actions.server,name:base.action_run_ir_action_todo
 msgid "Config: Run Remaining Action Todo"
-msgstr "Configurazione: eseguire le azioni rimanenti"
+msgstr "Configurazione: esegui le azioni rimanenti"
 
 #. module: base
 #: model:ir.ui.menu,name:base.menu_reporting_config
@@ -12877,12 +12877,12 @@ msgstr "Eseguire ogni"
 #. module: base
 #: selection:ir.actions.server,state:0
 msgid "Execute Python Code"
-msgstr "Eseguire codice Python"
+msgstr "Esegui codice Python"
 
 #. module: base
 #: selection:ir.actions.server,state:0
 msgid "Execute several actions"
-msgstr "Eseguire alcune azioni"
+msgstr "Esegui alcune azioni"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.ir_cron_view_search
@@ -13226,7 +13226,7 @@ msgstr "F COSTRUZIONE"
 #: model:ir.actions.server,name:base.demo_failure_action
 msgid "Failed to install demo data for some modules, demo disabled"
 msgstr ""
-"Installazione dei dati dimostrativi fallita per alcuni moduli: demo "
+"Installazione dati dimostrativi non riuscita per alcuni moduli: demo "
 "disattivata"
 
 #. module: base
@@ -14454,7 +14454,7 @@ msgstr "Driver hardware"
 #: model:ir.module.module,shortdesc:base.module_hw_drivers
 #: model:ir.module.module,shortdesc:base.module_hw_proxy
 msgid "Hardware Proxy"
-msgstr "Proxy Hardware"
+msgstr "Proxy hardware"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_bank__qr_code_valid
@@ -15365,7 +15365,7 @@ msgstr "Data Inizio"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_setup
 msgid "Initial Setup Tools"
-msgstr "Strumenti setup iniziale"
+msgstr "Strumenti per installazione iniziale"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model_constraint__date_init
@@ -15404,7 +15404,7 @@ msgstr "Installazione lingua"
 #. module: base
 #: model:ir.actions.server,name:base.action_server_module_immediate_install
 msgid "Install Modules"
-msgstr "Installare moduli"
+msgstr "Installa moduli"
 
 #. module: base
 #: selection:ir.module.module,state:0
@@ -15708,7 +15708,7 @@ msgstr "Gestione fatturazione"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hw_posbox_homepage
 msgid "IoT Box Homepage"
-msgstr "Pagina principale box IoT"
+msgstr "Pagina iniziale box IoT"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_quality_mrp_iot
@@ -16447,7 +16447,7 @@ msgstr "Link Tracker"
 #. module: base
 #: model:ir.module.module,summary:base.module_pos_sale
 msgid "Link module between Point of Sale and Sales"
-msgstr "Modulo di collegamento tra il punto vendita e le vendite"
+msgstr "Modulo di collegamento tra punto vendita e vendite"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_actions_server__link_field_id
@@ -17079,7 +17079,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_membership
 msgid "Members"
-msgstr "Membri"
+msgstr "Iscritti"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_note_pad
@@ -19950,7 +19950,7 @@ msgstr "Lavori in rete"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_membership
 msgid "Online Members Directory"
-msgstr "Elenco membri online"
+msgstr "Elenco iscritti online"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_form_project
@@ -20837,7 +20837,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Please contact your system administrator if you think this is an error."
-msgstr "Se è ritenuto un errore, contattare l'amministratore di sistema."
+msgstr "Se è un errore, contattare l'amministratore di sistema."
 
 #. module: base
 #: code:addons/base/models/ir_mail_server.py:242
@@ -20912,8 +20912,8 @@ msgid ""
 "Portal members have specific access rights (such as record rules and restricted menus).\n"
 "                They usually do not belong to the usual Odoo groups."
 msgstr ""
-"I membri del portale hanno diritti di accesso specifici (come le regole di registrazione e i menu limitati).\n"
-"                Generalmente non appartengono ai soliti gruppi di Odoo."
+"Gli iscritti al portale hanno diritti di accesso particolari (come le regole sui record e i menù limitati).\n"
+"                In genere non appartengono ai consueti gruppi di Odoo."
 
 #. module: base
 #: selection:report.paperformat,orientation:0
@@ -21309,7 +21309,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_website_blog
 msgid "Publish blog posts, announces, news"
-msgstr "Pubblicazione di articoli, annunci, notizie in un blog"
+msgstr "Pubblicazione di articoli, annunci e notizie in un blog"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_event
@@ -21329,7 +21329,7 @@ msgstr "Pubblica le referenze dei clienti"
 #. module: base
 #: model:ir.module.module,summary:base.module_website_membership
 msgid "Publish your members directory"
-msgstr "Pubblica il tuo elenco di membri"
+msgstr "Pubblica l'elenco degli iscritti"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_crm_partner_assign
@@ -22917,25 +22917,25 @@ msgstr "Talvolta chiamato BIC o Swift."
 #: code:addons/base/models/ir_model.py:1222
 #, python-format
 msgid "Sorry, you are not allowed to access this document."
-msgstr "Manca l'autorizzazione per accedere a questo documento."
+msgstr "Non si è autorizzati ad accedere a questo documento."
 
 #. module: base
 #: code:addons/base/models/ir_model.py:1224
 #, python-format
 msgid "Sorry, you are not allowed to create this kind of document."
-msgstr "Manca l'autorizzazione per creare questo tipo di documento."
+msgstr "Non si è autorizzati alla creazione di questo tipo di documento."
 
 #. module: base
 #: code:addons/base/models/ir_model.py:1225
 #, python-format
 msgid "Sorry, you are not allowed to delete this document."
-msgstr "Manca l'autorizzazione per eliminare questo documento."
+msgstr "Non si è autorizzati a eliminare questo documento."
 
 #. module: base
 #: code:addons/base/models/ir_model.py:1223
 #, python-format
 msgid "Sorry, you are not allowed to modify this document."
-msgstr "Manca l'autorizzazione per modificare questo documento."
+msgstr "Non si è autorizzati a modificare questo documento."
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_filters__sort
@@ -26147,7 +26147,7 @@ msgstr "Visibile"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_stock_account
 msgid "WMS Accounting"
-msgstr "WMS Contabilità"
+msgstr "Contabilità SGM"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_stock_landed_costs

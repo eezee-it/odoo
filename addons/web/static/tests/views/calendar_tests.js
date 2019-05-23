@@ -44,6 +44,7 @@ QUnit.module('Views', {
                     stop_date: {string: "stop date", type: "date"},
                     start: {string: "start datetime", type: "datetime"},
                     stop: {string: "stop datetime", type: "datetime"},
+                    delay: {string: "delay", type: "float"},
                     allday: {string: "allday", type: "boolean"},
                     partner_ids: {string: "attendees", type: "one2many", relation: 'partner', default: [[6, 0, [1]]]},
                     type: {string: "type", type: "integer"},
@@ -2332,6 +2333,110 @@ QUnit.module('Views', {
         calendar.destroy();
     });
 
+    QUnit.test('timzeone does not affect calendar with date field', function (assert) {
+        assert.expect(8);
+
+        var calendar = createView({
+            View: CalendarView,
+            model: 'event',
+            data: this.data,
+            arch:
+            '<calendar date_start="start_date" mode="month">'+
+                '<field name="name"/>'+
+                '<field name="start_date"/>'+
+            '</calendar>',
+            archs: archs,
+            viewOptions: {
+                initialDate: initialDate,
+            },
+            mockRPC: function (route, args) {
+                if (args.method === "create") {
+                    assert.strictEqual(args.args[0].start_date, "2016-12-20 00:00:00");
+                }
+                if (args.method === "write") {
+                    assert.step(args.args[1].start_date);
+                }
+                return this._super(route, args);
+            },
+            session: {
+                getTZOffset: function () {
+                    return 120; // 2 hours timezone
+                },
+            },
+        });
+
+        // Create event (on 20 december)
+        var $cell = calendar.$('.fc-day-grid .fc-row:eq(3) .fc-day:eq(2)');
+        testUtils.triggerMouseEvent($cell, "mousedown");
+        testUtils.triggerMouseEvent($cell, "mouseup");
+        var $input = $('.modal-body input:first');
+        $input.val("An event").trigger('input');
+        $('.modal button.btn:contains(Create)').trigger('click');
+
+        assert.strictEqual(calendar.$('.o_field_start_date').text().trim(), "12/20/2016")
+
+        // Move event to another day (on 27 november)
+        testUtils.dragAndDrop(
+            calendar.$('.fc-event').first(),
+            calendar.$('.fc-day-top').first()
+        );
+        assert.verifySteps(["2016-11-27 00:00:00"]);
+        assert.strictEqual(calendar.$('.o_field_start_date').text().trim(), "11/27/2016")
+
+        // Move event to last day (on 7 january)
+        testUtils.dragAndDrop(
+            calendar.$('.fc-event').first(),
+            calendar.$('.fc-day-top').last()
+        );
+        assert.verifySteps(["2016-11-27 00:00:00", "2017-01-07 00:00:00"]);
+        assert.strictEqual(calendar.$('.o_field_start_date').text().trim(), "01/07/2017")
+
+        calendar.destroy();
+    });
+
+    QUnit.test('drag and drop on month mode with date_start and date_delay', function (assert) {
+        assert.expect(1);
+
+        var calendar = createView({
+            View: CalendarView,
+            model: 'event',
+            data: this.data,
+            arch:
+            '<calendar date_start="start" date_delay="delay" mode="month">'+
+                '<field name="name"/>'+
+                '<field name="start"/>'+
+                '<field name="delay"/>'+
+            '</calendar>',
+            archs: archs,
+            viewOptions: {
+                initialDate: initialDate,
+            },
+            mockRPC: function (route, args) {
+                if (args.method === "write") {
+                    // delay should not be written at drag and drop
+                    assert.equal(args.args[1].delay, undefined)
+                }
+                return this._super(route, args);
+            },
+        });
+
+        // Create event (on 20 december)
+        var $cell = calendar.$('.fc-day-grid .fc-row:eq(3) .fc-day:eq(2)');
+        testUtils.triggerMouseEvent($cell, "mousedown");
+        testUtils.triggerMouseEvent($cell, "mouseup");
+        var $input = $('.modal-body input:first');
+        $input.val("An event").trigger('input');
+        $('.modal button.btn:contains(Create)').trigger('click');
+
+        // Move event to another day (on 27 november)
+        testUtils.dragAndDrop(
+            calendar.$('.fc-event').first(),
+            calendar.$('.fc-day-top').first()
+        );
+
+        calendar.destroy();
+    });
+
     QUnit.test('form_view_id attribute works (for creating events)', function (assert) {
         assert.expect(1);
 
@@ -2376,6 +2481,41 @@ QUnit.module('Views', {
         $input.val("It's just a fleshwound").trigger('input');
         $('.modal button.btn:contains(Create)').trigger('click');
 
+        calendar.destroy();
+    });
+
+    QUnit.test('form_view_id attribute works with popup (for creating events)', function (assert) {
+        assert.expect(1);
+
+        var calendar = createView({
+            View: CalendarView,
+            model: 'event',
+            data: this.data,
+            arch: '<calendar class="o_calendar_test" '+
+                'date_start="start" '+
+                'date_stop="stop" '+
+                'mode="month" '+
+                'event_open_popup="true" ' +
+                'quick_add="false" ' +
+                'form_view_id="1">'+
+                    '<field name="name"/>'+
+            '</calendar>',
+            archs: archs,
+            viewOptions: {
+                initialDate: initialDate,
+            },
+            mockRPC: function (route, args) {
+                if (args.method === "load_views") {
+                    assert.strictEqual(args.kwargs.views[0][0], 1,
+                        "should load view with id 1");
+                }
+                return this._super(route, args);
+            },
+        });
+
+        var $cell = calendar.$('.fc-day-grid .fc-row:eq(2) .fc-day:eq(2)');
+        testUtils.dom.triggerMouseEvent($cell, "mousedown");
+        testUtils.dom.triggerMouseEvent($cell, "mouseup");
         calendar.destroy();
     });
 

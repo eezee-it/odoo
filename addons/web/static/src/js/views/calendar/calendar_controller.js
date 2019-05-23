@@ -204,7 +204,9 @@ var CalendarController = AbstractController.extend({
      * @param {OdooEvent} event
      */
     _onDropRecord: function (event) {
-        this._updateRecord(event.data);
+        this._updateRecord(_.extend({}, event.data, {
+            'drop': true,
+        }));
     },
     /**
      * @private
@@ -272,6 +274,7 @@ var CalendarController = AbstractController.extend({
                 res_model: this.modelName,
                 context: context,
                 title: title,
+                view_id: this.formViewId || false,
                 disable_multiple_selection: true,
                 on_saved: function () {
                     if (event.data.on_save) {

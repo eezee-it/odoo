@@ -2381,6 +2381,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
         cr = self._cr
         update_custom_fields = self._context.get('update_custom_fields', False)
         must_create_table = not tools.table_exists(cr, self._table)
+        parent_path_compute = False
 
         if self._auto:
             if must_create_table:
@@ -2389,6 +2390,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             if self._parent_store:
                 if not tools.column_exists(cr, self._table, 'parent_path'):
                     self._create_parent_columns()
+                    parent_path_compute = True
 
             self._check_removed_columns(log=False)
 
@@ -2416,6 +2418,9 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
 
         if must_create_table:
             self._execute_sql()
+
+        if parent_path_compute:
+            self._parent_store_compute()
 
     @api.model_cr
     def init(self):
@@ -3276,14 +3281,12 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
                             self._name, ', '.join(sorted(unknown_names)))
 
         with self.env.protecting(protected_fields, self):
-            # write stored fields with (low-level) method _write
-            if store_vals or inverse_vals or inherited_vals:
-                # if log_access is enabled, this updates 'write_date' and
-                # 'write_uid' and check access rules, even when old_vals is
-                # empty
-                self._write(store_vals)
+            # update references to parents
+            ref_store_vals = {k: store_vals[k] for k in self._inherits.values() if k in store_vals}
+            if ref_store_vals:
+                self._write(ref_store_vals)
 
-            # update parent records (after possibly updating parent fields)
+            # update parent records
             cr = self.env.cr
             for model_name, parent_vals in inherited_vals.items():
                 parent_name = self._inherits[model_name]
@@ -3295,6 +3298,13 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
                     parent_ids.update(row[0] for row in cr.fetchall())
 
                 self.env[model_name].browse(parent_ids).write(parent_vals)
+
+            # write stored fields with (low-level) method _write
+            if store_vals or inverse_vals or inherited_vals:
+                # if log_access is enabled, this updates 'write_date' and
+                # 'write_uid' and check access rules, even when old_vals is
+                # empty
+                self._write(store_vals)
 
             if inverse_vals:
                 self.check_field_access_rights('write', list(inverse_vals))
@@ -3951,8 +3961,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             # The quotes surrounding `ir_translation` are important as well.
             unique_translation_subselect = """
                 (SELECT res_id, value FROM "ir_translation"
-                 WHERE name=%s AND lang=%s AND value!=''
-                 ORDER BY res_id, id DESC)
+                 WHERE type='model' AND name=%s AND lang=%s AND value!='')
             """
             alias, alias_statement = query.add_join(
                 (table_alias, unique_translation_subselect, 'id', 'res_id', field),
@@ -4242,11 +4251,12 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
                     if vals['lang'] == old.env.lang and field.translate is True:
                         # force a source if the new_val was not changed by copy override
                         if new_val == old[name]:
-                            vals['source'] = old_wo_lang[name]
+                            new_wo_lang[name] = old_wo_lang[name]
+                            vals['src'] = old_wo_lang[name]
                         # the value should be the new value (given by copy())
                         vals['value'] = new_val
                     vals_list.append(vals)
-                Translation.create(vals_list)
+                Translation._upsert_translations(vals_list)
 
     @api.multi
     @api.returns('self', lambda value: value.id)

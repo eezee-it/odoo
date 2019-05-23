@@ -15,9 +15,9 @@
 # Svante Suominen <svante.suominen@web-veistamo.fi>, 2018
 # Martin Trigaux, 2018
 # Kari Lindgren <kari.lindgren@emsystems.fi>, 2019
-# Tuomo Aura <tuomo.aura@web-veistamo.fi>, 2019
 # Jenni Heikkilä <jenni.heikkila@sv-oy.fi>, 2019
 # Sari Mäyrä <sari.mayra@sv-oy.fi>, 2019
+# Tuomo Aura <tuomo.aura@web-veistamo.fi>, 2019
 # Johanna Valkonen <johanna.valkonen@sv-oy.fi>, 2019
 # 
 msgid ""
@@ -274,7 +274,7 @@ msgstr "A/B-testausprosentti"
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_mail_block_event
 msgid "ALL DAY"
-msgstr ""
+msgstr "KOKO PÄIVÄ"
 
 #. module: mass_mailing
 #: model:ir.model.fields,field_description:mass_mailing.field_mail_mass_mailing_contact__message_needaction
@@ -824,7 +824,7 @@ msgstr "Luonnos"
 #: model_terms:ir.ui.view,arch_db:mass_mailing.view_mail_mass_mailing_kanban
 #: model_terms:ir.ui.view,arch_db:mass_mailing.view_mail_mass_mailing_list_kanban
 msgid "Dropdown menu"
-msgstr "Pudotusvalikko"
+msgstr "Alasvetovalikko"
 
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.view_mail_mass_mailing_campaign_form

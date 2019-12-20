@@ -9,7 +9,7 @@ from odoo.http import request
 from odoo.addons.base.ir.ir_qweb.fields import nl2br
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.addons.website.controllers.main import QueryURL
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 from odoo.addons.website.controllers.main import Website
 from odoo.addons.website_form.controllers.main import WebsiteForm
 from odoo.osv import expression
@@ -593,7 +593,7 @@ class WebsiteSale(http.Controller):
 
         return new_values, errors, error_msg
 
-    @http.route(['/shop/address'], type='http', methods=['GET', 'POST'], auth="public", website=True)
+    @http.route(['/shop/address'], type='http', methods=['GET', 'POST'], auth="public", website=True, sitemap=False)
     def address(self, **kw):
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
         order = request.website.sale_get_order()
@@ -671,7 +671,7 @@ class WebsiteSale(http.Controller):
         }
         return request.render("website_sale.address", render_values)
 
-    @http.route(['/shop/checkout'], type='http', auth="public", website=True)
+    @http.route(['/shop/checkout'], type='http', auth="public", website=True, sitemap=False)
     def checkout(self, **post):
         order = request.website.sale_get_order()
 
@@ -695,7 +695,7 @@ class WebsiteSale(http.Controller):
             return 'ok'
         return request.render("website_sale.checkout", values)
 
-    @http.route(['/shop/confirm_order'], type='http', auth="public", website=True)
+    @http.route(['/shop/confirm_order'], type='http', auth="public", website=True, sitemap=False)
     def confirm_order(self, **post):
         order = request.website.sale_get_order()
 
@@ -717,7 +717,7 @@ class WebsiteSale(http.Controller):
     # ------------------------------------------------------
     # Extra step
     # ------------------------------------------------------
-    @http.route(['/shop/extra_info'], type='http', auth="public", website=True)
+    @http.route(['/shop/extra_info'], type='http', auth="public", website=True, sitemap=False)
     def extra_info(self, **post):
 
         # Check that this option is activated
@@ -797,7 +797,7 @@ class WebsiteSale(http.Controller):
 
         return values
 
-    @http.route(['/shop/payment'], type='http', auth="public", website=True)
+    @http.route(['/shop/payment'], type='http', auth="public", website=True, sitemap=False)
     def payment(self, **post):
         """ Payment step. This page proposes several payment means based on available
         payment.acquirer. State at this point :
@@ -858,7 +858,7 @@ class WebsiteSale(http.Controller):
 
         return tx.render_sale_button(order, '/shop/payment/validate')
 
-    @http.route('/shop/payment/token', type='http', auth='public', website=True)
+    @http.route('/shop/payment/token', type='http', auth='public', website=True, sitemap=False)
     def payment_token(self, pm_id=None, **kwargs):
         """ Method that handles payment using saved tokens
 
@@ -896,6 +896,43 @@ class WebsiteSale(http.Controller):
             return request.redirect('/shop/payment/validate?success=True')
         return request.redirect('/shop/payment/validate')
 
+    @http.route('/shop/payment/json_token', type='json', auth='public', website=True)
+    def payment_token_json(self, pm_id=None, **kwargs):
+        """ Method that handles payment using saved tokens
+
+        :param int pm_id: id of the payment.token that we want to use to pay.
+        """
+        order = request.website.sale_get_order()
+        # do not crash if the user has already paid and try to pay again
+        if not order:
+            raise UserError(_('Invalid Order'))
+
+        assert order.partner_id.id != request.website.partner_id.id
+
+        try:
+            pm_id = int(pm_id)
+        except ValueError:
+            raise UserError(_('Invalid Token'))
+
+        # We retrieve the token the user want to use to pay
+        token = request.env['payment.token'].sudo().browse(pm_id)
+        if not token:
+            raise UserError(_('Invalid Token'))
+
+        # we retrieve an existing transaction (if it exists obviously)
+        tx = request.website.sale_get_transaction() or request.env['payment.transaction'].sudo()
+        # we check if the transaction is Ok, if not then we create it
+        tx = tx._check_or_create_sale_tx(order, token.acquirer_id, payment_token=token, tx_type='server2server')
+        # we set the transaction id into the session (so `sale_get_transaction` can retrieve it )
+        request.session['sale_transaction_id'] = tx.id
+        # we proceed the s2s payment
+        res = tx.with_context(off_session=False).confirm_sale_token()
+        tx_info = tx._get_json_info()
+        return {
+            'tx_info': tx_info,
+            'redirect': '/shop/payment/validate',
+        }
+
     @http.route('/shop/payment/get_status/<int:sale_order_id>', type='json', auth="public", website=True)
     def payment_get_status(self, sale_order_id, **post):
         order = request.env['sale.order'].sudo().browse(sale_order_id).exists()
@@ -908,7 +945,7 @@ class WebsiteSale(http.Controller):
             })
         }
 
-    @http.route('/shop/payment/validate', type='http', auth="public", website=True)
+    @http.route('/shop/payment/validate', type='http', auth="public", website=True, sitemap=False)
     def payment_validate(self, transaction_id=None, sale_order_id=None, **post):
         """ Method that should be called by the server when receiving an update
         for a transaction. State at this point :
@@ -950,7 +987,7 @@ class WebsiteSale(http.Controller):
     def terms(self, **kw):
         return request.render("website_sale.terms")
 
-    @http.route(['/shop/confirmation'], type='http', auth="public", website=True)
+    @http.route(['/shop/confirmation'], type='http', auth="public", website=True, sitemap=False)
     def payment_confirmation(self, **post):
         """ End of checkout process controller. Confirmation is basically seing
         the status of a sale.order. State at this point :
@@ -966,7 +1003,7 @@ class WebsiteSale(http.Controller):
         else:
             return request.redirect('/shop')
 
-    @http.route(['/shop/print'], type='http', auth="public", website=True)
+    @http.route(['/shop/print'], type='http', auth="public", website=True, sitemap=False)
     def print_saleorder(self):
         sale_order_id = request.session.get('sale_last_order_id')
         if sale_order_id:

@@ -142,7 +142,7 @@ ListRenderer.include({
             currentRowID = this.state.data[this.currentRow].id;
             currentWidget = this.allFieldWidgets[currentRowID][this.currentFieldIndex];
             focusedElement = currentWidget.getFocusableElement().get(0);
-            if (currentWidget.formatType !== 'boolean') {
+            if (currentWidget.formatType !== 'boolean' && focusedElement) {
                 selectionRange = dom.getSelectionRange(focusedElement);
             }
         }
@@ -336,6 +336,7 @@ ListRenderer.include({
 
         // Toggle selected class here so that style is applied at the end
         $row.toggleClass('o_selected_row', editMode);
+        $row.find('.o_list_record_selector input').prop('disabled', !record.res_id)
 
         return $.when.apply($, defs);
     },
@@ -427,7 +428,7 @@ ListRenderer.include({
      */
     _moveToPreviousLine: function () {
         if (this.currentRow > 0) {
-            this._selectCell(this.currentRow - 1, this.columns.length - 1);
+            this._selectCell(this.currentRow - 1, this.columns.length - 1, {inc: -1});
         } else {
             this.unselectRow().then(this.trigger_up.bind(this, 'add_record'));
         }
@@ -616,6 +617,8 @@ ListRenderer.include({
      * @param {boolean} [options.force=false] if true, force selecting the cell
      *   even if seems to be already the selected one (useful after a re-
      *   rendering, to reset the focus on the correct field)
+     * @param {integer} [options.inc=1] the increment to use when searching for
+     *   the "next" possible cell (if the cell to select can't be selected)
      * @return {Deferred} fails if no cell could be selected
      */
     _selectCell: function (rowIndex, fieldIndex, options) {
@@ -639,7 +642,7 @@ ListRenderer.include({
             var oldFieldIndex = self.currentFieldIndex;
             self.currentFieldIndex = fieldIndex;
             fieldIndex = self._activateFieldWidget(record, fieldIndex, {
-                inc: 1,
+                inc: options.inc || 1,
                 wrap: wrap,
                 event: options && options.event,
             });
@@ -783,7 +786,7 @@ ListRenderer.include({
                 break;
             case 'previous':
                 if (this.currentFieldIndex > 0) {
-                    this._selectCell(this.currentRow, this.currentFieldIndex - 1, {wrap: false})
+                    this._selectCell(this.currentRow, this.currentFieldIndex - 1, {inc: -1, wrap: false})
                         .fail(this._moveToPreviousLine.bind(this));
                 } else {
                     this._moveToPreviousLine();

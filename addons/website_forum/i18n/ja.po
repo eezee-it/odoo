@@ -1840,7 +1840,7 @@ msgstr "新しいディスカッション"
 #: model:ir.ui.view,arch_db:website_forum.content_new_forum
 #, python-format
 msgid "New Forum"
-msgstr ""
+msgstr "新しいフォーラム"
 
 #. module: website_forum
 #: model:mail.message.subtype,description:website_forum.mt_question_new
@@ -2681,7 +2681,7 @@ msgstr "タイトルを入れてください。"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post_vote_recipient_id
 msgid "To"
-msgstr "移動先"
+msgstr "宛先"
 
 #. module: website_forum
 #: model:forum.forum,faq:website_forum.forum_help

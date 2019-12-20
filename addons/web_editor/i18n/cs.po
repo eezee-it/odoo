@@ -324,7 +324,7 @@ msgstr "Obsahuje"
 #: code:addons/web_editor/static/src/xml/translator.xml:7
 #, python-format
 msgid "Content to translate"
-msgstr ""
+msgstr "Obsah k překladu"
 
 #. module: web_editor
 #. openerp-web
@@ -1173,7 +1173,7 @@ msgstr "Změna velikosti poloviny"
 #: code:addons/web_editor/static/src/js/editor/rte.summernote.js:899
 #, python-format
 msgid "Resize Quarter"
-msgstr ""
+msgstr "Změnit velikost čtvrtletí"
 
 #. module: web_editor
 #. openerp-web

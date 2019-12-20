@@ -9,7 +9,6 @@
 # Manuela Feliciani <mfeliciani@alice.it>, 2018
 # Luigi Di Naro <gigidn@gmail.com>, 2018
 # maiolif <maiolif@mgftools.com>, 2018
-# David Minneci <david@numeko.it>, 2018
 # Giuliano Lotta <giuliano.lotta@gmail.com>, 2018
 # Daniele Faraglia <daniele.faraglia@gmail.com>, 2018
 # Simone Bernini <simone@aperturelabs.it>, 2018
@@ -24,6 +23,7 @@
 # Léonie Bouchat <lbo@odoo.com>, 2019
 # Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2019
 # Paolo Valier, 2019
+# David Minneci <david@numeko.it>, 2019
 # Sergio Zanchetta <primes2h@gmail.com>, 2019
 # 
 msgid ""
@@ -2108,7 +2108,7 @@ msgstr "Importo arrotondamento"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_line_price_subtotal_signed
 msgid "Amount Signed"
-msgstr "Importo firmato"
+msgstr "Importo con segno"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model_amount_type
@@ -2792,12 +2792,12 @@ msgstr ""
 #: code:addons/account/models/chart_template.py:197
 #, python-format
 msgid "CABA"
-msgstr ""
+msgstr "CABA"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "CAMT Import"
-msgstr ""
+msgstr "Importazione CAMT"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form

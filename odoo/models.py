@@ -40,7 +40,7 @@ from operator import attrgetter, itemgetter
 
 import babel.dates
 import dateutil.relativedelta
-import psycopg2
+import psycopg2, psycopg2.extensions
 from lxml import etree
 from lxml.builder import E
 
@@ -668,19 +668,27 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             for r in missing
         )
         fields = ['module', 'model', 'name', 'res_id']
-        cr.copy_from(io.StringIO(
-            u'\n'.join(
-                u"%s\t%s\t%s\t%d" % (
-                    modname,
-                    record._name,
-                    xids[record.id][1],
-                    record.id,
-                )
-                for record in missing
-            )),
-            table='ir_model_data',
-            columns=fields,
-        )
+
+        # disable eventual async callback / support for the extent of
+        # the COPY FROM, as these are apparently incompatible
+        callback = psycopg2.extensions.get_wait_callback()
+        psycopg2.extensions.set_wait_callback(None)
+        try:
+            cr.copy_from(io.StringIO(
+                u'\n'.join(
+                    u"%s\t%s\t%s\t%d" % (
+                        modname,
+                        record._name,
+                        xids[record.id][1],
+                        record.id,
+                    )
+                    for record in missing
+                )),
+                table='ir_model_data',
+                columns=fields,
+            )
+        finally:
+            psycopg2.extensions.set_wait_callback(callback)
         self.env['ir.model.data'].invalidate_cache(fnames=fields)
 
         return (
@@ -831,7 +839,8 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
         extracted = self._extract_records(fields, data, log=messages.append)
         converted = self._convert_records(extracted, log=messages.append)
         unknown_msg = _(u"Unknown database error: '%s'")
-        for id, xid, record, info in converted:
+        errors = 0
+        for i, (id, xid, record, info) in enumerate(converted, 1):
             try:
                 cr.execute('SAVEPOINT model_load_save')
             except psycopg2.InternalError as e:
@@ -852,14 +861,22 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
                 # avoid broken transaction) and keep going
                 cr.execute('ROLLBACK TO SAVEPOINT model_load_save')
                 messages.append(dict(info, type='error', **PGERROR_TO_OE[e.pgcode](self, fg, info, e)))
+                errors += 1
             except Exception as e:
-                _logger.exception("Error while loading record")
+                _logger.debug("Error while loading record", exc_info=True)
                 # Failed for some reason, perhaps due to invalid data supplied,
                 # rollback savepoint and keep going
                 cr.execute('ROLLBACK TO SAVEPOINT model_load_save')
                 message = (_(u'Unknown error during import:') + u' %s: %s' % (type(e), e))
                 moreinfo = _('Resolve other errors first')
                 messages.append(dict(info, type='error', message=message, moreinfo=moreinfo))
+                errors += 1
+            if errors >= 10 and (errors >= i / 10):
+                messages.append({
+                    'type': 'warning',
+                    'message': _(u"Found more than 10 errors and more than one error per 10 records, interrupted to avoid showing too many errors.")
+                })
+                break
         if any(message['type'] == 'error' for message in messages):
             cr.execute('ROLLBACK TO SAVEPOINT model_load')
             ids = False
@@ -1592,7 +1609,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             name
             for name, field in self._fields.items()
             if name not in values
-            if self._log_access and name not in MAGIC_COLUMNS
+            if not (self._log_access and name in MAGIC_COLUMNS)
             if not (field.inherited and field.related_field.model_name in avoid_models)
         }
 
@@ -2435,7 +2452,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             try:
                 field.setup_full(self)
             except Exception:
-                if not self.pool.loaded and field.base_field.manual:
+                if field.base_field.manual:
                     # Something goes wrong when setup a manual field.
                     # This can happen with related fields using another manual many2one field
                     # that hasn't been loaded because the comodel does not exist yet.
@@ -2475,7 +2492,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             # set up field triggers (on database-persisted models only)
             for field in cls._fields.values():
                 # dependencies of custom fields may not exist; ignore that case
-                exceptions = (Exception,) if field.manual else ()
+                exceptions = (Exception,) if field.base_field.manual else ()
                 with tools.ignore(*exceptions):
                     field.setup_triggers(self)
 
@@ -2782,11 +2799,11 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             if forbidden:
                 _logger.info(
                     _('The requested operation cannot be completed due to record rules: Document type: %s, Operation: %s, Records: %s, User: %s') % \
-                    (self._name, 'read', ','.join([str(r.id) for r in self][:6]), self._uid))
+                    (self._name, 'read', ','.join([str(r.id) for r in forbidden]), self._uid))
                 # store an access error exception in existing records
                 exc = AccessError(
                     _('The requested operation cannot be completed due to security restrictions. Please contact your system administrator.\n\n(Document type: %s, Operation: %s)') % (self._description, 'read')
-                    + ' - ({} {}, {} {})'.format(_('Records:'), self.ids[:6], _('User:'), self._uid)
+                    + ' - ({} {}, {} {})'.format(_('Records:'), forbidden.ids[:6], _('User:'), self._uid)
                 )
                 self.env.cache.set_failed(forbidden, self._fields.values(), exc)
 
@@ -4019,7 +4036,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             # mark missing records in cache with a failed value
             exc = MissingError(
                 _("Record does not exist or has been deleted.")
-                + '\n\n({} {}, {} {})'.format(_('Records:'), (self - existing).ids[:6], _('User:'), self._uid)
+                + '\n\n({} {}, {} {})'.format(_('Records:'), (self - existing)[:6], _('User:'), self._uid)
             )
             self.env.cache.set_failed(self - existing, self._fields.values(), exc)
         return existing
@@ -4564,6 +4581,9 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             recs = self
             for name in func.split('.'):
                 recs = recs._mapped_func(operator.itemgetter(name))
+                if isinstance(recs, BaseModel):
+                    # allow feedback to self's prefetch object
+                    recs = recs.with_prefetch(self._prefetch)
             return recs
         else:
             return self._mapped_func(func)

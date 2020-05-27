@@ -512,6 +512,16 @@ class IrModelFields(models.Model):
                     'message': _("The table %r if used for other, possibly incompatible fields.") % self.relation_table,
                 }}
 
+    @api.onchange('required', 'ttype', 'on_delete')
+    def _onchange_required(self):
+        for rec in self:
+            if rec.ttype == 'many2one' and rec.required and rec.on_delete == 'set null':
+                return {'warning': {'title': _("Warning"), 'message': _(
+                    "The m2o field %s is required but declares its ondelete policy "
+                    "as being 'set null'. Only 'restrict' and 'cascade' make sense."
+                    % (rec.name)
+                )}}
+
     def _get(self, model_name, name):
         """ Return the (sudoed) `ir.model.fields` record with the given model and name.
         The result may be an empty recordset if the model is not found.
@@ -534,12 +544,16 @@ class IrModelFields(models.Model):
             if field.name in models.MAGIC_COLUMNS:
                 continue
             model = self.env[field.model]
-            if tools.column_exists(self._cr, model._table, field.name) and \
-                    tools.table_kind(self._cr, model._table) == 'r':
-                self._cr.execute('ALTER TABLE "%s" DROP COLUMN "%s" CASCADE' % (model._table, field.name))
-            if field.state == 'manual' and field.ttype == 'many2many':
-                rel_name = field.relation_table or model._fields[field.name].relation
-                tables_to_drop.add(rel_name)
+            if field.store:
+                # TODO: Refactor this brol in master
+                if tools.column_exists(self._cr, model._table, field.name) and \
+                        tools.table_kind(self._cr, model._table) == 'r':
+                    self._cr.execute('ALTER TABLE "%s" DROP COLUMN "%s" CASCADE' % (
+                        model._table, field.name,
+                    ))
+                if field.state == 'manual' and field.ttype == 'many2many':
+                    rel_name = field.relation_table or model._fields[field.name].relation
+                    tables_to_drop.add(rel_name)
             if field.state == 'manual':
                 model._pop_field(field.name)
 
@@ -912,9 +926,12 @@ class IrModelFields(models.Model):
         fields_data = self._get_manual_field_data(model._name)
         for name, field_data in fields_data.items():
             if name not in model._fields and field_data['state'] == 'manual':
-                field = self._instanciate(field_data)
-                if field:
-                    model._add_field(name, field)
+                try:
+                    field = self._instanciate(field_data)
+                    if field:
+                        model._add_field(name, field)
+                except Exception:
+                    _logger.exception("Failed to load field %s.%s: skipped", model._name, field_data['name'])
 
 
 class IrModelConstraint(models.Model):

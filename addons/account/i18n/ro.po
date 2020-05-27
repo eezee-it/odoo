@@ -10,7 +10,8 @@
 # Cozmin Candea <office@terrabit.ro>, 2018
 # Sorin Trifu <sorin.trifu@bizconsulting.ro>, 2018
 # Martin Trigaux, 2019
-# Dorin Hongu <dhongu@gmail.com>, 2019
+# Foldi Robert <foldirobert@nexterp.ro>, 2020
+# Dorin Hongu <dhongu@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -18,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-29 09:07+0000\n"
 "PO-Revision-Date: 2017-09-20 10:13+0000\n"
-"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2019\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2020\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -433,6 +434,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Valorile stabilite aici sunt "
+"specifice companiei.\" groups=\"base.group_multi_company\"/>"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
@@ -1514,7 +1517,7 @@ msgstr "Șablon Cont"
 #: model:ir.model.fields,field_description:account.field_account_chart_template_property_stock_valuation_account_id
 #: model:ir.model.fields,field_description:account.field_res_company_property_stock_valuation_account_id
 msgid "Account Template for Stock Valuation"
-msgstr ""
+msgstr "Șablon de cont pentru evaluarea stocurilor"
 
 #. module: account
 #: model:ir.actions.act_window,name:account.action_account_template_form
@@ -2998,6 +3001,9 @@ msgid ""
 "Changing VAT number is not allowed once invoices have been issued for your "
 "account. Please contact us directly for this operation."
 msgstr ""
+"Modificarea numărului de TVA nu este permisă odată ce au fost emise facturi "
+"pentru contul dvs. Vă rugăm să ne contactați direct pentru această "
+"operațiune."
 
 #. module: account
 #: code:addons/account/controllers/portal.py:149
@@ -3077,6 +3083,8 @@ msgid ""
 "Check this box if this account allows invoices & payments matching of "
 "journal items."
 msgstr ""
+"Bifează această casetă dacă acest cont permite potrivirea facturilor și "
+"plăților elementelor din jurnal."
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_journal_refund_sequence
@@ -3857,6 +3865,7 @@ msgstr "Valoarea creditului"
 #: model:ir.model.fields,help:account.field_account_move_line_matched_credit_ids
 msgid "Credit journal items that are matched with this journal item."
 msgstr ""
+"Elementele jurnal de credit care se potrivesc cu acest element de jurnal."
 
 #. module: account
 #: model:ir.ui.menu,name:account.menu_action_currency_form
@@ -4303,6 +4312,12 @@ msgstr "Cont diferențe"
 msgid ""
 "Difference between the computed ending balance and the specified ending "
 "balance."
+msgstr ""
+
+#. module: account
+#: code:addons/account/models/account_move.py:235
+#, python-format
+msgid "Difference debit - credit: "
 msgstr ""
 
 #. module: account
@@ -5113,7 +5128,7 @@ msgstr "Să începem"
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "Get warnings when invoicing specific customers"
-msgstr ""
+msgstr "Obțineți avertizări la facturarea anumitor clienți"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
@@ -5241,7 +5256,7 @@ msgstr "Are poziții nereconciliate"
 #: model:ir.model.fields,field_description:account.field_account_payment_hide_payment_method
 #: model:ir.model.fields,field_description:account.field_account_register_payments_hide_payment_method
 msgid "Hide Payment Method"
-msgstr ""
+msgstr "Ascunde metoda de plată"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_config_settings_account_hide_setup_bar
@@ -6597,7 +6612,7 @@ msgstr "Note legale..."
 #. module: account
 #: model:ir.model.fields,help:account.field_account_fiscal_position_note
 msgid "Legal mentions that have to be printed on the invoices."
-msgstr ""
+msgstr "Mențiuni legale care trebuie tipărite pe facturi."
 
 #. module: account
 #: code:addons/account/models/account_invoice.py:216
@@ -7385,7 +7400,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account.field_res_config_settings_module_account_payment
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "Online Payment"
-msgstr ""
+msgstr "Plata online"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_wizard_multi_charts_accounts_only_one_chart_template
@@ -7919,7 +7934,7 @@ msgstr "Termen plată: plată imediată"
 #. module: account
 #: model:ir.model.fields,help:account.field_account_move_line_payment_id
 msgid "Payment that created this entry"
-msgstr ""
+msgstr "Plata care a creat această intrare"
 
 #. module: account
 #: code:addons/account/models/account_payment.py:229
@@ -8489,7 +8504,7 @@ msgstr "Înregistrat manual"
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "Record transactions in foreign currencies"
-msgstr ""
+msgstr "Înregistrați tranzacțiile în valute străine"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
@@ -8552,7 +8567,7 @@ msgstr "Referință / Descriere"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_refund_invoice_ids
 msgid "Refund Invoices"
-msgstr ""
+msgstr "Facturi de retur"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_refund_filter_refund
@@ -8840,7 +8855,7 @@ msgstr "Taxa Vânzări(%)"
 #: code:addons/account/models/account_journal_dashboard.py:33
 #, python-format
 msgid "Sales: Untaxed Total"
-msgstr ""
+msgstr "Vânzări: Total fără taxe"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_report_user_id
@@ -8992,6 +9007,7 @@ msgstr ""
 #: model:ir.model.fields,help:account.field_account_payment_term_line_value
 msgid "Select here the kind of valuation related to this payment terms line."
 msgstr ""
+"Selectați aici tipul de evaluare aferent acestei linii de condiții de plată."
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
@@ -9518,7 +9534,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account.field_account_tax_template_type_tax_use
 #: model:ir.model.fields,field_description:account.field_account_tax_type_tax_use
 msgid "Tax Scope"
-msgstr ""
+msgstr "Scop taxă"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_fiscal_position_tax_template_tax_src_id
@@ -9563,7 +9579,7 @@ msgstr "Taxă de aplicat"
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "TaxCloud"
-msgstr ""
+msgstr "TaxCloud"
 
 #. module: account
 #: selection:account.account.tag,applicability:0
@@ -10052,6 +10068,7 @@ msgstr ""
 #, python-format
 msgid "The lock date for advisors is irreversible and can't be removed."
 msgstr ""
+"Data de blocare a consilierilor este ireversibilă și nu poate fi eliminată."
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_move_line_move_id
@@ -10077,6 +10094,8 @@ msgstr ""
 msgid ""
 "The new lock date for advisors must be set after the previous lock date."
 msgstr ""
+"Noua dată de blocare a consilierilor trebuie să fie stabilită după data "
+"anterioară de blocare."
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_journal_refund_sequence_number_next
@@ -10514,7 +10533,7 @@ msgstr ""
 #: code:addons/account/static/src/xml/account_reconciliation.xml:240
 #, python-format
 msgid "This payment is registered but not reconciled."
-msgstr ""
+msgstr "Această plată este înregistrată dar nu este reconciliată"
 
 #. module: account
 #: model:ir.model.fields,help:account.field_res_partner_property_supplier_payment_term_id
@@ -11497,6 +11516,9 @@ msgid ""
 "You cannot define stricter conditions on advisors than on users. Please make"
 " sure that the lock date on advisor is set before the lock date for users."
 msgstr ""
+"Nu puteți defini condiții mai stricte pentru consilieri decât pentru "
+"utilizatori. Vă rugăm să vă asigurați că data de blocare la consilier este "
+"setată înainte de data de blocare pentru utilizatori."
 
 #. module: account
 #: code:addons/account/models/account_invoice.py:613
@@ -11570,6 +11592,9 @@ msgid ""
 "You cannot lock a period that is not finished yet. Please make sure that the"
 " lock date for advisors is not set after the last day of the previous month."
 msgstr ""
+"Nu puteți bloca o perioadă care nu este încă terminată. Vă rugăm să vă "
+"asigurați că data de blocare a consilierilor nu este stabilită după ultima "
+"zi a lunii precedente."
 
 #. module: account
 #. openerp-web

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Yihya Hugirat <hugirat@gmail.com>, 2017
-# yacov mosbacher (‫יעקב מוסבכר‬‎) <ymosba@gmail.com>, 2018
+# yacov mosbacher <ymosba@gmail.com>, 2018
 # שהאב חוסיין <shhab89@gmail.com>, 2018
 # Moshe Flam <pashute@gmail.com>, 2018
 # ExcaliberX <excaliberx@gmail.com>, 2018
 # Martin Trigaux, 2018
 # דודי מלכה <Dudimalka6@gmail.com>, 2019
 # Amit Spilman <amit@laylinetech.com>, 2019
+# ZVI BLONDER <ZVIBLONDER@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -18,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-03 15:06+0000\n"
 "PO-Revision-Date: 2017-09-20 10:18+0000\n"
-"Last-Translator: Amit Spilman <amit@laylinetech.com>, 2019\n"
+"Last-Translator: ZVI BLONDER <ZVIBLONDER@gmail.com>, 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +49,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslip
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslipdetails
 msgid "<strong>Address</strong>"
-msgstr ""
+msgstr "<strong>כתובת</strong>"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslip
@@ -60,7 +61,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslip
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslipdetails
 msgid "<strong>Bank Account</strong>"
-msgstr ""
+msgstr "<strong>חשבון בנק</strong>"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.report_contributionregister
@@ -194,13 +195,13 @@ msgstr "סוג סכום"
 #. module: hr_payroll
 #: selection:hr.contract,schedule_pay:0
 msgid "Annually"
-msgstr ""
+msgstr "שנתי"
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_line_appears_on_payslip
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_salary_rule_appears_on_payslip
 msgid "Appears on Payslip"
-msgstr ""
+msgstr "מופיע בתלוש שכר"
 
 #. module: hr_payroll
 #: model:ir.model.fields,help:hr_payroll.field_hr_payslip_line_condition_python
@@ -228,12 +229,12 @@ msgstr ""
 #. module: hr_payroll
 #: selection:hr.contract,schedule_pay:0
 msgid "Bi-monthly"
-msgstr ""
+msgstr "דו-חודשי"
 
 #. module: hr_payroll
 #: selection:hr.contract,schedule_pay:0
 msgid "Bi-weekly"
-msgstr ""
+msgstr "דו-שבועי"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_line_form
@@ -248,13 +249,13 @@ msgstr "בטל"
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
 msgid "Cancel Payslip"
-msgstr ""
+msgstr "בטל תלוש שכר"
 
 #. module: hr_payroll
 #: code:addons/hr_payroll/models/hr_payslip.py:98
 #, python-format
 msgid "Cannot cancel a payslip that is done."
-msgstr ""
+msgstr "לא ניתן לבטל תלוש שכר שהופק."
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_line_category_id
@@ -278,7 +279,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payroll_structure_children_ids
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_salary_rule_category_children_ids
 msgid "Children"
-msgstr ""
+msgstr "ילדים"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.hr_salary_rule_form
@@ -379,7 +380,7 @@ msgstr "אשר"
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_line_contract_id
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_worked_days_contract_id
 msgid "Contract"
-msgstr ""
+msgstr "חוזה"
 
 #. module: hr_payroll
 #: model:ir.actions.act_window,name:hr_payroll.hr_contract_advantage_template_action
@@ -590,7 +591,7 @@ msgstr "עובד"
 #. module: hr_payroll
 #: model:ir.model,name:hr_payroll.model_hr_contract
 msgid "Employee Contract"
-msgstr ""
+msgstr "חוזה עובד"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_employee_grade_form
@@ -602,7 +603,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:hr_payroll.action_view_hr_payslip_form
 #: model:ir.ui.menu,name:hr_payroll.menu_department_tree
 msgid "Employee Payslips"
-msgstr ""
+msgstr "תלושי שכר של עובדים"
 
 #. module: hr_payroll
 #: model:ir.model,name:hr_payroll.model_hr_contract_advantage_template
@@ -674,18 +675,18 @@ msgstr "כללי"
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_by_employees
 msgid "Generate"
-msgstr ""
+msgstr "ייצר"
 
 #. module: hr_payroll
 #: model:ir.actions.act_window,name:hr_payroll.action_hr_payslip_by_employees
 #: model:ir.ui.view,arch_db:hr_payroll.hr_payslip_run_form
 msgid "Generate Payslips"
-msgstr ""
+msgstr "הפק תלושי שכר"
 
 #. module: hr_payroll
 #: model:ir.model,name:hr_payroll.model_hr_payslip_employees
 msgid "Generate payslips for all selected employees"
-msgstr ""
+msgstr "הפק תלושי שכר לכל העובדים שנבחרו"
 
 #. module: hr_payroll
 #: model:hr.salary.rule,name:hr_payroll.hr_salary_rule_sales_commission
@@ -944,17 +945,17 @@ msgstr "הערות"
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_worked_days_number_of_days
 msgid "Number of Days"
-msgstr ""
+msgstr "מספר ימים"
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_worked_days_number_of_hours
 msgid "Number of Hours"
-msgstr ""
+msgstr "מספר שעות"
 
 #. module: hr_payroll
 #: model:res.groups,name:hr_payroll.group_hr_payroll_user
 msgid "Officer"
-msgstr ""
+msgstr "פקיד בכיר"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
@@ -986,7 +987,7 @@ msgstr "שותף"
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslip
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslipdetails
 msgid "Pay Slip"
-msgstr ""
+msgstr "תלוש שכר"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_filter
@@ -1021,7 +1022,7 @@ msgstr ""
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.report_contributionregister
 msgid "PaySlip Name"
-msgstr ""
+msgstr "שם תלוש שכר"
 
 #. module: hr_payroll
 #: model:ir.actions.act_window,name:hr_payroll.open_payroll_modules
@@ -1054,7 +1055,7 @@ msgstr ""
 #: model:ir.actions.report,name:hr_payroll.action_report_payslip
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
 msgid "Payslip"
-msgstr ""
+msgstr "תלוש שכר"
 
 #. module: hr_payroll
 #: code:addons/hr_payroll/models/hr_payslip.py:84
@@ -1091,7 +1092,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_line_form
 msgid "Payslip Line"
-msgstr ""
+msgstr "שורת תלוש שכר"
 
 #. module: hr_payroll
 #: model:ir.actions.act_window,name:hr_payroll.act_contribution_reg_payslip_lines
@@ -1099,7 +1100,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_line_filter
 msgid "Payslip Lines"
-msgstr ""
+msgstr "שורות תלוש שכר"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.report_payslipdetails
@@ -1109,7 +1110,7 @@ msgstr ""
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_name
 msgid "Payslip Name"
-msgstr ""
+msgstr "שם תלוש שכר"
 
 #. module: hr_payroll
 #: model:ir.model,name:hr_payroll.model_hr_payslip_worked_days
@@ -1127,7 +1128,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_filter
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_tree
 msgid "Payslips"
-msgstr ""
+msgstr "תלושי שכר"
 
 #. module: hr_payroll
 #: model:ir.actions.act_window,name:hr_payroll.action_hr_payslip_run_tree
@@ -1140,7 +1141,7 @@ msgstr ""
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_by_employees
 msgid "Payslips by Employees"
-msgstr ""
+msgstr "תלושי שכר לפי עובדים"
 
 #. module: hr_payroll
 #: selection:hr.payslip.line,amount_select:0
@@ -1222,7 +1223,7 @@ msgstr ""
 #. module: hr_payroll
 #: selection:hr.contract,schedule_pay:0
 msgid "Quarterly"
-msgstr ""
+msgstr "רבעוני"
 
 #. module: hr_payroll
 #: selection:hr.payslip.line,condition_select:0
@@ -1266,7 +1267,7 @@ msgstr ""
 #. module: hr_payroll
 #: selection:hr.payslip,state:0
 msgid "Rejected"
-msgstr ""
+msgstr "נדחה"
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_line_salary_rule_id
@@ -1336,7 +1337,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:hr_payroll.action_view_hr_payroll_structure_list_form
 #: model:ir.ui.menu,name:hr_payroll.menu_hr_payroll_structure_view
 msgid "Salary Structures"
-msgstr ""
+msgstr "מבני שכר"
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_contract_schedule_pay
@@ -1351,12 +1352,12 @@ msgstr ""
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_line_filter
 msgid "Search Payslip Lines"
-msgstr ""
+msgstr "חפש שורות תלוש שכר"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_filter
 msgid "Search Payslips"
-msgstr ""
+msgstr "חפש תלושי שכר"
 
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_rule_filter
@@ -1366,7 +1367,7 @@ msgstr ""
 #. module: hr_payroll
 #: selection:hr.contract,schedule_pay:0
 msgid "Semi-annually"
-msgstr ""
+msgstr "חצי שנתי"
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_input_sequence
@@ -1553,19 +1554,19 @@ msgstr ""
 #: code:addons/hr_payroll/models/hr_payslip.py:128
 #, python-format
 msgid "You cannot delete a payslip which is not draft or cancelled!"
-msgstr ""
+msgstr "אינך יכול למחוק תלוש שכר שאינו טיוטה או מבוטל!"
 
 #. module: hr_payroll
 #: code:addons/hr_payroll/wizard/hr_payroll_payslips_by_employees.py:24
 #, python-format
 msgid "You must select employee(s) to generate payslip(s)."
-msgstr ""
+msgstr "עליך לבחור עובד כדי להפיק תלוש שכר."
 
 #. module: hr_payroll
 #: code:addons/hr_payroll/models/hr_payslip.py:517
 #, python-format
 msgid "You must set a contract to create a payslip line."
-msgstr ""
+msgstr "עליך להגדיר חוזה כדי ליצור תלוש שכר."
 
 #. module: hr_payroll
 #: model:ir.model,name:hr_payroll.model_hr_salary_rule

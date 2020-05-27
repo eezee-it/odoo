@@ -465,9 +465,10 @@ class SaleOrder(models.Model):
             # Use additional field helper function (for account extensions)
             for line in invoice.invoice_line_ids:
                 line._set_additional_fields(invoice)
-            # Necessary to force computation of taxes. In account_invoice, they are triggered
+            # Necessary to force computation of taxes and cash rounding. In account_invoice, they are triggered
             # by onchanges, which are not triggered when doing a create.
             invoice.compute_taxes()
+            invoice._onchange_cash_rounding()
             invoice.message_post_with_view('mail.message_origin_link',
                 values={'self': invoice, 'origin': references[invoice]},
                 subtype_id=self.env.ref('mail.mt_note').id)
@@ -1161,7 +1162,7 @@ class SaleOrderLine(models.Model):
         PricelistItem = self.env['product.pricelist.item']
         field_name = 'lst_price'
         currency_id = None
-        product_currency = None
+        product_currency = product.currency_id
         if rule_id:
             pricelist_item = PricelistItem.browse(rule_id)
             if pricelist_item.pricelist_id.discount_policy == 'without_discount':
@@ -1171,13 +1172,13 @@ class SaleOrderLine(models.Model):
 
             if pricelist_item.base == 'standard_price':
                 field_name = 'standard_price'
-            if pricelist_item.base == 'pricelist' and pricelist_item.base_pricelist_id:
+                product_currency = product.cost_currency_id
+            elif pricelist_item.base == 'pricelist' and pricelist_item.base_pricelist_id:
                 field_name = 'price'
                 product = product.with_context(pricelist=pricelist_item.base_pricelist_id.id)
                 product_currency = pricelist_item.base_pricelist_id.currency_id
             currency_id = pricelist_item.pricelist_id.currency_id
 
-        product_currency = product_currency or(product.company_id and product.company_id.currency_id) or self.env.user.company_id.currency_id
         if not currency_id:
             currency_id = product_currency
             cur_factor = 1.0

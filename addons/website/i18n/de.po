@@ -28,11 +28,11 @@
 # e2f <projects@e2f.com>, 2018
 # darenkster <inactive+darenkster@transifex.com>, 2018
 # Katharina Moritz <kmo@e2f.com>, 2018
-# Ermin Trevisan <trevi@twanda.com>, 2018
 # Martin Trigaux, 2019
 # Wolfgang Taferner, 2019
-# Chris Egal <sodaswed@web.de>, 2019
 # Leon Grill <leg@odoo.com>, 2019
+# Ermin Trevisan <trevi@twanda.com>, 2020
+# Chris Egal <sodaswed@web.de>, 2020
 # 
 msgid ""
 msgstr ""
@@ -40,7 +40,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-03 15:06+0000\n"
 "PO-Revision-Date: 2017-09-20 10:25+0000\n"
-"Last-Translator: Leon Grill <leg@odoo.com>, 2019\n"
+"Last-Translator: Chris Egal <sodaswed@web.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/odoo/teams/41243/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1964,6 +1964,11 @@ msgid "Email support"
 msgstr "E-Mail-Unterstützung"
 
 #. module: website
+#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "Enable billing on your Google Project"
+msgstr ""
+
+#. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "End"
 msgstr "Ende"
@@ -2443,7 +2448,7 @@ msgstr "Home"
 #: model:ir.ui.view,arch_db:website.bs_debug_page_ir_ui_view
 #: model:website.page,arch_db:website.bs_debug_page
 msgid "Home <span class=\"sr-only\">(current)</span>"
-msgstr ""
+msgstr "Home <span class=\"sr-only\">(aktuell)</span>"
 
 #. module: website
 #. openerp-web
@@ -3373,7 +3378,7 @@ msgstr "Seiten"
 #: model:ir.ui.view,arch_db:website.bs_debug_page_ir_ui_view
 #: model:website.page,arch_db:website.bs_debug_page
 msgid "Pagination"
-msgstr ""
+msgstr "Seitenumbruch"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.snippet_options
@@ -3884,11 +3889,6 @@ msgid "Show in Top Menu"
 msgstr "Im oberen Menü anzeigen"
 
 #. module: website
-#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
-msgid "Show your address on a map in the"
-msgstr "Ihre Adresse auf einer Karte anzeigen auf der"
-
-#. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "Simple and obvious"
 msgstr "Einfach und naheliegend"
@@ -4377,6 +4377,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website.edit_website_pages
 msgid "Url"
 msgstr "URL"
+
+#. module: website
+#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "Use Google Map on your website ("
+msgstr "Verwenden Sie Google Map auf Ihrer Website ("
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_faq_collapse
@@ -5187,8 +5192,8 @@ msgstr "oder Master bearbeiten"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.res_config_settings_view_form
-msgid "page"
-msgstr "Seite"
+msgid "page, snippets, ...)"
+msgstr ""
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner

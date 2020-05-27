@@ -1431,9 +1431,9 @@ exports.Orderline = Backbone.Model.extend({
             var unit = this.get_unit();
             if(unit){
                 if (unit.rounding) {
-                    this.quantity    = round_pr(quant, unit.rounding);
                     var decimals = this.pos.dp['Product Unit of Measure'];
-                    this.quantity = round_di(this.quantity, decimals)
+                    var rounding = Math.max(unit.rounding, Math.pow(10, -decimals));
+                    this.quantity    = round_pr(quant, rounding);
                     this.quantityStr = field_utils.format.float(this.quantity, {digits: [69, decimals]});
                 } else {
                     this.quantity    = round_pr(quant, 1);
@@ -2558,20 +2558,24 @@ exports.Order = Backbone.Model.extend({
 
         return total;
     },
+    get_change_value: function(paymentline){
+      if (!paymentline) {
+          var change = this.get_total_paid() - this.get_total_with_tax();
+      } else {
+          var change = -this.get_total_with_tax();
+          var lines  = this.paymentlines.models;
+          for (var i = 0; i < lines.length; i++) {
+              change += lines[i].get_amount();
+              if (lines[i] === paymentline) {
+                  break;
+              }
+          }
+      }
+      return round_pr(change, this.pos.currency.rounding);
+    },
     get_change: function(paymentline) {
-        if (!paymentline) {
-            var change = this.get_total_paid() - this.get_total_with_tax();
-        } else {
-            var change = -this.get_total_with_tax();
-            var lines  = this.paymentlines.models;
-            for (var i = 0; i < lines.length; i++) {
-                change += lines[i].get_amount();
-                if (lines[i] === paymentline) {
-                    break;
-                }
-            }
-        }
-        return round_pr(Math.max(0,change), this.pos.currency.rounding);
+        var change = this.get_change_value(paymentline);
+        return Math.max(0,change);
     },
     get_due: function(paymentline) {
         if (!paymentline) {

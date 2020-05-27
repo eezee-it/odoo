@@ -96,6 +96,13 @@ msgid "<span id=\"search_label\">Search</span> <span class=\"caret\"/>"
 msgstr "<span id=\"search_label\">Caută</span> <span class=\"caret\"/>"
 
 #. module: portal
+#. openerp-web
+#: code:addons/portal/static/src/xml/portal_signature.xml:24
+#, python-format
+msgid "Accept and Sign"
+msgstr ""
+
+#. module: portal
 #: model:ir.ui.view,arch_db:portal.wizard_view
 msgid "Apply"
 msgstr "Aplică"
@@ -277,7 +284,7 @@ msgstr "Lăsați un comentariu"
 #. module: portal
 #: model:ir.model.fields,field_description:portal.field_portal_wizard_user_user_id
 msgid "Login User"
-msgstr ""
+msgstr "Login User"
 
 #. module: portal
 #: model:ir.ui.view,arch_db:portal.frontend_layout
@@ -443,6 +450,9 @@ msgid ""
 "- Correct the emails of the relevant contacts\n"
 "- Grant access only to contacts with unique emails"
 msgstr ""
+"Pentru a rezolva această eroare, puteți:\n"
+"- Corectează e-mailurile contactelor relevante\n"
+"- Acordă acces doar la contacte cu e-mailuri unice"
 
 #. module: portal
 #: model:ir.model.fields,field_description:portal.field_portal_wizard_user_ids
@@ -643,7 +653,7 @@ msgstr "Cod poștal"
 #: code:addons/portal/static/src/xml/portal_chatter.xml:56
 #, python-format
 msgid "avatar"
-msgstr ""
+msgstr "avatar"
 
 #. module: portal
 #. openerp-web
@@ -664,7 +674,7 @@ msgstr "comentarii"
 #: code:addons/portal/static/src/xml/portal_chatter.xml:21
 #, python-format
 msgid "logged in"
-msgstr ""
+msgstr "conectat"
 
 #. module: portal
 #: model:ir.model,name:portal.model_portal_mixin

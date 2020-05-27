@@ -152,7 +152,8 @@ class Message(models.Model):
                 (self._table, operator)
         self.env.cr.execute(query, (value,))
         ids = [t[0] for t in self.env.cr.fetchall()]
-        return [('id', 'in', ids)]
+        # return domain with an implicit AND
+        return [('id', 'in', ids), (1, '=', 1)]
 
     @api.one
     @api.depends('size')
@@ -323,6 +324,18 @@ class Related(models.Model):
     message = fields.Many2one('test_new_api.message')
     message_name = fields.Text(related="message.body", related_sudo=False, string='Message Body')
     message_currency = fields.Many2one(related="message.author", string='Message Author')
+
+
+class ComputeProtected(models.Model):
+    _name = 'test_new_api.compute.protected'
+
+    foo = fields.Char(default='')
+    bar = fields.Char(compute='_compute_bar', store=True)
+
+    @api.depends('foo')
+    def _compute_bar(self):
+        for record in self:
+            record.bar = record.foo
 
 
 class ComputeInverse(models.Model):

@@ -13,6 +13,7 @@
 # Peter Wickenberg <peter@wickenberg.nu>, 2018
 # Anders Wallenquist <anders.wallenquist@vertel.se>, 2018
 # Chrille Hedberg <hedberg.chrille@gmail.com>, 2018
+# Åke C. Engquist <ake.engquist@arbetsformedlingen.se>, 2020
 # Jakob Krabbe <jakob.krabbe@vertel.se>, 2020
 # 
 msgid ""
@@ -70,7 +71,7 @@ msgstr "<i>Du lär dig självständigt och snabbt</i>"
 #: model:hr.job,website_description:hr.job_hrm
 #: model:hr.job,website_description:hr.job_marketing
 msgid "<i>You easily manage them</i>"
-msgstr ""
+msgstr "<i>Du kan enkelt hantera dem</i>"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
@@ -228,7 +229,7 @@ msgstr "Klicka för att definiera en ny arbetsroll"
 #: model:hr.job,website_description:hr.job_marketing
 #: model:hr.job,website_description:hr.job_trainee
 msgid "Close to the perfection ..."
-msgstr ""
+msgstr "Nära perfektion ..."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_coach_id
@@ -259,7 +260,7 @@ msgstr "Bolag"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_config_settings_resource_calendar_id
 msgid "Company Working Hours"
-msgstr ""
+msgstr "Företagets arbetstid"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department_complete_name
@@ -514,7 +515,7 @@ msgstr ""
 #: model:hr.job,website_description:hr.job_developer
 #: model:hr.job,website_description:hr.job_trainee
 msgid "Good knowledge of the programming language"
-msgstr ""
+msgstr "God kännedom av programmeringsspråket"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_cto

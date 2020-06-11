@@ -11,6 +11,8 @@
 # Gorka Toledo <gorka.toledo@gmail.com>, 2018
 # Mikel Lizarralde <mikellizarralde@gmail.com>, 2018
 # Martin Trigaux, 2019
+# Victor Laskurain <blaskurain@binovo.es>, 2019
+# Maialen Rodriguez <maialenrodriguez98@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -18,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-03 15:06+0000\n"
 "PO-Revision-Date: 2017-09-20 10:18+0000\n"
-"Last-Translator: Martin Trigaux, 2019\n"
+"Last-Translator: Maialen Rodriguez <maialenrodriguez98@gmail.com>, 2020\n"
 "Language-Team: Basque (https://www.transifex.com/odoo/teams/41243/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -676,7 +678,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:hr_expense.action_hr_expense_sheet_all_to_approve
 #: model:ir.actions.act_window,name:hr_expense.action_hr_expense_sheet_department_to_approve
 msgid "Expense Reports to Approve"
-msgstr ""
+msgstr "Onartzeko gastuen txostenak"
 
 #. module: hr_expense
 #: model:ir.ui.view,arch_db:hr_expense.view_hr_expense_sheet_tree
@@ -846,6 +848,8 @@ msgid ""
 "For the Odoo Team,<br/>\n"
 "                            Fabien Pinckaers, Founder"
 msgstr ""
+"Odoo taldearentzat,<br/>\n"
+"                            Fabien Pinckaers, Founder"
 
 #. module: hr_expense
 #: model:ir.ui.view,arch_db:hr_expense.view_hr_expense_filter
@@ -1018,7 +1022,7 @@ msgstr "Zirkularra"
 #: model:ir.ui.menu,name:hr_expense.menu_hr_expense_my_expenses
 #: model:ir.ui.view,arch_db:hr_expense.view_hr_expense_filter
 msgid "My Expenses"
-msgstr ""
+msgstr "Nire gastuak"
 
 #. module: hr_expense
 #: model:ir.actions.act_window,name:hr_expense.hr_expense_actions_my_unsubmitted
@@ -1349,7 +1353,7 @@ msgstr ""
 #. module: hr_expense
 #: model:ir.ui.view,arch_db:hr_expense.view_hr_expense_filter
 msgid "Refused Expenses"
-msgstr ""
+msgstr "Errefusatutako gastuak"
 
 #. module: hr_expense
 #: model:ir.ui.menu,name:hr_expense.menu_hr_expense_sheet_my_reports_refused
@@ -1388,7 +1392,7 @@ msgstr "Txostenak"
 #. module: hr_expense
 #: model:ir.actions.act_window,name:hr_expense.action_request_approve_expense_sheet
 msgid "Reports to Approve"
-msgstr ""
+msgstr "Onartzeko txostenak"
 
 #. module: hr_expense
 #: model:ir.actions.act_window,name:hr_expense.action_request_to_pay_expense_sheet
@@ -1839,7 +1843,7 @@ msgstr ""
 #. module: hr_expense
 #: model:ir.model,name:hr_expense.model_res_config_settings
 msgid "res.config.settings"
-msgstr ""
+msgstr "res.config.settings"
 
 #. module: hr_expense
 #: model:ir.ui.view,arch_db:hr_expense.hr_expense_planner

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import base64
 import collections
 import logging
 from lxml.html import clean
@@ -11,7 +12,7 @@ import threading
 import time
 
 from email.header import decode_header, Header
-from email.utils import getaddresses, formataddr
+from email.utils import getaddresses
 from lxml import etree
 
 import odoo
@@ -29,18 +30,33 @@ tags_to_kill = ["script", "head", "meta", "title", "link", "style", "frame", "if
 tags_to_remove = ['html', 'body']
 
 # allow new semantic HTML5 tags
-allowed_tags = clean.defs.tags | frozenset('article section header footer hgroup nav aside figure main'.split() + [etree.Comment])
+allowed_tags = frozenset({
+    'a', 'abbr', 'acronym', 'address', 'applet', 'area', 'article', 'aside',
+    'audio', 'b', 'basefont', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br',
+    'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup',
+    'command', 'datalist', 'dd', 'del', 'details', 'dfn', 'dir', 'div', 'dl',
+    'dt', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form',
+    'frameset', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hgroup', 'hr', 'html',
+    'i', 'img', 'input', 'ins', 'isindex', 'kbd', 'keygen', 'label', 'legend',
+    'li', 'main', 'map', 'mark', 'marquee', 'math', 'menu', 'meter', 'nav',
+    'ol', 'optgroup', 'option', 'output', 'p', 'param', 'pre', 'progress', 'q',
+    'rp', 'rt', 'ruby', 's', 'samp', 'section', 'select', 'small', 'source',
+    'span', 'strike', 'strong', 'sub', 'summary', 'sup', 'svg', 'table', 'tbody',
+    'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u',
+    'ul', 'var', 'video', 'wbr'
+}) | frozenset([etree.Comment])
+
 safe_attrs = clean.defs.safe_attrs | frozenset(
     ['style',
      'data-o-mail-quote',  # quote detection
      'data-oe-model', 'data-oe-id', 'data-oe-field', 'data-oe-type', 'data-oe-expression', 'data-oe-translation-id', 'data-oe-nodeid',
-     'data-publish', 'data-id', 'data-res_id', 'data-member_id', 'data-view-id'
+     'data-publish', 'data-id', 'data-res_id', 'data-interval', 'data-member_id', 'data-scroll-background-ratio', 'data-view-id',
      ])
 
 
 class _Cleaner(clean.Cleaner):
 
-    _style_re = re.compile('''([\w-]+)\s*:\s*((?:[^;"']|"[^"]*"|'[^']*')+)''')
+    _style_re = re.compile(r'''([\w-]+)\s*:\s*((?:[^;"']|"[^";]*"|'[^';]*')+)''')
 
     _style_whitelist = [
         'font-size', 'font-family', 'font-weight', 'background-color', 'color', 'text-align',
@@ -159,11 +175,6 @@ class _Cleaner(clean.Cleaner):
                 el.attrib['style'] = '; '.join('%s:%s' % (key, val) for (key, val) in valid_styles.items())
             else:
                 del el.attrib['style']
-
-    def allow_element(self, el):
-        if el.tag == 'object' and el.get('type') == "image/svg+xml":
-            return True
-        return super(_Cleaner, self).allow_element(el)
 
 
 def html_sanitize(src, silent=True, sanitize_tags=True, sanitize_attributes=False, sanitize_style=False, strip_style=False, strip_classes=False):
@@ -391,7 +402,7 @@ def append_content_to_html(html, content, plaintext=True, preserve=False, contai
     """
     html = ustr(html)
     if plaintext and preserve:
-        content = u'\n<pre>%s</pre>\n' % ustr(content)
+        content = u'\n<pre>%s</pre>\n' % misc.html_escape(ustr(content))
     elif plaintext:
         content = '\n%s\n' % plaintext2html(content, container_tag)
     else:
@@ -428,6 +439,7 @@ discussion_re = re.compile("<.*-open(?:object|erp)-private[^>]*@([^>]*)>", re.UN
 
 mail_header_msgid_re = re.compile('<[^<>]+>')
 
+email_addr_escapes_re = re.compile(r'[\\"]')
 
 def generate_tracking_message_id(res_id):
     """Returns a string that can be used in the Message-ID RFC822 header field
@@ -538,3 +550,34 @@ def decode_smtp_header(smtp_header):
 # was mail_thread.decode_header()
 def decode_message_header(message, header, separator=' '):
     return separator.join(decode_smtp_header(h) for h in message.get_all(header, []) if h)
+
+def formataddr(pair, charset='utf-8'):
+    """Pretty format a 2-tuple of the form (realname, email_address).
+    Set the charset to ascii to get a RFC-2822 compliant email.
+    The email address is considered valid and is left unmodified.
+    If the first element of pair is falsy then only the email address
+    is returned.
+    >>> formataddr(('John Doe', 'johndoe@example.com'))
+    '"John Doe" <johndoe@example.com>'
+    >>> formataddr(('', 'johndoe@example.com'))
+    'johndoe@example.com'
+    """
+    name, address = pair
+    address.encode('ascii')
+    if name:
+        try:
+            name.encode(charset)
+        except UnicodeEncodeError:
+            # charset mismatch, encode as utf-8/base64
+            # rfc2047 - MIME Message Header Extensions for Non-ASCII Text
+            return "=?utf-8?b?{name}?= <{addr}>".format(
+                name=base64.b64encode(name.encode('utf-8')).decode('ascii'),
+                addr=address)
+        else:
+            # ascii name, escape it if needed
+            # rfc2822 - Internet Message Format
+            #   #section-3.4 - Address Specification
+            return '"{name}" <{addr}>'.format(
+                name=email_addr_escapes_re.sub(r'\\\g<0>', name),
+                addr=address)
+    return address

@@ -3,21 +3,25 @@
 # * delivery
 # 
 # Translators:
-# Martin Trigaux, 2017
 # Eneko <eastigarraga@codesyntax.com>, 2018
-# Mikel Lizarralde <mikellizarralde@gmail.com>, 2018
-# Naomi Hidalgo <naomihid96@gmail.com>, 2018
+# Martin Trigaux, 2018
 # oihane <oihanecruce@gmail.com>, 2018
 # Esther Martín Menéndez <esthermartin001@gmail.com>, 2018
 # ibinka lete <ilete@fpbidasoa.net>, 2018
 # Gorka Toledo <gorka.toledo@gmail.com>, 2018
+# Mikel Lizarralde <mikellizarralde@gmail.com>, 2018
+# Naomi Hidalgo <naomihid96@gmail.com>, 2019
+# Victor Laskurain <blaskurain@binovo.es>, 2019
+# Maialen Rodriguez <maialenrodriguez98@gmail.com>, 2020
+# Unai Muñoz <unaimunoz9@gmail.com>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 13:43+0000\n"
-"PO-Revision-Date: 2018-02-19 13:43+0000\n"
-"Last-Translator: Gorka Toledo <gorka.toledo@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-07-17 15:01+0000\n"
+"PO-Revision-Date: 2017-09-20 10:16+0000\n"
+"Last-Translator: Unai Muñoz <unaimunoz9@gmail.com>, 2020\n"
 "Language-Team: Basque (https://www.transifex.com/odoo/teams/41243/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +152,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:delivery.report_delivery_document2
 #: model:ir.ui.view,arch_db:delivery.report_shipping2
 msgid "<strong>Weight</strong>"
-msgstr ""
+msgstr "<strong>Pisua</strong>"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_integration_level
@@ -213,12 +217,12 @@ msgstr "Garraiolari"
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_order_form_with_carrier
 msgid "Check price"
-msgstr ""
+msgstr "Prezioa egiaztatu"
 
 #. module: delivery
 #: model:ir.actions.act_window,help:delivery.action_delivery_carrier_form
 msgid "Click to define a new delivery method."
-msgstr ""
+msgstr "Egin klik metodo berria definitzeko."
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_company_id
@@ -260,9 +264,16 @@ msgid "Debug logging"
 msgstr ""
 
 #. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:13
+#, python-format
+msgid "Debug requests"
+msgstr ""
+
+#. module: delivery
 #: model:ir.ui.menu,name:delivery.menu_delivery
 msgid "Delivery"
-msgstr ""
+msgstr "Bidalketa"
 
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_delivery_carrier_search
@@ -272,17 +283,17 @@ msgstr ""
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_delivery_price_rule_form
 msgid "Delivery Cost"
-msgstr ""
+msgstr "Bidalketa kostua"
 
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_picking_withcarrier_out_form
 msgid "Delivery Information"
-msgstr ""
+msgstr "Bidalketa informazioa"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_sale_order_delivery_message
 msgid "Delivery Message"
-msgstr ""
+msgstr "Bidalketa mezua"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_res_partner_property_delivery_carrier_id
@@ -309,7 +320,7 @@ msgstr ""
 #: model:ir.ui.menu,name:delivery.menu_delivery_packagings
 #: model:ir.ui.view,arch_db:delivery.product_packaging_delivery_tree
 msgid "Delivery Packages"
-msgstr ""
+msgstr "Pakete bidalketa"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_package_delivery_packaging_id
@@ -325,7 +336,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_product_id
 msgid "Delivery Product"
-msgstr ""
+msgstr "Bidalketa produktua"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_sale_order_delivery_rating_success
@@ -340,6 +351,13 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_sequence
 msgid "Determine the display order"
+msgstr ""
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:14
+#, python-format
+msgid "Disable debug"
 msgstr ""
 
 #. module: delivery
@@ -363,12 +381,18 @@ msgid ""
 msgstr ""
 
 #. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:16
+#, python-format
+msgid "Enable debug"
+msgstr ""
+
+#. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_prod_environment
 msgid "Environment"
 msgstr "Ingurumena"
 
 #. module: delivery
-#: code:addons/delivery/models/delivery_grid.py:50
 #: code:addons/delivery/models/delivery_grid.py:109
 #, python-format
 msgid "Error: no matching grid."
@@ -514,12 +538,12 @@ msgstr "Last Updated on"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_product_packaging_length
 msgid "Length"
-msgstr ""
+msgstr "Luzera"
 
 #. module: delivery
 #: sql_constraint:product.packaging:0
 msgid "Length must be positive"
-msgstr ""
+msgstr "Luzera positiboa izan behar du"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_debug_logging
@@ -549,7 +573,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_product_packaging_max_weight
 msgid "Max Weight"
-msgstr ""
+msgstr "Pisu maximoa"
 
 #. module: delivery
 #: sql_constraint:product.packaging:0
@@ -559,7 +583,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_max_value
 msgid "Maximum Value"
-msgstr ""
+msgstr "Balio maximoa"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_product_packaging_max_weight
@@ -585,6 +609,13 @@ msgid "No carrier set for this order."
 msgstr ""
 
 #. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:15
+#, python-format
+msgid "No debug"
+msgstr ""
+
+#. module: delivery
 #: code:addons/delivery/models/delivery_grid.py:100
 #, python-format
 msgid "No price rule matching this order; delivery cost cannot be computed."
@@ -600,12 +631,12 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_stock_picking_number_of_packages
 msgid "Number of Packages"
-msgstr ""
+msgstr "Pakete kopurua"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_operator
 msgid "Operator"
-msgstr ""
+msgstr "Operadorea"
 
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.choose_delivery_package_view_form
@@ -615,7 +646,7 @@ msgstr "Paketea"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_product_packaging_shipper_package_code
 msgid "Package Code"
-msgstr ""
+msgstr "Pakete kodea"
 
 #. module: delivery
 #: code:addons/delivery/models/stock_picking.py:34
@@ -627,7 +658,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_stock_picking_package_ids
 msgid "Packages"
-msgstr ""
+msgstr "Paketeak"
 
 #. module: delivery
 #: model:ir.model,name:delivery.model_product_packaging
@@ -637,7 +668,7 @@ msgstr "Paketatzea"
 #. module: delivery
 #: model:ir.model,name:delivery.model_stock_move_line
 msgid "Packing Operation"
-msgstr ""
+msgstr "Paketatze eragiketa"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_package_stock_quant_package_id
@@ -647,7 +678,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model,name:delivery.model_stock_quant_package
 msgid "Physical Packages"
-msgstr ""
+msgstr "Pakete fisikoak"
 
 #. module: delivery
 #: code:addons/delivery/models/sale_order.py:75
@@ -685,6 +716,13 @@ msgid "Product Template"
 msgstr "Product Template"
 
 #. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:9
+#, python-format
+msgid "Production Environment"
+msgstr "Produkzioaren ingurumena "
+
+#. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_delivery_type
 #: model:ir.model.fields,field_description:delivery.field_stock_picking_delivery_type
 #: model:ir.ui.view,arch_db:delivery.view_delivery_carrier_search
@@ -706,7 +744,7 @@ msgstr "Aurrekontua"
 #. module: delivery
 #: model:ir.model,name:delivery.model_stock_return_picking
 msgid "Return Picking"
-msgstr ""
+msgstr "Itzulpen albarana"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_list_base_price
@@ -796,6 +834,27 @@ msgid "Stock Move"
 msgstr "Izakinen mugimendua"
 
 #. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:12
+#, python-format
+msgid "Switch to production environment"
+msgstr "Aldatu produkzioaren ingurunera"
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:10
+#, python-format
+msgid "Switch to test environment"
+msgstr "Aldatu proben ingurunera "
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:11
+#, python-format
+msgid "Test Environment"
+msgstr "Proben ingurunea "
+
+#. module: delivery
 #: model:delivery.carrier,name:delivery.delivery_carrier
 #: model:product.product,name:delivery.product_product_delivery_poste
 #: model:product.template,name:delivery.product_product_delivery_poste_product_template
@@ -860,7 +919,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_variable
 msgid "Variable"
-msgstr ""
+msgstr "Aldagaia"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_variable_factor
@@ -888,7 +947,7 @@ msgstr "Pisua"
 #: selection:delivery.price.rule,variable:0
 #: selection:delivery.price.rule,variable_factor:0
 msgid "Weight * Volume"
-msgstr ""
+msgstr "Pisua * Bolumena"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_stock_move_weight_uom_id
@@ -904,7 +963,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:delivery.report_package_barcode_delivery
 #: model:ir.ui.view,arch_db:delivery.report_package_barcode_small_delivery
 msgid "Weight:"
-msgstr ""
+msgstr "Pisua:"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_product_packaging_width
@@ -914,7 +973,7 @@ msgstr "Zabalera"
 #. module: delivery
 #: sql_constraint:product.packaging:0
 msgid "Width must be positive"
-msgstr ""
+msgstr "Zabalera positiboa izan behar du"
 
 #. module: delivery
 #: code:addons/delivery/models/stock_picking.py:206

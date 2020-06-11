@@ -14,6 +14,7 @@
 # ExcaliberX <excaliberx@gmail.com>, 2018
 # hed shefetr <hed@laylinetech.com>, 2019
 # דודי מלכה <Dudimalka6@gmail.com>, 2019
+# ZVI BLONDER <ZVIBLONDER@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -21,7 +22,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-20 11:58+0000\n"
 "PO-Revision-Date: 2017-09-20 10:16+0000\n"
-"Last-Translator: דודי מלכה <Dudimalka6@gmail.com>, 2019\n"
+"Last-Translator: ZVI BLONDER <ZVIBLONDER@gmail.com>, 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,6 +181,7 @@ msgid ""
 "<b>Drag &amp; drop opportunities</b> between columns as you progress in your"
 " sales cycle."
 msgstr ""
+"<b>גרור ושחרר הזדמנויות</b> בין העמודות ככל שאתה מתקדם במחזור המכירות שלך."
 
 #. module: crm
 #. openerp-web
@@ -208,6 +210,9 @@ msgid ""
 "attached to this opportunity.</p><p class=\"mb0\">Type <i>'@'</i> to mention"
 " people - it's like cc-ing on emails.</p>"
 msgstr ""
+"<p><b>שלח הודעות</b>ללקוח שלך וקבל תשובות המצורפות אוטומטית להזדמנות "
+"זו</p><p class=\"mb0\">הקלד <i>'@'</i> להזכיר אנשים -זה כמו העתק לכתב "
+"בדוא\"ל.</p>"
 
 #. module: crm
 #. openerp-web
@@ -320,7 +325,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_form_view_oppor
 msgid "<span class=\"oe_grey\"> at </span>"
-msgstr ""
+msgstr "<span class=\"oe_grey\"> ב </span>"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -697,6 +702,8 @@ msgid ""
 "A Python dictionary that will be evaluated to provide default values when "
 "creating new records for this alias."
 msgstr ""
+"מילון פייתון שיוערך כדי לספק ערכי ברירת מחדל בעת יצירת רשומות חדשות לכינוי "
+"זה."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -762,7 +769,7 @@ msgstr "ניתוח פעילויות."
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_res_users_target_sales_done
 msgid "Activities Done Target"
-msgstr ""
+msgstr "יעד פעילויות שבוצעו"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
@@ -787,7 +794,7 @@ msgstr "סוג פעילות"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Add Features"
-msgstr ""
+msgstr "הוסף תכונות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.res_config_settings_view_form
@@ -809,22 +816,22 @@ msgstr "שם נוסף"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_contact
 msgid "Alias Contact Security"
-msgstr ""
+msgstr "כינוי אבטחת איש קשר"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_name
 msgid "Alias Name"
-msgstr ""
+msgstr "שם כינוי"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_domain
 msgid "Alias domain"
-msgstr ""
+msgstr "כינוי דומיין"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_model_id
 msgid "Aliased Model"
-msgstr ""
+msgstr "מודל בעל כינוי"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -856,7 +863,7 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_opportunities_amount
 msgid "Amount of quotations to invoice"
-msgstr ""
+msgstr "סכום הצעות המחיר לחיוב"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_form_view_leads
@@ -949,17 +956,17 @@ msgstr "אשף מיזוג אוטומטי"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_tree_view_oppor
 msgid "Avg. of Probability"
-msgstr ""
+msgstr "ממוצע הסתברות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "B2B"
-msgstr ""
+msgstr "B2B"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "B2C"
-msgstr ""
+msgstr "B2C"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -1720,6 +1727,8 @@ msgid ""
 "Enter here the internal requirements for this stage (ex: Offer sent to "
 "customer). It will appear as a tooltip over the stage's name."
 msgstr ""
+"הזן כאן את הדרישות הפנימיות בשלב זה (לדוגמה: ההצעה נשלחה ללקוח). הוא יופיע "
+"ככלי הסבר על שם הבמה."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead_date_deadline
@@ -1833,6 +1842,8 @@ msgid ""
 "Explanation text to help users using the star and priority mechanism on "
 "stages or issues that are in this stage."
 msgstr ""
+"הסבר טקסט שיעזור למשתמשים להשתמש במנגנון הכוכבים והעדיפות בשלבים או בבעיות "
+"שנמצאים בשלב זה."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_search
@@ -1859,12 +1870,12 @@ msgstr "סיים"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_stage_fold
 msgid "Folded in Pipeline"
-msgstr ""
+msgstr "מקופל בצינור"
 
 #. module: crm
 #: model:mail.activity.type,name:crm.mail_activity_demo_followup_quote
 msgid "Follow-up Quote"
-msgstr ""
+msgstr "מעקב הצעת מחיר"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -1880,6 +1891,8 @@ msgid ""
 "For safety reasons, you cannot merge more than 3 contacts together. You can "
 "re-open the wizard several times if needed."
 msgstr ""
+"מטעמי בטיחות, לא ניתן למזג יותר מ -3 אנשי קשר ביחד. תוכל לפתוח מחדש את האשף "
+"מספר פעמים אם יש צורך."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -1987,12 +2000,12 @@ msgstr "קבץ לפי"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_dashboard_graph_group_pipeline
 msgid "Group by"
-msgstr ""
+msgstr "קבץ לפי"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_number_group
 msgid "Group of Contacts"
-msgstr ""
+msgstr "קבוצת אנשי קשר"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2053,7 +2066,7 @@ msgstr "גבוה"
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_dashboard_graph_group_pipeline
 msgid "How this channel's dashboard graph will group the results."
-msgstr ""
+msgstr "כיצד גרף לוח הבקרה של הערוץ הזה יקבץ את התוצאות."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_id
@@ -2078,6 +2091,8 @@ msgid ""
 "ID of the parent record holding the alias (example: project holding the task"
 " creation alias)"
 msgstr ""
+"מזהה של רשומת האב המחזיקה בכינוי (דוגמה: פרויקט המחזיק בכינוי ליצירת "
+"המשימות)"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_line_aggr_ids
@@ -2152,7 +2167,7 @@ msgstr "נכלל בארכיון"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Incoming Emails"
-msgstr ""
+msgstr "הודעות דוא\"ל נכנסות"
 
 #. module: crm
 #: model:crm.lead.tag,name:crm.categ_oppor4
@@ -2180,7 +2195,7 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_group_by_is_company
 msgid "Is Company"
-msgstr ""
+msgstr "האם חברה"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_function
@@ -2190,7 +2205,7 @@ msgstr "תפקיד"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_exclude_journal_item
 msgid "Journal Items associated to the contact"
-msgstr ""
+msgstr "פריטים הקשורים לאיש הקשר"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2352,6 +2367,9 @@ msgid ""
 "the treatment delays or number of leads per state. You can sort out your "
 "leads analysis by different groups to get accurate grained analysis."
 msgstr ""
+"ניתוח ההזדמנויות מאפשר לך לבדוק מידע הקשור ב CRM השונים כמו עיכובים טיפול או"
+" מספר מוביל לכל מדינה. אתה יכול למיין את ניתוח מוביל שלך על ידי קבוצות שונות"
+" כדי לקבל מדויק גרגר ניתוח."
 
 #. module: crm
 #: model:ir.filters,name:crm.filter_opportunity_salesperson
@@ -2361,12 +2379,12 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_form_view_leads
 msgid "Leads Form"
-msgstr ""
+msgstr "טופס לידים"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_calendar_view_leads
 msgid "Leads Generation"
-msgstr ""
+msgstr "יצירת לידים"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2376,7 +2394,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 msgid "Leads that are assigned to me"
-msgstr ""
+msgstr "לידים שמוקצים אלי"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
@@ -2389,16 +2407,17 @@ msgid ""
 "Leads that you selected that have duplicates. If the list is empty, it means"
 " that no duplicates were found"
 msgstr ""
+"לידים שבחרת עם כפילויות. אם הרשימה ריקה, פירוש הדבר שלא נמצאו כפילויות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_lead2opportunity_partner_mass
 msgid "Leads with existing duplicates (for information)"
-msgstr ""
+msgstr "לידים עם כפילויות (למידע)"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_merge_opportunity_opportunity_ids
 msgid "Leads/Opportunities"
-msgstr ""
+msgstr "לידים/ הזדמנויות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2468,7 +2487,7 @@ msgstr "נמוך"
 #. module: crm
 #: model:mail.activity.type,name:crm.mail_activity_demo_make_quote
 msgid "Make Quote"
-msgstr ""
+msgstr "צור הצעת מחיר"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_res_config_settings_generate_lead_from_alias
@@ -2518,7 +2537,7 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_maximum_group
 msgid "Maximum of Group of Contacts"
-msgstr ""
+msgstr "מקסימום קבוצת אנשי קשר"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_opportunity_report_medium_id
@@ -2531,7 +2550,7 @@ msgstr "בינוני"
 #: code:addons/crm/models/crm_lead.py:924
 #, python-format
 msgid "Meeting scheduled at '%s'<br> Subject: %s <br> Duration: %s hour(s)"
-msgstr ""
+msgstr "פגישה מתוכננת ב '%s'<br> נושא: %s <br> משך: %s שעות"
 
 #. module: crm
 #. openerp-web
@@ -2557,22 +2576,22 @@ msgstr "מזג"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "Merge Automatically"
-msgstr ""
+msgstr "מזג באופן אוטומטי"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "Merge Automatically all process"
-msgstr ""
+msgstr "מזג באופן אוטומטי את כל התהליך"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "Merge Contacts"
-msgstr ""
+msgstr "מזג אנשי קשר"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.merge_opportunity_form
 msgid "Merge Leads/Opportunities"
-msgstr ""
+msgstr "מזג לידים/ הזדמנויות"
 
 #. module: crm
 #: model:ir.actions.act_window,name:crm.action_partner_merge
@@ -2583,7 +2602,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:crm.action_merge_opportunities
 #: model:ir.actions.act_window,name:crm.merge_opportunity_act
 msgid "Merge leads/opportunities"
-msgstr ""
+msgstr "מזג לידים/ הזדמנויות"
 
 #. module: crm
 #: model:ir.model,name:crm.model_crm_merge_opportunity
@@ -2593,47 +2612,47 @@ msgstr "מזג הזדמנויות"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "Merge the following contacts"
-msgstr ""
+msgstr "מזג את אנשי הקשר הבאים"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "Merge with Manual Check"
-msgstr ""
+msgstr "מזג עם בדיקה ידנית"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead2opportunity_partner_mass_deduplicate
 msgid "Merge with existing leads/opportunities of each partner"
-msgstr ""
+msgstr "מזג עם לידים/ הזדמנויות קיימות של אותו לקוח"
 
 #. module: crm
 #: selection:crm.lead2opportunity.partner,name:0
 #: selection:crm.lead2opportunity.partner.mass,name:0
 msgid "Merge with existing opportunities"
-msgstr ""
+msgstr "מזג עם הזדמנויות קיימות"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:528
 #, python-format
 msgid "Merged lead"
-msgstr ""
+msgstr "ליד ממוזג"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:559
 #, python-format
 msgid "Merged leads"
-msgstr ""
+msgstr "לידים ממוזגים"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:559
 #, python-format
 msgid "Merged opportunities"
-msgstr ""
+msgstr "הזדמנויות ממוזגות"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:528
 #, python-format
 msgid "Merged opportunity"
-msgstr ""
+msgstr "הזדמנות ממוזגת"
 
 #. module: crm
 #: code:addons/crm/wizard/base_partner_merge.py:295
@@ -2675,17 +2694,17 @@ msgstr "פעיליות שלי"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 msgid "My Leads"
-msgstr ""
+msgstr "הלידים שלי"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_search
 msgid "My Opportunities"
-msgstr ""
+msgstr "ההזדמנויות שלי "
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "My Pipeline"
-msgstr ""
+msgstr "צינור עיבוד הנתונים שלי"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_group_by_name
@@ -2722,7 +2741,7 @@ msgstr "חדש"
 #. module: crm
 #: model:ir.actions.act_window,name:crm.action_opportunity_form
 msgid "New Opportunity"
-msgstr ""
+msgstr "ההזדמנות שלי "
 
 #. module: crm
 #. openerp-web
@@ -2740,12 +2759,12 @@ msgstr "פעילויות הבאות"
 #. module: crm
 #: selection:crm.lead,kanban_state:0
 msgid "Next activity is planned"
-msgstr ""
+msgstr "הפעולה הבאה  מתוכננת "
 
 #. module: crm
 #: selection:crm.lead,kanban_state:0
 msgid "Next activity late"
-msgstr ""
+msgstr "הפעולה הבאה מאחרת"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:1146
@@ -2756,13 +2775,13 @@ msgstr "ללא נושא"
 #. module: crm
 #: selection:crm.lead,kanban_state:0
 msgid "No next activity planned"
-msgstr ""
+msgstr "לא תוכננה הפעילות הבאה"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "No salesperson"
-msgstr ""
+msgstr "אין איש מכירות"
 
 #. module: crm
 #: selection:crm.lead,priority:0 selection:crm.opportunity.report,priority:0
@@ -2772,7 +2791,7 @@ msgstr "רגיל"
 #. module: crm
 #: model:crm.lost.reason,name:crm.lost_reason_3
 msgid "Not enough stock"
-msgstr ""
+msgstr "אין מספיק מלאי"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2802,7 +2821,7 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_opportunities_count
 msgid "Number of open opportunities"
-msgstr ""
+msgstr "מספר ההזדמנויות הפתוחות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2816,7 +2835,7 @@ msgstr ""
 msgid ""
 "Odoo helps you keep track of your sales pipeline to follow\n"
 "                    up potential sales and better forecast your future revenues."
-msgstr ""
+msgstr "הזדמנויות פתוחות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2863,16 +2882,18 @@ msgid ""
 " ask the Administrator if you need to merge several contacts linked to "
 "existing Journal Items."
 msgstr ""
+"רק איש הקשר של היעד עשוי להיות מקושר לפריטי יומן קיימים. בקש ממנהל המערכת אם"
+" עליך למזג מספר אנשי קשר המקושרים לפריטי יומן קיימים."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_team_salesteams_view_kanban
 msgid "Open Opportunities"
-msgstr ""
+msgstr "הזדמנויות פתוחות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_team_salesteams_view_kanban
 msgid "Open Opportunity"
-msgstr ""
+msgstr "הזדמנות פתוחה"
 
 #. module: crm
 #: model:ir.actions.act_window,name:crm.crm_case_form_view_salesteams_opportunity
@@ -2898,7 +2919,7 @@ msgstr "הזדמנויות"
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_search
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Opportunities Analysis"
-msgstr ""
+msgstr "ניתוח הזדמנויות"
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.action_report_crm_opportunity_salesteam
@@ -2909,6 +2930,9 @@ msgid ""
 "mainly used by the sales manager in order to do the periodic review with the"
 " channels of the sales pipeline."
 msgstr ""
+"ניתוח הזדמנויות נותן לך גישה מיידית להזדמנויות שלך עם מידע כמו הכנסות "
+"צפויות, עלות מתוכננת, מועדים שהוחמצו או מספר האינטראקציות להזדמנות. דוח זה "
+"משמש בעיקר את מנהל המכירות לצורך ביצוע הסקירה התקופתית בערוצי צינור המכירות."
 
 #. module: crm
 #: model:ir.filters,name:crm.filter_opportunity_opportunities_cohort
@@ -2928,7 +2952,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Opportunities that are assigned to me"
-msgstr ""
+msgstr "הזדמנויות שמוקצות לי"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:427
@@ -2945,39 +2969,39 @@ msgstr ""
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 #, python-format
 msgid "Opportunity"
-msgstr ""
+msgstr "הזדמנות"
 
 #. module: crm
 #: model:mail.message.subtype,name:crm.mt_lead_lost
 #: model:mail.message.subtype,name:crm.mt_salesteam_lead_lost
 msgid "Opportunity Lost"
-msgstr ""
+msgstr "הזדמנות אבודה"
 
 #. module: crm
 #: model:mail.message.subtype,name:crm.mt_salesteam_lead_stage
 msgid "Opportunity Stage Changed"
-msgstr ""
+msgstr "שלב ההזדמנות השתנה"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_create_opportunity_simplified
 msgid "Opportunity Title"
-msgstr ""
+msgstr "כותרת הזדמנות"
 
 #. module: crm
 #: model:mail.message.subtype,name:crm.mt_lead_won
 #: model:mail.message.subtype,name:crm.mt_salesteam_lead_won
 msgid "Opportunity Won"
-msgstr ""
+msgstr "הזדמנות זכתה"
 
 #. module: crm
 #: model:mail.message.subtype,description:crm.mt_lead_lost
 msgid "Opportunity lost"
-msgstr ""
+msgstr "הזדמנות אבדה"
 
 #. module: crm
 #: model:mail.message.subtype,description:crm.mt_lead_won
 msgid "Opportunity won"
-msgstr ""
+msgstr "הזדמנות זכתה"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_opt_out
@@ -2996,6 +3020,8 @@ msgid ""
 "attached, even if they did not reply to it. If set, this will disable the "
 "creation of new records completely."
 msgstr ""
+"מזהה אפשרי של שרשור (רשומה) שאליו יצורפו כל ההודעות הנכנסות, גם אם לא השיבו "
+"אליו. אם מוגדר, הדבר יבטל את יצירת הרשומות החדשות לחלוטין."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
@@ -3010,7 +3036,7 @@ msgstr "אחר"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Overdue Opportunities"
-msgstr ""
+msgstr "הזדמנויות שעבר זמנן"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_opportunity_report_delay_expected
@@ -3044,12 +3070,12 @@ msgstr "חברת אם"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_parent_model_id
 msgid "Parent Model"
-msgstr ""
+msgstr "מודל אב"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_parent_thread_id
 msgid "Parent Record Thread ID"
-msgstr ""
+msgstr "מזהה רשומת אשכול אב "
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_alias_parent_model_id
@@ -3058,6 +3084,8 @@ msgid ""
 " necessarily the model given by alias_model_id (example: project "
 "(parent_model) and task (model))"
 msgstr ""
+"מודל אב המחזיק בכינוי. המודל המחזיק במזהה לכינוי אינו בהכרח המודל שניתן על "
+"ידי alias_model_id (דוגמה: project (parent_model) ומשימה (model))"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_opportunity_report_partner_id
@@ -3068,17 +3096,17 @@ msgstr "שותף"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_partner_address_email
 msgid "Partner Contact Email"
-msgstr ""
+msgstr "דוא\"ל ליצירת קשר של השותף"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_partner_address_name
 msgid "Partner Contact Name"
-msgstr ""
+msgstr "שם איש הקשר של השותף"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_activity_report_partner_id
 msgid "Partner/Customer"
-msgstr ""
+msgstr "שותף/לקוח"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
@@ -3093,7 +3121,7 @@ msgstr "טלפון"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_res_config_settings_module_crm_phone_validation
 msgid "Phone Formatting"
-msgstr ""
+msgstr "עיצוב תבנית טלפון"
 
 #. module: crm
 #. openerp-web
@@ -3117,7 +3145,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:crm.crm_planner
 #, python-format
 msgid "Pipeline"
-msgstr ""
+msgstr "צינור עיבוד נתונים"
 
 #. module: crm
 #: model:ir.actions.act_window,name:crm.action_report_crm_opportunity_salesteam
@@ -3126,7 +3154,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_graph
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_pivot
 msgid "Pipeline Analysis"
-msgstr ""
+msgstr "ניתוח צינור עיבוד נתונים"
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_opportunity_report_action
@@ -3152,7 +3180,7 @@ msgstr ""
 #: code:addons/crm/models/crm_team.py:231
 #, python-format
 msgid "Pipeline: Expected Revenue"
-msgstr ""
+msgstr "צינור: הכנסה צפויה"
 
 #. module: crm
 #: model:web.planner,tooltip_planner:crm.planner_crm
@@ -3170,7 +3198,7 @@ msgstr "מתכנן"
 msgid ""
 "Please select more than one element (lead or opportunity) from the list "
 "view."
-msgstr ""
+msgstr "אנא בחר יותר מאלמנט אחד (ליד או הזדמנות) מתצוגת הרשימה."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_alias_contact
@@ -3180,6 +3208,10 @@ msgid ""
 "- partners: only authenticated partners\n"
 "- followers: only followers of the related document or members of following channels\n"
 msgstr ""
+"מדיניות פרסום הודעה על המסמך באמצעות שער הדואר.\n"
+"- כולם: כולם יכולים לפרסם\n"
+"- לקוחות/ספקים: רק לקוחות/ספקים מאומתים\n"
+"- עוקבים: רק עוקבים של המסמך הקשור או חברים בערוצים הבאים\n"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3195,14 +3227,14 @@ msgstr "עדיפות"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_stage_legend_priority
 msgid "Priority Management Explanation"
-msgstr ""
+msgstr "ניהול סדרי עדיפויות"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_activity_report_probability
 #: model:ir.model.fields,field_description:crm.field_crm_lead_probability
 #: model:ir.model.fields,field_description:crm.field_crm_opportunity_report_probability
 msgid "Probability"
-msgstr ""
+msgstr "הסתברות"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_stage_probability
@@ -3247,7 +3279,7 @@ msgstr ""
 #: model:crm.stage,name:crm.stage_lead3
 #, python-format
 msgid "Proposition"
-msgstr ""
+msgstr "הצעה"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3262,7 +3294,7 @@ msgstr ""
 #: model:crm.stage,name:crm.stage_lead2
 #, python-format
 msgid "Qualified"
-msgstr ""
+msgstr "מוסמך"
 
 #. module: crm
 #. openerp-web
@@ -3314,12 +3346,12 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_force_thread_id
 msgid "Record Thread ID"
-msgstr ""
+msgstr "מזהה רשומת אשכול"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_referred
 msgid "Referred By"
-msgstr ""
+msgstr "הופנה ע\"י"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead2opportunity_partner_action
@@ -3327,7 +3359,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:crm.field_crm_lead_convert2task_action
 #: model:ir.model.fields,field_description:crm.field_crm_partner_binding_action
 msgid "Related Customer"
-msgstr ""
+msgstr "לקוח קשור"
 
 #. module: crm
 #: model:mail.template,subject:crm.email_template_opportunity_reminder_mail
@@ -3346,12 +3378,12 @@ msgstr "דיווח"
 #: model:ir.model.fields,field_description:crm.field_crm_stage_requirements
 #: model:ir.ui.view,arch_db:crm.crm_stage_form
 msgid "Requirements"
-msgstr ""
+msgstr "דרישות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_kanban_view_leads
 msgid "Restore"
-msgstr ""
+msgstr "שחזר"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3376,13 +3408,13 @@ msgstr ""
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Sales Channel"
-msgstr ""
+msgstr "ערוץ מכירות"
 
 #. module: crm
 #: model:ir.ui.menu,name:crm.crm_team_config
 #: model:ir.ui.menu,name:crm.sales_team_menu_report_crm
 msgid "Sales Channels"
-msgstr ""
+msgstr "ערוצי מכירות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3407,7 +3439,7 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead2opportunity_partner_mass_user_ids
 msgid "Salesmen"
-msgstr ""
+msgstr "איש מכירות"
 
 #. module: crm
 #: selection:crm.team,dashboard_graph_group_pipeline:0
@@ -3438,23 +3470,23 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 msgid "Search Leads"
-msgstr ""
+msgstr "חפש לידים"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_lost_reason_view_search
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Search Opportunities"
-msgstr ""
+msgstr "חפש הזדמנויות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "Search duplicates based on duplicated data in"
-msgstr ""
+msgstr "חפש כפילויות על סמך נתונים כפולים ב"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.merge_opportunity_form
 msgid "Select Leads/Opportunities"
-msgstr ""
+msgstr "בחר לידים/ הזדמנויות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
@@ -3464,6 +3496,10 @@ msgid ""
 "                            Odoo will propose you to merge only those having\n"
 "                            all these fields in common. (not one of the fields)."
 msgstr ""
+"בחר את רשימת השדות המשמשים לחיפוש\n"
+"                            רשומות כפולות. אם תבחר מספר שדות,\n"
+"                            Odooתציע לך למזג רק את אלה שיש\n"
+"                           כל השדות האלה משותפים. (לא אחד מהשדות)."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3478,6 +3514,10 @@ msgid ""
 "                                will be redirected to the destination contact.\n"
 "                                You can remove contacts from this list to avoid merging them."
 msgstr ""
+"אנשי הקשר שנבחרו ימוזגו יחד.\n"
+"                                כל המסמכים מקושרים לאיש קשר אחד\n"
+"                                ינותב אל איש קשר המיועד.\n"
+"                                תוכל להסיר אנשי קשר מרשימה זו כדי להימנע ממיזוגם."
 
 #. module: crm
 #: selection:base.partner.merge.automatic.wizard,state:0
@@ -3519,7 +3559,7 @@ msgstr ""
 msgid ""
 "Setting this stage will change the probability automatically on the "
 "opportunity."
-msgstr ""
+msgstr "הגדרת שלב זה תשנה את ההסתברות באופן אוטומטי על ההזדמנות."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3539,7 +3579,7 @@ msgstr "הגדרות"
 #. module: crm
 #: model:res.groups,name:crm.group_use_lead
 msgid "Show Lead Menu"
-msgstr ""
+msgstr "הצג תפריט ליד"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3551,7 +3591,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Show all opportunities for which the next action date is before today"
-msgstr ""
+msgstr "הצג את כל ההזדמנויות שעבורן תאריך הפעולה הבא הוא לפני היום"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
@@ -3563,24 +3603,24 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 msgid "Show all records which has next action date is before today"
-msgstr ""
+msgstr "הצג את כל הרשומות שתאריך הפעולה הבא שלהם הוא לפני היום"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_activity_report_view_search
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_search
 msgid "Show only lead"
-msgstr ""
+msgstr "הצג רק ליד"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_activity_report_view_search
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_search
 msgid "Show only opportunity"
-msgstr ""
+msgstr "הצג רק הזדמנות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "Skip these contacts"
-msgstr ""
+msgstr "דלג על אנשי הקשר האלה"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3602,7 +3642,7 @@ msgstr ""
 msgid ""
 "Some examples of lost reasons: \"We don't have people/skill\", \"Price too "
 "high\""
-msgstr ""
+msgstr "כמה דוגמאות של סיבות האובדן: \"אין לנו אנשים / מיומנות\", \"מחיר גבוה מדי\""
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_opportunity_report_source_id
@@ -3617,6 +3657,8 @@ msgid ""
 "Specific team that uses this stage. Other teams will not be able to see or "
 "use this stage."
 msgstr ""
+"קבוצה ספציפית המשתמשת בשלב זה. צוותים אחרים לא יוכלו לראות או להשתמש בשלב "
+"זה."
 
 #. module: crm
 #: selection:crm.team,dashboard_graph_group_pipeline:0
@@ -3669,6 +3711,8 @@ msgid ""
 "Stages allow salespersons to easily track how a specific opportunity\n"
 "            is positioned in the sales cycle."
 msgstr ""
+"שלבים לאפשר לאיש המכירות בקלות לעקוב אחר הזדמנות ספציפית\n"
+"            ממוקמת במחזור המכירות."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_state
@@ -3703,7 +3747,7 @@ msgstr "רחוב2"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_lead_lost_view_form
 msgid "Submit"
-msgstr ""
+msgstr "שלח"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3784,6 +3828,8 @@ msgid ""
 "The email address associated with this channel. New emails received will "
 "automatically create new leads assigned to the channel."
 msgstr ""
+"כתובת האימייל המשויכת לערוץ זה. הודעות אימייל חדשות יקבלו באופן אוטומטי "
+"יצירת הפניות חדשות שהוקצו לערוץ."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3797,6 +3843,8 @@ msgid ""
 " email that does not reply to an existing record will cause the creation of "
 "a new record of this model (e.g. a Project Task)"
 msgstr ""
+"המודל (סוג מסמך Odoo) שאליו הכינוי הזה תואם. כל דוא\"ל נכנס שלא יענה לרשומה "
+"קיימת יביא ליצירת רשומה חדשה של מודל זה (למשל משימת פרויקט)"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_alias_name
@@ -3804,13 +3852,15 @@ msgid ""
 "The name of the email alias, e.g. 'jobs' if you want to catch emails for "
 "<jobs@example.odoo.com>"
 msgstr ""
+"שם כינוי הדוא\"ל, למשל 'עבודות' אם ברצונך לתפוס דוא\"ל עבור "
+"<jobs@example.odoo.com>"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead_partner_name
 msgid ""
 "The name of the future partner company that will be created while converting"
 " the lead into opportunity"
-msgstr ""
+msgstr "שמה של חברת הלקוח העתידית שתיווצר תוך כדי המרת הליד להזדמנות"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_alias_user_id
@@ -3820,6 +3870,9 @@ msgid ""
 "the sender (From) address, or will use the Administrator account if no "
 "system user is found for that address."
 msgstr ""
+"הבעלים של רשומות שנוצרו עם קבלת דוא\"ל בכינוי זה. אם שדה זה לא מוגדר, המערכת"
+" תנסה למצוא את הבעלים הנכון על סמך כתובת השולח (מאת), או שתשתמש בחשבון מנהל "
+"המערכת אם לא נמצא משתמש מערכת עבור אותה כתובת."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3829,7 +3882,7 @@ msgstr ""
 #. module: crm
 #: sql_constraint:crm.lead:0
 msgid "The probability of closing the deal should be between 0% and 100%!"
-msgstr ""
+msgstr "ההסתברות של סגירת העסקה צריך להיות בין 0% ל 100%!"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3842,7 +3895,7 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_dashboard_graph_period_pipeline
 msgid "The time period this channel's dashboard graph will consider."
-msgstr ""
+msgstr "פרק הזמן בו יתחשב גרף לוח הבקרה של הערוץ."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3868,7 +3921,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
 msgid "There is no more contacts to merge for this request..."
-msgstr ""
+msgstr "אין עוד אנשי קשר להתמזג לבקשה הזו ..."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead_email_cc
@@ -3877,6 +3930,8 @@ msgid ""
 "outbound emails for this record before being sent. Separate multiple email "
 "addresses with a comma"
 msgstr ""
+"כתובות דוא\"ל אלה יתווספו לשדה עותק של כל הדוא\"ל הנכנס והיוצא עבור הרשומה "
+"הזו לפני שנשלחו. הפרד מספר כתובות דוא\"ל באמצעות פסיק"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_activity_report_view_search
@@ -3910,18 +3965,19 @@ msgid ""
 "This percentage depicts the default/average probability of the Case for this"
 " stage to be a success"
 msgstr ""
+"אחוז זה מתאר את ההסתברות של ברירת המחדל / הממוצע של המקרה עבור שלב זה להצלחה"
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_opportunity_report_action_lead
 msgid "This report analyses the source of your leads."
-msgstr ""
+msgstr "דוח זה מנתח את מקור הלידים שלך."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_stage_fold
 msgid ""
 "This stage is folded in the kanban view when there are no records in that "
 "stage to display."
-msgstr ""
+msgstr "שלב זה מקופל בתצוגת הקנבן כאשר אין רשומות בשלב זה להצגה.."
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:1052
@@ -3992,7 +4048,7 @@ msgstr "סוג"
 #: model:ir.model.fields,help:crm.field_crm_lead_type
 #: model:ir.model.fields,help:crm.field_crm_opportunity_report_type
 msgid "Type is used to separate Leads and Opportunities"
-msgstr ""
+msgstr "סוג משמש להפרדת לידים והזדמנויות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -4003,18 +4059,18 @@ msgstr ""
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Unassigned"
-msgstr ""
+msgstr "לא מוקצה"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_team_salesteams_view_kanban
 msgid "Unassigned Lead"
-msgstr ""
+msgstr "ליד לא מוקצה"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_unassigned_leads_count
 #: model:ir.ui.view,arch_db:crm.crm_team_salesteams_view_kanban
 msgid "Unassigned Leads"
-msgstr ""
+msgstr "לידים לא מוקצים"
 
 #. module: crm
 #: code:addons/crm/models/crm_team.py:211
@@ -4055,12 +4111,12 @@ msgstr "השתמש"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.res_config_settings_view_form
 msgid "Use an External Email Server"
-msgstr ""
+msgstr "השתמש בשרת דוא\"ל חיצוני"
 
 #. module: crm
 #: selection:crm.lead2opportunity.partner.mass,action:0
 msgid "Use existing partner or create"
-msgstr ""
+msgstr "השתמש בלקוח/ספק קיים או צור"
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_case_form_view_salesteams_lead
@@ -4071,11 +4127,15 @@ msgid ""
 "                    a contact form filled in your website, or a file of unqualified\n"
 "                    prospects you import, etc."
 msgstr ""
+"השתמש בלידים אם אתה זקוק לשלב ההסמכה לפני שאתה יוצר\n"
+"                   הזדמנות או לקוח. זה יכול להיות כרטיס ביקור שקיבלת,\n"
+"                   טופס יצירת קשר שמופיע באתר שלך, או קובץ של לקוחות פוטנציאליים\n"
+"                   לא מוסמכים שתייבא וכו '."
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_lost_reason_action
 msgid "Use lost reasons to explain why an opportunity is lost."
-msgstr ""
+msgstr "השתמש בסיבות אבידה כדי להסביר מדוע אובדת הזדמנות."
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.relate_partner_opportunities
@@ -4083,6 +4143,8 @@ msgid ""
 "Use opportunities to keep track of your sales pipeline, follow\n"
 "                up potential sales and better forecast your future revenues."
 msgstr ""
+"השתמש בהזדמנויות כדי לעקוב אחר צינור המכירות שלך,  לעקוב\n"
+"                אחר מכירות פוטנציאליות ולחזות טוב יותר את הכנסותיך העתידיות."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -4110,17 +4172,17 @@ msgstr ""
 #: code:addons/crm/static/src/js/tour.js:65
 #, python-format
 msgid "Use the breadcrumbs to <b>go back to your sales pipeline</b>."
-msgstr ""
+msgstr "השתמש בסרגל הניווט כדי <b>לחזור לצינור המכירות שלך</b>."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead_user_login
 msgid "Used to log into the system"
-msgstr ""
+msgstr "משמש כדי להיכנס למערכת"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_stage_sequence
 msgid "Used to order stages. Lower is better."
-msgstr ""
+msgstr "משמש לסדר שלבים. התחתון עדיף."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_opportunity_report_user_id
@@ -4201,7 +4263,7 @@ msgstr ""
 #. module: crm
 #: model:crm.lost.reason,name:crm.lost_reason_2
 msgid "We don't have people/skills"
-msgstr ""
+msgstr "אין לנו אנשים / מיומנויות"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -4216,7 +4278,7 @@ msgstr "אתר"
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead_website
 msgid "Website of the contact"
-msgstr ""
+msgstr "אתר אינטרנט של איש קשר"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -4304,7 +4366,7 @@ msgstr "אשף"
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 #, python-format
 msgid "Won"
-msgstr ""
+msgstr "זכה"
 
 #. module: crm
 #: model:ir.filters,name:crm.filter_opportunity_country
@@ -4314,13 +4376,13 @@ msgstr ""
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_res_users_target_sales_won
 msgid "Won in Opportunities Target"
-msgstr ""
+msgstr "זכה ביעד הזדמנויות"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:383
 #, python-format
 msgid "Yeah! Deal of the last 7 days for the team."
-msgstr ""
+msgstr "כן! עסקה של 7 הימים האחרונים לקבוצה."
 
 #. module: crm
 #. openerp-web
@@ -4335,7 +4397,7 @@ msgstr ""
 #: code:addons/crm/wizard/base_partner_merge.py:270
 #, python-format
 msgid "You cannot merge a contact with one of his parent."
-msgstr ""
+msgstr "לא ניתן למזג איש קשר עם אחד מההורים שלו."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -4486,12 +4548,12 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_create_opportunity_simplified
 msgid "e.g. Customer Deal"
-msgstr ""
+msgstr "למשל עסקת לקוח"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_form_view_oppor
 msgid "e.g. Product Pricing"
-msgstr ""
+msgstr "לדוגמה: תמחור מוצרים"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_form_view_leads

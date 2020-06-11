@@ -3,6 +3,10 @@
 # * base
 # 
 # Translators:
+# prassanna john paul augustin <prasaugus@gmail.com>, 2019
+# Martin Trigaux, 2019
+# Abul Hassan M I <miabulhassan@gmail.com>, 2019
+# Bagavathikumar Ramakrishnan <bagavathikumar@gmail.com>, 2019
 # Alagappan Karthikeyan <me@karthik.sg>, 2019
 # 
 msgid ""
@@ -378,12 +382,30 @@ msgid ""
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,description:base.module_l10n_uk_reports_hmrc
+msgid ""
+"\n"
+"        Accounting reports send to HMRC\n"
+"    "
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,description:base.module_account_extension
 msgid ""
 "\n"
 "        Adapt base accounting module for Enterprise Edition.\n"
 "\n"
 "        This module will be auto installed if account module and enterprise edition are present\n"
+"    "
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,summary:base.module_l10n_mx_reports_closing
+msgid ""
+"\n"
+"        Allow to generate the trial balance for the closing entry.\n"
+"\n"
+"        Colloquially known as \"Month 13\"\n"
 "    "
 msgstr ""
 
@@ -992,6 +1014,14 @@ msgid ""
 "\n"
 "Lets the company customize which Pad installation should be used to link to new\n"
 "pads (by default, http://etherpad.com/).\n"
+"    "
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,description:base.module_l10n_be_intrastat_2019
+msgid ""
+"\n"
+"Adds the possibility to specify the origin country of goods and the partner VAT in the Intrastat XML report.\n"
 "    "
 msgstr ""
 
@@ -4393,6 +4423,14 @@ msgid ""
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:148
+#, python-format
+msgid ""
+" another model requires the record being deleted. If possible, archive it "
+"instead."
+msgstr ""
+
+#. module: base
 #: model:ir.ui.view,arch_db:base.res_lang_form
 msgid "%A - Full weekday name."
 msgstr ""
@@ -4527,6 +4565,14 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.report_irmodulereference
 msgid ", required"
+msgstr ""
+
+#. module: base
+#: code:addons/model.py:136
+#, python-format
+msgid ""
+"- Create/update: a mandatory field is not set.\n"
+"- Delete: another model requires the record being deleted. If possible, archive it instead."
 msgstr ""
 
 #. module: base
@@ -5188,6 +5234,11 @@ msgid "A module to test the API."
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,description:base.module_test_rpc
+msgid "A module to test the RPC requests."
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,description:base.module_test_uninstall
 msgid "A module to test the uninstall feature."
 msgstr ""
@@ -5317,7 +5368,7 @@ msgstr ""
 #. module: base
 #: model:ir.model,name:base.model_res_groups
 msgid "Access Groups"
-msgstr ""
+msgstr "அணுகல் குழுக்கள்"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_groups_menu_access
@@ -5335,7 +5386,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_view_form
 #: model:res.groups,name:base.group_erp_manager
 msgid "Access Rights"
-msgstr ""
+msgstr "அணுகல் உரிமைகள்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_groups_form
@@ -5416,7 +5467,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.category,name:base.module_category_accounting
 msgid "Accounting"
-msgstr ""
+msgstr "கணக்கு"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_accounting_and_finance
@@ -5588,6 +5639,11 @@ msgid "Add Delivery Costs to Online Sales"
 msgstr ""
 
 #. module: base
+#: selection:ir.actions.server,state:0
+msgid "Add Followers"
+msgstr "பின்தொடர்பவர்களை சேர்க்கவும்"
+
+#. module: base
 #: model:ir.module.module,summary:base.module_account_cash_basis_base_account
 msgid "Add a custom account to handle base amount lines"
 msgstr ""
@@ -5640,7 +5696,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_partner_short_form
 #: model:ir.ui.view,arch_db:base.view_res_bank_form
 msgid "Address"
-msgstr ""
+msgstr "முகவரி"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_type
@@ -5979,7 +6035,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.res_config_view_base
 msgid "Apply"
-msgstr ""
+msgstr "விண்ணப்பி"
 
 #. module: base
 #: code:addons/base/module/module.py:633
@@ -6101,7 +6157,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_asset
 msgid "Assets Management"
-msgstr ""
+msgstr "சொத்து மேலாண்மை"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_report_paperformat_report_ids
@@ -6137,7 +6193,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_attachment_search
 msgid "Attachment"
-msgstr ""
+msgstr "இணைப்பு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment_name
@@ -6225,6 +6281,11 @@ msgstr ""
 #: model:ir.module.module,summary:base.module_marketing_automation
 msgid "Automate Marketing Campaigns"
 msgstr ""
+
+#. module: base
+#: selection:ir.actions.server,usage:0
+msgid "Automated Action"
+msgstr "தானியங்கி செயல்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_automation
@@ -6414,7 +6475,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_bank_ids
 #: model:ir.ui.view,arch_db:base.view_res_bank_tree
 msgid "Banks"
-msgstr ""
+msgstr "வங்கிகள்"
 
 #. module: base
 #: model:res.country,name:base.bb
@@ -6557,6 +6618,11 @@ msgid "Belgian Intrastat Declaration"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,shortdesc:base.module_l10n_be_intrastat_2019
+msgid "Belgian Intrastat Declaration - Complement for 2019"
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_blackbox_be
 msgid "Belgian Registered Cash Register"
 msgstr ""
@@ -6689,7 +6755,7 @@ msgstr ""
 #. module: base
 #: selection:ir.property,type:0
 msgid "Boolean"
-msgstr ""
+msgstr "பூலியன்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_theme_bootswatch
@@ -6845,7 +6911,7 @@ msgstr ""
 #: model:ir.module.module,shortdesc:base.module_calendar
 #: selection:ir.ui.view,type:0
 msgid "Calendar"
-msgstr ""
+msgstr "நாட்காட்டி"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_calendar_sms
@@ -6906,7 +6972,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.wizard_lang_export
 #: model:ir.ui.view,arch_db:base.wizard_update_translations
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்து"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.module_form
@@ -7035,7 +7101,7 @@ msgstr ""
 #. module: base
 #: selection:ir.property,type:0
 msgid "Char"
-msgstr ""
+msgstr "சார்"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_livechat
@@ -7153,7 +7219,7 @@ msgstr ""
 #: code:addons/base/ir/ir_actions_report.py:687
 #, python-format
 msgid "Choose Your Document Layout"
-msgstr ""
+msgstr "உங்கள் ஆவண அமைப்பைத் தேர்வு செய்க"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_country_form
@@ -7285,7 +7351,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pad
 msgid "Collaborative Pads"
-msgstr ""
+msgstr "கூட்டுப் பட்டைகள்"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_account_sepa_direct_debit
@@ -7398,7 +7464,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_company_tree
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Companies"
-msgstr ""
+msgstr "நிறுவனங்கள்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_users_form
@@ -7424,7 +7490,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_users_search
 #: selection:res.partner,company_type:0
 msgid "Company"
-msgstr ""
+msgstr "நிறுவனம்"
 
 #. module: base
 #: model:res.partner.category,name:base.res_partner_category_17
@@ -7541,7 +7607,7 @@ msgstr ""
 #: model:ir.ui.menu,name:base.menu_reporting_config
 #: model:ir.ui.view,arch_db:base.res_config_view_base
 msgid "Configuration"
-msgstr ""
+msgstr "கட்டமைப்பு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.res_config_installer
@@ -7612,6 +7678,12 @@ msgid "Constraint Type"
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:153
+#, python-format
+msgid "Constraint:"
+msgstr ""
+
+#. module: base
 #: sql_constraint:ir.model.constraint:0
 msgid "Constraints with the same name are unique per module."
 msgstr ""
@@ -7631,7 +7703,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_partner_simple_form
 #: selection:res.partner,type:0
 msgid "Contact"
-msgstr ""
+msgstr "தொடர்பு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
@@ -7656,7 +7728,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
 msgid "Contact Name"
-msgstr ""
+msgstr "தொடர்பு பெயர்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_category_form
@@ -7667,19 +7739,19 @@ msgstr ""
 #: model:ir.actions.act_window,name:base.action_partner_category_form
 #: model:ir.ui.view,arch_db:base.view_partner_category_list
 msgid "Contact Tags"
-msgstr ""
+msgstr "தொடர்பு குறிச்சொற்கள்"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.action_partner_title_contact
 msgid "Contact Titles"
-msgstr ""
+msgstr "தலைப்புகள் தொடர்பு கொள்ளவும்"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_child_ids
 #: model:ir.model.fields,field_description:base.field_res_users_child_ids
 #: model:ir.ui.view,arch_db:base.view_partner_tree
 msgid "Contacts"
-msgstr ""
+msgstr "தொடர்புகள்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
@@ -7754,7 +7826,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:base.action_country
 #: model:ir.model.fields,field_description:base.field_res_country_group_country_ids
 msgid "Countries"
-msgstr ""
+msgstr "நாடுகள்"
 
 #. module: base
 #: model:ir.model,name:base.model_res_country
@@ -7772,7 +7844,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_res_bank_form
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Country"
-msgstr ""
+msgstr "தேசம்"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_country_phone_code
@@ -7790,7 +7862,7 @@ msgstr "நாட்டின் குறியீடு"
 #: model:ir.ui.view,arch_db:base.view_country_group_form
 #: model:ir.ui.view,arch_db:base.view_country_group_tree
 msgid "Country Group"
-msgstr ""
+msgstr "நாடு குழு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_country_country_group_ids
@@ -7989,7 +8061,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_log_create_uid
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "உருவாக்கியவர்"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_base_language_export_create_date
@@ -8057,7 +8129,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_log_create_date
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create_create_date
 msgid "Created on"
-msgstr ""
+msgstr "உருவாக்கப்பட்ட தேதி"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_attachment_form
@@ -8128,7 +8200,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_currency_form
 #: model:ir.ui.view,arch_db:base.view_currency_search
 msgid "Currency"
-msgstr ""
+msgstr "நாணயம்"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_res_currency_name
@@ -8253,7 +8325,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:base.action_partner_form
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Customers"
-msgstr ""
+msgstr "வாடிக்கையாளர்கள்"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_contacts
@@ -8371,7 +8443,7 @@ msgstr ""
 #: selection:ir.property,type:0
 #: model:ir.ui.view,arch_db:base.view_currency_rate_search
 msgid "Date"
-msgstr ""
+msgstr "தேதி"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment_create_date
@@ -8550,13 +8622,18 @@ msgid "Dependency"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,description:base.module_test_pylint
+msgid "Deprecated empty module in favor of test-lint."
+msgstr ""
+
+#. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment_description
 #: model:ir.model.fields,field_description:base.field_ir_mail_server_name
 #: model:ir.model.fields,field_description:base.field_ir_module_category_description
 #: model:ir.model.fields,field_description:base.field_ir_module_module_description
 #: model:ir.ui.view,arch_db:base.view_attachment_form
 msgid "Description"
-msgstr ""
+msgstr "விளக்கம்"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_module_module_description_html
@@ -8757,7 +8834,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_log_display_name
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "காட்சி பெயர்"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_studio
@@ -8824,7 +8901,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_base_module_uninstall
 msgid "Document"
-msgstr ""
+msgstr "ஆவணம்"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_document_management
@@ -8834,12 +8911,18 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_company_external_report_layout
 msgid "Document Template"
-msgstr ""
+msgstr "ஆவண வார்ப்புரு"
 
 #. module: base
 #: code:addons/base/ir/ir_model.py:1189 code:addons/base/ir/ir_model.py:1192
 #, python-format
 msgid "Document model"
+msgstr ""
+
+#. module: base
+#: code:addons/models.py:2888
+#, python-format
+msgid "Document type:"
 msgstr ""
 
 #. module: base
@@ -8912,6 +8995,174 @@ msgstr ""
 #. module: base
 #: model:res.partner.industry,full_name:base.res_partner_industry_E
 msgid "E WATER SUPPLY;SEWERAGE,WASTE MANAGEMENT AND REMEDIATION ACTIVITIES"
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,description:base.module_l10n_mx_edi_cancellation
+msgid ""
+"EDI Cancellation\n"
+"================\n"
+"\n"
+"This module adds the next features in the cancel process:\n"
+"\n"
+"1. Button to request cancellation in the SAT was added.\n"
+"2. The cancel process in Odoo, only could be executed when the SAT status\n"
+"   is cancelled.\n"
+"3. The cancel button in the invoice is dummy if the invoice is not\n"
+"   cancelled in the SAT.\n"
+"\n"
+"Which is the new flow to cancel?\n"
+"--------------------------------\n"
+"\n"
+"A new button `(Request Cancelation)` was added on the invoice view, that\n"
+"appear when the invoice is open and the `PAC status` is `Signed`\n"
+"\n"
+"When this new button is press, send the CFDI to the PAC to try cancel it\n"
+"in the SAT system. And do not allows to cancel the invoice in Odoo until\n"
+"it was properly canceled in the SAT. (This is an automatic action that\n"
+"execute the system).\n"
+"\n"
+"If any invoice is cancelled in the SAT, and the user can not wait for the\n"
+"cron, could press the `Cancel` button, and this must be cancelled.\n"
+"\n"
+"Which are the cases supported in this module?\n"
+"---------------------------------------------\n"
+"\n"
+"**Case 1**\n"
+"\n"
+"+----------+---------+\n"
+"| System   | State   |\n"
+"+==========+=========+\n"
+"| Odoo     | Open    |\n"
+"+----------+---------+\n"
+"| PAC      | Signed  |\n"
+"+----------+---------+\n"
+"| SAT      | Valid   |\n"
+"+----------+---------+\n"
+"\n"
+"This case is when the invoice is properly signed in the SAT system. To\n"
+"cancel is necessary to press the button `Request Cancelation`, that will\n"
+"to verify that effectively the CFDI is not previously canceled in the SAT\n"
+"system and will to send it to cancel in the SAT.\n"
+"\n"
+"After of request the cancelation, could be found the next cases:\n"
+"\n"
+"*The cancel process was succesful*\n"
+"\n"
+"+----------+------------+\n"
+"| System   | State      |\n"
+"+==========+============+\n"
+"| Odoo     | Open       |\n"
+"+----------+------------+\n"
+"| PAC      | Cancelled  |\n"
+"+----------+------------+\n"
+"| SAT      | Valid      |\n"
+"+----------+------------+\n"
+"\n"
+"In this case, the system will execute the next actions:\n"
+"\n"
+"1. An action will to update the PAC status (To Canceled).\n"
+"\n"
+"2. A method will be called and will try to cancel the invoice in Odoo.\n"
+"\n"
+"\n"
+"*The cancel process cannot be completed*\n"
+"\n"
+"+----------+------------+\n"
+"| System   | State      |\n"
+"+==========+============+\n"
+"| Odoo     | Open       |\n"
+"+----------+------------+\n"
+"| PAC      | To Cancel  |\n"
+"+----------+------------+\n"
+"| SAT      | Valid      |\n"
+"+----------+------------+\n"
+"\n"
+"In this case, the system wait for the PAC system, and will execute the next\n"
+"action:\n"
+"\n"
+"1. A method will be called to verify if the CFDI was properly cancelled in\n"
+"the SAT system, and when the SAT status is `Cancelled` will try to cancel the\n"
+"invoice in Odoo.\n"
+"\n"
+"**Case 2**\n"
+"\n"
+"+----------+------------+\n"
+"| System   | State      |\n"
+"+==========+============+\n"
+"| Odoo     | Open       |\n"
+"+----------+------------+\n"
+"| PAC      | To Cancel  |\n"
+"+----------+------------+\n"
+"| SAT      | Valid      |\n"
+"+----------+------------+\n"
+"\n"
+"This case is the same that in the previous case when the cancel process\n"
+"cannot be completed.\n"
+"\n"
+"If the customer does not accept the CFDI cancelation, the cancel process\n"
+"must be aborted and the invoice must be returned to signed. For this, was\n"
+"added an action in the invoice `Revert CFDI cancellation`, that could be\n"
+"called in the `Actions` of it.\n"
+"\n"
+"\n"
+"**Case 3**\n"
+"\n"
+"+----------+------------+\n"
+"| System   | State      |\n"
+"+==========+============+\n"
+"| Odoo     | Open       |\n"
+"+----------+------------+\n"
+"| PAC      | To Cancel  |\n"
+"+----------+------------+\n"
+"| SAT      | Cancelled  |\n"
+"+----------+------------+\n"
+"\n"
+"The system executes a scheduled action that will cancel the invoice in Odoo,\n"
+"and in that process, the PAC status must be updated to `Cancelled`.\n"
+"\n"
+"\n"
+"**Case 4**\n"
+"\n"
+"+----------+------------+\n"
+"| System   | State      |\n"
+"+==========+============+\n"
+"| Odoo     | Cancel     |\n"
+"+----------+------------+\n"
+"| PAC      | Signed     |\n"
+"+----------+------------+\n"
+"| SAT      | Valid      |\n"
+"+----------+------------+\n"
+"\n"
+"The system executes a scheduled action that will check that the SAT status\n"
+"continues `Valid` and if yes, the invoice must be returned to `Open`\n"
+"(Without generate a new CFDI). For this:\n"
+"\n"
+"1. If the invoice does not has a journal entry, a new will be generated and\n"
+"the invoice state must be changed to `Open`.\n"
+"\n"
+"2. If the journal entry in the invoice has a revert, it will be cancelled\n"
+"and the invoice state must be changed to `Open`.\n"
+"\n"
+"**Case 5**\n"
+"\n"
+"+----------+------------+\n"
+"| System   | State      |\n"
+"+==========+============+\n"
+"| Odoo     | Cancel     |\n"
+"+----------+------------+\n"
+"| PAC      | To Cancel  |\n"
+"+----------+------------+\n"
+"| SAT      | Valid      |\n"
+"+----------+------------+\n"
+"\n"
+"This is the same case that in the previous one, but extra after that the\n"
+"invoice is open again, the PAC status must be updated to 'Signed.'\n"
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,shortdesc:base.module_l10n_mx_edi_cancellation
+msgid "EDI Cancellation for Mexican Localization"
 msgstr ""
 
 #. module: base
@@ -9056,7 +9307,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_email
 #: model:ir.ui.menu,name:base.menu_email
 msgid "Email"
-msgstr ""
+msgstr "மின்னஞ்சல்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_users_form
@@ -9086,7 +9337,7 @@ msgstr ""
 #: model:res.groups,name:base.group_user
 #: model:res.partner.category,name:base.res_partner_category_3
 msgid "Employee"
-msgstr ""
+msgstr "பணியாளர்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hr_appraisal
@@ -9356,7 +9607,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_ir_exports_line_export_id
 #: model:ir.ui.view,arch_db:base.wizard_lang_export
 msgid "Export"
-msgstr ""
+msgstr "ஏற்றுமதி"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.wizard_lang_export
@@ -9643,6 +9894,15 @@ msgid "F CONSTRUCTION"
 msgstr ""
 
 #. module: base
+#: code:addons/base/ir/ir_mail_server.py:128
+#, python-format
+msgid ""
+"Failed to encode the address %s\n"
+"from mail header:\n"
+"%s"
+msgstr ""
+
+#. module: base
 #: model:res.country,name:base.fk
 msgid "Falkland Islands"
 msgstr ""
@@ -9661,7 +9921,7 @@ msgstr ""
 #. module: base
 #: model:ir.actions.act_window,name:base.action_country_state
 msgid "Fed. States"
-msgstr ""
+msgstr "ஃபெட். மாநிலங்களில்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_delivery_fedex
@@ -9775,7 +10035,7 @@ msgstr "புலம் பெயர்"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model_fields_ttype
 msgid "Field Type"
-msgstr ""
+msgstr "புலம் வகை"
 
 #. module: base
 #: code:addons/base/ir/ir_ui_view.py:1047
@@ -9796,6 +10056,12 @@ msgid "Field names must be unique per model."
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:143
+#, python-format
+msgid "Field:"
+msgstr ""
+
+#. module: base
 #: model:ir.actions.act_window,name:base.action_model_fields
 #: model:ir.model,name:base.model_ir_model_fields
 #: model:ir.model.fields,field_description:base.field_ir_model_field_id
@@ -9805,7 +10071,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_model_fields_tree
 #: model:ir.ui.view,arch_db:base.view_model_form
 msgid "Fields"
-msgstr ""
+msgstr "புலங்கள்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_model_form
@@ -9813,7 +10079,13 @@ msgid "Fields Description"
 msgstr ""
 
 #. module: base
-#: code:addons/base/ir/ir_model.py:582
+#: code:addons/models.py:2564
+#, python-format
+msgid "Fields:"
+msgstr ""
+
+#. module: base
+#: code:addons/base/ir/ir_model.py:595
 #, python-format
 msgid "Fields: %s"
 msgstr ""
@@ -9929,6 +10201,29 @@ msgid "Firebase Cloud Messaging"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,description:base.module_l10n_mx_reports_closing
+msgid ""
+"Fiscal Reports for Closing Entry\n"
+"================================\n"
+"\n"
+"Trial Balance report is complemented to allow generate the closing entry\n"
+"(A.K.A Month 13th move)\n"
+"\n"
+"Configuration\n"
+"=============\n"
+"\n"
+"Steps to get the report:\n"
+"\n"
+"1. The journal entry for transfer of exercises must be generated manually\n"
+"   with the end date of the fiscal year that is closing. And must be posted.\n"
+"\n"
+"2. This entry must be marked as closing entry for the fiscal year.\n"
+"\n"
+"3. The trial balance Month 13 report must be generated with dates for all the\n"
+"   fiscal year to report.\n"
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,shortdesc:base.module_fleet
 msgid "Fleet Management"
 msgstr ""
@@ -9951,7 +10246,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,help:base.field_res_company_report_footer
 msgid "Footer text displayed at the bottom of all reports."
-msgstr ""
+msgstr "அடிக்குறிப்பு உரை எல்லா அறிக்கைகளிலும் கீழே காட்டப்படும்."
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_act_report_xml_report_name
@@ -10229,7 +10524,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_window_action_form
 msgid "General Settings"
-msgstr ""
+msgstr "பொது அமைப்புகள்"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.action_wizard_update_translations
@@ -10321,7 +10616,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_google_calendar
 msgid "Google Calendar"
-msgstr ""
+msgstr "கூகிள் நாட்காட்டி"
 
 #. module: base
 #: model:ir.module.module,description:base.module_google_calendar
@@ -10388,7 +10683,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_google_spreadsheet
 msgid "Google Spreadsheet"
-msgstr ""
+msgstr "Google விரிதாள்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_google_account
@@ -10575,7 +10870,7 @@ msgstr ""
 #. module: base
 #: model:ir.model,name:base.model_ir_http
 msgid "HTTP routing"
-msgstr ""
+msgstr "HTTP ரூட்டிங்"
 
 #. module: base
 #: model:res.country,name:base.ht
@@ -10988,7 +11283,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_log_id
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_model_data_res_id
@@ -11270,6 +11565,11 @@ msgid "Import exchange rates from the Internet.\n"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,shortdesc:base.module_account_reports_cash_flow
+msgid "Improved Cash Flow Statement"
+msgstr ""
+
+#. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model_fields_modules
 #: model:ir.model.fields,field_description:base.field_ir_model_modules
 msgid "In Apps"
@@ -11366,7 +11666,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_ir_model_info
 #: model:ir.ui.view,arch_db:base.module_form
 msgid "Information"
-msgstr ""
+msgstr "தகவல்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_view_search
@@ -11483,7 +11783,7 @@ msgstr ""
 #. module: base
 #: selection:ir.property,type:0
 msgid "Integer"
-msgstr ""
+msgstr "முழு"
 
 #. module: base
 #: model:ir.module.module,description:base.module_web_clearbit
@@ -11798,7 +12098,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner_function
 #: model:ir.model.fields,field_description:base.field_res_users_function
 msgid "Job Position"
-msgstr ""
+msgstr "வேலை நிலை"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_hr
@@ -12062,7 +12362,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_log___last_update
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "கடைசியாக திருத்திய"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_base_language_export_write_uid
@@ -12133,7 +12433,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_write_uid
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டவர்"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_base_language_export_write_date
@@ -12203,7 +12503,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_write_date
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_module_module_installed_version
@@ -12341,7 +12641,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_ir_logging_level
 #: model:ir.ui.view,arch_db:base.ir_logging_search_view
 msgid "Level"
-msgstr ""
+msgstr "நிலை"
 
 #. module: base
 #: model:res.country,name:base.lr
@@ -12405,7 +12705,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_link_tracker
 msgid "Link Tracker"
-msgstr ""
+msgstr "இணைப்பு தட"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_pos_sale
@@ -12482,7 +12782,7 @@ msgstr ""
 #: model:ir.module.category,name:base.module_category_localization
 #: model:ir.ui.view,arch_db:base.view_users_form
 msgid "Localization"
-msgstr ""
+msgstr "மொழிப்பெயர்ப்பு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.ir_logging_form_view
@@ -12796,7 +13096,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.category,name:base.module_category_marketing
 msgid "Marketing"
-msgstr ""
+msgstr "சந்தைப்படுத்தல்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_marketing_automation
@@ -12990,7 +13290,7 @@ msgstr "நிமிடங்கள்"
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
 msgid "Misc"
-msgstr ""
+msgstr "மற்றவை"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_model_fields_form
@@ -13039,7 +13339,7 @@ msgstr ""
 #: model:ir.module.category,name:base.module_category_mobile
 #: model:ir.module.module,shortdesc:base.module_web_mobile
 msgid "Mobile"
-msgstr ""
+msgstr "மொபைல்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
@@ -13144,6 +13444,12 @@ msgstr ""
 #: model:ir.model.fields,help:base.field_ir_cron_model_id
 msgid "Model on which the server action runs."
 msgstr "சேவையக செயல்பாட்டை இயக்கும் மாதிரி."
+
+#. module: base
+#: code:addons/model.py:142 code:addons/model.py:152
+#, python-format
+msgid "Model:"
+msgstr ""
 
 #. module: base
 #: model:ir.actions.act_window,name:base.action_model_model
@@ -13263,7 +13569,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.ir_logging_search_view
 msgid "Month"
-msgstr ""
+msgstr "மாதம்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.sequence_view
@@ -13382,7 +13688,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_partner_simple_form
 #: model:ir.ui.view,arch_db:base.view_partner_tree
 msgid "Name"
-msgstr ""
+msgstr "பெயர்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.report_irmodeloverview
@@ -13553,7 +13859,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_groups_search
 msgid "Non-Portal Groups"
-msgstr ""
+msgstr "அல்லாத போர்டல் குழுக்கள்"
 
 #. module: base
 #: code:addons/base/ir/ir_model.py:438
@@ -14227,8 +14533,19 @@ msgid "Odoo Mexican Localization Reports"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,shortdesc:base.module_l10n_mx_reports_closing
+msgid "Odoo Mexican Localization Reports for Closing"
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_mx_edi_customs
 msgid "Odoo Mexico Localization for Invoice with customs Number"
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,shortdesc:base.module_l10n_mx_edi_sale_coupon
+#: model:ir.module.module,summary:base.module_l10n_mx_edi_sale_coupon
+msgid "Odoo Mexico Localization for Sale Coupon"
 msgstr ""
 
 #. module: base
@@ -15021,6 +15338,12 @@ msgid "Open a Window"
 msgstr ""
 
 #. module: base
+#: code:addons/base/ir/ir_model.py:1215 code:addons/models.py:2888
+#, python-format
+msgid "Operation:"
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_crm
 msgid "Opportunity to Quotation"
 msgstr ""
@@ -15246,7 +15569,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.user_groups_view
 #, python-format
 msgid "Other"
-msgstr ""
+msgstr "மற்ற"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_extra
@@ -15322,7 +15645,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_ir_attachment_create_uid
 #: model:ir.ui.view,arch_db:base.view_attachment_search
 msgid "Owner"
-msgstr ""
+msgstr "உரிமையாளர்"
 
 #. module: base
 #: model:res.partner.industry,full_name:base.res_partner_industry_P
@@ -15398,7 +15721,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_ir_act_report_xml_paperformat_id
 #: model:ir.model.fields,field_description:base.field_res_company_paperformat_id
 msgid "Paper format"
-msgstr ""
+msgstr "காகித வடிவமைப்பு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.paperformat_view_form
@@ -15463,7 +15786,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_ir_ui_menu_parent_id
 #: model:ir.model.fields,field_description:base.field_wizard_ir_model_menu_create_menu_id
 msgid "Parent Menu"
-msgstr ""
+msgstr "முதல் நிலை மெனு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_ui_menu_parent_right
@@ -15482,7 +15805,7 @@ msgstr ""
 #: model:res.partner.category,name:base.res_partner_category_0
 #: model:res.request.link,name:base.req_link_partner
 msgid "Partner"
-msgstr ""
+msgstr "கூட்டாளி"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_partner
@@ -15492,7 +15815,7 @@ msgstr ""
 #. module: base
 #: model:ir.model,name:base.model_res_partner_category
 msgid "Partner Tags"
-msgstr ""
+msgstr "கூட்டாளி மேற்கோள்கள்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_title_form
@@ -15503,14 +15826,14 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,help:base.field_res_users_partner_id
 msgid "Partner-related data of the user"
-msgstr ""
+msgstr "பயனர் கூட்டாளர் தொடர்பான தரவு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_category_partner_ids
 #: model:ir.ui.view,arch_db:base.view_partner_form
 #: model:ir.ui.view,arch_db:base.view_partner_short_form
 msgid "Partners"
-msgstr ""
+msgstr "கூட்டாளிகள்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_geolocalize
@@ -15597,6 +15920,11 @@ msgid "Payment Acquirer: Stripe Implementation"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,summary:base.module_payment_stripe_sca
+msgid "Payment Acquirer: Stripe Implementation for the EU PSD2"
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,summary:base.module_payment_transfer
 msgid "Payment Acquirer: Transfer Implementation"
 msgstr ""
@@ -15670,7 +15998,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner_phone
 #: model:ir.model.fields,field_description:base.field_res_users_phone
 msgid "Phone"
-msgstr ""
+msgstr "தொலைபேசி"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_phone_validation
@@ -15777,12 +16105,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_groups_is_portal
 #: model:res.groups,name:base.group_portal
 msgid "Portal"
-msgstr ""
+msgstr "தகவு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_groups_search
 msgid "Portal Groups"
-msgstr ""
+msgstr "போர்டல் குழுக்கள்"
 
 #. module: base
 #: model:res.groups,comment:base.group_portal
@@ -16387,6 +16715,14 @@ msgid "Record rules"
 msgstr ""
 
 #. module: base
+#: code:addons/base/ir/ir_actions.py:245 code:addons/models.py:2789
+#: code:addons/models.py:2875 code:addons/models.py:2889
+#: code:addons/models.py:3235 code:addons/models.py:4020
+#, python-format
+msgid "Records:"
+msgstr ""
+
+#. module: base
 #: model:ir.module.category,name:base.module_category_hr_recruitment
 msgid "Recruitment"
 msgstr ""
@@ -16584,7 +16920,7 @@ msgstr "அறிக்கையிடல்"
 #: model:ir.model.fields,field_description:base.field_ir_module_module_reports_by_module
 #: model:ir.ui.menu,name:base.menu_ir_action_report
 msgid "Reports"
-msgstr ""
+msgstr "அறிக்கைகள்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.res_request_link-view
@@ -16853,7 +17189,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
 msgid "Sale"
-msgstr ""
+msgstr "விற்பனை"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_voucher
@@ -16897,7 +17233,7 @@ msgstr ""
 #: model:ir.module.module,shortdesc:base.module_sales_team
 #: model:ir.module.module,summary:base.module_sales_team
 msgid "Sales Channels"
-msgstr ""
+msgstr "விற்பனை சேனல்கள்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_expense
@@ -16939,7 +17275,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_user_id
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Salesperson"
-msgstr ""
+msgstr "விற்பனையாளர்"
 
 #. module: base
 #: model:res.country,name:base.ws
@@ -17032,7 +17368,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_view_search selection:ir.ui.view,type:0
 msgid "Search"
-msgstr ""
+msgstr "தேடு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.config_wizard_step_view_search
@@ -17118,7 +17454,7 @@ msgstr ""
 #. module: base
 #: selection:ir.property,type:0 selection:ir.translation,type:0
 msgid "Selection"
-msgstr ""
+msgstr "தேர்வு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model_fields_selection
@@ -17235,7 +17571,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_sequence_search
 #: model:ir.ui.view,arch_db:base.view_view_tree
 msgid "Sequence"
-msgstr ""
+msgstr "வரிசை"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_sequence_code
@@ -17299,7 +17635,7 @@ msgstr ""
 #. module: base
 #: model:res.partner.category,name:base.res_partner_category_11
 msgid "Services"
-msgstr ""
+msgstr "சேவைகள்"
 
 #. module: base
 #: selection:ir.model.fields,on_delete:0
@@ -17345,7 +17681,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.res_config_settings_view_form
 #: model:res.groups,name:base.group_system
 msgid "Settings"
-msgstr ""
+msgstr "அமைப்புகள்"
 
 #. module: base
 #: model:res.country,name:base.sc
@@ -17766,7 +18102,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner_street
 #: model:ir.model.fields,field_description:base.field_res_users_street
 msgid "Street"
-msgstr ""
+msgstr "தெரு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.res_partner_view_form_private
@@ -17776,7 +18112,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_partner_short_form
 #: model:ir.ui.view,arch_db:base.view_res_bank_form
 msgid "Street 2..."
-msgstr ""
+msgstr "தெரு 2 ..."
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.res_partner_view_form_private
@@ -17786,7 +18122,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_partner_short_form
 #: model:ir.ui.view,arch_db:base.view_res_bank_form
 msgid "Street..."
-msgstr ""
+msgstr "தெரு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_bank_street2
@@ -17794,12 +18130,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner_street2
 #: model:ir.model.fields,field_description:base.field_res_users_street2
 msgid "Street2"
-msgstr ""
+msgstr "தெரு 2"
 
 #. module: base
 #: model:ir.module.module,description:base.module_payment_stripe
 #: model:ir.module.module,shortdesc:base.module_payment_stripe
 msgid "Stripe Payment Acquirer"
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,description:base.module_payment_stripe_sca
+#: model:ir.module.module,shortdesc:base.module_payment_stripe_sca
+msgid "Stripe Payment Acquirer - Strong Customer Authentication Update"
 msgstr ""
 
 #. module: base
@@ -17990,7 +18332,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Tag"
-msgstr ""
+msgstr "டேக்"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_category_name
@@ -18001,7 +18343,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner_category_id_893
 #: model:ir.model.fields,field_description:base.field_res_users_category_id
 msgid "Tags"
-msgstr ""
+msgstr "மேற்கோள்கள்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
@@ -18689,6 +19031,11 @@ msgid "Test Performance"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,shortdesc:base.module_test_rpc
+msgid "Test RPC"
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,description:base.module_test_access_rights
 msgid "Testing of access restrictions"
 msgstr ""
@@ -18697,7 +19044,7 @@ msgstr ""
 #: model:ir.module.category,name:base.module_category_tests
 #: model:ir.ui.menu,name:base.menu_tests
 msgid "Tests"
-msgstr ""
+msgstr "சோதனைகள்"
 
 #. module: base
 #: model:ir.module.module,description:base.module_test_read_group
@@ -18925,6 +19272,14 @@ msgid "The list of models that extends the current model."
 msgstr ""
 
 #. module: base
+#: code:addons/base/ir/ir_model.py:522
+#, python-format
+msgid ""
+"The m2o field %s is required but declares its ondelete policy as being 'set "
+"null'. Only 'restrict' and 'cascade' make sense."
+msgstr ""
+
+#. module: base
 #: model:ir.model.fields,help:base.field_ir_filters_action_id
 msgid ""
 "The menu action this filter applies to. When left empty the filter applies "
@@ -18995,10 +19350,7 @@ msgstr ""
 #. module: base
 #: code:addons/model.py:121
 #, python-format
-msgid ""
-"The operation cannot be completed, probably due to the following:\n"
-"- deletion: you may be trying to delete a record while other records still reference it\n"
-"- creation/update: a mandatory field is not correctly set"
+msgid "The operation cannot be completed:"
 msgstr ""
 
 #. module: base
@@ -19081,6 +19433,14 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_base_module_upgrade_install
 msgid "The selected modules have been updated / installed !"
+msgstr ""
+
+#. module: base
+#: code:addons/base/module/module.py:546
+#, python-format
+msgid ""
+"The server is busy right now, module operations are not possible at this "
+"time, please try again later."
 msgstr ""
 
 #. module: base
@@ -19306,7 +19666,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner_title_name
 #: model:ir.model.fields,field_description:base.field_res_users_title
 msgid "Title"
-msgstr ""
+msgstr "தலைப்பு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_sequence_date_range_date_to
@@ -19586,7 +19946,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_attachment_search
 #: model:ir.ui.view,arch_db:base.view_view_search
 msgid "Type"
-msgstr ""
+msgstr "வகை"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_act_server_state
@@ -19637,6 +19997,11 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_uk_reports
 msgid "UK - Accounting Reports"
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,shortdesc:base.module_l10n_uk_reports_hmrc
+msgid "UK - Accounting Reports to HMRC"
 msgstr ""
 
 #. module: base
@@ -19786,7 +20151,13 @@ msgid "Unknown"
 msgstr ""
 
 #. module: base
-#: code:addons/models.py:994
+#: code:addons/models.py:833
+#, python-format
+msgid "Unknown database error: '%s'"
+msgstr ""
+
+#. module: base
+#: code:addons/models.py:996
 #, python-format
 msgid "Unknown database identifier '%s'"
 msgstr ""
@@ -19981,7 +20352,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,help:base.field_res_users_login
 msgid "Used to log into the system"
-msgstr ""
+msgstr "கணினியில் உள்நுழைய பயன்படுத்தப்பட்டது"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_res_company_sequence
@@ -20006,7 +20377,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.ir_filters_view_search
 #: model:ir.ui.view,arch_db:base.view_users_search
 msgid "User"
-msgstr ""
+msgstr "பயனர்"
 
 #. module: base
 #: model:ir.ui.menu,name:base.next_id_2
@@ -20016,7 +20387,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_change_password_user_user_login
 msgid "User Login"
-msgstr ""
+msgstr "பயனர் உள்நுழைவு"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_users_log_ids
@@ -20035,6 +20406,15 @@ msgstr ""
 #. module: base
 #: model:ir.ui.menu,name:base.menu_ir_filters
 msgid "User-defined Filters"
+msgstr ""
+
+#. module: base
+#: code:addons/base/ir/ir_actions.py:245 code:addons/base/ir/ir_model.py:1215
+#: code:addons/models.py:2564 code:addons/models.py:2789
+#: code:addons/models.py:2875 code:addons/models.py:2889
+#: code:addons/models.py:3235 code:addons/models.py:4020
+#, python-format
+msgid "User:"
 msgstr ""
 
 #. module: base
@@ -20058,7 +20438,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_users_simple_form
 #: model:ir.ui.view,arch_db:base.view_users_tree
 msgid "Users"
-msgstr ""
+msgstr "பயனர்கள்"
 
 #. module: base
 #: model:ir.ui.menu,name:base.menu_users
@@ -20140,7 +20520,7 @@ msgstr ""
 #: selection:ir.server.object.lines,type:0
 #: model:ir.ui.view,arch_db:base.ir_property_view
 msgid "Value"
-msgstr ""
+msgstr "மதிப்பு"
 
 #. module: base
 #: code:addons/base/ir/ir_fields.py:277
@@ -20405,7 +20785,7 @@ msgstr "எச்சரிக்கை"
 #: code:addons/base/res/res_config.py:426
 #, python-format
 msgid "Warning!"
-msgstr ""
+msgstr "எச்சரிக்கை!"
 
 #. module: base
 #: code:addons/models.py:4983
@@ -20478,7 +20858,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_website
 #: model:ir.module.category,name:base.module_category_website
 msgid "Website"
-msgstr ""
+msgstr "இணையதளம்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website
@@ -20702,7 +21082,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_change_password_user_wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "வழிகாட்டி"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.config_wizard_step_view_search
@@ -20925,7 +21305,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_partner_short_form
 #: model:ir.ui.view,arch_db:base.view_res_bank_form
 msgid "ZIP"
-msgstr ""
+msgstr "ஜிப்"
 
 #. module: base
 #: model:res.country,name:base.zm
@@ -21000,12 +21380,12 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "binary"
-msgstr ""
+msgstr "பைனரி"
 
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "boolean"
-msgstr ""
+msgstr "பூலியன்"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_delivery_bpost
@@ -21015,7 +21395,7 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "char"
-msgstr ""
+msgstr "எரிப்பதை"
 
 #. module: base
 #: selection:base.language.export,state:0
@@ -21036,12 +21416,12 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "date"
-msgstr ""
+msgstr "தேதி"
 
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "datetime"
-msgstr ""
+msgstr "தேதி நேரம்"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.wizard_lang_export
@@ -21144,7 +21524,7 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "float"
-msgstr ""
+msgstr "மிதவை"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_model_fields_form
@@ -21173,7 +21553,7 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "html"
-msgstr ""
+msgstr "HTML"
 
 #. module: base
 #: selection:base.language.install,state:0
@@ -21184,7 +21564,7 @@ msgstr "அதில் உள்ளது"
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "integer"
-msgstr ""
+msgstr "முழு"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
@@ -21434,17 +21814,17 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "many2many"
-msgstr ""
+msgstr "பலர் பல"
 
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "many2one"
-msgstr ""
+msgstr "பலர் ஒன்று"
 
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "monetary"
-msgstr ""
+msgstr "பண"
 
 #. module: base
 #: code:addons/base/ir/ir_ui_view.py:494
@@ -21472,7 +21852,7 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "one2many"
-msgstr ""
+msgstr "ஒரு  பல"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_cache
@@ -21487,7 +21867,7 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "reference"
-msgstr ""
+msgstr "குறிப்பு"
 
 #. module: base
 #: model:ir.model,name:base.model_report_base_report_irmodulereference
@@ -21527,7 +21907,7 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "selection"
-msgstr ""
+msgstr "தேர்வு"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_test_mimetypes
@@ -21585,6 +21965,16 @@ msgid "test-limits"
 msgstr ""
 
 #. module: base
+#: model:ir.module.module,shortdesc:base.module_test_lint
+msgid "test-lint"
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,shortdesc:base.module_test_translation_import
+msgid "test-translation-import"
+msgstr ""
+
+#. module: base
 #: model:ir.module.module,shortdesc:base.module_test_uninstall
 msgid "test-uninstall"
 msgstr ""
@@ -21597,7 +21987,7 @@ msgstr ""
 #. module: base
 #: selection:ir.model.fields,ttype:0
 msgid "text"
-msgstr ""
+msgstr "உரை"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.res_config_installer

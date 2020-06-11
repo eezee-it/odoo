@@ -141,3 +141,177 @@ class TestSaleOrder(TestSale):
         sol = so.order_line.filtered(lambda l: l.product_id == serv_cost)
         self.assertTrue(sol, 'Sale: cost invoicing does not add lines when confirming vendor invoice')
         self.assertEquals((sol.price_unit, sol.qty_delivered, sol.product_uom_qty, sol.qty_invoiced), (160, 2, 0, 0), 'Sale: line is wrong after confirming vendor invoice')
+
+    def test_so_create_multicompany(self):
+        """In case we use new() outside of an onchange,
+           it might cause the value of related fields to be incorrect.
+           If so, then the company being a related might not be set,
+           which would mean that taxes from all child companies
+           would end up on the order lines.
+        """
+        user_demo = self.env.ref('base.user_demo')
+        company_1 = self.env.ref('base.main_company')
+        company_2 = self.env['res.company'].create({
+            'name': 'company 2',
+            'parent_id': company_1.id,
+        })
+
+        tax_company_1 = self.env['account.tax'].create({
+            'name': 'T1',
+            'amount': 90,
+            'company_id': company_1.id,
+        })
+
+        tax_company_2 = self.env['account.tax'].create({
+            'name': 'T2',
+            'amount': 90,
+            'company_id': company_2.id,
+        })
+
+        product_shared = self.env['product.template'].create({
+            'name': 'shared product',
+            'taxes_id': [(6, False, [tax_company_1.id, tax_company_2.id])],
+        })
+
+        so_1 = self.env['sale.order'].sudo(user_demo.id).create({
+            'partner_id': self.env.ref('base.res_partner_2').id,
+            'company_id': company_1.id,
+        })
+        so_1.write({
+            'order_line': [(0, False, {'product_id': product_shared.product_variant_id.id, 'order_id': so_1.id})],
+        })
+
+        self.assertEqual(set(so_1.order_line.tax_id.ids), set([tax_company_1.id]),
+            'Only taxes from the right company are put by default')
+
+    def test_multi_currency_discount(self):
+        """Verify the currency used for pricelist price & discount computation."""
+        products = self.env["product.product"].search([], limit=2)
+        product_1 = products[0]
+        product_2 = products[1]
+
+        # Make sure the company is in USD
+        curr_usd = self.env.ref('base.USD')
+        curr_eur = self.env.ref('base.EUR')
+        main_company = self.env.ref('base.main_company')
+        self.assertEqual(main_company.currency_id, curr_usd)
+        # main_company.currency_id = curr_eur # product.currency_id when no company_id set
+        other_company = self.env["res.company"].create({
+            "name": "Test",
+            "currency_id": curr_eur.id
+        })
+        user_in_other_company = self.env["res.users"].create({
+            "company_id": other_company.id,
+            "company_ids": [(6, 0, [other_company.id])],
+            "name": "E.T",
+            "login": "hohoho",
+        })
+        user_in_other_company.groups_id |= self.env.ref('sale.group_discount_per_so_line')
+        self.env['res.currency.rate'].search([]).unlink()
+        self.env['res.currency.rate'].create({
+            'name': '2010-01-01',
+            'rate': 2.0,
+            'currency_id': curr_usd.id,
+            "company_id": False,
+        })
+
+        product_1.company_id = False
+        product_2.company_id = False
+
+        self.assertEqual(product_1.currency_id, curr_usd)
+        self.assertEqual(product_2.currency_id, curr_usd)
+        self.assertEqual(product_1.cost_currency_id, curr_usd)
+        self.assertEqual(product_2.cost_currency_id, curr_usd)
+
+        product_1_ctxt = product_1.with_env(self.env(user=user_in_other_company.id))
+        product_2_ctxt = product_2.with_env(self.env(user=user_in_other_company.id))
+        self.assertEqual(product_1_ctxt.currency_id, curr_usd)
+        self.assertEqual(product_2_ctxt.currency_id, curr_usd)
+        self.assertEqual(product_1_ctxt.cost_currency_id, curr_eur)
+        self.assertEqual(product_2_ctxt.cost_currency_id, curr_eur)
+
+        product_1.lst_price = 100.0
+        product_2_ctxt.standard_price = 10.0 # cost is company_dependent
+
+        pricelist = self.env["product.pricelist"].create({
+            "name": "Test multi-currency",
+            "discount_policy": "without_discount",
+            "currency_id": curr_eur.id,
+            "item_ids": [
+                (0, 0, {
+                    "base": "list_price",
+                    "product_id": product_1.id,
+                    "compute_price": "percentage",
+                    "percent_price": 20,
+                }),
+                (0, 0, {
+                    "base": "standard_price",
+                    "product_id": product_2.id,
+                    "compute_price": "percentage",
+                    "percent_price": 10,
+                })
+            ]
+        })
+
+        # Create a SO in the other company
+        ##################################
+        # product_currency = main_company.currency_id when no company_id on the product
+
+        # CASE 1:
+        # company currency = so currency
+        # product_1.currency != so currency
+        # product_2.cost_currency_id = so currency
+        sales_order = product_1_ctxt.with_context(mail_notrack=True, mail_create_nolog=True).env["sale.order"].create({
+            "partner_id": self.env.user.partner_id.id,
+            "pricelist_id": pricelist.id,
+            "order_line": [
+                (0, 0, {
+                    "product_id": product_1.id,
+                    "product_uom_qty": 1.0
+                }),
+                (0, 0, {
+                    "product_id": product_2.id,
+                    "product_uom_qty": 1.0
+                })
+            ]
+        })
+        for line in sales_order.order_line:
+            # Create values autofill does not compute discount.
+            line._onchange_discount()
+
+        so_line_1 = sales_order.order_line[0]
+        so_line_2 = sales_order.order_line[1]
+        self.assertEqual(so_line_1.discount, 20)
+        self.assertEqual(so_line_1.price_unit, 50.0)
+        self.assertEqual(so_line_2.discount, 10)
+        self.assertEqual(so_line_2.price_unit, 10)
+
+        # CASE 2
+        # company currency != so currency
+        # product_1.currency == so currency
+        # product_2.cost_currency_id != so currency
+        pricelist.currency_id = curr_usd
+        sales_order = product_1_ctxt.with_context(mail_notrack=True, mail_create_nolog=True).env["sale.order"].create({
+            "partner_id": self.env.user.partner_id.id,
+            "pricelist_id": pricelist.id,
+            "order_line": [
+                # Verify discount is considered in create hack
+                (0, 0, {
+                    "product_id": product_1.id,
+                    "product_uom_qty": 1.0
+                }),
+                (0, 0, {
+                    "product_id": product_2.id,
+                    "product_uom_qty": 1.0
+                })
+            ]
+        })
+        for line in sales_order.order_line:
+            line._onchange_discount()
+
+        so_line_1 = sales_order.order_line[0]
+        so_line_2 = sales_order.order_line[1]
+        self.assertEqual(so_line_1.discount, 20)
+        self.assertEqual(so_line_1.price_unit, 100.0)
+        self.assertEqual(so_line_2.discount, 10)
+        self.assertEqual(so_line_2.price_unit, 20)

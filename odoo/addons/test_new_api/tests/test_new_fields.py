@@ -74,6 +74,13 @@ class TestFields(common.TransactionCase):
         field = self.env['test_new_api.message']._fields['x_bool_false_computed']
         self.assertFalse(field.depends)
 
+    def test_10_display_name(self):
+        """ test definition of automatic field 'display_name' """
+        field = type(self.env['test_new_api.discussion']).display_name
+        self.assertTrue(field.automatic)
+        self.assertTrue(field.compute)
+        self.assertEqual(field.depends, ('name',))
+
     def test_10_non_stored(self):
         """ test non-stored fields """
         # a field declared with store=False should not have a column
@@ -143,6 +150,38 @@ class TestFields(common.TransactionCase):
         })
         check_stored(discussion3)
 
+    def test_11_stored_protected(self):
+        """ test protection against recomputation """
+        model = self.env['test_new_api.compute.protected']
+        field = model._fields['bar']
+
+        record = model.create({'foo': 'unprotected #1'})
+        self.assertEqual(record.bar, 'unprotected #1')
+
+        record.write({'foo': 'unprotected #2'})
+        self.assertEqual(record.bar, 'unprotected #2')
+
+        # by protecting 'bar', we prevent it from being recomputed
+        with self.env.protecting([field], record):
+            record.write({'foo': 'protected'})
+            self.assertEqual(record.bar, 'unprotected #2')
+
+            # also works when nested
+            with self.env.protecting([field], record):
+                record.write({'foo': 'protected'})
+                self.assertEqual(record.bar, 'unprotected #2')
+
+            record.write({'foo': 'protected'})
+            self.assertEqual(record.bar, 'unprotected #2')
+
+        record.write({'foo': 'unprotected #3'})
+        self.assertEqual(record.bar, 'unprotected #3')
+
+        # we protect 'bar' on a different record
+        with self.env.protecting([field], record):
+            record2 = model.create({'foo': 'unprotected'})
+            self.assertEqual(record2.bar, 'unprotected')
+
     def test_11_computed_access(self):
         """ test computed fields with access right errors """
         User = self.env['res.users']
@@ -209,11 +248,12 @@ class TestFields(common.TransactionCase):
         self.assertEqual(c.display_name, 'B / C')
         self.assertEqual(d.display_name, 'B / C / D')
 
-        b.name = 'X'
+        # rename several records to trigger several recomputations at once
+        (d + c + b).write({'name': 'X'})
         self.assertEqual(a.display_name, 'A')
         self.assertEqual(b.display_name, 'X')
-        self.assertEqual(c.display_name, 'X / C')
-        self.assertEqual(d.display_name, 'X / C / D')
+        self.assertEqual(c.display_name, 'X / X')
+        self.assertEqual(d.display_name, 'X / X / X')
 
         # delete b; both c and d are deleted in cascade; c should also be marked
         # to recompute, but recomputation should not fail...
@@ -226,6 +266,11 @@ class TestFields(common.TransactionCase):
         message.invalidate_cache()
         double_size = message.double_size
         self.assertEqual(double_size, message.size)
+
+        record = self.env['test_new_api.cascade'].create({'foo': "Hi"})
+        self.assertEqual(record.baz, "<[Hi]>")
+        record.foo = "Ho"
+        self.assertEqual(record.baz, "<[Ho]>")
 
     def test_13_inverse(self):
         """ test inverse computation of fields """
@@ -729,6 +774,13 @@ class TestFields(common.TransactionCase):
         with self.assertRaises(AccessError):
             cat1.name
 
+        # take a discussion, use mapped(), and check prefetching
+        self.env.clear()
+        discussion = self.env.ref('test_new_api.discussion_0')
+        discussion.mapped('messages.name')
+        # message authors are ready to prefetch
+        self.assertTrue(discussion._prefetch.get('res.users'))
+
     def test_40_new(self):
         """ test new records. """
         discussion = self.env.ref('test_new_api.discussion_0')
@@ -984,6 +1036,18 @@ class TestX2many(common.TransactionCase):
 
         result = recs.search([('id', 'in', recs.ids), ('lines', '!=', False)])
         self.assertEqual(result, recs - recZ)
+
+    def test_custom_m2m(self):
+        model_id = self.env['ir.model']._get_id('res.partner')
+        field = self.env['ir.model.fields'].create({
+            'name': 'x_foo',
+            'field_description': 'Foo',
+            'model_id': model_id,
+            'ttype': 'many2many',
+            'relation': 'res.country',
+            'store': False,
+        })
+        self.assertTrue(field.unlink())
 
 
 class TestHtmlField(common.TransactionCase):

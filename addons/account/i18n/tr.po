@@ -4,17 +4,17 @@
 # 
 # Translators:
 # Murat Kaplan <muratk@projetgrup.com>, 2018
-# Martin Trigaux, 2018
-# Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2018
+# Martin Trigaux, 2019
 # Umur Akın <umura@projetgrup.com>, 2019
+# Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 15:06+0000\n"
+"POT-Creation-Date: 2019-03-29 09:07+0000\n"
 "PO-Revision-Date: 2017-09-20 10:13+0000\n"
-"Last-Translator: Umur Akın <umura@projetgrup.com>, 2019\n"
+"Last-Translator: Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2020\n"
 "Language-Team: Turkish (https://www.transifex.com/odoo/teams/41243/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,7 +102,7 @@ msgstr "%s (kopya)"
 #. module: account
 #: model:ir.ui.view,arch_db:account.report_invoice_document
 msgid "&amp;nbsp;<span>on</span>"
-msgstr "&amp;nbsp;<span>zaman</span>"
+msgstr "&amp;nbsp;<span>üzerinden</span>"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
@@ -4338,6 +4338,12 @@ msgstr ""
 "Hesaplanan bitiş bakiyesi ile belirtilen bitiş bakiyesi arasındaki fark."
 
 #. module: account
+#: code:addons/account/models/account_move.py:235
+#, python-format
+msgid "Difference debit - credit: "
+msgstr ""
+
+#. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
 msgid "Direct connection to your bank"
 msgstr "Bankanıza doğrudan bağlantı"
@@ -4595,7 +4601,12 @@ msgid "Due date"
 msgstr "Vade Tarihi"
 
 #. module: account
-#: code:addons/account/models/account_invoice.py:1176
+#: model:ir.ui.view,arch_db:account.view_move_form
+msgid "Duplicate"
+msgstr "Kopyala"
+
+#. module: account
+#: code:addons/account/models/account_invoice.py:1194
 #, python-format
 msgid ""
 "Duplicated vendor reference detected. You probably encoded twice the same "
@@ -6153,7 +6164,7 @@ msgstr "Ocak"
 #: model:ir.ui.view,arch_db:account.view_bank_statement_search
 #, python-format
 msgid "Journal"
-msgstr "Journal"
+msgstr "Yevmiye"
 
 #. module: account
 #: selection:account.report.general.ledger,sortby:0
@@ -7831,7 +7842,7 @@ msgstr "Ödemelerinizi bir tıkla Euro SEPA servisi ile yapın."
 #: model:ir.ui.view,arch_db:account.view_account_move_line_filter
 #: model:ir.ui.view,arch_db:account.view_account_payment_search
 msgid "Payable"
-msgstr "Ödenebilir"
+msgstr "Borç"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_chart_template_property_account_payable_id
@@ -11586,7 +11597,7 @@ msgstr "Muhasebe kaydında hatalı alacak ya da Borç değeri!"
 #: code:addons/account/models/account_move.py:1015
 #, python-format
 msgid "You are trying to reconcile some entries that are already reconciled!"
-msgstr "Mutabık kalmış bazı girişleri mutabık kalmaya çalışıyorsunuz!"
+msgstr "Zaten  uzlaştırılmış bazı girişleri uzlaştırmaya çalışıyorsunuz!"
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_move_line_blocked

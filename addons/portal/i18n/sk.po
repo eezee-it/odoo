@@ -77,6 +77,13 @@ msgid "<span id=\"search_label\">Search</span> <span class=\"caret\"/>"
 msgstr ""
 
 #. module: portal
+#. openerp-web
+#: code:addons/portal/static/src/xml/portal_signature.xml:24
+#, python-format
+msgid "Accept and Sign"
+msgstr ""
+
+#. module: portal
 #: model:ir.ui.view,arch_db:portal.wizard_view
 msgid "Apply"
 msgstr "Použiť"
@@ -182,7 +189,7 @@ msgstr "Zobraziť meno"
 #: code:addons/portal/static/src/xml/portal_signature.xml:14
 #, python-format
 msgid "Draw your signature"
-msgstr ""
+msgstr "Podpíšte sa"
 
 #. module: portal
 #: model:ir.model.fields,field_description:portal.field_portal_wizard_user_email

@@ -10,9 +10,9 @@
 # Анатолій Пономаренко <Ponomarenkoa@minfin.gov.ua>, 2017
 # Евгений Жердев <e.v.zherdev@gmail.com>, 2017
 # Martin Trigaux, 2017
-# Bohdan Lisnenko, 2017
-# Olga Lugova <trolka.olug@gmail.com>, 2018
+# trolka <trolka.olug@gmail.com>, 2018
 # Alina Lisnenko <alinasemeniuk1@gmail.com>, 2019
+# Bohdan Lisnenko, 2019
 # 
 msgid ""
 msgstr ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-03 15:06+0000\n"
 "PO-Revision-Date: 2017-09-20 10:22+0000\n"
-"Last-Translator: Alina Lisnenko <alinasemeniuk1@gmail.com>, 2019\n"
+"Last-Translator: Bohdan Lisnenko, 2019\n"
 "Language-Team: Ukrainian (https://www.transifex.com/odoo/teams/41243/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -689,7 +689,7 @@ msgstr ""
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_report_commercial_partner_id
 msgid "Commercial Entity"
-msgstr "Перспективний"
+msgstr "Юридична особа"
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_res_company
@@ -845,7 +845,7 @@ msgstr "Назва для відображення"
 #. module: purchase
 #: selection:purchase.report,state:0
 msgid "Done"
-msgstr "Готово"
+msgstr "Виконано"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_res_company_po_double_validation_amount
@@ -860,7 +860,7 @@ msgstr "Переміщення вниз"
 #. module: purchase
 #: selection:purchase.report,state:0
 msgid "Draft RFQ"
-msgstr "Чорновий ЗКП"
+msgstr "Чорнове ЗНКП"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_dest_address_id
@@ -1368,7 +1368,7 @@ msgstr "Ціна по постачальниках"
 #. module: purchase
 #: model:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Print RFQ"
-msgstr "Надрукувати ЗКП"
+msgstr "Друкувати ЗНКП"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_group_id
@@ -2255,7 +2255,7 @@ msgstr "Прайс-листи постачальника"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_partner_ref
 msgid "Vendor Reference"
-msgstr "Посилання постачальника"
+msgstr "Референс постачальника"
 
 #. module: purchase
 #: model:ir.ui.menu,name:purchase.menu_procurement_management_supplier_name
@@ -2308,7 +2308,7 @@ msgstr "Попередження для %s"
 #. module: purchase
 #: model:ir.ui.view,arch_db:purchase.res_partner_view_purchase_buttons
 msgid "Warning on the Purchase Order"
-msgstr "Очікування на замовленні на купівлю"
+msgstr "Попередження на замовленні на купівлю"
 
 #. module: purchase
 #: model:ir.ui.view,arch_db:purchase.view_product_supplier_inherit

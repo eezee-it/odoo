@@ -4,9 +4,9 @@
 # 
 # Translators:
 # Cozmin Candea <office@terrabit.ro>, 2018
-# Dorin Hongu <dhongu@gmail.com>, 2019
 # Martin Trigaux, 2019
 # sharkutz <sharkutz4life@yahoo.com>, 2019
+# Dorin Hongu <dhongu@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-03 15:06+0000\n"
 "PO-Revision-Date: 2017-09-20 10:25+0000\n"
-"Last-Translator: sharkutz <sharkutz4life@yahoo.com>, 2019\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2020\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgstr "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;"
 #. module: website
 #: model:ir.ui.view,arch_db:website.default_xml
 msgid "&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;"
-msgstr ""
+msgstr "&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;"
 
 #. module: website
 #. openerp-web
@@ -140,7 +140,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.default_csv
 msgid "1,2,3"
-msgstr ""
+msgstr "1,2,3"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.snippet_options
@@ -240,6 +240,7 @@ msgstr ""
 #, python-format
 msgid "<b>Install a contact form</b> to improve this page."
 msgstr ""
+"Instalați <b>formular de contact </b>pentru a îmbunătăți această pagină."
 
 #. module: website
 #. openerp-web
@@ -263,7 +264,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.snippet_options
 msgid "<b>Set Custom Image...</b>"
-msgstr ""
+msgstr "<b>Setați imaginea personalizată ...</b>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -1002,7 +1003,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.500
 msgid "An error occured while rendering the template"
-msgstr ""
+msgstr "A apărut o eroare la redarea șablonului"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_title
@@ -1753,6 +1754,8 @@ msgid ""
 "Edit the content below this line to adapt the default \"page not found\" "
 "page."
 msgstr ""
+"Editați conținutul de sub această linie pentru a adapta pagina implicită "
+"pentru \"pagina nu a fost găsită\"."
 
 #. module: website
 #. openerp-web
@@ -1775,6 +1778,11 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_comparisons
 msgid "Email support"
+msgstr ""
+
+#. module: website
+#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "Enable billing on your Google Project"
 msgstr ""
 
 #. module: website
@@ -2011,14 +2019,14 @@ msgstr "Cont GitHub"
 #: code:addons/website/static/src/js/menu/content.js:48
 #, python-format
 msgid "Go To Page"
-msgstr ""
+msgstr "Mergi la pagină"
 
 #. module: website
 #. openerp-web
 #: code:addons/website/static/src/js/editor/snippets.options.js:27
 #, python-format
 msgid "Go to Link"
-msgstr ""
+msgstr "Mergi la link"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.view_view_form_extend
@@ -2031,7 +2039,7 @@ msgstr ""
 #: code:addons/website/static/src/xml/website.backend.xml:22
 #, python-format
 msgid "Go to Website"
-msgstr ""
+msgstr "Mergi al Website"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -2079,6 +2087,9 @@ msgid ""
 "Google Analytics initialization failed. Maybe this domain is not whitelisted"
 " in your Google Analytics project for this client ID."
 msgstr ""
+"Inițializarea Google Analytics a eșuat. Poate că acest domeniu nu "
+"înregistrat în cadrul proiectului Google Analytics pentru acest cod de "
+"client."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -2153,7 +2164,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.user_navbar
 msgid "HTML/CSS Editor"
-msgstr ""
+msgstr "Editor HTML/CSS"
 
 #. module: website
 #: model:ir.model,name:website.model_ir_http
@@ -2293,6 +2304,9 @@ msgid ""
 "possibility to reset one or more templates to their <strong>factory "
 "settings</strong>."
 msgstr ""
+"Dacă această eroare este cauzată de o modificare a dvs. în șabloane, aveți "
+"posibilitatea să resetați unul sau mai multe șabloane la <strong>setările "
+"din fabrică</strong>."
 
 #. module: website
 #: model:ir.model.fields,help:website.field_website_page_groups_id
@@ -3086,7 +3100,7 @@ msgstr ""
 #: code:addons/website/static/src/xml/website.pageProperties.xml:46
 #, python-format
 msgid "Page Name"
-msgstr ""
+msgstr "Nume pagină"
 
 #. module: website
 #. openerp-web
@@ -3241,7 +3255,7 @@ msgstr "Previzualizare"
 #: model:ir.ui.view,arch_db:website.bs_debug_page_ir_ui_view
 #: model:website.page,arch_db:website.bs_debug_page
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_comparisons
@@ -3432,7 +3446,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.500
 msgid "Reset selected templates"
-msgstr ""
+msgstr "Resetați șabloanele selectate"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.500
@@ -3612,11 +3626,6 @@ msgstr ""
 #: code:addons/website/static/src/xml/website.pageProperties.xml:86
 #, python-format
 msgid "Show in Top Menu"
-msgstr ""
-
-#. module: website
-#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
-msgid "Show your address on a map in the"
 msgstr ""
 
 #. module: website
@@ -3821,7 +3830,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.403
 msgid "The page you were looking for could not be authorized."
-msgstr ""
+msgstr "Pagina pe care ați căutat nu a putut fi autorizată."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.404
@@ -3838,6 +3847,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website.500
 msgid "The selected templates will be reset to their factory settings."
 msgstr ""
+"64/5000\n"
+" \n"
+" \n"
+" \n"
+"Șabloanele selectate vor fi resetate la setările din fabrică."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -3909,6 +3923,8 @@ msgid ""
 "This page does not exist, but you can create it as you are administrator of "
 "this site."
 msgstr ""
+"Această pagină nu există, dar o puteți crea, deoarece sunteți "
+"administratorul acestui site."
 
 #. module: website
 #: code:addons/website/models/website.py:259
@@ -4076,6 +4092,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website.edit_website_pages
 msgid "Url"
 msgstr "Url"
+
+#. module: website
+#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "Use Google Map on your website ("
+msgstr ""
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_faq_collapse
@@ -4821,7 +4842,7 @@ msgstr "sau Editează Master"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.res_config_settings_view_form
-msgid "page"
+msgid "page, snippets, ...)"
 msgstr ""
 
 #. module: website

@@ -362,7 +362,9 @@ class SaleOrder(models.Model):
         a clean extension chain).
         """
         self.ensure_one()
-        journal_id = self.env['account.invoice'].default_get(['journal_id'])['journal_id']
+        company_id = self.company_id.id
+        journal_id = (self.env['account.invoice'].with_context(company_id=company_id or self.env.user.company_id.id)
+            .default_get(['journal_id'])['journal_id'])
         if not journal_id:
             raise UserError(_('Please define an accounting sales journal for this company.'))
         invoice_vals = {
@@ -377,7 +379,7 @@ class SaleOrder(models.Model):
             'comment': self.note,
             'payment_term_id': self.payment_term_id.id,
             'fiscal_position_id': self.fiscal_position_id.id or self.partner_invoice_id.property_account_position_id.id,
-            'company_id': self.company_id.id,
+            'company_id': company_id,
             'user_id': self.user_id and self.user_id.id,
             'team_id': self.team_id.id
         }
@@ -463,9 +465,10 @@ class SaleOrder(models.Model):
             # Use additional field helper function (for account extensions)
             for line in invoice.invoice_line_ids:
                 line._set_additional_fields(invoice)
-            # Necessary to force computation of taxes. In account_invoice, they are triggered
+            # Necessary to force computation of taxes and cash rounding. In account_invoice, they are triggered
             # by onchanges, which are not triggered when doing a create.
             invoice.compute_taxes()
+            invoice._onchange_cash_rounding()
             invoice.message_post_with_view('mail.message_origin_link',
                 values={'self': invoice, 'origin': references[invoice]},
                 subtype_id=self.env.ref('mail.mt_note').id)
@@ -759,10 +762,11 @@ class SaleOrderLine(models.Model):
         refund_lines_product = self.env['account.invoice.line']
         for line in self:
             # Invoice lines referenced by this line
-            invoice_lines = line.invoice_lines.filtered(lambda l: l.invoice_id.state in ('open', 'paid'))
+            invoice_lines = line.invoice_lines.filtered(lambda l: l.invoice_id.state in ('open', 'paid') and l.invoice_id.type == 'out_invoice')
+            refund_lines = line.invoice_lines.filtered(lambda l: l.invoice_id.state in ('open', 'paid') and l.invoice_id.type == 'out_refund')
             # Refund invoices linked to invoice_lines
             refund_invoices = invoice_lines.mapped('invoice_id.refund_invoice_ids').filtered(lambda inv: inv.state in ('open', 'paid'))
-            refund_invoice_lines = (refund_invoices.mapped('invoice_line_ids') - refund_lines_product).filtered(lambda l: l.product_id == line.product_id)
+            refund_invoice_lines = (refund_invoices.mapped('invoice_line_ids') + refund_lines - refund_lines_product).filtered(lambda l: l.product_id == line.product_id)
             if refund_invoice_lines:
                 refund_lines_product |= refund_invoice_lines
             # If the currency of the invoice differs from the sale order, we need to convert the values
@@ -851,11 +855,12 @@ class SaleOrderLine(models.Model):
         res = {}
         onchange_fields = ['name', 'price_unit', 'product_uom', 'tax_id']
         if values.get('order_id') and values.get('product_id') and any(f not in values for f in onchange_fields):
-            line = self.new(values)
-            line.product_id_change()
-            for field in onchange_fields:
-                if field not in values:
-                    res[field] = line._fields[field].convert_to_write(line[field], line)
+            with self.env.do_in_onchange():
+                line = self.new(values)
+                line.product_id_change()
+                for field in onchange_fields:
+                    if field not in values:
+                        res[field] = line._fields[field].convert_to_write(line[field], line)
         return res
 
     @api.model
@@ -983,7 +988,8 @@ class SaleOrderLine(models.Model):
         """
         self.ensure_one()
         res = {}
-        account = self.product_id.property_account_income_id or self.product_id.categ_id.property_account_income_categ_id
+        product = self.product_id.with_context(force_company=self.company_id.id)
+        account = product.property_account_income_id or product.categ_id.property_account_income_categ_id
         if not account:
             raise UserError(_('Please define income account for this product: "%s" (id:%d) - or for its category: "%s".') %
                 (self.product_id.name, self.product_id.id, self.product_id.categ_id.name))
@@ -1156,7 +1162,7 @@ class SaleOrderLine(models.Model):
         PricelistItem = self.env['product.pricelist.item']
         field_name = 'lst_price'
         currency_id = None
-        product_currency = None
+        product_currency = product.currency_id
         if rule_id:
             pricelist_item = PricelistItem.browse(rule_id)
             if pricelist_item.pricelist_id.discount_policy == 'without_discount':
@@ -1166,13 +1172,13 @@ class SaleOrderLine(models.Model):
 
             if pricelist_item.base == 'standard_price':
                 field_name = 'standard_price'
-            if pricelist_item.base == 'pricelist' and pricelist_item.base_pricelist_id:
+                product_currency = product.cost_currency_id
+            elif pricelist_item.base == 'pricelist' and pricelist_item.base_pricelist_id:
                 field_name = 'price'
                 product = product.with_context(pricelist=pricelist_item.base_pricelist_id.id)
                 product_currency = pricelist_item.base_pricelist_id.currency_id
             currency_id = pricelist_item.pricelist_id.currency_id
 
-        product_currency = product_currency or(product.company_id and product.company_id.currency_id) or self.env.user.company_id.currency_id
         if not currency_id:
             currency_id = product_currency
             cur_factor = 1.0
@@ -1246,6 +1252,9 @@ class SaleOrderLine(models.Model):
         """ Compute and write the delivered quantity of current SO lines, based on their related
             analytic lines.
         """
+        # The delivered quantity of Sales Lines in 'manual' mode should not be erased
+        self = self.filtered(lambda sol: sol.product_id.service_type != 'manual')
+
         # avoid recomputation if no SO lines concerned
         if not self:
             return False
@@ -1269,7 +1278,7 @@ class SaleOrderLine(models.Model):
             value_to_write.setdefault(so_line, 0.0)
             uom = self.env['product.uom'].browse(item['product_uom_id'][0])
             if so_line.product_uom.category_id == uom.category_id:
-                qty = uom._compute_quantity(item['unit_amount'], so_line.product_uom)
+                qty = uom._compute_quantity(item['unit_amount'], so_line.product_uom, rounding_method='HALF-UP')
             else:
                 qty = item['unit_amount']
             value_to_write[so_line] += qty

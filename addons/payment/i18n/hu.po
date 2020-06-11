@@ -5,16 +5,18 @@
 # Translators:
 # Kovács Tibor <kovika@gmail.com>, 2017
 # gezza <geza.nagy@oregional.hu>, 2017
-# Martin Trigaux, 2017
-# krnkris, 2018
+# Martin Trigaux, 2019
+# krnkris, 2019
+# Tamás Németh <ntomasz81@gmail.com>, 2020
+# Ákos Nagy <akos.nagy@oregional.hu>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 15:07+0000\n"
+"POT-Creation-Date: 2019-07-17 15:01+0000\n"
 "PO-Revision-Date: 2017-09-20 10:20+0000\n"
-"Last-Translator: krnkris, 2018\n"
+"Last-Translator: Ákos Nagy <akos.nagy@oregional.hu>, 2020\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +76,7 @@ msgstr ""
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.payment_tokens_list
 msgid "<i class=\"fa fa-trash\"/> Delete"
-msgstr ""
+msgstr "<i class=\"fa fa-trash\"/> Törlés"
 
 #. module: payment
 #: code:addons/payment/models/payment_acquirer.py:122
@@ -521,7 +523,7 @@ msgstr "E-mail"
 #. module: payment
 #: model:account.payment.method,name:payment.account_payment_method_electronic_in
 msgid "Electronic"
-msgstr ""
+msgstr "Elektronikus"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_transaction_partner_email
@@ -549,7 +551,7 @@ msgstr "Hibaüzenet"
 #: code:addons/payment/static/src/js/payment_form.js:428
 #, python-format
 msgid "Error: "
-msgstr ""
+msgstr "Hiba:"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_transaction_fees
@@ -642,7 +644,7 @@ msgstr ""
 #. module: payment
 #: model:payment.acquirer,name:payment.payment_acquirer_ogone
 msgid "Ingenico"
-msgstr ""
+msgstr "Ingenico"
 
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.acquirer_form
@@ -878,7 +880,7 @@ msgstr "Partner neve"
 #: model:payment.acquirer,name:payment.payment_acquirer_payu
 #: selection:payment.acquirer,provider:0
 msgid "PayUmoney"
-msgstr ""
+msgstr "PayUmoney"
 
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.confirm
@@ -914,7 +916,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:payment.action_payment_icon
 #: model:ir.ui.menu,name:payment.payment_icon_menu
 msgid "Payment Icons"
-msgstr ""
+msgstr "Fizetési ikonok"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_acquirer_journal_id
@@ -1063,6 +1065,20 @@ msgid "Provider"
 msgstr "Szolgáltató"
 
 #. module: payment
+#. openerp-web
+#: code:addons/payment/static/src/js/payment_translations.js:9
+#, python-format
+msgid "Publish"
+msgstr "Publikálás"
+
+#. module: payment
+#. openerp-web
+#: code:addons/payment/static/src/js/payment_translations.js:8
+#, python-format
+msgid "Published"
+msgstr "Közzétett"
+
+#. module: payment
 #: selection:payment.acquirer,payment_flow:0
 msgid "Redirection to the acquirer website"
 msgstr ""
@@ -1152,12 +1168,12 @@ msgstr "Szervertől szerverhez"
 #: code:addons/payment/static/src/js/payment_form.js:300
 #, python-format
 msgid "Server error"
-msgstr ""
+msgstr "Szerverhiba"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_token_short_name
 msgid "Short name"
-msgstr ""
+msgstr "Rövid név"
 
 #. module: payment
 #: model:payment.acquirer,name:payment.payment_acquirer_sips
@@ -1317,7 +1333,7 @@ msgstr "Látható a Portálon / Weboldalon"
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.transaction_form
 msgid "Void Transaction"
-msgstr ""
+msgstr "Üres tranzakció"
 
 #. module: payment
 #. openerp-web

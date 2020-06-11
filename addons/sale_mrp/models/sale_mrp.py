@@ -25,6 +25,16 @@ class SaleOrderLine(models.Model):
         return super(SaleOrderLine, self)._get_delivered_qty()
 
     @api.multi
+    def _compute_qty_delivered_updateable(self):
+        lines = self.env['sale.order.line']
+        for line in self:
+            bom = self.env['mrp.bom']._bom_find(product=line.product_id, company_id=line.company_id.id)
+            if bom and bom.type == 'phantom' and line.order_id.state == 'sale':
+                line.qty_delivered_updateable = True
+                lines |= line
+        super(SaleOrderLine, self - lines)._compute_qty_delivered_updateable()
+
+    @api.multi
     def _get_bom_component_qty(self, bom):
         bom_quantity = self.product_uom._compute_quantity(1, bom.product_uom_id)
         boms, lines = bom.explode(self.product_id, bom_quantity)
@@ -78,7 +88,7 @@ class AccountInvoiceLine(models.Model):
                 # Go through all the moves and do nothing until you get to qty_done
                 # Beyond qty_done we need to calculate the average of the price_unit
                 # on the moves we encounter.
-                bom = s_line.product_id.product_tmpl_id.bom_ids and s_line.product_id.product_tmpl_id.bom_ids[0]
+                bom = self.env['mrp.bom'].sudo()._bom_find(product=s_line.product_id, company_id=s_line.company_id.id)
                 if bom.type == 'phantom':
                     average_price_unit = 0
                     components = s_line._get_bom_component_qty(bom)

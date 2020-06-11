@@ -292,8 +292,8 @@ class MailTemplate(models.Model):
         # form a tree
         root = lxml.html.fromstring(html)
         if not len(root) and root.text is None and root.tail is None:
-            html = u'<div>%s</div>' % html
-            root = lxml.html.fromstring(html, encoding='unicode')
+            html = u'<div>%s</div>' % tools.ustr(html)
+            root = lxml.html.fromstring(html)
 
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         base = urls.url_parse(base_url)
@@ -369,9 +369,10 @@ class MailTemplate(models.Model):
             variables['object'] = record
             try:
                 render_result = template.render(variables)
-            except Exception:
+            except Exception as e:
                 _logger.info("Failed to render template %r using values %r" % (template, variables), exc_info=True)
-                raise UserError(_("Failed to render template %r using values %r")% (template, variables))
+                raise UserError(_("Failed to render template %r using values %r") % (template, variables) +
+                                "\n\n%s: %s" % (type(e).__name__, str(e)))
             if render_result == u"False":
                 render_result = u""
             results[res_id] = render_result

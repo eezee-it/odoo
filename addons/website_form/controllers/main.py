@@ -117,18 +117,19 @@ class WebsiteForm(http.Controller):
 
         authorized_fields = model.sudo()._get_form_writable_fields()
         error_fields = []
-
+        custom_fields = []
 
         for field_name, field_value in values.items():
             # If the value of the field if a file
             if hasattr(field_value, 'filename'):
                 # Undo file upload field name indexing
-                field_name = field_name.rsplit('[', 1)[0]
+                field_name = field_name.split('[', 1)[0]
 
                 # If it's an actual binary field, convert the input file
                 # If it's not, we'll use attachments instead
                 if field_name in authorized_fields and authorized_fields[field_name]['type'] == 'binary':
                     data['record'][field_name] = base64.b64encode(field_value.read())
+                    field_value.stream.seek(0) # do not consume value forever
                 else:
                     field_value.field_name = field_name
                     data['attachments'].append(field_value)
@@ -143,7 +144,9 @@ class WebsiteForm(http.Controller):
 
             # If it's a custom field
             elif field_name != 'context':
-                data['custom'] += u"%s : %s\n" % (field_name, field_value)
+                custom_fields.append((field_name, field_value))
+
+        data['custom'] = "\n".join([u"%s : %s" % v for v in custom_fields])
 
         # Add metadata if enabled
         environ = request.httprequest.headers.environ

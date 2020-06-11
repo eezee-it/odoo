@@ -7555,7 +7555,7 @@ msgstr "Či bol pohyb pridaný po potvrdení výdaja."
 #: model:product.product,name:stock.test_quant_product
 #: model:product.template,name:stock.test_quant_product_product_template
 msgid "Whiteboard"
-msgstr ""
+msgstr "Biela tabuľa"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_return_picking_line_wizard_id
@@ -8165,3 +8165,9 @@ msgstr "s <i>Overiť</i> tlačidlom"
 #: model:ir.ui.view,arch_db:stock.view_inventory_form
 msgid "⇒ Set quantities to 0"
 msgstr "⇒ Nastaviť množstvá na 0"
+
+#. module: stock
+#: code:addons/stock/models/stock_move_line.py:223
+#, python-format
+msgid "Changing the product is only allowed in 'Draft' state."
+msgstr ""

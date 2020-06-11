@@ -73,11 +73,11 @@
                                         <t t-esc="(1-line.discount / 100.0) * line.price_unit" t-options='{"widget": "monetary", "display_currency": quotation.pricelist_id.currency_id}'/>
                                     </div>
                               </td>
-                              <td class="text-right" groups="sale.group_show_price_subtotal">
+                              <td class="text-right oe_order_line_price_subtotal" groups="sale.group_show_price_subtotal">
                                   <span t-field="line.price_subtotal"
                                         t-options='{"widget": "monetary", "display_currency": quotation.pricelist_id.currency_id}'/>
                               </td>
-                              <td class="text-right" groups="sale.group_show_price_total">
+                              <td class="text-right oe_order_line_price_total" groups="sale.group_show_price_total">
                                   <span t-field="line.price_total"
                                         t-options='{"widget": "monetary", "display_currency": quotation.pricelist_id.currency_id}'/>
                               </td>
@@ -107,7 +107,7 @@
                                 <td></td><td></td><td></td><td></td>
                                 <td class="text-right"><strong>Subtotal:</strong></td>
                                 <td class="text-right">
-                                    <strong data-id="total_amount" t-field="quotation.amount_untaxed" t-options='{"widget": "monetary","display_currency": quotation.pricelist_id.currency_id}'/>
+                                    <strong data-id="total_untaxed" t-field="quotation.amount_untaxed" t-options='{"widget": "monetary","display_currency": quotation.pricelist_id.currency_id}'/>
                                 </td>
                                 <td></td>
                             </tr>
@@ -116,7 +116,7 @@
                                 <td></td><td></td><td></td><td></td>
                                 <td class="text-right">Taxes:</td>
                                 <td class="text-right">
-                                    <span data-id="total_amount" t-field="quotation.amount_tax" t-options='{"widget": "monetary","display_currency": quotation.pricelist_id.currency_id}'/>
+                                    <span data-id="total_taxes" t-field="quotation.amount_tax" t-options='{"widget": "monetary","display_currency": quotation.pricelist_id.currency_id}'/>
                                 </td>
                                 <td></td>
                             </tr>
@@ -243,7 +243,7 @@
                               </div>
 
 
-                              <div class="text-center mb16" t-if="quotation.amount_undiscounted &gt; quotation.amount_untaxed">
+                              <div class="text-center mb16" t-if="quotation.amount_undiscounted - quotation.amount_untaxed &gt; 0.01">
                                   <p class="text-muted mb8">Your advantage:</p>
                                   <t t-if="quotation.amount_untaxed == quotation.amount_total">
                                       <strong t-field="quotation.amount_total"
@@ -314,7 +314,7 @@
                                     accept it on the behalf of </span><b t-field="quotation.partner_id.commercial_partner_id"/><span>, for an amount of </span>
                                     <b data-id="total_amount" t-field="quotation.amount_total"
                                         t-options='{"widget": "monetary", "display_currency": quotation.pricelist_id.currency_id}'/>
-                                    <span>with payment terms: </span><b t-field="quotation.payment_term_id"/>.
+                                    <span>with payment terms: </span><b t-field="quotation.payment_term_id.note"/>.
                                 </p>
                                 <t t-call="portal.portal_signature">
                                     <t t-set="object" t-value="quotation"/>
@@ -337,7 +337,7 @@
                                 accept it on the behalf of </span><b t-field="quotation.partner_id.commercial_partner_id"/><span>, for an amount of </span>
                                 <b data-id="total_amount" t-field="quotation.amount_total"
                                   t-options='{"widget": "monetary", "display_currency": quotation.pricelist_id.currency_id}'/>
-                                <span>with payment terms: </span><b t-field="quotation.payment_term_id"/>.
+                                <span>with payment terms: </span><b t-field="quotation.payment_term_id.note"/>.
                             </p>
                         </div>
                         <div class="modal-footer">
@@ -519,7 +519,7 @@
                   <div t-if="quotation.payment_term_id">
                       <label class="col-sm-5 col-xs-5 text-right">Payment Terms:</label>
                       <div class="col-sm-7 col-xs-7">
-                          <span t-field="quotation.payment_term_id"/>
+                          <span t-field="quotation.payment_term_id.note"/>
                       </div>
                   </div>
               </div>

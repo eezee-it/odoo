@@ -3975,7 +3975,7 @@ msgstr "此批號沒有作業"
 #, python-format
 msgid ""
 "No procurement rule found. Please verify the configuration of your routes"
-msgstr "沒有找到採購規則。請驗證路線的配置。"
+msgstr "沒有找到補貨規則。請驗證路線的配置。"
 
 #. module: stock
 #: code:addons/stock/wizard/stock_picking_return.py:58
@@ -7574,7 +7574,7 @@ msgstr "您不應該把包裹的內容放在不同的地方。"
 msgid ""
 "You still have some active reordering rules on this product. Please archive "
 "or delete them first."
-msgstr "您對此產品仍然有一些有效的重新排序規則。 請先歸檔或刪除它們。"
+msgstr "您對此產品仍然有一些有效的重訂貨規則。 請先歸檔或刪除它們。"
 
 #. module: stock
 #: code:addons/stock/models/stock_move.py:338
@@ -7831,3 +7831,9 @@ msgstr "帶有<i>確認</i> 按鈕"
 #: model:ir.ui.view,arch_db:stock.view_inventory_form
 msgid "⇒ Set quantities to 0"
 msgstr "⇒ 設定數量為 0"
+
+#. module: stock
+#: code:addons/stock/models/stock_move_line.py:223
+#, python-format
+msgid "Changing the product is only allowed in 'Draft' state."
+msgstr ""

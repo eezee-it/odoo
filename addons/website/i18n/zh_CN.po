@@ -3,9 +3,8 @@
 # * website
 # 
 # Translators:
-# 菜小蛇 <lttlsnk@gmail.com>, 2017
+# lttlsnk <lttlsnk@gmail.com>, 2017
 # Bo Cao, 2017
-# e2f_cn r14 <e2f_cn_r14@outlook.com>, 2017
 # Si Ling Lau <happy8645@hotmail.com>, 2017
 # SHOM <shanmuxin@yeah.net>, 2017
 # Maie <m@maie.name>, 2017
@@ -22,19 +21,21 @@
 # Connie Xiao <connie.xiao@elico-corp.com>, 2017
 # 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2018
 # 老窦 北京 <2662059195@qq.com>, 2018
-# e2f_cn c7 <e2f_cn_c7@outlook.com>, 2018
 # Gary Wei <Gary.wei@elico-corp.com>, 2018
-# Henry Zhou <zhouhenry@live.com>, 2018
 # e2f <projects@e2f.com>, 2018
+# 0023d6d916c2d56e4d76ed7a6e80ad5b, 2018
+# bf2549c5415a9287249cba2b8a5823c7, 2018
+# Henry Zhou <zhouhenry@live.com>, 2018
 # e2f_cn c5 <jarvisn@ecinnovations.com>, 2018
 # Martin Trigaux, 2019
 # Jeffery CHEN Fan <jeffery9@gmail.com>, 2019
-# liAnGjiA <liangjia@qq.com>, 2019
 # v2exerer <9010446@qq.com>, 2019
 # diaojiaolou <124412206@qq.com>, 2019
 # Shane Tsoi <sso@odoo.com>, 2019
 # snow wang <147156565@qq.com>, 2019
 # inspur qiuguodong <qiuguodong@inspur.com>, 2019
+# liAnGjiA <liangjia@qq.com>, 2019
+# Lisa Zhang <lzh@odoo.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -42,7 +43,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-03 15:06+0000\n"
 "PO-Revision-Date: 2017-09-20 10:25+0000\n"
-"Last-Translator: inspur qiuguodong <qiuguodong@inspur.com>, 2019\n"
+"Last-Translator: Lisa Zhang <lzh@odoo.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -441,6 +442,8 @@ msgid ""
 "<i title=\"Is the page included in the main menu?\" class=\"fa fa-thumb-"
 "tack\" aria-hidden=\"true\"/>"
 msgstr ""
+"<i title=\"Is the page included in the main menu?\" class=\"fa fa-thumb-"
+"tack\" aria-hidden=\"true\"/>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.edit_website_pages
@@ -448,11 +451,13 @@ msgid ""
 "<i title=\"Is the page indexed by search engines?\" class=\"fa fa-globe\" "
 "aria-hidden=\"true\"/>"
 msgstr ""
+"<i title=\"Is the page indexed by search engines?\" class=\"fa fa-globe\" "
+"aria-hidden=\"true\"/>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.edit_website_pages
 msgid "<i title=\"Is the page published?\" class=\"fa fa-eye\" aria-hidden=\"true\"/>"
-msgstr ""
+msgstr "<i title=\"Is the page published?\" class=\"fa fa-eye\" aria-hidden=\"true\"/>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -524,6 +529,8 @@ msgid ""
 "<small id=\"emailHelp\" class=\"help-block text-muted\">We'll never share "
 "your email with anyone else.</small>"
 msgstr ""
+"<small id=\"emailHelp\" class=\"help-block text-"
+"muted\">我们保证您的邮箱地址永远不会外泄他人.</small>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_parallax_slider
@@ -539,7 +546,7 @@ msgstr "<small>John Doe, CEO</small>"
 #: model:ir.ui.view,arch_db:website.bs_debug_page_ir_ui_view
 #: model:website.page,arch_db:website.bs_debug_page
 msgid "<span class=\"badge mb4\">This is a badge</span>"
-msgstr ""
+msgstr "<span class=\"badge mb4\">奖章</span>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.user_navbar
@@ -618,11 +625,15 @@ msgid ""
 "                                                        <span class=\"icon-bar\"/>\n"
 "                                                        <span class=\"icon-bar\"/>"
 msgstr ""
+"<span class=\"sr-only\">切换导航</span>\n"
+"                                                        <span class=\"icon-bar\"/>\n"
+"                                                        <span class=\"icon-bar\"/>\n"
+"                                                        <span class=\"icon-bar\"/>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.user_navbar
 msgid "<span title=\"Mobile preview\" class=\"fa fa-mobile\"/>"
-msgstr ""
+msgstr "<span title=\"Mobile preview\" class=\"fa fa-mobile\"/>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.user_navbar
@@ -1898,6 +1909,11 @@ msgstr "EMail地址"
 #: model:ir.ui.view,arch_db:website.s_comparisons
 msgid "Email support"
 msgstr "电子邮件支持"
+
+#. module: website
+#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "Enable billing on your Google Project"
+msgstr ""
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -3773,11 +3789,6 @@ msgid "Show in Top Menu"
 msgstr "在顶部菜单中显示"
 
 #. module: website
-#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
-msgid "Show your address on a map in the"
-msgstr "在“联系我们”页面的地图上显示您的地址"
-
-#. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "Simple and obvious"
 msgstr "简单和显而易见的"
@@ -4107,7 +4118,7 @@ msgstr "为了让你的网站的外部评估，还可以将其提交给"
 #: model:ir.ui.view,arch_db:website.bs_debug_page_ir_ui_view
 #: model:website.page,arch_db:website.bs_debug_page
 msgid "Toggle <span class=\"caret\"/>"
-msgstr ""
+msgstr "切换 <span class=\"caret\"/>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_company_team
@@ -4238,6 +4249,11 @@ msgstr "更新您的内部文档：销售订单的页脚、合同、发票、名
 #: model:ir.ui.view,arch_db:website.edit_website_pages
 msgid "Url"
 msgstr "网址"
+
+#. module: website
+#: model:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "Use Google Map on your website ("
+msgstr "在你的网站上使用Google地图（"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_faq_collapse
@@ -5007,8 +5023,8 @@ msgstr "或编辑母版"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.res_config_settings_view_form
-msgid "page"
-msgstr "页面"
+msgid "page, snippets, ...)"
+msgstr "页面，片段，...）"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner

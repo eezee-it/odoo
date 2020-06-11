@@ -3,23 +3,28 @@
 # * hr_recruitment
 # 
 # Translators:
-# Martin Trigaux, 2017
 # Eneko <eastigarraga@codesyntax.com>, 2018
-# Mikel Lizarralde <mikellizarralde@gmail.com>, 2018
 # Naomi Hidalgo <naomihid96@gmail.com>, 2018
 # José Miguel Andonegi <jm.andonegi@gmail.com>, 2018
 # oihane <oihanecruce@gmail.com>, 2018
+# Martin Trigaux, 2018
+# Ainara Galdona Usatorre <ainaragaldona@avanzosc.es>, 2018
 # Esther Martín Menéndez <esthermartin001@gmail.com>, 2018
 # ibinka lete <ilete@fpbidasoa.net>, 2018
 # Gorka Toledo <gorka.toledo@gmail.com>, 2018
-# Ainara Galdona Usatorre <ainaragaldona@avanzosc.es>, 2018
+# Mikel Lizarralde <mikellizarralde@gmail.com>, 2018
+# Victor Laskurain <blaskurain@binovo.es>, 2019
+# Maialen Rodriguez <maialenrodriguez98@gmail.com>, 2020
+# mgalarza005 <mikelgalarza99@gmail.com>, 2020
+# Unai Muñoz <unaimunoz9@gmail.com>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-16 08:08+0000\n"
-"PO-Revision-Date: 2017-11-16 08:08+0000\n"
-"Last-Translator: Ainara Galdona Usatorre <ainaragaldona@avanzosc.es>, 2018\n"
+"PO-Revision-Date: 2017-09-20 10:18+0000\n"
+"Last-Translator: Unai Muñoz <unaimunoz9@gmail.com>, 2020\n"
 "Language-Team: Basque (https://www.transifex.com/odoo/teams/41243/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,7 +410,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_kanban_view_applicant
 msgid "<b>Contact:</b>"
-msgstr ""
+msgstr "<b>Kontaktua:</b>"
 
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_kanban_view_applicant
@@ -415,7 +420,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_kanban_view_applicant
 msgid "<b>Departement:</b>"
-msgstr ""
+msgstr "<b>Saila:</b>"
 
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.crm_case_form_view_job
@@ -453,6 +458,8 @@ msgid ""
 "A Python dictionary that will be evaluated to provide default values when "
 "creating new records for this alias."
 msgstr ""
+"Python hiztegi bat, ezizen horrentzat erregistro berriak sortzen direnean "
+"lehenetsitako balioak emateko ebaluatuko dena."
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant_active
@@ -481,7 +488,7 @@ msgstr "Alias"
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_job_alias_contact
 msgid "Alias Contact Security"
-msgstr ""
+msgstr "Segurtasun Kontaktu Ezizena"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_recruitment_source_alias_id
@@ -501,24 +508,24 @@ msgstr "Alias domeinua "
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_job_alias_model_id
 msgid "Aliased Model"
-msgstr ""
+msgstr "Ezizenaren eredua"
 
 #. module: hr_recruitment
 #: model:ir.ui.menu,name:hr_recruitment.menu_crm_case_categ_all_app
 msgid "All Applications"
-msgstr ""
+msgstr "Aplikazio guztiak"
 
 #. module: hr_recruitment
 #: model:ir.model,name:hr_recruitment.model_hr_applicant
 #: model:ir.model.fields,field_description:hr_recruitment.field_calendar_event_applicant_id
 msgid "Applicant"
-msgstr ""
+msgstr "Eskatzailea"
 
 #. module: hr_recruitment
 #: model:mail.message.subtype,name:hr_recruitment.mt_applicant_hired
 #: model:mail.message.subtype,name:hr_recruitment.mt_job_applicant_hired
 msgid "Applicant Hired"
-msgstr ""
+msgstr "Kontratatutako eskatzailea"
 
 #. module: hr_recruitment
 #: model:mail.message.subtype,name:hr_recruitment.mt_job_applicant_stage_changed
@@ -533,18 +540,18 @@ msgstr ""
 #. module: hr_recruitment
 #: model:mail.message.subtype,description:hr_recruitment.mt_applicant_hired
 msgid "Applicant hired"
-msgstr ""
+msgstr "Kontratatutako eskatzailea"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant_partner_name
 msgid "Applicant's Name"
-msgstr ""
+msgstr "Eskatzailearen izena"
 
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.crm_case_tree_view_job
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_applicant_calendar_view
 msgid "Applicants"
-msgstr ""
+msgstr "Eskatzaileak"
 
 #. module: hr_recruitment
 #: model:ir.actions.act_window,help:hr_recruitment.action_hr_job_applications
@@ -575,7 +582,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.view_hr_job_kanban
 msgid "Application(s)"
-msgstr ""
+msgstr "Aplikazioa(k)"
 
 #. module: hr_recruitment
 #: model:ir.actions.act_window,name:hr_recruitment.action_hr_job_applications
@@ -587,12 +594,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_job_survey
 #: model:ir.ui.view,arch_db:hr_recruitment.view_hr_job_kanban
 msgid "Applications"
-msgstr ""
+msgstr "Aplikazioak"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant_job_id
 msgid "Applied Job"
-msgstr ""
+msgstr "Eskatutako lana"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant_priority
@@ -839,7 +846,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_recruitment_degree_tree
 #: model:ir.ui.view,arch_db:hr_recruitment.view_crm_case_jobs_filter
 msgid "Degree"
-msgstr ""
+msgstr "Gradua"
 
 #. module: hr_recruitment
 #: model:ir.model,name:hr_recruitment.model_hr_recruitment_degree
@@ -849,7 +856,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.ui.menu,name:hr_recruitment.menu_hr_recruitment_degree
 msgid "Degrees"
-msgstr ""
+msgstr "Graduak"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant_delay_close
@@ -933,7 +940,7 @@ msgstr "Eposta ezizena "
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_job_survey
 msgid "Email alias"
-msgstr ""
+msgstr "posten ezizena"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,help:hr_recruitment.field_hr_job_alias_id
@@ -973,7 +980,7 @@ msgstr "Gertakizuna"
 #. module: hr_recruitment
 #: selection:hr.applicant,priority:0
 msgid "Excellent"
-msgstr ""
+msgstr "Ederto"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_department_expected_employee
@@ -983,7 +990,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant_salary_expected
 msgid "Expected Salary"
-msgstr ""
+msgstr "Esperotako soldata"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant_salary_expected_extra
@@ -1008,7 +1015,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:hr.recruitment.stage,name:hr_recruitment.stage_job2
 msgid "First Interview"
-msgstr ""
+msgstr "Lehenengo elkarrizketa"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_recruitment_stage_fold
@@ -1033,7 +1040,7 @@ msgstr ""
 #. module: hr_recruitment
 #: selection:hr.applicant,priority:0
 msgid "Good"
-msgstr ""
+msgstr "Ondo"
 
 #. module: hr_recruitment
 #: model:hr.recruitment.degree,name:hr_recruitment.degree_graduate
@@ -1076,6 +1083,8 @@ msgid ""
 "ID of the parent record holding the alias (example: project holding the task"
 " creation alias)"
 msgstr ""
+"Ezizena duen erregistro gurasoaren ID (adibidez: atazak sortzeko ezizena "
+"duen proiektua)"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,help:hr_recruitment.field_hr_recruitment_stage_template_id
@@ -1118,7 +1127,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.crm_case_pivot_view_job
 msgid "Job Applications"
-msgstr ""
+msgstr "Lan aplikazioak"
 
 #. module: hr_recruitment
 #: model:utm.campaign,name:hr_recruitment.utm_campaign_job
@@ -1128,7 +1137,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.ui.view,arch_db:hr_recruitment.hr_job_simple_form
 msgid "Job Email"
-msgstr ""
+msgstr "Lan posta"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_recruitment_source_job_id
@@ -1480,7 +1489,7 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_job_alias_force_thread_id
 msgid "Record Thread ID"
-msgstr ""
+msgstr "Record Thread-en ID"
 
 #. module: hr_recruitment
 #: model:ir.ui.menu,name:hr_recruitment.menu_hr_recruitment_root
@@ -1625,6 +1634,8 @@ msgstr "Ezarpenak"
 #: model:ir.ui.view,arch_db:hr_recruitment.view_crm_case_jobs_filter
 msgid "Show all records which has next action date is before today"
 msgstr ""
+"Erakutsi gaur baino lehenagoko hurrengo ekintza data duten erregistro "
+"guztiak"
 
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_recruitment_source_source_id
@@ -1634,7 +1645,7 @@ msgstr "Iturria"
 #. module: hr_recruitment
 #: model:ir.model.fields,field_description:hr_recruitment.field_hr_recruitment_source_name
 msgid "Source Name"
-msgstr ""
+msgstr "Iturriaren izena"
 
 #. module: hr_recruitment
 #: model:ir.model,name:hr_recruitment.model_hr_recruitment_source
@@ -1920,4 +1931,4 @@ msgstr ""
 #. module: hr_recruitment
 #: model:ir.model,name:hr_recruitment.model_res_config_settings
 msgid "res.config.settings"
-msgstr ""
+msgstr "res.config.settings"

@@ -5,7 +5,8 @@
 # Translators:
 # Cozmin Candea <office@terrabit.ro>, 2017
 # Martin Trigaux, 2018
-# Dorin Hongu <dhongu@gmail.com>, 2018
+# Dorin Hongu <dhongu@gmail.com>, 2019
+# Foldi Robert <foldirobert@nexterp.ro>, 2020
 # 
 msgid ""
 msgstr ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-27 11:56+0000\n"
 "PO-Revision-Date: 2017-09-20 10:21+0000\n"
-"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2018\n"
+"Last-Translator: Foldi Robert <foldirobert@nexterp.ro>, 2020\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,6 +95,13 @@ msgstr ""
 #: model:ir.ui.view,arch_db:portal.portal_searchbar
 msgid "<span id=\"search_label\">Search</span> <span class=\"caret\"/>"
 msgstr "<span id=\"search_label\">Caută</span> <span class=\"caret\"/>"
+
+#. module: portal
+#. openerp-web
+#: code:addons/portal/static/src/xml/portal_signature.xml:24
+#, python-format
+msgid "Accept and Sign"
+msgstr ""
 
 #. module: portal
 #: model:ir.ui.view,arch_db:portal.wizard_view
@@ -187,7 +195,7 @@ msgstr "Creat în"
 #: model:ir.model.fields,help:portal.field_project_task_portal_url
 #: model:ir.model.fields,help:portal.field_sale_order_portal_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "URL Portal Clienți"
 
 #. module: portal
 #: model:ir.model.fields,field_description:portal.field_portal_mixin_display_name
@@ -277,7 +285,7 @@ msgstr "Lăsați un comentariu"
 #. module: portal
 #: model:ir.model.fields,field_description:portal.field_portal_wizard_user_user_id
 msgid "Login User"
-msgstr ""
+msgstr "Login User"
 
 #. module: portal
 #: model:ir.ui.view,arch_db:portal.frontend_layout
@@ -331,7 +339,7 @@ msgstr "Management Acces Portal"
 #: model:ir.model.fields,field_description:portal.field_project_task_portal_url
 #: model:ir.model.fields,field_description:portal.field_sale_order_portal_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "Adresă URL Portal"
 
 #. module: portal
 #: model:ir.model,name:portal.model_portal_wizard_user
@@ -421,7 +429,7 @@ msgstr "Portalul in care utilizatorii pot fi adaugati sau stersi."
 #: code:addons/portal/static/src/xml/portal_chatter.xml:11
 #, python-format
 msgid "There are no comments for now."
-msgstr ""
+msgstr "Nu există comentarii pentru acum."
 
 #. module: portal
 #: model:ir.ui.view,arch_db:portal.wizard_view
@@ -443,6 +451,9 @@ msgid ""
 "- Correct the emails of the relevant contacts\n"
 "- Grant access only to contacts with unique emails"
 msgstr ""
+"Pentru a rezolva această eroare, puteți:\n"
+"- Corectează e-mailurile contactelor relevante\n"
+"- Acordă acces doar la contacte cu e-mailuri unice"
 
 #. module: portal
 #: model:ir.model.fields,field_description:portal.field_portal_wizard_user_ids
@@ -607,7 +618,7 @@ msgstr ""
 #. module: portal
 #: model:ir.ui.view,arch_db:portal.portal_my_details
 msgid "Your Contact Details"
-msgstr ""
+msgstr "Contactul dvs. detalii"
 
 #. module: portal
 #: model:ir.ui.view,arch_db:portal.portal_layout
@@ -643,7 +654,7 @@ msgstr "Cod poștal"
 #: code:addons/portal/static/src/xml/portal_chatter.xml:56
 #, python-format
 msgid "avatar"
-msgstr ""
+msgstr "avatar"
 
 #. module: portal
 #. openerp-web
@@ -664,7 +675,7 @@ msgstr "comentarii"
 #: code:addons/portal/static/src/xml/portal_chatter.xml:21
 #, python-format
 msgid "logged in"
-msgstr ""
+msgstr "conectat"
 
 #. module: portal
 #: model:ir.model,name:portal.model_portal_mixin

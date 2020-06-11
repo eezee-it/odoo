@@ -3,17 +3,19 @@
 # * account_payment
 # 
 # Translators:
-# Dorin Hongu <dhongu@gmail.com>, 2017
 # Iulian Cutui <iulian.cutui@gmail.com>, 2017
 # Martin Trigaux, 2017
 # Cozmin Candea <office@terrabit.ro>, 2017
+# Dorin Hongu <dhongu@gmail.com>, 2019
+# Foldi Robert <foldirobert@nexterp.ro>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-27 11:55+0000\n"
-"PO-Revision-Date: 2018-07-27 11:55+0000\n"
-"Last-Translator: Cozmin Candea <office@terrabit.ro>, 2017\n"
+"PO-Revision-Date: 2017-09-20 10:14+0000\n"
+"Last-Translator: Foldi Robert <foldirobert@nexterp.ro>, 2020\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,6 +76,8 @@ msgid ""
 "<i class=\"fa fa-info\"/> You have credits card registered, you can log-in "
 "to be able to use them."
 msgstr ""
+"Aveți înregistrate credite pe card, puteți să vă autentificați pentru a le "
+"putea utiliza."
 
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_report
@@ -109,6 +113,8 @@ msgid ""
 "If we store your payment information on our server, subscription payments "
 "will be made automatically."
 msgstr ""
+"Dacă stocăm informațiile dvs. de plată pe serverul nostru, plățile pentru "
+"abonamente vor fi efectuate automat."
 
 #. module: account_payment
 #: model:ir.model,name:account_payment.model_account_invoice
@@ -130,7 +136,7 @@ msgstr ""
 #: code:addons/account_payment/controllers/payment.py:47
 #, python-format
 msgid "Pay & Confirm"
-msgstr ""
+msgstr "Plătiți și confirmați"
 
 #. module: account_payment
 #: code:addons/account_payment/models/payment.py:131
@@ -142,7 +148,7 @@ msgstr "Achită acum"
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_page_inherit_payment
 msgid "Pay with"
-msgstr ""
+msgstr "Plata cu"
 
 #. module: account_payment
 #: model:ir.model.fields,field_description:account_payment.field_account_invoice_payment_acquirer_id
@@ -187,7 +193,7 @@ msgstr ""
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_error
 msgid "There was an error processing your payment: invalid invoice."
-msgstr ""
+msgstr "A apărut o eroare la procesarea plății: factură nevalidă."
 
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_error
@@ -195,6 +201,8 @@ msgid ""
 "There was an error processing your payment: issue with credit card ID "
 "validation."
 msgstr ""
+"A apărut o eroare la procesarea plății: problema cu validarea cardului de "
+"credit."
 
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_error
@@ -205,7 +213,7 @@ msgstr ""
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_error
 msgid "There was an error processing your payment: transaction failed.<br/>"
-msgstr ""
+msgstr "A apărut o eroare la procesarea plății: tranzacție eșuată<br/>"
 
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_error
@@ -215,7 +223,7 @@ msgstr ""
 #. module: account_payment
 #: model:ir.ui.view,arch_db:account_payment.portal_invoice_error
 msgid "There was en error processing your payment: invalid credit card ID."
-msgstr ""
+msgstr "A apărut o eroare la procesarea plății: card de credit nevalid."
 
 #. module: account_payment
 #: model:ir.model.fields,field_description:account_payment.field_account_invoice_payment_tx_ids

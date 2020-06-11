@@ -16,22 +16,25 @@
 # Johan Bergquist <johan.bergquist@netip.se>, 2017
 # lynnliuying <lynn.liu1971@gmail.com>, 2017
 # Patrik Lermon <patrik.lermon@gmail.com>, 2017
-# Kristoffer Grundström <hamnisdude@gmail.com>, 2017
+# Kristoffer Grundström <lovaren@gmail.com>, 2017
 # Martin Trigaux, 2017
 # Haojun Zou <apollo_zhj@msn.com>, 2017
 # Martin Wilderoth <martin.wilderoth@linserv.se>, 2017
 # Peter Wickenberg <peter@wickenberg.nu>, 2018
 # Chrille Hedberg <hedberg.chrille@gmail.com>, 2018
-# Anders Wallenquist <anders.wallenquist@vertel.se>, 2018
-# Kim Asplund <kim.asplund@gmail.com>, 2019
+# fah_odoo <fah@odoo.com>, 2019
+# Daniel Osser <danielosser@gmail.com>, 2019
+# Anders Wallenquist <anders.wallenquist@vertel.se>, 2019
+# Kim Asplund <kim.asplund@gmail.com>, 2020
+# Jakob Krabbe <jakob.krabbe@vertel.se>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 15:06+0000\n"
+"POT-Creation-Date: 2019-03-29 09:07+0000\n"
 "PO-Revision-Date: 2017-09-20 10:13+0000\n"
-"Last-Translator: Kim Asplund <kim.asplund@gmail.com>, 2019\n"
+"Last-Translator: Jakob Krabbe <jakob.krabbe@vertel.se>, 2020\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1139,7 +1142,7 @@ msgstr ""
 #. module: account
 #: model:ir.ui.view,arch_db:account.report_payment_receipt
 msgid "<strong>Vendor: </strong>"
-msgstr ""
+msgstr "<strong>Leverantör: </strong>"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.report_tax
@@ -1366,12 +1369,12 @@ msgstr "Verifikat"
 #: model:ir.ui.view,arch_db:account.view_account_group_form
 #: model:ir.ui.view,arch_db:account.view_account_group_tree
 msgid "Account Group"
-msgstr ""
+msgstr "Kontogrupp"
 
 #. module: account
 #: model:ir.actions.act_window,name:account.action_account_group_tree
 msgid "Account Groups"
-msgstr ""
+msgstr "Kontogrupper"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_partner_bank_journal_id
@@ -1476,7 +1479,7 @@ msgstr "Konto-tagg"
 #. module: account
 #: model:ir.actions.act_window,name:account.account_tag_action
 msgid "Account Tags"
-msgstr ""
+msgstr "Kontotaggar"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_tax_form
@@ -1563,12 +1566,12 @@ msgstr "Gör konto oavstämt"
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_group_search
 msgid "Account group"
-msgstr ""
+msgstr "Kontogrupp"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_group_search
 msgid "Account groups"
-msgstr ""
+msgstr "Kontogrupper"
 
 #. module: account
 #: model:ir.model,name:account.model_account_move_line_reconcile
@@ -1749,7 +1752,7 @@ msgstr "Lägg till"
 #: model:ir.ui.view,arch_db:account.invoice_form
 #: model:ir.ui.view,arch_db:account.view_account_invoice_refund
 msgid "Add Credit Note"
-msgstr ""
+msgstr "Skapa kreditnota"
 
 #. module: account
 #: selection:account.cash.rounding,strategy:0
@@ -1787,12 +1790,12 @@ msgstr "Adress"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_tax_adjustments_wizard_tax_id
 msgid "Adjustment Tax"
-msgstr ""
+msgstr "Skattekorrigering"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_tax_adjustments_wizard_adjustment_type
 msgid "Adjustment Type"
-msgstr ""
+msgstr "Korrigeringstyp"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_tax_template_form
@@ -1878,7 +1881,7 @@ msgstr ""
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_bank_statement_all_lines_reconciled
 msgid "All Lines Reconciled"
-msgstr ""
+msgstr "Alla rader avstämda"
 
 #. module: account
 #: selection:account.aged.trial.balance,target_move:0
@@ -1959,7 +1962,7 @@ msgstr "Tillåt avstämning av fakturor och betalningar"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_config_settings_module_product_margin
 msgid "Allow Product Margin"
-msgstr ""
+msgstr "Tillåt produktmarginal"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account_reconcile
@@ -2194,7 +2197,7 @@ msgstr "Objekttaggar"
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "Analytics"
-msgstr ""
+msgstr "Analyser"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line_tax_exigible
@@ -2629,7 +2632,7 @@ msgstr "Fakturering"
 #. module: account
 #: model:res.groups,name:account.group_account_manager
 msgid "Billing Manager"
-msgstr ""
+msgstr "Faktureringschef"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
@@ -2868,7 +2871,7 @@ msgstr "Kassaregister"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_config_settings_group_cash_rounding
 msgid "Cash Rounding"
-msgstr ""
+msgstr "Kontant Avrundning"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_cash_rounding_id
@@ -2880,7 +2883,7 @@ msgstr ""
 #: model:ir.ui.menu,name:account.menu_action_rounding_form_view
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "Cash Roundings"
-msgstr ""
+msgstr "Kontant Avrundningar"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
@@ -4247,6 +4250,12 @@ msgid ""
 msgstr ""
 
 #. module: account
+#: code:addons/account/models/account_move.py:235
+#, python-format
+msgid "Difference debit - credit: "
+msgstr ""
+
+#. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
 msgid "Direct connection to your bank"
 msgstr "Direkt anslutning till din bank"
@@ -4502,7 +4511,12 @@ msgid "Due date"
 msgstr "Förfallodatum"
 
 #. module: account
-#: code:addons/account/models/account_invoice.py:1176
+#: model:ir.ui.view,arch_db:account.view_move_form
+msgid "Duplicate"
+msgstr "Kopiera"
+
+#. module: account
+#: code:addons/account/models/account_invoice.py:1194
 #, python-format
 msgid ""
 "Duplicated vendor reference detected. You probably encoded twice the same "
@@ -4998,7 +5012,7 @@ msgstr "Framtida"
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
 msgid "Future Activities"
-msgstr ""
+msgstr "Framtida aktivieteter"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_form
@@ -5679,13 +5693,13 @@ msgstr "Faktura"
 #. module: account
 #: model:ir.ui.view,arch_db:account.portal_my_invoices
 msgid "Invoice #"
-msgstr ""
+msgstr "Faktura #"
 
 #. module: account
 #: code:addons/account/models/account_invoice.py:440
 #, python-format
 msgid "Invoice - %s"
-msgstr ""
+msgstr "Faktura - %s"
 
 #. module: account
 #: model:mail.message.subtype,description:account.mt_invoice_created
@@ -5729,7 +5743,7 @@ msgstr "Fakturanummer måste vara unikt per bolag!"
 #. module: account
 #: model:ir.ui.view,arch_db:account.invoice_form
 msgid "Invoice Number:"
-msgstr ""
+msgstr "Fakturanr:"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_line_invoice_id
@@ -5856,7 +5870,7 @@ msgstr "Fakturor att bekräfta"
 #. module: account
 #: model:ir.actions.report,name:account.account_invoices_without_payment
 msgid "Invoices without Payment"
-msgstr ""
+msgstr "Ej betalda fakturor"
 
 #. module: account
 #: model:ir.ui.menu,name:account.menu_finance
@@ -6466,7 +6480,7 @@ msgstr ""
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
 msgid "Late Activities"
-msgstr ""
+msgstr "Försenade aktiviteter"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account_last_time_entries_checked
@@ -6614,7 +6628,7 @@ msgstr "Bolagets huvudsakliga valuta."
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "Main currency of your company"
-msgstr ""
+msgstr "Huvudvaluta för bolaget"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
@@ -6716,7 +6730,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:account.setup_financial_year_opening_form
 #: model:ir.ui.view,arch_db:account.setup_view_company_form
 msgid "Mark as done"
-msgstr ""
+msgstr "Klarmarkera"
 
 #. module: account
 #: selection:account.payment,payment_difference_handling:0
@@ -6916,7 +6930,7 @@ msgstr "Fler-valuta"
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
 msgid "My Activities"
-msgstr ""
+msgstr "Mina aktivieteter"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
@@ -7146,7 +7160,7 @@ msgstr "Antalet siffror i en kontokod"
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "OFX Import"
-msgstr ""
+msgstr "OFX Import"
 
 #. module: account
 #. openerp-web
@@ -7484,7 +7498,7 @@ msgstr "Förfallna fakturor meddelande"
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
 msgid "Overdue invoices, maturity date passed"
-msgstr ""
+msgstr "Förfallna fakturor, passerat förfallodatum"
 
 #. module: account
 #: model:ir.ui.menu,name:account.menu_finance_legal_statement
@@ -7779,7 +7793,7 @@ msgstr ""
 #. module: account
 #: model:account.payment.term,note:account.account_payment_term_net
 msgid "Payment terms: 30 Net Days"
-msgstr ""
+msgstr "Betalningsvillkor: 30 dagar netto"
 
 #. module: account
 #: model:account.payment.term,note:account.account_payment_term_advance
@@ -8202,7 +8216,7 @@ msgstr "Pythonkod"
 #. module: account
 #: model:ir.ui.view,arch_db:account.res_config_settings_view_form
 msgid "QIF Import"
-msgstr ""
+msgstr "QIF Import"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_line_quantity
@@ -9036,7 +9050,7 @@ msgstr ""
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
 msgid "Show all records which has next action date is before today"
-msgstr ""
+msgstr "Visa ella poster som har nästa händelse före idag"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_tax_search
@@ -10466,7 +10480,7 @@ msgstr "Användning av <strong>fler valuta-optionen:</strong>"
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
 msgid "Today Activities"
-msgstr ""
+msgstr "Dagens aktiviteter"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_amount_total
@@ -11660,7 +11674,7 @@ msgstr "pengar.låda.ut"
 #: model:ir.ui.view,arch_db:account.portal_invoice_error
 #: model:ir.ui.view,arch_db:account.portal_invoice_success
 msgid "close"
-msgstr ""
+msgstr "stäng"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_form

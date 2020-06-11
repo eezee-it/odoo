@@ -4,14 +4,17 @@
 # 
 # Translators:
 # Alagappan Karthikeyan <me@karthik.sg>, 2019
+# prassanna john paul augustin <prasaugus@gmail.com>, 2019
+# Bagavathikumar Ramakrishnan <bagavathikumar@gmail.com>, 2019
+# Abul Hassan M I <miabulhassan@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 13:43+0000\n"
+"POT-Creation-Date: 2019-07-17 15:01+0000\n"
 "PO-Revision-Date: 2017-09-20 10:16+0000\n"
-"Last-Translator: Alagappan Karthikeyan <me@karthik.sg>, 2019\n"
+"Last-Translator: Abul Hassan M I <miabulhassan@gmail.com>, 2019\n"
 "Language-Team: Tamil (https://www.transifex.com/odoo/teams/41243/ta/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,7 +160,7 @@ msgstr "செயலில்"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_amount
 msgid "Amount"
-msgstr ""
+msgstr "தொகை"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_amount
@@ -191,7 +194,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_picking_withcarrier_out_form
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்து"
 
 #. module: delivery
 #: model:ir.model,name:delivery.model_delivery_carrier
@@ -217,7 +220,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_company_id
 msgid "Company"
-msgstr ""
+msgstr "நிறுவனம்"
 
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_delivery_price_rule_form
@@ -227,30 +230,37 @@ msgstr ""
 #. module: delivery
 #: model:ir.model,name:delivery.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "தொடர்பு"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_country_ids
 msgid "Countries"
-msgstr ""
+msgstr "நாடுகள்"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_package_create_uid
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_create_uid
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "உருவாக்கியவர்"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_package_create_date
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_create_date
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_create_date
 msgid "Created on"
-msgstr ""
+msgstr "உருவாக்கப்பட்ட தேதி"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_debug_logging
 msgid "Debug logging"
+msgstr ""
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:13
+#, python-format
+msgid "Debug requests"
 msgstr ""
 
 #. module: delivery
@@ -337,6 +347,13 @@ msgid "Determine the display order"
 msgstr ""
 
 #. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:14
+#, python-format
+msgid "Disable debug"
+msgstr ""
+
+#. module: delivery
 #: model:ir.ui.view,arch_db:delivery.choose_delivery_package_view_form
 msgid "Discard"
 msgstr "நிராகரி"
@@ -346,7 +363,7 @@ msgstr "நிராகரி"
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_display_name
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "காட்சி பெயர்"
 
 #. module: delivery
 #: model:ir.actions.act_window,help:delivery.action_delivery_carrier_form
@@ -354,6 +371,13 @@ msgid ""
 "Each carrier (e.g. UPS) can have several delivery methods (e.g.\n"
 "                UPS Express, UPS Standard) with a set of pricing rules attached\n"
 "                to each method."
+msgstr ""
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:16
+#, python-format
+msgid "Enable debug"
 msgstr ""
 
 #. module: delivery
@@ -445,7 +469,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_id
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_free_over
@@ -488,21 +512,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier___last_update
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "கடைசியாக திருத்திய"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_package_write_uid
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_write_uid
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டவர்"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_package_write_date
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_write_date
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_product_packaging_length
@@ -564,7 +588,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_name
 #: model:ir.ui.view,arch_db:delivery.view_delivery_carrier_form
 msgid "Name"
-msgstr ""
+msgstr "பெயர்"
 
 #. module: delivery
 #: selection:product.packaging,package_carrier_type:0
@@ -575,6 +599,13 @@ msgstr ""
 #: code:addons/delivery/models/sale_order.py:73
 #, python-format
 msgid "No carrier set for this order."
+msgstr ""
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:15
+#, python-format
+msgid "No debug"
 msgstr ""
 
 #. module: delivery
@@ -675,6 +706,13 @@ msgstr ""
 #. module: delivery
 #: model:ir.model,name:delivery.model_product_template
 msgid "Product Template"
+msgstr "தயாரிப்பு டெம்ப்ளேட்"
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:9
+#, python-format
+msgid "Production Environment"
 msgstr ""
 
 #. module: delivery
@@ -689,7 +727,7 @@ msgstr "வழங்குநர்"
 #: selection:delivery.price.rule,variable_factor:0
 #: model:ir.model.fields,field_description:delivery.field_sale_order_line_product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "அளவு"
 
 #. module: delivery
 #: model:ir.model,name:delivery.model_sale_order
@@ -735,7 +773,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_sequence
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "வரிசை"
 
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_order_form_with_carrier
@@ -789,6 +827,27 @@ msgid "Stock Move"
 msgstr ""
 
 #. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:12
+#, python-format
+msgid "Switch to production environment"
+msgstr ""
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:10
+#, python-format
+msgid "Switch to test environment"
+msgstr ""
+
+#. module: delivery
+#. openerp-web
+#: code:addons/delivery/static/src/js/delivery_translations.js:11
+#, python-format
+msgid "Test Environment"
+msgstr ""
+
+#. module: delivery
 #: model:delivery.carrier,name:delivery.delivery_carrier
 #: model:product.product,name:delivery.product_product_delivery_poste
 #: model:product.template,name:delivery.product_product_delivery_poste_product_template
@@ -817,7 +876,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_picking_withcarrier_out_form
 msgid "Tracking"
-msgstr ""
+msgstr "கண்காணிப்பு"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_stock_picking_carrier_tracking_ref
@@ -875,7 +934,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery.field_stock_quant_package_weight
 #: model:ir.ui.view,arch_db:delivery.view_picking_withcarrier_out_form
 msgid "Weight"
-msgstr ""
+msgstr "எடை"
 
 #. module: delivery
 #: selection:delivery.price.rule,variable:0

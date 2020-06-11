@@ -8,14 +8,15 @@
 # Manami Hashi <manami@roomsfor.hk>, 2017
 # NOKA Shigekazu <shigekazu.noka@gmail.com>, 2017
 # SHIMIZU Taku <shimizu.taku@gmail.com>, 2017
-# Tim Siu Lai <tl@roomsfor.hk>, 2017
 # Martin Trigaux, 2017
 # 城谷 龍弥 <tatsuya.shirotani@pro-spire.co.jp>, 2018
 # Masako Ogawa <masako.ogawa@pro-spire.co.jp>, 2018
 # 森岡広道 <hiromichi.morioka@pro-spire.co.jp>, 2018
 # Takuya Sawada <takuya@tuntunkun.com>, 2018
 # Norimichi Sugimoto <norimichi.sugimoto@tls-ltd.co.jp>, 2019
-# Yoshi Tashiro <tashiro@roomsfor.hk>, 2019
+# Tim Siu Lai <tl@roomsfor.hk>, 2019
+# Yoshi Tashiro <tashiro@roomsfor.hk>, 2020
+# Hau Dao <hau@quartile.co>, 2020
 # 
 msgid ""
 msgstr ""
@@ -23,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-03 15:06+0000\n"
 "PO-Revision-Date: 2017-09-20 10:24+0000\n"
-"Last-Translator: Yoshi Tashiro <tashiro@roomsfor.hk>, 2019\n"
+"Last-Translator: Hau Dao <hau@quartile.co>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -649,7 +650,7 @@ msgstr ""
 #: code:addons/stock/models/stock_quant.py:80
 #, python-format
 msgid "A serial number should only be linked to a single product."
-msgstr ""
+msgstr "シリアル番号は1つのプロダクトのみに紐付けられます。"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_stock_move_product_type
@@ -1057,6 +1058,7 @@ msgid ""
 "current stock) to gather products. If we want to chain moves and have this "
 "one to wait for the previous, this second option should be chosen."
 msgstr ""
+"デフォルトでは、システムはソースの場所での在庫から取得し、利用可能になるまで受動的に待機します。他の方法としては、ソースの場所で調達を直接作成して（したがって、現在の在庫を無視する）製品を収集することができます。動きを連鎖させて、これを前のものを待つようにしたい場合は、この2番目のオプションを選択した方が良いです。"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_stock_location_active
@@ -2052,7 +2054,7 @@ msgstr "宛先ルート"
 #: model:ir.ui.view,arch_db:stock.view_picking_form
 #, python-format
 msgid "Detailed Operations"
-msgstr ""
+msgstr "詳細オペレーション"
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.stock_location_path_form
@@ -4616,7 +4618,7 @@ msgstr "ピボット"
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.stock_picking_type_kanban
 msgid "Planned Transfer"
-msgstr ""
+msgstr "予定運送"
 
 #. module: stock
 #: model:ir.model,name:stock.model_web_planner
@@ -4644,7 +4646,7 @@ msgstr "少なくとも1つ、ゼロではない量を指定してください�
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.quant_search_view
 msgid "Positive Stock"
-msgstr ""
+msgstr "プラス在庫"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_move_product_packaging
@@ -5579,7 +5581,7 @@ msgstr "在庫の検索"
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.stock_inventory_line_search
 msgid "Search Inventory Lines"
-msgstr ""
+msgstr "棚卸明細検索"
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.view_procurement_rule_filter
@@ -5692,7 +5694,7 @@ msgstr "この製品カテゴリのソースの場所に関係なく使用され
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
 msgid "Set expiration dates on lots &amp; serial numbers"
-msgstr ""
+msgstr "有効期日をロット/シリアル番号に指定"
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
@@ -6655,7 +6657,7 @@ msgstr "トレーサビリティ"
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.report_stock_body_print
 msgid "Traceability Report"
-msgstr ""
+msgstr "トレーサビリティレポート"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_res_config_settings_module_product_expiry
@@ -7460,7 +7462,7 @@ msgstr "初期要求より少ない数量を処理しています。"
 msgid ""
 "You have processed more than what was initially\n"
 "                    planned for the product"
-msgstr ""
+msgstr "初期要求より大きい数量が処理されています。"
 
 #. module: stock
 #: code:addons/stock/models/product.py:306
@@ -7781,3 +7783,9 @@ msgstr "その <i>検証</i> ボタンで"
 #: model:ir.ui.view,arch_db:stock.view_inventory_form
 msgid "⇒ Set quantities to 0"
 msgstr "⇒ 数量を 0 に設定"
+
+#. module: stock
+#: code:addons/stock/models/stock_move_line.py:223
+#, python-format
+msgid "Changing the product is only allowed in 'Draft' state."
+msgstr ""

@@ -25,10 +25,8 @@ def log(logger, level, prefix, msg, depth=None):
         logger.log(level, indent+line)
         indent=indent_after
 
-path_prefix = os.path.realpath(os.path.dirname(os.path.dirname(__file__)))
-
 class PostgreSQLHandler(logging.Handler):
-    """ PostgreSQL Loggin Handler will store logs in the database, by default
+    """ PostgreSQL Logging Handler will store logs in the database, by default
     the current database, can be set using --log-db=DBNAME
     """
     def emit(self, record):
@@ -38,7 +36,8 @@ class PostgreSQLHandler(logging.Handler):
         if not dbname:
             return
         with tools.ignore(Exception), tools.mute_logger('odoo.sql_db'), sql_db.db_connect(dbname, allow_uri=True).cursor() as cr:
-            cr.autocommit(True)
+            # preclude risks of deadlocks
+            cr.execute("SET LOCAL statement_timeout = 1000")
             msg = tools.ustr(record.msg)
             if record.args:
                 msg = msg % record.args
@@ -48,7 +47,7 @@ class PostgreSQLHandler(logging.Handler):
             # we do not use record.levelname because it may have been changed by ColoredFormatter.
             levelname = logging.getLevelName(record.levelno)
 
-            val = ('server', ct_db, record.name, levelname, msg, record.pathname[len(path_prefix)+1:], record.lineno, record.funcName)
+            val = ('server', ct_db, record.name, levelname, msg, record.pathname, record.lineno, record.funcName)
             cr.execute("""
                 INSERT INTO ir_logging(create_date, type, dbname, name, level, message, path, line, func)
                 VALUES (NOW() at time zone 'UTC', %s, %s, %s, %s, %s, %s, %s, %s)

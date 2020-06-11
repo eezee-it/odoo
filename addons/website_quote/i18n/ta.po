@@ -4,6 +4,10 @@
 # 
 # Translators:
 # Alagappan Karthikeyan <me@karthik.sg>, 2019
+# prassanna john paul augustin <prasaugus@gmail.com>, 2019
+# Bagavathikumar Ramakrishnan <bagavathikumar@gmail.com>, 2019
+# Abul Hassan M I <miabulhassan@gmail.com>, 2019
+# Thirunavukkarasu Deivasigamani <thiru_electrifiers@yahoo.co.in>, 2019
 # 
 msgid ""
 msgstr ""
@@ -11,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:43+0000\n"
 "PO-Revision-Date: 2017-09-20 10:27+0000\n"
-"Last-Translator: Alagappan Karthikeyan <me@karthik.sg>, 2019\n"
+"Last-Translator: Thirunavukkarasu Deivasigamani <thiru_electrifiers@yahoo.co.in>, 2019\n"
 "Language-Team: Tamil (https://www.transifex.com/odoo/teams/41243/ta/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -296,7 +300,7 @@ msgstr ""
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.pricing
 msgid "<strong>Total:</strong>"
-msgstr ""
+msgstr "<strong>மொத்தம்:</strong>"
 
 #. module: website_quote
 #: model:sale.quote.template,website_description:website_quote.website_quote_template_default
@@ -344,7 +348,7 @@ msgstr ""
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.pricing
 msgid "Amount"
-msgstr ""
+msgstr "தொகை"
 
 #. module: website_quote
 #: model:ir.model.fields,field_description:website_quote.field_sale_order_amount_undiscounted
@@ -462,7 +466,7 @@ msgstr ""
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.so_quotation
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்து"
 
 #. module: website_quote
 #: model:ir.model.fields,help:website_quote.field_sale_order_require_payment
@@ -521,7 +525,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_create_uid
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_template_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "உருவாக்கியவர்"
 
 #. module: website_quote
 #: model:ir.model.fields,field_description:website_quote.field_sale_order_option_create_date
@@ -529,7 +533,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_create_date
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_template_create_date
 msgid "Created on"
-msgstr ""
+msgstr "உருவாக்கப்பட்ட தேதி"
 
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.so_quotation_content
@@ -574,7 +578,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website_quote.report_saleorder_validity_date
 #: model:ir.ui.view,arch_db:website_quote.view_sale_quote_template_form
 msgid "Description"
-msgstr ""
+msgstr "விளக்கம்"
 
 #. module: website_quote
 #: model:ir.model.fields,field_description:website_quote.field_product_product_quote_description
@@ -606,7 +610,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_line_discount
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "தள்ளுபடி(%)"
 
 #. module: website_quote
 #: model:ir.model.fields,field_description:website_quote.field_sale_order_option_display_name
@@ -614,7 +618,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_display_name
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_template_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "காட்சி பெயர்"
 
 #. module: website_quote
 #: model:product.product,quote_description:website_quote.product_product_quote_2
@@ -642,7 +646,7 @@ msgstr ""
 #. module: website_quote
 #: model:ir.model,name:website_quote.model_ir_model_fields
 msgid "Fields"
-msgstr ""
+msgstr "புலங்கள்"
 
 #. module: website_quote
 #: model:sale.quote.template,website_description:website_quote.website_quote_template_1
@@ -741,7 +745,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_id
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_template_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: website_quote
 #: model:sale.quote.template,website_description:website_quote.website_quote_template_default
@@ -831,7 +835,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option___last_update
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_template___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "கடைசியாக திருத்திய"
 
 #. module: website_quote
 #: model:ir.model.fields,field_description:website_quote.field_sale_order_option_write_uid
@@ -839,7 +843,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_write_uid
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_template_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டவர்"
 
 #. module: website_quote
 #: model:ir.model.fields,field_description:website_quote.field_sale_order_option_write_date
@@ -847,7 +851,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_write_date
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_template_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
 
 #. module: website_quote
 #: model:product.product,description_sale:website_quote.product_product_quote_1
@@ -885,7 +889,7 @@ msgstr ""
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.view_sale_quote_template_form
 msgid "Lines"
-msgstr ""
+msgstr "கோடுகள்"
 
 #. module: website_quote
 #: model:product.product,quote_description:website_quote.product_product_quote_1
@@ -1097,12 +1101,12 @@ msgstr "அச்சு"
 #: model:ir.ui.view,arch_db:website_quote.optional_products
 #: model:ir.ui.view,arch_db:website_quote.report_saleorder_validity_date
 msgid "Product"
-msgstr ""
+msgstr "தயாரிப்பு"
 
 #. module: website_quote
 #: model:ir.model,name:website_quote.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "தயாரிப்பு டெம்ப்ளேட்"
 
 #. module: website_quote
 #: model:sale.quote.template,website_description:website_quote.website_quote_template_default
@@ -1146,7 +1150,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_option_quantity
 #: model:ir.ui.view,arch_db:website_quote.pricing
 msgid "Quantity"
-msgstr ""
+msgstr "அளவு"
 
 #. module: website_quote
 #: model:ir.model,name:website_quote.model_sale_order
@@ -1234,7 +1238,7 @@ msgstr ""
 #: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Requirements"
-msgstr ""
+msgstr "தேவைகள்"
 
 #. module: website_quote
 #: model:ir.model,name:website_quote.model_sale_order_option
@@ -1280,7 +1284,7 @@ msgstr "பிரிவு"
 #: model:ir.model.fields,field_description:website_quote.field_sale_order_option_sequence
 #: model:ir.model.fields,field_description:website_quote.field_sale_quote_line_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "வரிசை"
 
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.so_quotation_content
@@ -1305,7 +1309,7 @@ msgstr ""
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.pricing
 msgid "Taxes"
-msgstr ""
+msgstr "வரி"
 
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.pricing
@@ -1472,7 +1476,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website_quote.pricing
 #: model:ir.ui.view,arch_db:website_quote.report_saleorder_validity_date
 msgid "Unit Price"
-msgstr ""
+msgstr "அலகு விலை"
 
 #. module: website_quote
 #: model:ir.model.fields,field_description:website_quote.field_sale_order_option_uom_id

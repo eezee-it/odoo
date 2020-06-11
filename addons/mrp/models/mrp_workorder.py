@@ -183,7 +183,9 @@ class MrpWorkorder(models.Model):
     @api.multi
     @api.depends('date_planned_finished', 'production_id.date_planned_finished')
     def _compute_color(self):
-        late_orders = self.filtered(lambda x: x.production_id.date_planned_finished and x.date_planned_finished > x.production_id.date_planned_finished)
+        late_orders = self.filtered(lambda x: x.production_id.date_planned_finished
+                                              and x.date_planned_finished
+                                              and x.date_planned_finished > x.production_id.date_planned_finished)
         for order in late_orders:
             order.color = 4
         for order in (self - late_orders):
@@ -240,7 +242,7 @@ class MrpWorkorder(models.Model):
 
     @api.multi
     def write(self, values):
-        if ('date_planned_start' in values or 'date_planned_finished' in values) and any(workorder.state == 'done' for workorder in self):
+        if list(values.keys()) != ['time_ids'] and any(workorder.state == 'done' for workorder in self):
             raise UserError(_('You can not change the finished work order.'))
         return super(MrpWorkorder, self).write(values)
 
@@ -362,6 +364,7 @@ class MrpWorkorder(models.Model):
                     move_line.product_uom_qty += self.qty_producing
                     move_line.qty_done += self.qty_producing
                 else:
+                    location_dest_id = production_move.location_dest_id.get_putaway_strategy(self.product_id).id or production_move.location_dest_id.id
                     move_line.create({'move_id': production_move.id,
                              'product_id': production_move.product_id.id,
                              'lot_id': self.final_lot_id.id,
@@ -370,7 +373,7 @@ class MrpWorkorder(models.Model):
                              'qty_done': self.qty_producing,
                              'workorder_id': self.id,
                              'location_id': production_move.location_id.id,
-                             'location_dest_id': production_move.location_dest_id.id,
+                             'location_dest_id': location_dest_id,
                     })
             else:
                 production_move.quantity_done += self.qty_producing
@@ -405,7 +408,7 @@ class MrpWorkorder(models.Model):
             self.qty_producing = float_round(self.production_id.product_qty - self.qty_produced, precision_rounding=rounding)
             self._generate_lot_ids()
 
-        if self.next_work_order_id and self.production_id.product_id.tracking != 'none':
+        if self.next_work_order_id and self.next_work_order_id.state not in ['done', 'cancel'] and self.production_id.product_id.tracking != 'none':
             self.next_work_order_id._assign_default_final_lot_id()
 
         if float_compare(self.qty_produced, self.production_id.product_qty, precision_rounding=rounding) >= 0:

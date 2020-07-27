@@ -172,6 +172,8 @@ class AccountMove(models.Model):
         for move in self:
             if not move.journal_id.update_posted:
                 raise UserError(_('You cannot modify a posted entry of this journal.\nFirst you should set the journal to allow cancelling entries.'))
+            # We remove all the analytics entries for this journal
+            move.mapped('line_ids.analytic_line_ids').unlink()
         if self.ids:
             self.check_access_rights('write')
             self.check_access_rule('write')
@@ -1358,8 +1360,7 @@ class AccountMoveLine(models.Model):
                 vals['amount_currency'] = 0.0
             else:
                 ctx = {}
-                if 'date' in vals:
-                    ctx['date'] = vals['date']
+                ctx['date'] = vals.get('date') or vals.get('date_maturity') or fields.Date.today()
                 vals['amount_currency'] = account.company_id.currency_id.with_context(ctx).compute(amount, account.currency_id)
 
         if not ok:
@@ -1843,7 +1844,10 @@ class AccountPartialReconcile(models.Model):
                         percentage_before = percentage_before_rec[move.id]
                         percentage_after = line._get_matched_percentage()[move.id]
                         #amount is the current cash_basis amount minus the one before the reconciliation
-                        amount = line.balance * percentage_after - line.balance * percentage_before
+                        if percentage_after == 1.0 and line.amount_residual:
+                            amount = line.amount_residual
+                        else:
+                            amount = line.balance * percentage_after - line.balance * percentage_before
                         rounded_amt = self._get_amount_tax_cash_basis(amount, line)
                         if float_is_zero(rounded_amt, precision_rounding=line.company_id.currency_id.rounding):
                             continue

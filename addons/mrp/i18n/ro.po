@@ -9,6 +9,7 @@
 # Cozmin Candea <office@terrabit.ro>, 2018
 # Gplease Any <eugen.ionica@gmail.com>, 2020
 # Dorin Hongu <dhongu@gmail.com>, 2020
+# Hongu Cosmin <cosmin513@gmail.com>, 2020
 # Foldi Robert <foldirobert@nexterp.ro>, 2020
 # 
 msgid ""
@@ -196,12 +197,12 @@ msgstr "<strong class=\"mr8\">la</strong>"
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.view_mrp_workcenter_productivity_loss_kanban
 msgid "<strong>Effectiveness Category: </strong>"
-msgstr ""
+msgstr "<strong>Categorie de eficiență:</strong>"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.view_mrp_workcenter_productivity_loss_kanban
 msgid "<strong>Is a Blocking Reason? </strong>"
-msgstr ""
+msgstr "<strong>Este un motiv de blocare?</strong>"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.report_mrporder
@@ -301,7 +302,7 @@ msgstr "Activ(a)"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder_active_move_line_ids
 msgid "Active Move Line"
-msgstr ""
+msgstr "Linie Mutare Activă"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.mrp_workcenter_block_wizard_form
@@ -315,6 +316,9 @@ msgid ""
 "finished products as well. Without this option you only do: A + B = C. With "
 "the option: A + B = C + D."
 msgstr ""
+"Adăugați produse secundare la facturile de materiale. Aceasta poate fi "
+"utilizată și pentru a obține mai multe produse finite. Fără această opțiune,"
+" faceți doar: A + B = C. Cu opțiunea: A + B = C + D."
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.stock_production_type_kanban
@@ -333,6 +337,9 @@ msgid ""
 "Lines with 0 quantities can be used as optional lines. \n"
 "You should install the mrp_byproduct module if you want to manage extra products on BoMs !"
 msgstr ""
+"Toate cantitățile de produse trebuie să fie mai mari sau egale cu 0.\n"
+"Lines with 0 quantities can be used as optional lines. \n"
+"Ar trebui să instalați modulul mrp_byproduct dacă doriți să gestionați produse suplimentare pe LdMs !"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_post_visible
@@ -392,7 +399,7 @@ msgstr "Disponibilitate"
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.oee_search_view
 msgid "Availability Losses"
-msgstr ""
+msgstr "Pierderi de disponibilitate"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.view_mrp_production_workcenter_form_view_filter
@@ -532,7 +539,7 @@ msgstr "Blocat(ă)"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter_blocked_time
 msgid "Blocked Time"
-msgstr ""
+msgstr "Timp blocat"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workcenter_blocked_time
@@ -801,7 +808,7 @@ msgstr "Creează comenzi lucru"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_move_created_production_id
 msgid "Created Production Order"
-msgstr ""
+msgstr "Comanda de producție creată"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_change_production_qty_create_uid
@@ -856,7 +863,7 @@ msgstr "Cantitatea curentă"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder_qty_producing
 msgid "Currently Produced Quantity"
-msgstr ""
+msgstr "Cantitatea produsă în prezent"
 
 #. module: mrp
 #: model:ir.ui.menu,name:mrp.menu_mrp_dashboard
@@ -1000,7 +1007,7 @@ msgstr "Durată calculată"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder_duration_percent
 msgid "Duration Deviation (%)"
-msgstr ""
+msgstr "Durata abaterii (%)"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder_duration_unit
@@ -1110,12 +1117,12 @@ msgstr "Locație Produse Finite"
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.oee_search_view
 msgid "Fully Productive"
-msgstr ""
+msgstr "Complet productiv"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.mrp_unbuild_search_view
 msgid "Future Activitie"
-msgstr ""
+msgstr "Activitatea viitoare"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.view_mrp_production_filter
@@ -1188,7 +1195,7 @@ msgstr "Are atașamente"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder_is_produced
 msgid "Has Been Produced"
-msgstr ""
+msgstr "A fost produs"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_has_moves
@@ -1331,11 +1338,13 @@ msgstr "Mișcări inventar"
 msgid ""
 "Inventory moves for which you must scan a lot number at this work order"
 msgstr ""
+"Mișcări de inventar pentru care trebuie să scanați un număr de lot la "
+"această comandă de lucru"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_is_locked
 msgid "Is Locked"
-msgstr ""
+msgstr "Este Blocat"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter_productivity_loss_manual
@@ -1355,7 +1364,7 @@ msgstr "Este un document public"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder_is_user_working
 msgid "Is the Current User Working"
-msgstr ""
+msgstr "Utilizatorul actual funcționează"
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_workcenter.py:162
@@ -1480,6 +1489,8 @@ msgid ""
 "Lines need to be deleted, but can not as you still have some quantities to "
 "consume in them. "
 msgstr ""
+"Liniile trebuie șterse, dar nu pot, deoarece aveți încă câteva cantități de "
+"consumat în ele."
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_unbuild_location_id
@@ -1604,7 +1615,7 @@ msgstr "Termen de fabricare"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_warehouse_manu_type_id
 msgid "Manufacturing Operation Type"
-msgstr ""
+msgstr "Tipul operației de fabricație"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_change_production_qty_mo_id
@@ -1869,7 +1880,7 @@ msgstr "Note"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_picking_type_count_mo_late
 msgid "Number of Manufacturing Orders Late"
-msgstr ""
+msgstr "Numărul de comenzi de fabricație întârziate"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_picking_type_count_mo_waiting
@@ -1879,7 +1890,7 @@ msgstr "Numărul comenzilor în așteptare"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_picking_type_count_mo_todo
 msgid "Number of Manufacturing Orders to Process"
-msgstr ""
+msgstr "Numărul de comenzi de fabricație de procesat"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workcenter_capacity
@@ -1942,7 +1953,7 @@ msgstr "Operație"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_move_operation_id
 msgid "Operation To Consume"
-msgstr ""
+msgstr "Operațiune de consumat"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom_picking_type_id
@@ -2044,7 +2055,7 @@ msgstr "Performanță"
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workcenter_performance
 msgid "Performance over the last month"
-msgstr ""
+msgstr "Performanță în ultima lună"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.mrp_workcenter_kanban
@@ -2055,6 +2066,7 @@ msgstr "Comenzi planificate"
 #: model:ir.ui.view,arch_db:mrp.res_config_settings_view_form
 msgid "Plan manufacturing or purchase orders based on forecasts"
 msgstr ""
+"Planificați comenzile de fabricație sau de cumpărare pe baza prognozelor"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.stock_production_type_kanban
@@ -2131,7 +2143,7 @@ msgstr "Obține"
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.res_config_settings_view_form
 msgid "Produce residual products (A + B -&gt; C + D)"
-msgstr ""
+msgstr "Produceți produse reziduale (A + B - & gt; C + D)"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.production_message
@@ -2222,7 +2234,7 @@ msgstr "Dată producție"
 #. module: mrp
 #: model:ir.model,name:mrp.model_mrp_document
 msgid "Production Document"
-msgstr ""
+msgstr "Document de producție"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_production_location_id
@@ -2251,7 +2263,7 @@ msgstr "Comandă producție # :"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_move_production_id
 msgid "Production Order for finished products"
-msgstr ""
+msgstr "Comanda de producție pentru produsele finite"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_move_raw_material_production_id
@@ -2277,7 +2289,7 @@ msgstr "Productii"
 #. module: mrp
 #: selection:mrp.workcenter.productivity.loss,loss_type:0
 msgid "Productive"
-msgstr ""
+msgstr "Productiv"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter_productive_time
@@ -2322,7 +2334,7 @@ msgstr "Calitate"
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.oee_search_view
 msgid "Quality Losses"
-msgstr ""
+msgstr "Pierderi de calitate"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom_product_qty
@@ -2455,7 +2467,7 @@ msgstr "Atașament aferent"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_res_config_settings_module_mrp_repair
 msgid "Repair"
-msgstr ""
+msgstr "Reparare"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.res_config_settings_view_form
@@ -2481,7 +2493,7 @@ msgstr "Rezervat"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_document_res_field
 msgid "Resource Field"
-msgstr ""
+msgstr "Câmpul de resurse"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_document_res_id
@@ -2806,7 +2818,7 @@ msgstr "Mișcare stoc"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_move_dest_ids
 msgid "Stock Movements of Produced Goods"
-msgstr ""
+msgstr "Mișcări de stocuri de bunuri produse"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_document_store_fname
@@ -2866,7 +2878,7 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workorder_is_user_working
 msgid "Technical field indicating whether the current user is working. "
-msgstr ""
+msgstr "Câmp tehnic care indică dacă utilizatorul actual lucrează."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_production_post_visible
@@ -2888,12 +2900,12 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workorder_production_availability
 msgid "Technical: used in views and domains only."
-msgstr ""
+msgstr "Tehnic: utilizat numai în vizualizări și domenii."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workorder_working_state
 msgid "Technical: used in views only"
-msgstr ""
+msgstr "Tehnic: utilizat numai în vizualizări"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workorder_product_id
@@ -2901,7 +2913,7 @@ msgstr ""
 #: model:ir.model.fields,help:mrp.field_mrp_workorder_product_uom_id
 #: model:ir.model.fields,help:mrp.field_mrp_workorder_production_state
 msgid "Technical: used in views only."
-msgstr ""
+msgstr "Tehnic: utilizat numai în vizualizări"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_stock_production_lot_use_next_on_work_order_id
@@ -2922,7 +2934,7 @@ msgstr ""
 #: code:addons/mrp/models/mrp_workcenter.py:156
 #, python-format
 msgid "The capacity must be strictly positive."
-msgstr ""
+msgstr "Capacitatea trebuie să fie strict pozitivă."
 
 #. module: mrp
 #: selection:mrp.bom,ready_to_produce:0
@@ -2932,7 +2944,7 @@ msgstr "Componentele de pe prima operație"
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_document_res_model
 msgid "The database object this attachment will be attached to."
-msgstr ""
+msgstr "Obiectul bazei de date la care va fi atașat acest atașament."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_production_routing_id
@@ -2971,6 +2983,7 @@ msgid ""
 "The operation where the components are consumed, or the finished products "
 "created."
 msgstr ""
+"Operațiunea în care componentele sunt consumate sau produsele finite create."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_bom_routing_id
@@ -2994,7 +3007,7 @@ msgstr "Cantitatea de obținut trebuie să fie pozitivă!"
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_document_res_id
 msgid "The record id this is attached to."
-msgstr ""
+msgstr "ID-ul înregistrării la care este atașat."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_routing_workcenter_routing_id
@@ -3082,12 +3095,12 @@ msgstr "Timpul înainte de producție."
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workcenter_time_stop
 msgid "Time in minutes for the cleaning."
-msgstr ""
+msgstr "Timp în minute pentru curățare."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workcenter_time_start
 msgid "Time in minutes for the setup."
-msgstr ""
+msgstr "Timp în minute pentru configurare."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_routing_workcenter_time_cycle_manual
@@ -3161,7 +3174,7 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter_workorder_late_count
 msgid "Total Late Orders"
-msgstr ""
+msgstr "Total Comenzi întârziate"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.mrp_production_tree_view
@@ -3177,7 +3190,7 @@ msgstr ""
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.mrp_production_workcenter_form_view_inherit
 msgid "Total duration"
-msgstr ""
+msgstr "Durată totală"
 
 #. module: mrp
 #: model:ir.ui.menu,name:mrp.menu_mrp_traceability
@@ -3730,7 +3743,7 @@ msgstr ""
 #: code:addons/mrp/wizard/mrp_product_produce.py:130
 #, python-format
 msgid "You cannot produce the same serial number twice."
-msgstr ""
+msgstr "Nu puteți produce același număr de serie de două ori."
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_unbuild.py:93
@@ -3743,6 +3756,7 @@ msgstr "Nu puteți să dezmembrați o comandă de producție neefectuată."
 #, python-format
 msgid "You have already processed %s. Please input a quantity higher than %s "
 msgstr ""
+"Ați procesat deja %s. Vă rugăm să introduceți o cantitate mai mare de %s"
 
 #. module: mrp
 #: model:ir.ui.view,arch_db:mrp.mrp_production_form_view
@@ -3796,7 +3810,7 @@ msgstr ""
 #: code:addons/mrp/models/mrp_workorder.py:307
 #, python-format
 msgid "You should provide a lot/serial number for the final product"
-msgstr ""
+msgstr "Ar trebui să furnizați un lot / număr de serie pentru produsul final"
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_unbuild.py:99

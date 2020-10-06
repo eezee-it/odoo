@@ -19,6 +19,7 @@
 # Takuya Sawada <takuya@tuntunkun.com>, 2018
 # Martin Trigaux, 2019
 # Hau Dao <hau@quartile.co>, 2020
+# Tsuda Ryoko <ryoko04nov@gmail.com>, 2020
 # Yoshi Tashiro <tashiro@roomsfor.hk>, 2020
 # 
 msgid ""
@@ -2351,7 +2352,7 @@ msgstr "銀行取引明細書"
 #: code:addons/account/models/account_journal_dashboard.py:39
 #, python-format
 msgid "Bank: Balance"
-msgstr ""
+msgstr "銀行：残高"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_tax_base
@@ -2698,7 +2699,7 @@ msgstr ""
 #: code:addons/account/models/account_journal_dashboard.py:37
 #, python-format
 msgid "Cash: Balance"
-msgstr ""
+msgstr "現金：残高"
 
 #. module: account
 #: model:ir.model,name:account.model_account_cashbox_line
@@ -5708,7 +5709,7 @@ msgid ""
 "It is not allowed to delete a payment that already created a journal entry "
 "since it would create a gap in the numbering. You should create the journal "
 "entry again and cancel it thanks to a regular revert."
-msgstr ""
+msgstr "仕訳が作成された支払は削除できません(番号の隙間を防ぐため)。必要に応じて仕訳を再作成の上逆仕訳を作成することで取り消してください。"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
@@ -9804,7 +9805,7 @@ msgstr ""
 msgid ""
 "There are still unposted entries in the period you want to lock. You should "
 "either post or delete them."
-msgstr ""
+msgstr "ロックしようとしている期間に未記帳の会計仕訳が存在します。先にこれらを記帳または削除してください。"
 
 #. module: account
 #: code:addons/account/models/account_bank_statement.py:179
@@ -10971,7 +10972,7 @@ msgstr ""
 #, python-format
 msgid ""
 "You cannot add/modify entries prior to and inclusive of the lock date %s"
-msgstr ""
+msgstr "ロック日 %s 以前の日付で仕訳を作成/修正することはできません。"
 
 #. module: account
 #: code:addons/account/models/account_move.py:211
@@ -10980,6 +10981,7 @@ msgid ""
 "You cannot add/modify entries prior to and inclusive of the lock date %s. "
 "Check the company settings or ask someone with the 'Adviser' role"
 msgstr ""
+"ロック日 %s 以前の日付で仕訳を作成/修正することはできません。会社設定を確認するか、「請求マネジャー」権限を持つユーザにご相談ください。"
 
 #. module: account
 #: code:addons/account/models/account_invoice.py:1196

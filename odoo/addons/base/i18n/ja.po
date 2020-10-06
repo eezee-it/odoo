@@ -20984,7 +20984,7 @@ msgstr "選択されたモジュールは更新あるいはインストールさ
 msgid ""
 "The server is busy right now, module operations are not possible at this "
 "time, please try again later."
-msgstr ""
+msgstr "現在サーバに処理中のプロセスがあり、モジュールの操作ができません。少し時間を置いて再度お試しください。"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_res_country_state_code
@@ -21145,6 +21145,14 @@ msgid ""
 "This theme module is exclusively for master to keep the support of "
 "Bootswatch themes which were previously part of the website module in 8.0."
 msgstr "このテーマモジュールは、以前8.0でのWebサイトのモジュールの一部であったBootswatchテーマのサポートを維持するためにあります。"
+
+#. module: base
+#: code:addons/base/ir/ir_sequence.py:56
+#, python-format
+msgid ""
+"This transaction wasn't executed because another transaction is already "
+"using the same no-gap sequence. Please try again later."
+msgstr ""
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_lang_thousands_sep

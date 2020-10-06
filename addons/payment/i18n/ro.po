@@ -9,6 +9,7 @@
 # Cozmin Candea <office@terrabit.ro>, 2019
 # Dorin Hongu <dhongu@gmail.com>, 2020
 # Foldi Robert <foldirobert@nexterp.ro>, 2020
+# Hongu Cosmin <cosmin513@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-17 15:01+0000\n"
 "PO-Revision-Date: 2017-09-20 10:20+0000\n"
-"Last-Translator: Foldi Robert <foldirobert@nexterp.ro>, 2020\n"
+"Last-Translator: Hongu Cosmin <cosmin513@gmail.com>, 2020\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1130,7 +1131,7 @@ msgstr ""
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_acquirer_save_token
 msgid "Save Cards"
-msgstr ""
+msgstr "Salvați carduri"
 
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.payment_tokens_list
@@ -1141,7 +1142,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:payment.payment_token_action
 #: model:ir.ui.menu,name:payment.payment_token_menu
 msgid "Saved Payment Data"
-msgstr ""
+msgstr "Date de plată salvate"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_account_payment_payment_token_id
@@ -1181,7 +1182,7 @@ msgstr "Server To Server"
 #: code:addons/payment/static/src/js/payment_form.js:300
 #, python-format
 msgid "Server error"
-msgstr ""
+msgstr "Eroare server"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_token_short_name
@@ -1221,7 +1222,7 @@ msgstr "Stare"
 #: model:payment.acquirer,name:payment.payment_acquirer_stripe
 #: selection:payment.acquirer,provider:0
 msgid "Stripe"
-msgstr ""
+msgstr "Dungat"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_acquirer_payment_icon_ids
@@ -1336,7 +1337,7 @@ msgstr ""
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_token_verified
 msgid "Verified"
-msgstr ""
+msgstr "Verificat"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_acquirer_website_published
@@ -1346,7 +1347,7 @@ msgstr "Vizibil în portal/pagină web"
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.transaction_form
 msgid "Void Transaction"
-msgstr ""
+msgstr "Tranzacție nulă"
 
 #. module: payment
 #. openerp-web
@@ -1460,7 +1461,7 @@ msgstr ""
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.payment_confirmation_status
 msgid "Your payment has been authorized."
-msgstr ""
+msgstr "Plata dvs. a fost autorizată."
 
 #. module: payment
 #: model:ir.ui.view,arch_db:payment.transaction_form

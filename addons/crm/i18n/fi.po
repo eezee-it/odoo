@@ -3164,7 +3164,7 @@ msgstr "Ylätason malli"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_alias_parent_thread_id
 msgid "Parent Record Thread ID"
-msgstr ""
+msgstr "Ylätason keskustelun ID"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_alias_parent_model_id
@@ -3721,7 +3721,7 @@ msgstr "Ohita nämä kontaktit"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Slides"
-msgstr ""
+msgstr "Diat"
 
 #. module: crm
 #: model:crm.lead.tag,name:crm.categ_oppor2

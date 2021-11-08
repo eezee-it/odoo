@@ -400,7 +400,7 @@ class SaleOrder(models.Model):
         }
         user_id = partner_user.id
         if not self.env.context.get('not_self_saleperson'):
-            user_id = user_id or self.env.uid
+            user_id = user_id or self.env.context.get('default_user_id', self.env.uid)
         if user_id and self.user_id.id != user_id:
             values['user_id'] = user_id
 
@@ -511,11 +511,13 @@ class SaleOrder(models.Model):
         return result
 
     def _compute_field_value(self, field):
+        if field.name == 'invoice_status' and not self.env.context.get('mail_activity_automation_skip'):
+            filtered_self = self.filtered(lambda so: so.user_id and so._origin.invoice_status != 'upselling')
         super()._compute_field_value(field)
         if field.name != 'invoice_status' or self.env.context.get('mail_activity_automation_skip'):
             return
 
-        filtered_self = self.filtered(lambda so: so.user_id and so.invoice_status == 'upselling')
+        filtered_self = filtered_self.filtered(lambda so: so.invoice_status == 'upselling')
         if not filtered_self:
             return
 
@@ -578,7 +580,8 @@ class SaleOrder(models.Model):
             'campaign_id': self.campaign_id.id,
             'medium_id': self.medium_id.id,
             'source_id': self.source_id.id,
-            'invoice_user_id': self.user_id and self.user_id.id,
+            'user_id': self.user_id.id,
+            'invoice_user_id': self.user_id.id,
             'team_id': self.team_id.id,
             'partner_id': self.partner_invoice_id.id,
             'partner_shipping_id': self.partner_shipping_id.id,
@@ -1225,7 +1228,7 @@ class SaleOrderLine(models.Model):
             else:
                 line.qty_to_invoice = 0
 
-    @api.depends('invoice_lines.move_id.state', 'invoice_lines.quantity', 'untaxed_amount_to_invoice')
+    @api.depends('invoice_lines.move_id.state', 'invoice_lines.quantity')
     def _get_invoice_qty(self):
         """
         Compute the quantity invoiced. If case of a refund, the quantity invoiced is decreased. Note
@@ -1240,8 +1243,7 @@ class SaleOrderLine(models.Model):
                     if invoice_line.move_id.move_type == 'out_invoice':
                         qty_invoiced += invoice_line.product_uom_id._compute_quantity(invoice_line.quantity, line.product_uom)
                     elif invoice_line.move_id.move_type == 'out_refund':
-                        if not line.is_downpayment or line.untaxed_amount_to_invoice == 0 :
-                            qty_invoiced -= invoice_line.product_uom_id._compute_quantity(invoice_line.quantity, line.product_uom)
+                        qty_invoiced -= invoice_line.product_uom_id._compute_quantity(invoice_line.quantity, line.product_uom)
             line.qty_invoiced = qty_invoiced
 
     @api.depends('price_unit', 'discount')

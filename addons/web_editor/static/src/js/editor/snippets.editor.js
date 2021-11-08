@@ -33,7 +33,7 @@ var SnippetEditor = Widget.extend({
     custom_events: {
         'option_update': '_onOptionUpdate',
         'user_value_widget_request': '_onUserValueWidgetRequest',
-        'snippet_option_update': '_onSnippetOptionUpdate',
+        'snippet_option_update': '_onSnippetOptionUpdate', // TODO remove me in master
         'snippet_option_visibility_update': '_onSnippetOptionVisibilityUpdate',
     },
     layoutElementsSelector: [
@@ -118,7 +118,11 @@ var SnippetEditor = Widget.extend({
         }
 
         var _animationsCount = 0;
-        var postAnimationCover = _.throttle(() => this.cover(), 100);
+        var postAnimationCover = _.throttle(() => {
+            this.trigger_up('cover_update', {
+                overlayVisible: true,
+            });
+        }, 100);
         this.$target.on('transitionstart.snippet_editor, animationstart.snippet_editor', () => {
             // We cannot rely on the fact each transition/animation start will
             // trigger a transition/animation end as the element may be removed
@@ -300,7 +304,7 @@ var SnippetEditor = Widget.extend({
      */
     removeSnippet: async function () {
         this.toggleOverlay(false);
-        this.toggleOptions(false);
+        await this.toggleOptions(false);
         // If it is an invisible element, we must close it before deleting it (e.g. modal)
         await this.toggleTargetVisibility(!this.$target.hasClass('o_snippet_invisible'));
 
@@ -311,8 +315,8 @@ var SnippetEditor = Widget.extend({
                     for (var i in editor.styles) {
                         editor.styles[i].onRemove();
                     }
-                    resolve();
                 },
+                onSuccess: resolve,
             });
         });
 
@@ -338,6 +342,7 @@ var SnippetEditor = Widget.extend({
                         return el.matches(this.layoutElementsSelector);
                     });
                 return isEmpty && !$el.hasClass('oe_structure')
+                    && !$el.parent().hasClass('carousel-item')
                     && (!editor || editor.isTargetParentEditable);
             };
 
@@ -400,8 +405,9 @@ var SnippetEditor = Widget.extend({
      * necessary.
      *
      * @param {boolean} show
+     * @returns {Promise}
      */
-    toggleOptions: function (show) {
+    async toggleOptions(show) {
         if (!this.$el) {
             return;
         }
@@ -409,24 +415,36 @@ var SnippetEditor = Widget.extend({
         if (this.areOptionsShown() === show) {
             return;
         }
+        // TODO should update the panel after the items have been updated
         this.trigger_up('update_customize_elements', {
             customize$Elements: show ? this._customize$Elements : [],
         });
-        this._customize$Elements.forEach(($el, i) => {
-            const editor = $el.data('editor');
-            const styles = _.chain(editor.styles).values().sortBy('__order')
-                            .value();
-            // TODO ideally: should account the async parts of updateUI and
-            // allow async parts in onFocus/onBlur.
-            if (show) {
-                // All onFocus before all updateUI as the onFocus of an option
-                // might affect another option (like updating the $target)
-                styles.forEach(style => style.onFocus());
-                styles.forEach(style => style.updateUI());
-            } else {
-                styles.forEach(style => style.onBlur());
+        // All onFocus before all ui updates as the onFocus of an option might
+        // affect another option (like updating the $target)
+        const editorUIsToUpdate = [];
+        const focusOrBlur = show
+            ? (editor, options) => {
+                for (const opt of options) {
+                    opt.onFocus();
+                }
+                editorUIsToUpdate.push(editor);
             }
-        });
+            : (editor, options) => {
+                for (const opt of options) {
+                    opt.onBlur();
+                }
+            };
+        for (const $el of this._customize$Elements) {
+            const editor = $el.data('editor');
+            const styles = _.chain(editor.styles)
+                .values()
+                .sortBy('__order')
+                .value();
+            // TODO ideally: allow async parts in onFocus/onBlur
+            focusOrBlur(editor, styles);
+        }
+        await Promise.all(editorUIsToUpdate.map(editor => editor.updateOptionsUI()));
+        await Promise.all(editorUIsToUpdate.map(editor => editor.updateOptionsUIVisibility()));
     },
     /**
      * @param {boolean} [show]
@@ -448,6 +466,33 @@ var SnippetEditor = Widget.extend({
         if (this.$el && !this.scrollingTimeout) {
             this.$el.toggleClass('o_overlay_hidden', !show && this.isShown());
         }
+    },
+    /**
+     * Updates the UI of all the options according to the status of their
+     * associated editable DOM. This does not take care of options *visibility*.
+     * For that @see updateOptionsUIVisibility, which should called when the UI
+     * is up-to-date thanks to the function here, as the visibility depends on
+     * the UI's status.
+     *
+     * @returns {Promise}
+     */
+    async updateOptionsUI() {
+        const proms = Object.values(this.styles).map(opt => {
+            return opt.updateUI({noVisibility: true});
+        });
+        return Promise.all(proms);
+    },
+    /**
+     * Updates the visibility of the UI of all the options according to the
+     * status of their associated dependencies and related editable DOM status.
+     *
+     * @returns {Promise}
+     */
+    async updateOptionsUIVisibility() {
+        const proms = Object.values(this.styles).map(opt => {
+            return opt.updateUIVisibility();
+        });
+        return Promise.all(proms);
     },
     /**
      * Clones the current snippet.
@@ -474,8 +519,8 @@ var SnippetEditor = Widget.extend({
                             isCurrent: ($snippet.is($clone)),
                         });
                     }
-                    resolve();
                 },
+                onSuccess: resolve,
             });
         });
         this.trigger_up('snippet_cloned', {$target: $clone, $origin: this.$target});
@@ -833,33 +878,7 @@ var SnippetEditor = Widget.extend({
      * @param {OdooEvent} ev
      */
     _onSnippetOptionUpdate: async function (ev) {
-        if (ev.target === this) {
-            return;
-        }
-        ev.stopPropagation();
-        const updateOptionsUI = async () => {
-            const proms1 = Object.keys(this.styles).map(key => {
-                return this.styles[key].updateUI({
-                    noVisibility: true,
-                });
-            });
-            await Promise.all(proms1);
-
-            const proms2 = Object.keys(this.styles).map(key => {
-                return this.styles[key].updateUIVisibility();
-            });
-            await Promise.all(proms2);
-        };
-        // Wait for the current editor's option UI updates and the parent ones
-        await Promise.all([
-            updateOptionsUI(),
-            new Promise(resolve => {
-                this.trigger_up('snippet_option_update', Object.assign({}, ev.data, {
-                    onSuccess: () => resolve(),
-                }));
-            }),
-        ]);
-        ev.data.onSuccess();
+        // TODO remove me in master
     },
     /**
      * @private
@@ -1512,24 +1531,26 @@ var SnippetsMenu = Widget.extend({
                     return this._createSnippetEditor($snippet).then(resolve);
                 }
                 resolve(null);
-            }).then(editorToEnable => {
+            }).then(async editorToEnable => {
                 if (ifInactiveOptions && this._enabledEditorHierarchy.includes(editorToEnable)) {
                     return editorToEnable;
                 }
 
-                const editorToEnableHierarchy = [];
-                let current = editorToEnable;
-                while (current && current.$target) {
-                    editorToEnableHierarchy.push(current);
-                    current = current.getParent();
+                if (!previewMode) {
+                    this._enabledEditorHierarchy = [];
+                    let current = editorToEnable;
+                    while (current && current.$target) {
+                        this._enabledEditorHierarchy.push(current);
+                        current = current.getParent();
+                    }
                 }
 
                 // First disable all editors...
                 for (let i = this.snippetEditors.length; i--;) {
                     const editor = this.snippetEditors[i];
                     editor.toggleOverlay(false, previewMode);
-                    if (!previewMode && !editorToEnableHierarchy.includes(editor)) {
-                        editor.toggleOptions(false);
+                    if (!previewMode && !this._enabledEditorHierarchy.includes(editor)) {
+                        await editor.toggleOptions(false);
                     }
                 }
                 // ... if no editors are to be enabled, look if any have been
@@ -1541,10 +1562,9 @@ var SnippetsMenu = Widget.extend({
                 // ... then enable the right editor
                 if (editorToEnable) {
                     editorToEnable.toggleOverlay(true, previewMode);
-                    editorToEnable.toggleOptions(true);
+                    await editorToEnable.toggleOptions(true);
                 }
 
-                this._enabledEditorHierarchy = editorToEnableHierarchy;
                 return editorToEnable;
             });
         });
@@ -1641,8 +1661,11 @@ var SnippetsMenu = Widget.extend({
      *        when the DOM elements must be in an editable environment to be
      *        considered (@see noCheck), this is true if the DOM elements'
      *        parent must also be in an editable environment to be considered.
+     * @param {string} excludeParent
+     *        jQuery selector that the parents of DOM elements must *not* match
+     *        to be considered as potential snippet.
      */
-    _computeSelectorFunctions: function (selector, exclude, target, noCheck, isChildren) {
+    _computeSelectorFunctions: function (selector, exclude, target, noCheck, isChildren, excludeParent) {
         var self = this;
 
         exclude += `${exclude && ', '}.o_snippet_not_selectable`;
@@ -1654,6 +1677,12 @@ var SnippetsMenu = Widget.extend({
             const oldFilter = filterFunc;
             filterFunc = function () {
                 return oldFilter.apply(this) && $(this).find(target).length !== 0;
+            };
+        }
+        if (excludeParent) {
+            const oldFilter = filterFunc;
+            filterFunc = function () {
+                return oldFilter.apply(this) && !$(this).parent().is(excludeParent);
             };
         }
 
@@ -1716,10 +1745,12 @@ var SnippetsMenu = Widget.extend({
         this.templateOptions = [];
         var selectors = [];
         var $styles = $html.find('[data-selector]');
+        const snippetAdditionDropIn = $styles.filter('#so_snippet_addition').data('drop-in');
         $styles.each(function () {
             var $style = $(this);
             var selector = $style.data('selector');
             var exclude = $style.data('exclude') || '';
+            const excludeParent = $style.attr('id') === "so_content_addition" ? snippetAdditionDropIn : '';
             var target = $style.data('target');
             var noCheck = $style.data('no-check');
             var optionID = $style.data('js') || $style.data('option-name');  // used in tour js as selector
@@ -1730,7 +1761,7 @@ var SnippetsMenu = Widget.extend({
                 'base_target': target,
                 'selector': self._computeSelectorFunctions(selector, exclude, target, noCheck),
                 '$el': $style,
-                'drop-near': $style.data('drop-near') && self._computeSelectorFunctions($style.data('drop-near'), '', false, noCheck, true),
+                'drop-near': $style.data('drop-near') && self._computeSelectorFunctions($style.data('drop-near'), '', false, noCheck, true, excludeParent),
                 'drop-in': $style.data('drop-in') && self._computeSelectorFunctions($style.data('drop-in'), '', false, noCheck),
                 'data': _.extend({string: $style.attr('string')}, $style.data()),
             };
@@ -2244,6 +2275,9 @@ var SnippetsMenu = Widget.extend({
         const mutexExecResult = this._mutex.exec(action);
         if (!this.loadingTimers[contentLoading]) {
             const addLoader = () => {
+                if (this.loadingElements[contentLoading]) {
+                    return;
+                }
                 this.loadingElements[contentLoading] = this._createLoadingElement();
                 if (contentLoading) {
                     this.$snippetEditorArea.append(this.loadingElements[contentLoading]);
@@ -2306,15 +2340,22 @@ var SnippetsMenu = Widget.extend({
      * @param {OdooEvent} ev
      */
     _onCallForEachChildSnippet: function (ev) {
-        this._callForEachChildSnippet(ev.data.$snippet, ev.data.callback);
+        const prom = this._callForEachChildSnippet(ev.data.$snippet, ev.data.callback);
+        if (ev.data.onSuccess) {
+            prom.then(() => ev.data.onSuccess());
+        }
     },
     /**
      * Called when the overlay dimensions/positions should be recomputed.
      *
      * @private
+     * @param {OdooEvent} ev
      */
-    _onOverlaysCoverUpdate: function () {
+    _onOverlaysCoverUpdate: function (ev) {
         this.snippetEditors.forEach(editor => {
+            if (ev.data.overlayVisible) {
+                editor.toggleOverlayVisibility(true);
+            }
             editor.cover();
         });
     },
@@ -2628,12 +2669,32 @@ var SnippetsMenu = Widget.extend({
         this._updateInvisibleDOM();
     },
     /**
+     * When the editor panel receives a notification indicating that an option
+     * was used, the panel is in charge of asking for an UI update of the whole
+     * panel. Logically, the options are displayed so that an option above
+     * may influence the status and visibility of an option which is below;
+     * e.g.:
+     * - the user sets a badge type to 'info'
+     *      -> the badge background option (below) is shown as blue
+     * - the user adds a shadow
+     *      -> more options are shown afterwards to control it (not above)
+     *
+     * Technically we however update the whole editor panel (parent and child
+     * options) wherever the updates comes from. The only important thing is
+     * to first update the options UI then their visibility as their visibility
+     * may depend on their UI status.
+     *
      * @private
      * @param {OdooEvent} ev
      */
-    _onSnippetOptionUpdate: function (ev) {
+    _onSnippetOptionUpdate(ev) {
         ev.stopPropagation();
-        ev.data.onSuccess();
+        (async () => {
+            const editors = this._enabledEditorHierarchy;
+            await Promise.all(editors.map(editor => editor.updateOptionsUI()));
+            await Promise.all(editors.map(editor => editor.updateOptionsUIVisibility()));
+            ev.data.onSuccess();
+        })();
     },
     /**
      * @private

@@ -28,7 +28,7 @@ var PaymentAdyen = PaymentInterface.extend({
     _reset_state: function () {
         this.was_cancelled = false;
         this.last_diagnosis_service_id = false;
-        this.remaining_polls = 2;
+        this.remaining_polls = 4;
         clearTimeout(this.polling);
     },
 
@@ -112,10 +112,16 @@ var PaymentAdyen = PaymentInterface.extend({
 
     _adyen_pay: function () {
         var self = this;
+        var order = this.pos.get_order();
 
-        if (this.pos.get_order().selected_paymentline.amount < 0) {
+        if (order.selected_paymentline.amount < 0) {
             this._show_error(_t('Cannot process transactions with negative amount.'));
             return Promise.resolve();
+        }
+
+        if (order === this.poll_error_order) {
+            delete this.poll_error_order;
+            return self._adyen_handle_response({});
         }
 
         var data = this._adyen_pay_data();
@@ -184,8 +190,13 @@ var PaymentAdyen = PaymentInterface.extend({
             timeout: 5000,
             shadow: true,
         }).catch(function (data) {
-            reject();
-            return self._handle_odoo_connection_failure(data);
+            if (self.remaining_polls != 0) {
+                self.remaining_polls--;
+            } else {
+                reject();
+                self.poll_error_order = self.pos.get_order();
+                return self._handle_odoo_connection_failure(data);
+            }
         }).then(function (status) {
             var notification = status.latest_response;
             var last_diagnosis_service_id = status.last_received_diagnosis_id;

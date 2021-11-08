@@ -315,7 +315,7 @@ ListRenderer.include({
     editRecord: function (recordID) {
         var $row = this._getRow(recordID);
         var rowIndex = $row.prop('rowIndex') - 1;
-        this._selectCell(rowIndex, 0);
+        return this._selectCell(rowIndex, 0);
     },
     /**
      * Gives focus to a specific cell, given its row and its related column.
@@ -861,7 +861,7 @@ ListRenderer.include({
      * @returns {string} record dataPoint id
      */
     _getRecordID: function (rowIndex) {
-        var $tr = this.$('table.o_list_table > tbody tr').eq(rowIndex);
+        var $tr = this.$('table.o_list_table > tbody > tr').eq(rowIndex);
         return $tr.data('id');
     },
     /**

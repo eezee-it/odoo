@@ -121,7 +121,7 @@ msgstr ""
 #. module: coupon
 #: model_terms:ir.ui.view,arch_db:coupon.view_coupon_program_kanban
 msgid "<strong>Active</strong>"
-msgstr "<strong>Activar</strong>"
+msgstr "<strong>Activo</strong>"
 
 #. module: coupon
 #: model_terms:ir.ui.view,arch_db:coupon.view_coupon_program_kanban
@@ -443,7 +443,7 @@ msgstr "Código para 10% en órdenes"
 #. module: coupon
 #: model:ir.model.fields,field_description:coupon.field_coupon_program__company_id
 msgid "Company"
-msgstr "Compañía"
+msgstr "Empresa"
 
 #. module: coupon
 #: code:addons/coupon/models/coupon.py:0

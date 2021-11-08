@@ -896,10 +896,13 @@ class Lead(models.Model):
         partner_ids = self.env.user.partner_id.ids
         if self.partner_id:
             partner_ids.append(self.partner_id.id)
+        current_opportunity_id = self.id if self.type == 'opportunity' else False
         action['context'] = {
-            'default_opportunity_id': self.id if self.type == 'opportunity' else False,
+            'search_default_opportunity_id': current_opportunity_id,
+            'default_opportunity_id': current_opportunity_id,
             'default_partner_id': self.partner_id.id,
             'default_partner_ids': partner_ids,
+            'default_attendee_ids': [(0, 0, {'partner_id': pid}) for pid in partner_ids],
             'default_team_id': self.team_id.id,
             'default_name': self.name,
         }
@@ -1683,6 +1686,9 @@ class Lead(models.Model):
                     total_won = team_won if field == 'stage_id' else field_result['won_total']
                     total_lost = team_lost if field == 'stage_id' else field_result['lost_total']
 
+                    # if one count = 0, we cannot compute lead probability
+                    if not total_won or not total_lost:
+                        continue
                     s_lead_won *= value_result['won'] / total_won
                     s_lead_lost *= value_result['lost'] / total_lost
 

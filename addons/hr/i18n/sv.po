@@ -13,9 +13,10 @@
 # Kim Asplund <kim.asplund@gmail.com>, 2021
 # Chrille Hedberg <hedberg.chrille@gmail.com>, 2021
 # Lisa <lisa.oskoma@vertel.se>, 2021
-# Anders Wallenquist <anders.wallenquist@vertel.se>, 2021
-# Simon Strömberg <simon.stromberg@vertel.se>, 2021
 # Jakob Krabbe <jakob.krabbe@vertel.se>, 2021
+# STefan Rundgren <stefanrundgren@cellglas.com>, 2021
+# Anders Wallenquist <anders.wallenquist@vertel.se>, 2021
+# Simon S, 2021
 # 
 msgid ""
 msgstr ""
@@ -23,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-17 10:35+0000\n"
 "PO-Revision-Date: 2020-09-07 08:12+0000\n"
-"Last-Translator: Jakob Krabbe <jakob.krabbe@vertel.se>, 2021\n"
+"Last-Translator: Simon S, 2021\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,6 +72,8 @@ msgid ""
 "<b>Congratulations!</b> May I recommend you to setup an <a "
 "href=\"%s\">onboarding plan?</a>"
 msgstr ""
+"<b>Grattis!</b> Får jag rekommendera att ni sätter upp en <a href=\"%s"
+"\">onboarding-plan?</a>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
@@ -127,6 +130,9 @@ msgid ""
 "specific.\" role=\"img\" aria-label=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
@@ -248,7 +254,7 @@ msgstr "Aktivitet"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Dekoration för aktivitetsundantag"
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_config_plan
@@ -258,7 +264,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Aktivitetsstatus"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__activity_type_id
@@ -268,7 +274,7 @@ msgstr "Aktivitetstyp"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Aktivitetstypsikon"
 
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.act_employee_from_department
@@ -298,7 +304,7 @@ msgstr ""
 #: model_terms:hr.job,website_description:hr.job_marketing
 #: model_terms:hr.job,website_description:hr.job_trainee
 msgid "Additional languages"
-msgstr ""
+msgstr "Ytterligare språk"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__address_home_id
@@ -445,7 +451,7 @@ msgstr "Borta"
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__bachelor
 msgid "Bachelor"
-msgstr ""
+msgstr "Kandidat"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -456,7 +462,7 @@ msgstr ""
 #: model_terms:hr.job,website_description:hr.job_marketing
 #: model_terms:hr.job,website_description:hr.job_trainee
 msgid "Bachelor Degree or Higher"
-msgstr ""
+msgstr "Kandidatexamen eller högre"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__barcode
@@ -513,7 +519,7 @@ msgstr "Avbryt"
 #: model:ir.model.fields,field_description:hr.field_hr_employee__certificate
 #: model:ir.model.fields,field_description:hr.field_res_users__certificate
 msgid "Certificate Level"
-msgstr ""
+msgstr "Utbildningsnivå"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.res_users_action_my
@@ -547,7 +553,7 @@ msgstr "Underavdelning"
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Citizenship"
-msgstr ""
+msgstr "Medborgarskap"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__coach_id
@@ -775,7 +781,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model,name:hr.model_hr_departure_wizard
 msgid "Departure Wizard"
-msgstr ""
+msgstr "Avgångsguide"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
@@ -884,7 +890,7 @@ msgstr "E-postalias"
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Emergency"
-msgstr ""
+msgstr "Nödsituation"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__emergency_contact
@@ -1074,7 +1080,7 @@ msgstr "Kvinna"
 #: model:ir.model.fields,field_description:hr.field_hr_employee__study_field
 #: model:ir.model.fields,field_description:hr.field_res_users__study_field
 msgid "Field of Study"
-msgstr ""
+msgstr "Studieområde"
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_departure_wizard__departure_reason__fired
@@ -1106,7 +1112,7 @@ msgstr "Följare (kontakter)"
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Font awesomeikon t.ex fa-tasks"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -1209,7 +1215,7 @@ msgstr "Rekryterade"
 #: model:ir.model.fields,field_description:hr.field_hr_employee__km_home_work
 #: model:ir.model.fields,field_description:hr.field_res_users__km_home_work
 msgid "Home-Work Distance"
-msgstr ""
+msgstr "Avstånd mellan hem och arbete"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__hr_icon_display
@@ -1295,7 +1301,7 @@ msgstr ""
 #: model:ir.model.fields,help:hr.field_hr_employee__message_has_error
 #: model:ir.model.fields,help:hr.field_hr_job__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Om markerad så har det blivit ett leveransfel för några  meddelanden."
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee__active
@@ -1559,7 +1565,7 @@ msgstr "Gift"
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__master
 msgid "Master"
-msgstr "Magister"
+msgstr "Master"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -1824,7 +1830,7 @@ msgstr ""
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_form
 msgid "PIN Code"
-msgstr ""
+msgstr "PIN-kod"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee__pin
@@ -1841,7 +1847,7 @@ msgstr "Huvudavdelning"
 #: model:ir.model.fields,help:hr.field_hr_employee__user_partner_id
 #: model:ir.model.fields,help:hr.field_hr_employee_public__user_partner_id
 msgid "Partner-related data of the user"
-msgstr ""
+msgstr "Partnerrelaterad data om användaren"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -1997,7 +2003,7 @@ msgstr ""
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Private Contact"
-msgstr ""
+msgstr "Privat kontakt"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__private_email
@@ -2020,7 +2026,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model,name:hr.model_hr_employee_public
 msgid "Public Employee"
-msgstr ""
+msgstr "Offentlig-anställd"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -2273,6 +2279,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Status baserad på aktiviteter\n"
+"Försenade: Förfallodagen har passerat\n"
+"Idag: Aktivitetsdatum är idag\n"
+"Kommande: Framtida aktiviteter."
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
@@ -2426,7 +2436,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Typ av undantagsaktivitet i posten"
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_undetermined
@@ -2515,7 +2525,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr.field_hr_employee__visa_expire
 #: model:ir.model.fields,field_description:hr.field_res_users__visa_expire
 msgid "Visa Expire Date"
-msgstr "Visa utgångsdatum"
+msgstr "Utgångsdatum för Visa "
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__visa_no

@@ -76,7 +76,7 @@ class SaleOrder(models.Model):
         for order in self:
             pickings = order.picking_ids.filtered(lambda x: x.state == 'done' and x.location_dest_id.usage == 'customer')
             dates_list = [date for date in pickings.mapped('date_done') if date]
-            order.effective_date = min(dates_list).date() if dates_list else False
+            order.effective_date = fields.Date.context_today(order, min(dates_list)) if dates_list else False
 
     @api.depends('picking_policy')
     def _compute_expected_date(self):
@@ -162,7 +162,8 @@ class SaleOrder(models.Model):
     @api.onchange('user_id')
     def onchange_user_id(self):
         super().onchange_user_id()
-        self.warehouse_id = self.user_id.with_company(self.company_id.id)._get_default_warehouse_id().id
+        if self.state in ['draft','sent']:
+            self.warehouse_id = self.user_id.with_company(self.company_id.id)._get_default_warehouse_id().id
 
     @api.onchange('partner_shipping_id')
     def _onchange_partner_shipping_id(self):
@@ -207,6 +208,9 @@ class SaleOrder(models.Model):
         return action
 
     def action_cancel(self):
+        res = super(SaleOrder, self).action_cancel()
+        if(isinstance(res, dict)):
+            return res
         documents = None
         for sale_order in self:
             if sale_order.state == 'sale' and sale_order.order_line:
@@ -221,7 +225,7 @@ class SaleOrder(models.Model):
                         continue
                 filtered_documents[(parent, responsible)] = rendering_context
             self._log_decrease_ordered_quantity(filtered_documents, cancel=True)
-        return super(SaleOrder, self).action_cancel()
+        return res
 
     def _prepare_invoice(self):
         invoice_vals = super(SaleOrder, self)._prepare_invoice()

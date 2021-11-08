@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 12:59+0000\n"
+"POT-Creation-Date: 2021-08-16 07:08+0000\n"
 "PO-Revision-Date: 2020-09-07 08:16+0000\n"
 "Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
@@ -787,13 +787,7 @@ msgstr "WISSELGELD"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
-#, python-format
-msgid "Change Customer"
-msgstr "Wijzig Klant"
-
-#. module: point_of_sale
-#. openerp-web
+#: code:addons/point_of_sale/static/src/js/Popups/NumberPopup.js:0
 #: code:addons/point_of_sale/static/src/xml/Popups/EditListPopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Popups/ProductConfiguratorPopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Screens/PaymentScreen/PaymentScreenElectronicPayment.xml:0
@@ -969,6 +963,13 @@ msgstr "Stoelen"
 #, python-format
 msgid "Change"
 msgstr "Wijzigen"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#, python-format
+msgid "Change Customer"
+msgstr "Wijzig Klant"
 
 #. module: point_of_sale
 #. openerp-web
@@ -2915,6 +2916,7 @@ msgstr "Offline orders"
 
 #. module: point_of_sale
 #. openerp-web
+#: code:addons/point_of_sale/static/src/js/Popups/NumberPopup.js:0
 #: code:addons/point_of_sale/static/src/xml/Popups/EditListPopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Popups/ErrorBarcodePopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Popups/OfflineErrorPopup.xml:0
@@ -4906,7 +4908,7 @@ msgid ""
 "transaction."
 msgstr ""
 "Het bedrag van uw betalingsregels moet worden afgerond om de transactie te "
-"valideren."
+"bevestigen."
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_config.py:0
@@ -5154,7 +5156,7 @@ msgid ""
 "There are still orders in draft state in the session. Pay or cancel the following orders to validate the session:\n"
 "%s"
 msgstr ""
-"Er zijn nog steeds orders in concept in de sessie. Betaal of verwijder die orders om de sessie de valideren:\n"
+"Er zijn nog steeds orders in concept in de sessie. Betaal of verwijder die orders om de sessie te bevestigen:\n"
 "%s"
 
 #. module: point_of_sale
@@ -5537,8 +5539,8 @@ msgid ""
 "Please set corresponding tax account in each repartition line of the following taxes: \n"
 "%s"
 msgstr ""
-"Niet in staat om de sessie te sluiten en te valideren.\n"
-"Stel de overeenstemmende BTW rekening in elke regel van de volgende BTW's:\n"
+"Niet in staat om de sessie te sluiten en te bevestigen.\n"
+"Stel de overeenstemmende BTW-rekening in elke regel van de volgende BTW's:\n"
 "%s"
 
 #. module: point_of_sale

@@ -120,6 +120,7 @@ odoo.define('point_of_sale.PaymentScreen', function (require) {
             }
         }
         deletePaymentLine(event) {
+            var self = this;
             const { cid } = event.detail;
             const line = this.paymentLines.find((line) => line.cid === cid);
 
@@ -127,12 +128,18 @@ odoo.define('point_of_sale.PaymentScreen', function (require) {
             // it is removed, the terminal should get a cancel
             // request.
             if (['waiting', 'waitingCard', 'timeout'].includes(line.get_payment_status())) {
-                line.payment_method.payment_terminal.send_payment_cancel(this.currentOrder, cid);
+                line.set_payment_status('waitingCancel');
+                line.payment_method.payment_terminal.send_payment_cancel(this.currentOrder, cid).then(function() {
+                    self.currentOrder.remove_paymentline(line);
+                    NumberBuffer.reset();
+                    self.render();
+                })
             }
-
-            this.currentOrder.remove_paymentline(line);
-            NumberBuffer.reset();
-            this.render();
+            else if (line.get_payment_status() !== 'waitingCancel') {
+                this.currentOrder.remove_paymentline(line);
+                NumberBuffer.reset();
+                this.render();
+            }
         }
         selectPaymentLine(event) {
             const { cid } = event.detail;
@@ -323,7 +330,7 @@ odoo.define('point_of_sale.PaymentScreen', function (require) {
             const isPaymentSuccessful = await payment_terminal.send_payment_request(line.cid);
             if (isPaymentSuccessful) {
                 line.set_payment_status('done');
-                line.can_be_reversed = this.payment_interface.supports_reversals;
+                line.can_be_reversed = payment_terminal.supports_reversals;
             } else {
                 line.set_payment_status('retry');
             }

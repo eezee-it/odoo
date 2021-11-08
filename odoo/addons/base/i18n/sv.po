@@ -16,13 +16,15 @@
 # Zou Haojun <haojunzou84@gmail.com>, 2021
 # Martin Wilderoth <martin.wilderoth@linserv.se>, 2021
 # Kristoffer Grundström <lovaren@gmail.com>, 2021
-# Kim Asplund <kim.asplund@gmail.com>, 2021
 # lynnliuying <lynn.liu1971@gmail.com>, 2021
 # Martin Trigaux, 2021
 # Robert Frykelius <robert.frykelius@linserv.se>, 2021
-# Chrille Hedberg <hedberg.chrille@gmail.com>, 2021
 # Jakob Krabbe <jakob.krabbe@vertel.se>, 2021
+# STefan Rundgren <stefanrundgren@cellglas.com>, 2021
+# Chrille Hedberg <hedberg.chrille@gmail.com>, 2021
+# Kim Asplund <kim.asplund@gmail.com>, 2021
 # Anders Wallenquist <anders.wallenquist@vertel.se>, 2021
+# Simon S, 2021
 # 
 msgid ""
 msgstr ""
@@ -30,7 +32,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-27 13:50+0000\n"
 "PO-Revision-Date: 2020-09-07 08:09+0000\n"
-"Last-Translator: Anders Wallenquist <anders.wallenquist@vertel.se>, 2021\n"
+"Last-Translator: Simon S, 2021\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4100,6 +4102,9 @@ msgid ""
 "Repair Products from helpdesk tickets\n"
 "    "
 msgstr ""
+"\n"
+"Reparera produkter från helpdesk-tickets\n"
+"    "
 
 #. module: base
 #: model:ir.module.module,description:base.module_fetchmail
@@ -5908,7 +5913,7 @@ msgstr "%Y - År med århundrade\""
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.res_lang_form
 msgid "%a - Abbreviated weekday name."
-msgstr "%a - Förkortat veckodagnamn."
+msgstr "%a - Förkortat veckodagsnamn."
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.res_lang_form
@@ -6233,21 +6238,23 @@ msgid ""
 "<i class=\"fa fa-building\" role=\"img\" aria-label=\"Enterprise\" "
 "title=\"Enterprise\"/>"
 msgstr ""
+"<i class=\"fa fa-building\" role=\"img\" aria-label=\"Enterprise\" "
+"title=\"Enterprise\"/>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_res_users_kanban
 msgid "<i class=\"fa fa-circle\" role=\"img\" aria-label=\"Invalid\" title=\"Invalid\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-circle\" role=\"img\" aria-label=\"Invalid\" title=\"Invalid\"/>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_res_users_kanban
 msgid "<i class=\"fa fa-circle\" role=\"img\" aria-label=\"Ok\" title=\"Ok\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-circle\" role=\"img\" aria-label=\"Ok\" title=\"Ok\"/>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_res_users_kanban
 msgid "<i class=\"fa fa-envelope\" role=\"img\" aria-label=\"Login\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-envelope\" role=\"img\" aria-label=\"Login\"/>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_users_form_simple_modif
@@ -6262,11 +6269,13 @@ msgid ""
 "<i class=\"fa fa-info fa-3x text-info float-left\" role=\"img\" aria-"
 "label=\"Info\" title=\"Info\"/>"
 msgstr ""
+"<i class=\"fa fa-info fa-3x text-info float-left\" role=\"img\" aria-"
+"label=\"Info\" title=\"Info\"/>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.onboarding_container
 msgid "<i class=\"fa fa-times\" title=\"Close the onboarding panel\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-times\" title=\"Close the onboarding panel\"/>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.onboarding_container
@@ -6285,12 +6294,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 msgid ""
 "<span class=\"o_form_label o_td_label\" name=\"address_name\">\n"
-"                                <b attrs=\"{'invisible': [('company_type', '!=', 'company')]}\">Company Address</b>\n"
-"                                <b attrs=\"{'invisible': ['|', ('type', '!=', 'invoice'), ('company_type', '=', 'company')]}\">Invoice Address</b>\n"
-"                                <b attrs=\"{'invisible': ['|', ('type', '!=', 'delivery'), ('company_type', '=', 'company')]}\">Delivery Address</b>\n"
-"                                <b attrs=\"{'invisible': ['|', ('type', '!=', 'other'), ('company_type', '=', 'company')]}\">Other Address</b>\n"
-"                                <b attrs=\"{'invisible': ['|', ('type', '!=', 'private'), ('company_type', '=', 'company')]}\">Private Address</b>\n"
-"                                <b attrs=\"{'invisible': ['|', ('type', 'not in', (False, 'contact')), ('company_type', '=', 'company')]}\">Address</b>\n"
+"                                <b attrs=\"{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}\">Company Address</b>\n"
+"                                <b attrs=\"{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'invoice')]}\">Invoice Address</b>\n"
+"                                <b attrs=\"{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'delivery')]}\">Delivery Address</b>\n"
+"                                <b attrs=\"{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'other')]}\">Other Address</b>\n"
+"                                <b attrs=\"{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'private')]}\">Private Address</b>\n"
+"                                <b attrs=\"{'invisible': ['&amp;', ('parent_id', '!=', False), ('type', '!=', False)]}\">Address</b>\n"
 "                            </span>"
 msgstr ""
 
@@ -6370,22 +6379,22 @@ msgstr ""
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodulereference
 msgid "<span>Module</span>"
-msgstr ""
+msgstr "<span>Modul</span>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodulereference
 msgid "<span>Name</span>"
-msgstr ""
+msgstr "<span>Namn</span>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodulereference
 msgid "<span>Object:</span>"
-msgstr ""
+msgstr "<span>Objekt:</span>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodulereference
 msgid "<span>Version</span>"
-msgstr ""
+msgstr "<span>Version</span>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodulereference
@@ -6458,12 +6467,12 @@ msgstr "<strong>Namn</strong>"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_res_company_kanban
 msgid "<strong>Phone:</strong>"
-msgstr ""
+msgstr "<strong>Telefon:</strong>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_res_company_kanban
 msgid "<strong>Phone</strong>"
-msgstr ""
+msgstr "<strong>Telefon</strong>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.identity_check_wizard
@@ -6520,17 +6529,17 @@ msgstr ""
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodeloverview
 msgid "<strong>XML ID</strong>"
-msgstr ""
+msgstr "<strong>XML ID</strong>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodeloverview
 msgid "<u><strong>Fields</strong></u>"
-msgstr ""
+msgstr "<u><strong>Fält</strong></u>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodeloverview
 msgid "<u><strong>Security</strong></u>"
-msgstr ""
+msgstr "<u><strong>Säkerhet</strong></u>"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.report_irmodeloverview
@@ -6882,7 +6891,7 @@ msgstr "Åtkomsträttigheter"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment__access_token
 msgid "Access Token"
-msgstr ""
+msgstr "Åtkomst Token"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_documents_hr
@@ -7167,7 +7176,7 @@ msgstr ""
 #. module: base
 #: model:ir.model,name:base.model_ir_actions_act_window_view
 msgid "Action Window View"
-msgstr ""
+msgstr "Action Fönster Vy"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.ir_sequence_actions
@@ -7231,7 +7240,7 @@ msgstr "Lägg till"
 #. module: base
 #: model:ir.actions.act_window,name:base.action_view_base_language_install
 msgid "Add Language"
-msgstr ""
+msgstr "Lägg till språk"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_mail_bot
@@ -7668,7 +7677,7 @@ msgstr ""
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.onboarding_step
 msgid "All done!"
-msgstr ""
+msgstr "Allt klart!"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_res_partner__lang
@@ -7907,6 +7916,8 @@ msgid ""
 "Appears by default on the top right corner of your printed documents (report"
 " header)."
 msgstr ""
+"Visas som standard i det övre högra hörnet på dina utskrivna dokument "
+"(rapporthuvudet)."
 
 #. module: base
 #: model:ir.model,name:base.model_ir_module_category
@@ -8145,7 +8156,7 @@ msgstr "Organisationsadministration"
 #: code:addons/base/models/res_lang.py:0
 #, python-format
 msgid "At least one language must be active."
-msgstr ""
+msgstr "Minst ett språk måste vara aktivt."
 
 #. module: base
 #: model_terms:ir.actions.act_window,help:base.action_attachment
@@ -8984,7 +8995,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_marketing_automation
 msgid "Build automated mailing campaigns"
-msgstr ""
+msgstr "Skapa automatiska utskickskampanjer"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_form
@@ -9211,6 +9222,8 @@ msgstr ""
 #, python-format
 msgid "Cannot deactivate a language that is currently used by contacts."
 msgstr ""
+"Det går inte att avaktivera ett språk som för närvarande används av "
+"kontakter."
 
 #. module: base
 #: code:addons/base/models/res_lang.py:0
@@ -9228,7 +9241,7 @@ msgstr ""
 #: code:addons/base/models/ir_model.py:0
 #, python-format
 msgid "Cannot rename/delete fields that are still present in views:"
-msgstr ""
+msgstr "Kan inte byta namn på/ta bort fält som fortfarande finns i vyer:"
 
 #. module: base
 #: model:res.country,name:base.cv
@@ -9557,7 +9570,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pad
 msgid "Collaborative Pads"
-msgstr ""
+msgstr "Samarbetsblock"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_account_sepa_direct_debit
@@ -9795,7 +9808,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_project_timesheet_forecast
 msgid "Compare timesheets and plannings"
-msgstr ""
+msgstr "Jämför tidrapporter och planering"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.reset_view_arch_wizard_action
@@ -9860,7 +9873,7 @@ msgstr "Villkor"
 #. module: base
 #: model:ir.model,name:base.model_res_config
 msgid "Config"
-msgstr ""
+msgstr "Konfigurering"
 
 #. module: base
 #: model:ir.model,name:base.model_res_config_installer
@@ -9914,7 +9927,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_sale_timesheet_enterprise
 msgid "Configure timesheet invoicing"
-msgstr ""
+msgstr "Konfigurera tidrapportsfakturering"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_sale_product_configurator
@@ -10084,7 +10097,7 @@ msgstr "Kontakter"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 msgid "Contacts & Addresses"
-msgstr "Kontakter & Adresser"
+msgstr "Kontakter och Adresser"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_contacts_enterprise
@@ -10235,7 +10248,7 @@ msgstr "Län/delstat"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_coupon
 msgid "Coupon"
-msgstr ""
+msgstr "Kupong"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sale_coupon
@@ -10864,7 +10877,7 @@ msgstr ""
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_server_action_form
 msgid "Data to Write"
-msgstr ""
+msgstr "Data att skriva"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.ir_logging_search_view
@@ -11113,7 +11126,7 @@ msgstr "Leveranskostnad"
 #. module: base
 #: model:ir.model,name:base.model_ir_demo
 msgid "Demo"
-msgstr ""
+msgstr "Demo"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_module_module__demo
@@ -11565,7 +11578,7 @@ msgstr "Dokument"
 #: model:ir.model.fields,field_description:base.field_report_layout__view_id
 #: model:ir.model.fields,field_description:base.field_res_company__external_report_layout_id
 msgid "Document Template"
-msgstr ""
+msgstr "Dokumentmall"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_documents
@@ -11730,7 +11743,7 @@ msgstr "Direktleverans"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.module_view_kanban
 msgid "Dropdown menu"
-msgstr ""
+msgstr "Rullgardinsmeny"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_mrp_subcontracting_dropshipping
@@ -12297,7 +12310,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_actions_server__state__multi
 msgid "Execute several actions"
-msgstr ""
+msgstr "Utför flera åtgärder"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.ir_cron_view_search
@@ -12917,7 +12930,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_web_unsplash
 msgid "Find free high-resolution images from Unsplash"
-msgstr ""
+msgstr "Hitta gratis högupplösta bilder från Unsplash"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__base_partner_merge_automatic_wizard__state__finished
@@ -13034,7 +13047,7 @@ msgstr "Typsnitt"
 #. module: base
 #: model:res.partner.industry,name:base.res_partner_industry_I
 msgid "Food"
-msgstr ""
+msgstr "Mat"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_res_company__report_footer
@@ -13071,7 +13084,7 @@ msgstr ""
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.identity_check_wizard
 msgid "Forgot password?"
-msgstr ""
+msgstr "Glömt lösenord?"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_actions_act_window_view__view_mode__form
@@ -13522,7 +13535,7 @@ msgstr "Integration för Google Drive"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_google_map
 msgid "Google Maps"
-msgstr ""
+msgstr "Google Maps"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_google_spreadsheet
@@ -14545,7 +14558,7 @@ msgstr "Import/export"
 #. module: base
 #: model:ir.module.module,summary:base.module_sale_amazon
 msgid "Import Amazon orders and sync deliveries"
-msgstr ""
+msgstr "Importera order från Amazon och synkronisera leveranser"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_bank_statement_import_camt
@@ -14722,7 +14735,7 @@ msgstr ""
 #. module: base
 #: model:ir.actions.act_window,name:base.res_partner_industry_action
 msgid "Industries"
-msgstr ""
+msgstr "Branscher"
 
 #. module: base
 #: model:ir.model,name:base.model_res_partner_industry
@@ -14731,7 +14744,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base.res_partner_industry_view_form
 #: model_terms:ir.ui.view,arch_db:base.res_partner_industry_view_tree
 msgid "Industry"
-msgstr ""
+msgstr "Industri"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model__info
@@ -14771,7 +14784,7 @@ msgstr "Ärvd vy"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_view_form
 msgid "Inherited Views"
-msgstr ""
+msgstr "Ärvda vyer"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model__inherited_model_ids
@@ -14927,7 +14940,7 @@ msgstr "Interna anteckningar"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_translation__src
 msgid "Internal Source"
-msgstr ""
+msgstr "Intern källa"
 
 #. module: base
 #: model:res.groups,name:base.group_user
@@ -14952,13 +14965,13 @@ msgstr "Interna noteringar..."
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_iot
 msgid "Internet of Things"
-msgstr ""
+msgstr "Internet of Things"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_internet_of_things_(iot)
 #: model:ir.module.category,name:base.module_category_manufacturing_internet_of_things_(iot)
 msgid "Internet of Things (IoT)"
-msgstr ""
+msgstr "Internet of Things (IoT)"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_cron__interval_number
@@ -15089,6 +15102,8 @@ msgid ""
 "Invalid server name !\n"
 " %s"
 msgstr ""
+"Felaktigt server namn !\n"
+" %s"
 
 #. module: base
 #: code:addons/base/models/ir_ui_view.py:0
@@ -15190,7 +15205,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_iot
 msgid "IoT for PoS"
-msgstr ""
+msgstr "IoT för Kassa"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_restaurant_iot
@@ -15480,7 +15495,7 @@ msgstr "Språk"
 #. module: base
 #: model:ir.model,name:base.model_base_language_export
 msgid "Language Export"
-msgstr ""
+msgstr "Exportera språk"
 
 #. module: base
 #: model:ir.model,name:base.model_base_language_import
@@ -15919,6 +15934,8 @@ msgid ""
 "Let the system try to select the right account, taxes and/or product for "
 "your vendor bills"
 msgstr ""
+"Låt systemet försöka välja rätt konto, skatter och/eller produkter för era "
+"leverantörsfakturor"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_referral
@@ -15934,7 +15951,7 @@ msgstr ""
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.onboarding_company_step
 msgid "Let's start!"
-msgstr ""
+msgstr "Starta!"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__report_paperformat__format__letter
@@ -16323,17 +16340,17 @@ msgstr "Underhållsansvarig"
 #: model:ir.module.category,name:base.module_category_manufacturing_maintenance
 #: model:ir.module.module,shortdesc:base.module_maintenance
 msgid "Maintenance"
-msgstr ""
+msgstr "Underhåll"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hr_maintenance
 msgid "Maintenance - HR"
-msgstr ""
+msgstr "Underhåll - HR"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_mrp_maintenance
 msgid "Maintenance - MRP"
-msgstr ""
+msgstr "Underhåll - MRP"
 
 #. module: base
 #: model:res.country,name:base.mw
@@ -16407,7 +16424,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_hr_work_entry_holidays
 msgid "Manage Time Off in Payslips"
-msgstr ""
+msgstr "Hantera frånvaro i lönebesked"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_forum
@@ -16445,6 +16462,8 @@ msgid ""
 "Manage contact tags to better classify them for tracking and analysis "
 "purposes."
 msgstr ""
+"Hantera kontakttaggar för att bättre klassificera dem för spårnings- och "
+"analysändamål."
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_disallowed_expenses
@@ -16789,7 +16808,7 @@ msgstr ""
 #. module: base
 #: model:ir.model,name:base.model_base_partner_merge_automatic_wizard
 msgid "Merge Partner Wizard"
-msgstr ""
+msgstr "Slå ihop partnerguiden"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.base_partner_merge_automatic_wizard_form
@@ -17080,7 +17099,7 @@ msgstr "Modellnamn"
 #. module: base
 #: model:ir.actions.report,name:base.report_ir_model_overview
 msgid "Model Overview"
-msgstr ""
+msgstr "Modellöversikt"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_actions_server__crud_model_id
@@ -17280,7 +17299,7 @@ msgstr "Montserrat"
 #: model_terms:ir.ui.view,arch_db:base.view_users_form
 #: model_terms:ir.ui.view,arch_db:base.view_users_form_simple_modif
 msgid "More languages"
-msgstr ""
+msgstr "Fler språk"
 
 #. module: base
 #: model:res.country,name:base.ma
@@ -17597,7 +17616,7 @@ msgstr ""
 #: code:addons/base/wizard/base_update_translations.py:0
 #, python-format
 msgid "No language with code \"%s\" exists"
-msgstr "Inget språk med koden %s existerar"
+msgstr "Inget språk med kod \"%s\" existerar"
 
 #. module: base
 #: code:addons/base/models/ir_fields.py:0
@@ -19043,7 +19062,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.category,name:base.module_category_marketing_online_appointment
 msgid "Online Appointment"
-msgstr ""
+msgstr "Onlinemöte"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_online_synchronization
@@ -19528,7 +19547,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_actions_report__report_type__qweb-pdf
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__base_language_export__format__po
@@ -19630,7 +19649,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_company__paperformat_id
 msgid "Paper format"
-msgstr ""
+msgstr "Pappersformat"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.paperformat_view_form
@@ -19697,7 +19716,7 @@ msgstr "Överliggande meny"
 #: model:ir.model.fields,field_description:base.field_ir_ui_menu__parent_path
 #: model:ir.model.fields,field_description:base.field_res_partner_category__parent_path
 msgid "Parent Path"
-msgstr ""
+msgstr "Förälder Sökväg"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner__parent_name
@@ -19714,7 +19733,7 @@ msgstr "Kontakt"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_partner_autocomplete
 msgid "Partner Autocomplete"
-msgstr ""
+msgstr "Autokomplettering av partner"
 
 #. module: base
 #: model:ir.model,name:base.model_res_partner_category
@@ -19751,7 +19770,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,help:base.field_res_users__partner_id
 msgid "Partner-related data of the user"
-msgstr ""
+msgstr "Partnerrelaterad data om användaren"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_category__partner_ids
@@ -20201,7 +20220,7 @@ msgstr "Prisnoggranhet"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_company__primary_color
 msgid "Primary Color"
-msgstr ""
+msgstr "Primär färg"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_l10n_ca_check_printing
@@ -20242,7 +20261,7 @@ msgstr "Privatadress"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.res_partner_view_form_private
 msgid "Private Address Form"
-msgstr ""
+msgstr "Privat adressformulär"
 
 #. module: base
 #: code:addons/models.py:0
@@ -20253,7 +20272,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sale_stock
 msgid "Product Availability"
-msgstr ""
+msgstr "Produkttillgänglighet"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sale_comparison
@@ -20497,7 +20516,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_website_event
 msgid "Publish events, sell tickets"
-msgstr ""
+msgstr "Publicera event, sälj biljetter"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_customer
@@ -20535,7 +20554,7 @@ msgstr "Inköp"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_purchase_requisition
 msgid "Purchase Agreements"
-msgstr ""
+msgstr "Inköpsavtal"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_purchase_intrastat
@@ -20712,12 +20731,12 @@ msgstr ""
 #. module: base
 #: model:ir.model,name:base.model_ir_qweb
 msgid "Qweb"
-msgstr ""
+msgstr "Qweb"
 
 #. module: base
 #: model:ir.model,name:base.model_ir_qweb_field
 msgid "Qweb Field"
-msgstr ""
+msgstr "Qweb-fält"
 
 #. module: base
 #: model:ir.model,name:base.model_ir_qweb_field_barcode
@@ -20763,7 +20782,7 @@ msgstr ""
 #: model:ir.model,name:base.model_ir_qweb_field_image
 #: model:ir.model,name:base.model_ir_qweb_field_image_url
 msgid "Qweb Field Image"
-msgstr ""
+msgstr "Qweb Fält Bild"
 
 #. module: base
 #: model:ir.model,name:base.model_ir_qweb_field_integer
@@ -20980,7 +20999,7 @@ msgstr "Referens"
 #: code:addons/base/models/ir_qweb_fields.py:0
 #, python-format
 msgid "Reference date"
-msgstr ""
+msgstr "Referensdatum"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_human_resources_referrals
@@ -21151,12 +21170,12 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_company__report_footer
 msgid "Report Footer"
-msgstr ""
+msgstr "Rapportfot"
 
 #. module: base
 #: model:ir.model,name:base.model_report_layout
 msgid "Report Layout"
-msgstr ""
+msgstr "Rapportlayout"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.act_report_xml_search_view
@@ -21501,7 +21520,7 @@ msgstr ""
 #. module: base
 #: model:res.country,name:base.kn
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "Saint Kitts och Nevis"
 
 #. module: base
 #: model:res.country,name:base.lc
@@ -21581,7 +21600,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_product_configurator
 msgid "Sale Product Configurator"
-msgstr ""
+msgstr "Produktkonfigurator"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_purchase
@@ -21626,7 +21645,7 @@ msgstr "Försäljning"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 msgid "Sales & Purchase"
-msgstr ""
+msgstr "Försäljning och inköp"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_project
@@ -21869,7 +21888,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_company__secondary_color
 msgid "Secondary Color"
-msgstr ""
+msgstr "Sekundär färg"
 
 #. module: base
 #: model:ir.ui.menu,name:base.menu_security
@@ -21884,7 +21903,7 @@ msgstr "Säkerhet"
 #: model_terms:ir.ui.view,arch_db:base.identity_check_wizard
 #, python-format
 msgid "Security Control"
-msgstr ""
+msgstr "Säkerhetskontroll"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.ir_mail_server_form
@@ -21974,7 +21993,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_sale_timesheet
 msgid "Sell based on timesheets"
-msgstr ""
+msgstr "Sälj baserat på tidrapporter"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_sale_digital
@@ -22180,6 +22199,8 @@ msgid ""
 "Server replied with following exception:\n"
 " %s"
 msgstr ""
+"Servern svarade med följande undantag:\n"
+" %s"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_services
@@ -22313,7 +22334,7 @@ msgstr "Sierra Leone"
 #: model:ir.module.category,name:base.module_category_sales_sign
 #: model:ir.module.module,shortdesc:base.module_sign
 msgid "Sign"
-msgstr ""
+msgstr "Signera"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_hr_contract_salary
@@ -22414,7 +22435,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_snailmail
 msgid "Snail Mail"
-msgstr ""
+msgstr "Snigelpost"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_snailmail_account_followup
@@ -23059,7 +23080,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_mail_server__smtp_encryption__starttls
 msgid "TLS (STARTTLS)"
-msgstr ""
+msgstr "TLS (STARTTLS)"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_auth_totp_portal
@@ -23140,7 +23161,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner__vat
 #: model:ir.model.fields,field_description:base.field_res_users__vat
 msgid "Tax ID"
-msgstr "Momsregistreringsnummer"
+msgstr "Skatte-ID"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sale_taxcloud_delivery
@@ -23377,6 +23398,8 @@ msgid ""
 "The Tax Identification Number. Complete it if the contact is subjected to "
 "government taxes. Used in some legal statements."
 msgstr ""
+"Skatteidentifikationsnummer. Fyll i det om kontakten är skattepliktig. "
+"Används i vissa juridiska uttalanden."
 
 #. module: base
 #: model:ir.model.constraint,message:base.constraint_res_lang_url_code_uniq
@@ -23614,7 +23637,7 @@ msgstr "Namnet på språket måste vara unikt."
 #. module: base
 #: model:ir.model.constraint,message:base.constraint_ir_module_module_name_uniq
 msgid "The name of the module must be unique!"
-msgstr ""
+msgstr "Modulens namn måste vara unikt!"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_sequence__number_increment
@@ -23910,6 +23933,8 @@ msgid ""
 "This is necessary for security-related changes. The authorization will last "
 "for a few minutes."
 msgstr ""
+"Detta är nödvändigt försäkerhetsrelaterade ändringar. Auktoriseringen pågår "
+"ett par minuter."
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_actions_report__attachment
@@ -24133,7 +24158,7 @@ msgstr "Tidsformat"
 #: model:ir.module.category,name:base.module_category_human_resources_time_off
 #: model:ir.module.module,shortdesc:base.module_hr_holidays
 msgid "Time Off"
-msgstr "Ledighet"
+msgstr "Frånvaro"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hr_payroll_holidays
@@ -24309,7 +24334,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_web_tour
 msgid "Tours"
-msgstr ""
+msgstr "Genomgångar"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_mass_mailing_event_track_sms
@@ -25247,12 +25272,12 @@ msgstr "Uzbekistan"
 #: model:res.country,vat_label:base.uk
 #, python-format
 msgid "VAT"
-msgstr "Moms"
+msgstr "Momsregistreringsnummer"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_vat
 msgid "VAT Number Validation"
-msgstr ""
+msgstr "Validering momsregistreringsnummer"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_productivity_voip
@@ -25358,7 +25383,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_country__vat_label
 msgid "Vat Label"
-msgstr ""
+msgstr "Etikett momsregistreringsnummer"
 
 #. module: base
 #: model:res.partner.category,name:base.res_partner_category_0
@@ -25611,7 +25636,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_test_web_grid
 msgid "Web Grid Tests"
-msgstr ""
+msgstr "Web Grid-tester"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_test_web_grid
@@ -25700,7 +25725,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner__website
 #: model:ir.model.fields,field_description:base.field_res_users__website
 msgid "Website Link"
-msgstr ""
+msgstr "Webbplatslänk"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_livechat
@@ -26263,7 +26288,7 @@ msgstr "Postnummer"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_country__zip_required
 msgid "Zip Required"
-msgstr ""
+msgstr "Postnummer krävs"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_base_import_language
@@ -26288,19 +26313,19 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_qr_code_sepa
 msgid "account_qr_code_sepa"
-msgstr ""
+msgstr "account_qr_code_sepa"
 
 #. module: base
 #: code:addons/models.py:0
 #, python-format
 msgid "allowed for groups %s"
-msgstr ""
+msgstr "tillåtet för grupper %s"
 
 #. module: base
 #: code:addons/models.py:0
 #, python-format
 msgid "always forbidden"
-msgstr ""
+msgstr "alltid förbjudet"
 
 #. module: base
 #: code:addons/base/models/res_currency.py:0
@@ -26384,7 +26409,7 @@ msgstr "t.ex. svenska"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 msgid "e.g. Mister"
-msgstr ""
+msgstr "t.ex. Herr"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
@@ -26412,7 +26437,7 @@ msgstr "t.ex. sv_SE"
 #: model_terms:ir.ui.view,arch_db:base.view_partner_address_form
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 msgid "e.g. https://www.odoo.com"
-msgstr ""
+msgstr "t.ex. https://www.odoo.com"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_ebay
@@ -26493,7 +26518,7 @@ msgstr ""
 #: code:addons/base/models/ir_qweb_fields.py:0
 #, python-format
 msgid "hour"
-msgstr ""
+msgstr "timme"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_model_fields__ttype__html
@@ -26565,7 +26590,7 @@ msgstr ""
 #: code:addons/base/models/ir_qweb_fields.py:0
 #, python-format
 msgid "minute"
-msgstr ""
+msgstr "minut"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.demo_failures_dialog
@@ -26669,7 +26694,7 @@ msgstr ""
 #: code:addons/base/models/ir_qweb_fields.py:0
 #, python-format
 msgid "second"
-msgstr ""
+msgstr "sekund"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_model_fields__ttype__selection
@@ -26679,12 +26704,12 @@ msgstr "val"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_snailmail_account
 msgid "snailmail_account"
-msgstr ""
+msgstr "snailmail_account"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_users_form_simple_modif
 msgid "test"
-msgstr ""
+msgstr "test"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_test_mimetypes
@@ -26801,13 +26826,13 @@ msgstr ""
 #: code:addons/base/models/ir_qweb_fields.py:0
 #, python-format
 msgid "week"
-msgstr ""
+msgstr "vecka"
 
 #. module: base
 #: code:addons/base/models/ir_qweb_fields.py:0
 #, python-format
 msgid "year"
-msgstr ""
+msgstr "år"
 
 #. module: base
 #: code:addons/base/models/ir_fields.py:0

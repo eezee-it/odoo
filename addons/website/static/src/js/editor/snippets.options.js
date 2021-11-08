@@ -466,6 +466,11 @@ options.Class.include({
                 return weUtils.getCSSVariableValue(params.variable);
             }
             case 'customizeWebsiteColor': {
+                // TODO adapt in master
+                const bugfixedValue = weUtils.getCSSVariableValue(`bugfixed-${params.color}`);
+                if (bugfixedValue) {
+                    return bugfixedValue;
+                }
                 return weUtils.getCSSVariableValue(params.color);
             }
         }
@@ -2569,6 +2574,7 @@ options.registry.ScrollButton = options.Class.extend({
                     'justify-content-center',
                     'mx-auto',
                     'bg-primary',
+                    'o_not_editable',
                 );
                 anchor.href = '#';
                 anchor.contentEditable = "false";

@@ -5,6 +5,7 @@
 # Translators:
 # Martin Trigaux, 2021
 # Mandy Choy <mnc@odoo.com>, 2021
+# Jack N <j.a.ckqueli.neb.a.net.mp@gmail.com>, 2021
 # 敬雲 林 <chingyun@yuanchih-consult.com>, 2021
 # 
 msgid ""
@@ -1625,7 +1626,7 @@ msgstr "小時"
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_employee_public__hr_icon_display
 #: model:ir.model.fields,field_description:hr_holidays.field_res_users__hr_icon_display
 msgid "Hr Icon Display"
-msgstr ""
+msgstr "小時圖標顯示"
 
 #. module: hr_holidays
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_department__id
@@ -1663,7 +1664,7 @@ msgstr "用於指示異常活動的圖示。"
 msgid ""
 "If Accrual Allocation: Number of days allocated in addition to the ones you "
 "will get via the accrual' system."
-msgstr ""
+msgstr "如應計分配: 除了將通過應計計算獲得的天數之外分配的天數"
 
 #. module: hr_holidays
 #: model:ir.model.fields,help:hr_holidays.field_hr_leave_allocation__number_of_hours_display
@@ -2713,7 +2714,7 @@ msgstr "這表明是否仍然可以使用這種類型的休假"
 #: code:addons/hr_holidays/models/hr_leave.py:0
 #, python-format
 msgid "This modification is not allowed in the current state."
-msgstr ""
+msgstr "本狀態不允許此修改"
 
 #. module: hr_holidays
 #: model:ir.model.fields,help:hr_holidays.field_hr_leave_type__responsible_id
@@ -3103,7 +3104,7 @@ msgstr "使用者上線"
 #: code:addons/hr_holidays/static/src/components/partner_im_status_icon/partner_im_status_icon.xml:0
 #, python-format
 msgid "User is out of office"
-msgstr ""
+msgstr "使用者不在辦公室"
 
 #. module: hr_holidays
 #: model:ir.model,name:hr_holidays.model_res_users

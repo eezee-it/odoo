@@ -27,14 +27,15 @@
 # Murat Kaplan <muratk@projetgrup.com>, 2021
 # Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2021
 # Martin Trigaux, 2021
+# Ozlem Cikrikci <ozlemc@eskayazilim.com.tr>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 12:59+0000\n"
+"POT-Creation-Date: 2021-08-16 07:08+0000\n"
 "PO-Revision-Date: 2020-09-07 08:16+0000\n"
-"Last-Translator: Martin Trigaux, 2021\n"
+"Last-Translator: Ozlem Cikrikci <ozlemc@eskayazilim.com.tr>, 2021\n"
 "Language-Team: Turkish (https://www.transifex.com/odoo/teams/41243/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -799,13 +800,7 @@ msgstr "PARA ÜSTÜ"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
-#, python-format
-msgid "Change Customer"
-msgstr "Müşteriyi Değiştir"
-
-#. module: point_of_sale
-#. openerp-web
+#: code:addons/point_of_sale/static/src/js/Popups/NumberPopup.js:0
 #: code:addons/point_of_sale/static/src/xml/Popups/EditListPopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Popups/ProductConfiguratorPopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Screens/PaymentScreen/PaymentScreenElectronicPayment.xml:0
@@ -981,6 +976,13 @@ msgstr "Sandalye"
 #, python-format
 msgid "Change"
 msgstr "Değiştir"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#, python-format
+msgid "Change Customer"
+msgstr "Müşteriyi Değiştir"
 
 #. module: point_of_sale
 #. openerp-web
@@ -2718,7 +2720,7 @@ msgstr "Monitor Stand"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_session__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Aktivite Zaman Sınırım"
 
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.view_pos_session_search
@@ -2923,6 +2925,7 @@ msgstr "Çevrimdışı siparişler"
 
 #. module: point_of_sale
 #. openerp-web
+#: code:addons/point_of_sale/static/src/js/Popups/NumberPopup.js:0
 #: code:addons/point_of_sale/static/src/xml/Popups/EditListPopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Popups/ErrorBarcodePopup.xml:0
 #: code:addons/point_of_sale/static/src/xml/Popups/OfflineErrorPopup.xml:0

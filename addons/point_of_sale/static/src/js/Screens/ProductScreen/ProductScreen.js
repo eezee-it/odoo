@@ -171,7 +171,7 @@ odoo.define('point_of_sale.ProductScreen', function(require) {
                     });
                     return;
                 }
-                const parsedInput = parse.float(event.detail.buffer) || 0
+                const parsedInput = event.detail.buffer && parse.float(event.detail.buffer) || 0;
                 if(lastId != selectedLine.cid)
                     this._showDecreaseQuantityPopup();
                 else if(currentQuantity < parsedInput)
@@ -215,7 +215,12 @@ odoo.define('point_of_sale.ProductScreen', function(require) {
 
             // update the options depending on the type of the scanned code
             if (code.type === 'price') {
-                Object.assign(options, { price: code.value });
+                Object.assign(options, {
+                    price: code.value,
+                    extras: {
+                        price_manually_set: true,
+                    },
+                });
             } else if (code.type === 'weight') {
                 Object.assign(options, {
                     quantity: code.value,

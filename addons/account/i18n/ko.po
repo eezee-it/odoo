@@ -2307,7 +2307,7 @@ msgstr "메시지 작성자. 설정하지 않으면 이메일_보낸사람에 �
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_search
 msgid "Auto Reconcile"
-msgstr ""
+msgstr "자동 조정"
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_move_form
@@ -2324,7 +2324,7 @@ msgstr "지난 청구서를 자동 완성합니다."
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_bank_statement_line__payment_ids
 msgid "Auto-generated Payments"
-msgstr ""
+msgstr "자동생성된 지불"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model__auto_reconcile
@@ -2826,7 +2826,7 @@ msgstr "CUST"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_payment_register__can_edit_wizard
 msgid "Can Edit Wizard"
-msgstr ""
+msgstr "마법사 수정 가능"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_payment_register__can_group_payments
@@ -2881,7 +2881,7 @@ msgstr "취소된 청구서"
 msgid ""
 "Cannot create an invoice of type %(move_type)s with a journal having "
 "%(journal_type)s as type."
-msgstr ""
+msgstr "전표에 %(journal_type)s유형을 가지고 있을 경우 %(move_type)s유형의 청구서를 생성할 수 없습니다. "
 
 #. module: account
 #: code:addons/account/models/account_move.py:0
@@ -3021,13 +3021,13 @@ msgstr "현금 명세서"
 #: code:addons/account/models/account_bank_statement.py:0
 #, python-format
 msgid "Cash difference observed during the counting (Loss)"
-msgstr ""
+msgstr "계산 중 발견된 현금 차이(손실)"
 
 #. module: account
 #: code:addons/account/models/account_bank_statement.py:0
 #, python-format
 msgid "Cash difference observed during the counting (Profit)"
-msgstr ""
+msgstr "계산 중 발견된 현금 차이(이익)"
 
 #. module: account
 #: code:addons/account/models/account_journal_dashboard.py:0
@@ -3074,7 +3074,7 @@ msgstr "계정 변경"
 #: model:ir.model.fields.selection,name:account.selection__account_automatic_entry_wizard__action__change_period
 #: model_terms:ir.ui.view,arch_db:account.view_move_form
 msgid "Change Period"
-msgstr ""
+msgstr "기간 변경"
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_payment_register__writeoff_label
@@ -3748,7 +3748,7 @@ msgstr "현금 계산서 생성"
 #. module: account
 #: model:ir.actions.act_window,name:account.action_open_account_onboarding_create_invoice
 msgid "Create first invoice"
-msgstr ""
+msgstr "첫번째 청구서를 생성합니다"
 
 #. module: account
 #: code:addons/account/models/account_journal_dashboard.py:0
@@ -3778,7 +3778,7 @@ msgstr "첫 번째 현금 올림 생성"
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.onboarding_create_invoice_step
 msgid "Create your first invoice."
-msgstr ""
+msgstr "첫번째 청구서를 생성합니다."
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account__create_uid
@@ -4015,7 +4015,7 @@ msgstr "통화 변환 도움말"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_config_settings__currency_exchange_journal_id
 msgid "Currency Exchange Journal"
-msgstr ""
+msgstr "환전 전표"
 
 #. module: account
 #: code:addons/account/models/account_move.py:0
@@ -4193,7 +4193,7 @@ msgstr "DAP"
 #. module: account
 #: model:account.incoterms,name:account.incoterm_DPU
 msgid "DELIVERED AT PLACE UNLOADED"
-msgstr ""
+msgstr "하역지에 배달됨"
 
 #. module: account
 #: model:account.incoterms,name:account.incoterm_DDP
@@ -5201,17 +5201,17 @@ msgstr "재무 태그"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model_partner_mapping__payment_ref_regex
 msgid "Find Text in Label"
-msgstr ""
+msgstr "라벨에서 문자 검색"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model_partner_mapping__narration_regex
 msgid "Find Text in Notes"
-msgstr ""
+msgstr "노트에서 문자 검색"
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.dashboard_onboarding_bill_step
 msgid "First Bill"
-msgstr ""
+msgstr "첫번째 공급업체 청구서"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_resequence_wizard__first_date
@@ -5231,12 +5231,12 @@ msgstr "첫 번째 해시"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_resequence_wizard__first_name
 msgid "First New Sequence"
-msgstr ""
+msgstr "첫번째 신규 채번규칙"
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.onboarding_create_invoice_step
 msgid "First invoice sent!"
-msgstr ""
+msgstr "첫 청구서가 발송되었습니다!"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line__tax_fiscal_country_id
@@ -5632,7 +5632,7 @@ msgstr "그룹별"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_payment_register__group_payment
 msgid "Group Payments"
-msgstr ""
+msgstr "일괄결제"
 
 #. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_tax__amount_type__group
@@ -6585,7 +6585,7 @@ msgstr "인쇄할지 여부"
 #: model:ir.model.fields,field_description:account.field_account_bank_statement_line__is_reconciled
 #: model:ir.model.fields,field_description:account.field_account_payment__is_reconciled
 msgid "Is Reconciled"
-msgstr ""
+msgstr "조정됨"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line__is_rounding_line
@@ -6715,7 +6715,7 @@ msgstr "분개"
 #. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_move_reversal__date_mode__entry
 msgid "Journal Entry Date"
-msgstr ""
+msgstr "전표 입력일자"
 
 #. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_print_journal__sort_selection__move_name
@@ -7189,7 +7189,7 @@ msgstr "배치"
 #. module: account
 #: model:ir.model.fields,help:account.field_account_journal__sale_activity_user_id
 msgid "Leave empty to assign the Salesperson of the invoice."
-msgstr ""
+msgstr "청구서의 영업담당자를 할당하기 위해 비워둡니다."
 
 #. module: account
 #: model:ir.ui.menu,name:account.menu_finance_entries_accounting_ledgers
@@ -7446,7 +7446,7 @@ msgstr ""
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_form
 msgid "Match Invoice/bill with"
-msgstr ""
+msgstr "청구서/공급업체 청구서 연결"
 
 #. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_reconcile_model__match_label__match_regex
@@ -8214,7 +8214,7 @@ msgstr "회계연도 대차대조표 개시"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account__opening_credit
 msgid "Opening Credit"
-msgstr ""
+msgstr "시작 대변 금액"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_financial_year_op__opening_date
@@ -8224,12 +8224,12 @@ msgstr "개시일"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account__opening_debit
 msgid "Opening Debit"
-msgstr ""
+msgstr "시작 차변 금액"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_company__account_opening_date
 msgid "Opening Entry"
-msgstr ""
+msgstr "시작 입력"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_company__account_opening_journal_id
@@ -8263,7 +8263,7 @@ msgstr "개시 잔액"
 #. module: account
 #: model:ir.model.fields,help:account.field_account_account__opening_balance
 msgid "Opening balance value for this account."
-msgstr ""
+msgstr "이 계정의 시작 잔액"
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_account__opening_credit
@@ -8605,12 +8605,12 @@ msgstr "협력사 원장"
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_form
 msgid "Partner Mapping"
-msgstr ""
+msgstr "파트너 연결"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model__partner_mapping_line_ids
 msgid "Partner Mapping Lines"
-msgstr ""
+msgstr "파트너 연결 내역"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_bank_statement_line__partner_name
@@ -10323,6 +10323,11 @@ msgid ""
 "\n"
 "Only PDF and XML files will be interpreted by Odoo"
 msgstr ""
+"각각의 청구서별 이메일을 따로 전송합니다.\n"
+"\n"
+"모든 파일 확장이 허용됩니다.\n"
+"\n"
+"PDF와 XML파일이 Odoo에서 허용됩니다. "
 
 #. module: account
 #: model:ir.actions.act_window,name:account.account_send_payment_receipt_by_email_action
@@ -11920,7 +11925,7 @@ msgstr "이 기간에 사용된 날짜는 반드시 양수여야 합니다."
 #: model:ir.model.fields,help:account.field_account_move__invoice_origin
 #: model:ir.model.fields,help:account.field_account_payment__invoice_origin
 msgid "The document(s) that generated the invoice."
-msgstr "청구서을 생성한 문서"
+msgstr "청구서을 생성한 문서(들)"
 
 #. module: account
 #: code:addons/account/models/account_bank_statement.py:0
@@ -11983,7 +11988,7 @@ msgstr ""
 msgid ""
 "The following invoice(s) will not be sent by email, because the customers "
 "don't have email address."
-msgstr "고객에게 이메일 주소가 없으므로 다음 청구서을 이메일로 보내지 않습니다."
+msgstr "고객에게 이메일 주소가 없으므로 다음 청구서(들)을 이메일로 보내지 않습니다."
 
 #. module: account
 #: code:addons/account/models/account_reconcile_model.py:0
@@ -14243,7 +14248,7 @@ msgstr ""
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_send__invoice_without_email
 msgid "invoice(s) that will not be sent"
-msgstr "발송되지 않을 청구서"
+msgstr "발송되지 않을 청구서(들)"
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.account_tax_view_tree

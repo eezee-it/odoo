@@ -1311,7 +1311,7 @@ msgstr "Descartar"
 #: model:ir.model.fields,field_description:project.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:project.field_res_partner__display_name
 msgid "Display Name"
-msgstr "Nom mostrat"
+msgstr "Nom a mostrar"
 
 #. module: project
 #: code:addons/project/models/digest.py:0
@@ -3055,7 +3055,7 @@ msgstr "Dissabte"
 #: code:addons/project/static/src/js/project_task_kanban_examples.js:0
 #, python-format
 msgid "Script"
-msgstr ""
+msgstr "Script"
 
 #. module: project
 #: code:addons/project/controllers/portal.py:0
@@ -3717,6 +3717,8 @@ msgid ""
 "To get things done, use activities and status on tasks.<br>\n"
 "                    Chat in real time or by email to collaborate efficiently."
 msgstr ""
+"Milloreu la productivitat usant activitats i estats a les tasques.<br>\n"
+"                    Xategeu en temps real o per correu per a col·laborar de manera eficient."
 
 #. module: project
 #. openerp-web

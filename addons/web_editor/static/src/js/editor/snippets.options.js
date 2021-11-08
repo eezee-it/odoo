@@ -4,6 +4,7 @@ odoo.define('web_editor.snippets.options', function (require) {
 var core = require('web.core');
 const {ColorpickerWidget} = require('web.Colorpicker');
 const Dialog = require('web.Dialog');
+const {scrollTo} = require('web.dom');
 const rpc = require('web.rpc');
 const time = require('web.time');
 var Widget = require('web.Widget');
@@ -278,6 +279,16 @@ const UserValueWidget = Widget.extend({
             // initialized yet. No need to prevent that case: asking a non
             // initialized widget to close itself should just not be a problem
             // and just be ignored.
+            return;
+        }
+        if (!this.el.classList.contains('o_we_widget_opened')) {
+            // Small optimization: it would normally not matter asking to
+            // remove a class of an element if it does not already have it but
+            // in this case we do more: we trigger_up an event and ask to close
+            // all sub widgets. When we ask the editor to close all widgets...
+            // it makes sense not letting every sub button of every select
+            // trigger_up an event. This allows to avoid tens of thousands of
+            // instructions being done at each click in the editor.
             return;
         }
         this.trigger_up('user_value_widget_closing');
@@ -4258,6 +4269,18 @@ registry.BackgroundPosition = SnippetOptionWidget.extend({
             left: position[0] / 100 * delta.x || 0,
             top: position[1] / 100 * delta.y || 0,
         };
+        // Make sure the element is in a visible area.
+        const rect = this.$target[0].getBoundingClientRect();
+        const viewportTop = $(window).scrollTop();
+        const viewportBottom = viewportTop + $(window).height();
+        const visibleHeight = rect.top < viewportTop
+            ? Math.max(0, Math.min(viewportBottom, rect.bottom) - viewportTop) // Starts above
+            : rect.top < viewportBottom
+                ? Math.min(viewportBottom, rect.bottom) - rect.top // Starts inside
+                : 0; // Starts after
+        if (visibleHeight < 200) {
+            await scrollTo(this.$target[0], {extraOffset: 50});
+        }
         this._toggleBgOverlay(true);
     },
     /**
@@ -4339,7 +4362,7 @@ registry.BackgroundPosition = SnippetOptionWidget.extend({
             height: `${this.$target.innerHeight()}px`,
         });
 
-        const topPos = (parseInt(this.$overlay.css('top')) - parseInt(this.$overlayContent.css('top')));
+        const topPos = Math.max(0, $(window).scrollTop() - this.$target.offset().top);
         this.$overlayContent.find('.o_we_overlay_buttons').css('top', `${topPos}px`);
     },
     /**

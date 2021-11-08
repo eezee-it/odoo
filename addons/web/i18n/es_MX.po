@@ -6,8 +6,8 @@
 # Cécile Collart <cco@odoo.com>, 2021
 # Martin Trigaux, 2021
 # Daniela Cervantes <dace@odoo.com>, 2021
-# Lucia Pacheco <lpo@odoo.com>, 2021
 # Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2021
+# Lucia Pacheco <lpo@odoo.com>, 2021
 # Braulio D. López Vázquez <bdl@odoo.com>, 2021
 # 
 msgid ""
@@ -1005,7 +1005,7 @@ msgstr "Cancelar subida"
 #: code:addons/web/static/src/js/views/graph/graph_renderer.js:0
 #, python-format
 msgid "Cannot render chart with mode : "
-msgstr "No puede renderizar el gráfico con el modo:"
+msgstr "No puede visualizar el gráfico con el modo:"
 
 #. module: web
 #. openerp-web
@@ -1753,7 +1753,7 @@ msgstr "Editar etapa"
 #: code:addons/web/static/src/xml/debug.xml:0
 #, python-format
 msgid "Edit View:"
-msgstr "Editar vista:"
+msgstr "Vista de edición:"
 
 #. module: web
 #. openerp-web
@@ -2598,7 +2598,7 @@ msgstr "Monetario"
 #: code:addons/web/static/src/xml/web_calendar.xml:0
 #, python-format
 msgid "Month"
-msgstr "Mes|"
+msgstr "Mes"
 
 #. module: web
 #. openerp-web
@@ -4537,7 +4537,7 @@ msgstr "Ver reglas de registro"
 #. module: web
 #: model:ir.model.fields,field_description:web.field_ir_actions_act_window_view__view_mode
 msgid "View Type"
-msgstr "Ver tipo"
+msgstr "Tipo de vista"
 
 #. module: web
 #. openerp-web

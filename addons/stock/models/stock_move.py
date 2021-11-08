@@ -15,7 +15,7 @@ from odoo import SUPERUSER_ID, _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.osv import expression
 from odoo.tools.float_utils import float_compare, float_is_zero, float_repr, float_round
-from odoo.tools.misc import format_date, OrderedSet
+from odoo.tools.misc import clean_context, format_date, OrderedSet
 
 PROCUREMENT_PRIORITIES = [('0', 'Normal'), ('1', 'Urgent')]
 
@@ -175,7 +175,7 @@ class StockMove(models.Model):
     display_assign_serial = fields.Boolean(compute='_compute_display_assign_serial')
     next_serial = fields.Char('First SN')
     next_serial_count = fields.Integer('Number of SN')
-    orderpoint_id = fields.Many2one('stock.warehouse.orderpoint', 'Original Reordering Rule', check_company=True)
+    orderpoint_id = fields.Many2one('stock.warehouse.orderpoint', 'Original Reordering Rule', check_company=True, index=True)
     forecast_availability = fields.Float('Forecast Availability', compute='_compute_forecast_information', digits='Product Unit of Measure', compute_sudo=True)
     forecast_expected_date = fields.Datetime('Forecasted Expected date', compute='_compute_forecast_information', compute_sudo=True)
     lot_ids = fields.Many2many('stock.production.lot', compute='_compute_lot_ids', inverse='_set_lot_ids', string='Serial Numbers', readonly=False)
@@ -427,7 +427,8 @@ class StockMove(models.Model):
             if picking_type.code in self._consuming_picking_types() and is_unreserved:
                 outgoing_unreserved_moves_per_warehouse[warehouse_by_location[move.location_id]] |= move
             elif picking_type.code in self._consuming_picking_types():
-                move.forecast_availability = move.reserved_availability
+                move.forecast_availability = move.product_uom._compute_quantity(
+                    move.reserved_availability, move.product_id.uom_id, rounding_method='HALF-UP')
 
         for warehouse, moves in outgoing_unreserved_moves_per_warehouse.items():
             if not warehouse:  # No prediction possible if no warehouse.
@@ -502,6 +503,9 @@ class StockMove(models.Model):
                     move_line_vals['product_uom_id'] = move.product_id.uom_id.id
                     move_line_vals['qty_done'] = 1
                     move_lines_commands.append((0, 0, move_line_vals))
+                else:
+                    move_line = move.move_line_ids.filtered(lambda line: line.lot_id.id == lot.id)
+                    move_line.qty_done = 1
             move.write({'move_line_ids': move_lines_commands})
 
     @api.constrains('product_uom')
@@ -553,6 +557,8 @@ class StockMove(models.Model):
         # messages according to the state of the stock.move records.
         receipt_moves_to_reassign = self.env['stock.move']
         move_to_recompute_state = self.env['stock.move']
+        if 'product_uom' in vals and any(move.state == 'done' for move in self):
+            raise UserError(_('You cannot change the UoM for a stock move that has been set to \'Done\'.'))
         if 'product_uom_qty' in vals:
             move_to_unreserve = self.env['stock.move']
             for move in self.filtered(lambda m: m.state not in ('done', 'draft') and m.picking_id):
@@ -866,8 +872,10 @@ class StockMove(models.Model):
             'confirmed': 1,
         }
         moves_todo = self\
-            .filtered(lambda move: move.state not in ['cancel', 'done'])\
+            .filtered(lambda move: move.state not in ['cancel', 'done'] and not (move.state == 'assigned' and not move.product_uom_qty))\
             .sorted(key=lambda move: (sort_map.get(move.state, 0), move.product_uom_qty))
+        if not moves_todo:
+            return 'assigned'
         # The picking should be the same for all moves.
         if moves_todo[:1].picking_id and moves_todo[:1].picking_id.move_type == 'one':
             most_important_move = moves_todo[0]
@@ -962,18 +970,24 @@ class StockMove(models.Model):
 
     def _key_assign_picking(self):
         self.ensure_one()
-        return self.group_id, self.location_id, self.location_dest_id, self.picking_type_id
+        keys = (self.group_id, self.location_id, self.location_dest_id, self.picking_type_id)
+        if self.partner_id and (self.location_id.usage == 'transit' or self.location_dest_id.usage == 'transit'):
+            keys += (self.partner_id, )
+        return keys
 
     def _search_picking_for_assignation(self):
         self.ensure_one()
-        picking = self.env['stock.picking'].search([
-                ('group_id', '=', self.group_id.id),
-                ('location_id', '=', self.location_id.id),
-                ('location_dest_id', '=', self.location_dest_id.id),
-                ('picking_type_id', '=', self.picking_type_id.id),
-                ('printed', '=', False),
-                ('immediate_transfer', '=', False),
-                ('state', 'in', ['draft', 'confirmed', 'waiting', 'partially_available', 'assigned'])], limit=1)
+        domain = [
+            ('group_id', '=', self.group_id.id),
+            ('location_id', '=', self.location_id.id),
+            ('location_dest_id', '=', self.location_dest_id.id),
+            ('picking_type_id', '=', self.picking_type_id.id),
+            ('printed', '=', False),
+            ('immediate_transfer', '=', False),
+            ('state', 'in', ['draft', 'confirmed', 'waiting', 'partially_available', 'assigned'])]
+        if self.partner_id and (self.location_id.usage == 'transit' or self.location_dest_id.usage == 'transit'):
+            domain += [('partner_id', '=', self.partner_id.id)]
+        picking = self.env['stock.picking'].search(domain, limit=1)
         return picking
 
     def _assign_picking(self):
@@ -1143,7 +1157,8 @@ class StockMove(models.Model):
 
         # assign picking in batch for all confirmed move that share the same details
         for moves in to_assign.values():
-            moves._assign_picking()
+            moves.with_context(clean_context(
+                moves.env.context))._assign_picking()
         self._push_apply()
         self._check_company()
         moves = self
@@ -1255,17 +1270,16 @@ class StockMove(models.Model):
 
         # Find a candidate move line to update or create a new one.
         for reserved_quant, quantity in quants:
-            to_update = self.move_line_ids.filtered(lambda ml: ml._reservation_is_updatable(quantity, reserved_quant))
+            to_update = next((line for line in self.move_line_ids if line._reservation_is_updatable(quantity, reserved_quant)), False)
             if to_update:
-                uom_quantity = self.product_id.uom_id._compute_quantity(quantity, to_update[0].product_uom_id, rounding_method='HALF-UP')
+                uom_quantity = self.product_id.uom_id._compute_quantity(quantity, to_update.product_uom_id, rounding_method='HALF-UP')
                 uom_quantity = float_round(uom_quantity, precision_digits=rounding)
-                uom_quantity_back_to_product_uom = to_update[0].product_uom_id._compute_quantity(uom_quantity, self.product_id.uom_id, rounding_method='HALF-UP')
+                uom_quantity_back_to_product_uom = to_update.product_uom_id._compute_quantity(uom_quantity, self.product_id.uom_id, rounding_method='HALF-UP')
             if to_update and float_compare(quantity, uom_quantity_back_to_product_uom, precision_digits=rounding) == 0:
-                to_update[0].with_context(bypass_reservation_update=True).product_uom_qty += uom_quantity
+                to_update.with_context(bypass_reservation_update=True).product_uom_qty += uom_quantity
             else:
                 if self.product_id.tracking == 'serial':
-                    for i in range(0, int(quantity)):
-                        self.env['stock.move.line'].create(self._prepare_move_line_vals(quantity=1, reserved_quant=reserved_quant))
+                    self.env['stock.move.line'].create([self._prepare_move_line_vals(quantity=1, reserved_quant=reserved_quant) for i in range(int(quantity))])
                 else:
                     self.env['stock.move.line'].create(self._prepare_move_line_vals(quantity=quantity, reserved_quant=reserved_quant))
         return taken_quantity
@@ -1622,7 +1636,7 @@ class StockMove(models.Model):
         return new_move_vals
 
     def _recompute_state(self):
-        moves_state_to_write = defaultdict(OrderedSet)
+        moves_state_to_write = defaultdict(set)
         for move in self:
             if move.state in ('cancel', 'done', 'draft'):
                 continue
@@ -1637,8 +1651,7 @@ class StockMove(models.Model):
             else:
                 moves_state_to_write['confirmed'].add(move.id)
         for state, moves_ids in moves_state_to_write.items():
-            moves = self.env['stock.move'].browse(moves_ids)
-            moves.write({'state': state})
+            self.browse(moves_ids).filtered(lambda m: m.state != state).state = state
 
     @api.model
     def _consuming_picking_types(self):
@@ -1804,5 +1817,6 @@ class StockMove(models.Model):
         for move in self:
             domains.append([('product_id', '=', move.product_id.id), ('location_id', '=', move.location_dest_id.id)])
         static_domain = [('state', 'in', ['confirmed', 'partially_available']), ('procure_method', '=', 'make_to_stock')]
-        moves_to_reserve = self.env['stock.move'].search(expression.AND([static_domain, expression.OR(domains)]))
+        moves_to_reserve = self.env['stock.move'].search(expression.AND([static_domain, expression.OR(domains)]),
+                                                         order='priority desc, date asc, id asc')
         moves_to_reserve._action_assign()

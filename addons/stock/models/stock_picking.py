@@ -8,6 +8,7 @@ from collections import defaultdict
 from datetime import date
 from itertools import groupby
 from operator import attrgetter, itemgetter
+from collections import defaultdict
 
 from odoo import SUPERUSER_ID, _, api, fields, models
 from odoo.addons.stock.models.stock_move import PROCUREMENT_PRIORITIES
@@ -91,7 +92,7 @@ class PickingType(models.Model):
                     'company_id': wh.company_id.id,
                 }).id
             else:
-                vals['sequence_id'] = self.env['ir.sequence'].create({
+                vals['sequence_id'] = self.env['ir.sequence'].sudo().create({
                     'name': _('Sequence') + ' ' + vals['sequence_code'],
                     'prefix': vals['sequence_code'], 'padding': 5,
                     'company_id': vals.get('company_id') or self.env.company.id,
@@ -108,13 +109,13 @@ class PickingType(models.Model):
         if 'sequence_code' in vals:
             for picking_type in self:
                 if picking_type.warehouse_id:
-                    picking_type.sequence_id.write({
+                    picking_type.sequence_id.sudo().write({
                         'name': picking_type.warehouse_id.name + ' ' + _('Sequence') + ' ' + vals['sequence_code'],
                         'prefix': picking_type.warehouse_id.code + '/' + vals['sequence_code'] + '/', 'padding': 5,
                         'company_id': picking_type.warehouse_id.company_id.id,
                     })
                 else:
-                    picking_type.sequence_id.write({
+                    picking_type.sequence_id.sudo().write({
                         'name': _('Sequence') + ' ' + vals['sequence_code'],
                         'prefix': vals['sequence_code'], 'padding': 5,
                         'company_id': picking_type.env.company.id,
@@ -476,17 +477,28 @@ class Picking(models.Model):
         - Done: if the picking is done.
         - Cancelled: if the picking is cancelled
         '''
+        picking_moves_state_map = defaultdict(dict)
+        picking_move_lines = defaultdict(set)
+        for move in self.env['stock.move'].search([('picking_id', 'in', self.ids)]):
+            picking_id = move.picking_id
+            move_state = move.state
+            picking_moves_state_map[picking_id.id].update({
+                'any_draft': picking_moves_state_map[picking_id.id].get('any_draft', False) or move_state == 'draft',
+                'all_cancel': picking_moves_state_map[picking_id.id].get('all_cancel', True) and move_state == 'cancel',
+                'all_cancel_done': picking_moves_state_map[picking_id.id].get('all_cancel_done', True) and move_state in ('cancel', 'done'),
+            })
+            picking_move_lines[picking_id.id].add(move.id)
         for picking in self:
-            if not picking.move_lines:
+            if not picking_moves_state_map[picking.id]:
                 picking.state = 'draft'
-            elif any(move.state == 'draft' for move in picking.move_lines):  # TDE FIXME: should be all ?
+            elif picking_moves_state_map[picking.id]['any_draft']:
                 picking.state = 'draft'
-            elif all(move.state == 'cancel' for move in picking.move_lines):
+            elif picking_moves_state_map[picking.id]['all_cancel']:
                 picking.state = 'cancel'
-            elif all(move.state in ['cancel', 'done'] for move in picking.move_lines):
+            elif picking_moves_state_map[picking.id]['all_cancel_done']:
                 picking.state = 'done'
             else:
-                relevant_move_state = picking.move_lines._get_relevant_state_among_moves()
+                relevant_move_state = self.env['stock.move'].browse(picking_move_lines[picking.id])._get_relevant_state_among_moves()
                 if picking.immediate_transfer and relevant_move_state not in ('draft', 'cancel', 'done'):
                     picking.state = 'assigned'
                 elif relevant_move_state == 'partially_available':

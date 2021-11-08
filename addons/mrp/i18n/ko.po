@@ -687,12 +687,12 @@ msgstr "참조된 재료 명세서의 상세 내역"
 #. module: mrp
 #: model:ir.model,name:mrp.model_mrp_production_backorder_line
 msgid "Backorder Confirmation Line"
-msgstr ""
+msgstr "잔여주문 승인 내역"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_backorder__mrp_production_backorder_line_ids
 msgid "Backorder Confirmation Lines"
-msgstr ""
+msgstr "가용주문 승인 내역"
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_production.py:0
@@ -2732,12 +2732,21 @@ msgstr "일반"
 #: code:addons/mrp/models/mrp_production.py:0
 #, python-format
 msgid "Not Available"
-msgstr ""
+msgstr "사용불가"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_stock_scrap__workorder_id
 msgid "Not to restrict or prefer quants, but informative."
 msgstr "퀀트를 제한하거나 선호하지는 않지만 유익합니다."
+
+#. module: mrp
+#: code:addons/mrp/models/mrp_workcenter.py:0
+#, python-format
+msgid ""
+"Note that archived work center(s): '%s' is/are still linked to active Bill "
+"of Materials, which means that operations can still be planned on it/them. "
+"To prevent this, deletion of the work center is recommended instead."
+msgstr ""
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom__message_needaction_counter
@@ -4303,7 +4312,7 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_backorder_line__to_backorder
 msgid "To Backorder"
-msgstr ""
+msgstr "잔여주문으로"
 
 #. module: mrp
 #: model:ir.model.fields.selection,name:mrp.selection__mrp_production__state__to_close
@@ -5212,7 +5221,7 @@ msgstr "일"
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.stock_warn_insufficient_qty_unbuild_form_view
 msgid "from location"
-msgstr ""
+msgstr "출발공간"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_routing_workcenter_form_view

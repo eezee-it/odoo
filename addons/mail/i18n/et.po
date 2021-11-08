@@ -15,8 +15,8 @@
 # Andre Roomet <andreroomet@gmail.com>, 2021
 # Algo Kärp <algokarp@gmail.com>, 2021
 # Piia Paurson <piia@avalah.ee>, 2021
-# Triine Aavik <triine@avalah.ee>, 2021
 # Martin Talts <martin.t@avalah.ee>, 2021
+# Triine Aavik <triine@avalah.ee>, 2021
 # Eneli Õigus <enelioigus@gmail.com>, 2021
 # 
 msgid ""
@@ -668,7 +668,7 @@ msgstr "Lisakontaktid"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.view_mail_form
 msgid "Advanced"
-msgstr "Detailsem"
+msgstr "Edasijõudnu"
 
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.email_template_form
@@ -1979,14 +1979,14 @@ msgstr "Tähtaeg"
 #: code:addons/mail/static/src/js/activity.js:0
 #, python-format
 msgid "Due in %d days"
-msgstr ""
+msgstr "Tähtaeg %d päeva pärast"
 
 #. module: mail
 #. openerp-web
 #: code:addons/mail/static/src/components/activity/activity.js:0
 #, python-format
 msgid "Due in %d days:"
-msgstr ""
+msgstr "Tähtaeg %d päeva pärast:"
 
 #. module: mail
 #. openerp-web
@@ -2313,12 +2313,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:mail.field_mail_mail__failure_reason
 #: model_terms:ir.ui.view,arch_db:mail.view_mail_form
 msgid "Failure Reason"
-msgstr "Evaõnnestumise põhjus"
+msgstr "Ebaõnnestumise põhjus"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_notification__failure_reason
 msgid "Failure reason"
-msgstr ""
+msgstr "Ebaõnnestumise põhjus"
 
 #. module: mail
 #: model:ir.model.fields,help:mail.field_mail_mail__failure_reason
@@ -4410,7 +4410,7 @@ msgstr ""
 #: code:addons/mail/models/mail_channel.py:0
 #, python-format
 msgid "Only mailing lists can be moderated."
-msgstr ""
+msgstr "Ainult meliliste saab modereerida."
 
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__mail_channel_partner__fold_state__open
@@ -4772,7 +4772,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mail.mail_notification_light
 #: model_terms:ir.ui.view,arch_db:mail.mail_notification_paynow
 msgid "Powered by"
-msgstr "Tootja"
+msgstr "Kiri saadetud läbi"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_activity_type__previous_type_ids
@@ -6768,7 +6768,7 @@ msgstr "Sina:"
 #: model_terms:ir.ui.view,arch_db:mail.mail_notification_light
 #: model_terms:ir.ui.view,arch_db:mail.mail_notification_paynow
 msgid "Your"
-msgstr " Sulle koostatud"
+msgstr "Sinu"
 
 #. module: mail
 #. openerp-web
@@ -6856,7 +6856,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mail.view_mail_form
 #, python-format
 msgid "by"
-msgstr "on"
+msgstr " "
 
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.mail_bounce_catchall
@@ -7084,7 +7084,7 @@ msgstr ""
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.message_notification_email
 msgid "using"
-msgstr "kasutades"
+msgstr "poolt läbi"
 
 #. module: mail
 #. openerp-web

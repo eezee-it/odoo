@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Cécile Collart <cco@odoo.com>, 2021
+# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2021
 # Braulio D. López Vázquez <bdl@odoo.com>, 2021
 # 
 msgid ""
@@ -343,7 +344,7 @@ msgstr ""
 "</td></tr>\n"
 "\n"
 "<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
-"    Con tecnología <a target=\"_blank\" href=\"https://www.odoo.com?utm_source=db&amp;utm_medium=email\" style=\"color: #875A7B;\">Odoo</a>\n"
+"    Con tecnología de <a target=\"_blank\" href=\"https://www.odoo.com?utm_source=db&amp;utm_medium=email\" style=\"color: #875A7B;\">Odoo</a>\n"
 "</td></tr>\n"
 "</table>\n"
 "        "
@@ -590,7 +591,7 @@ msgstr "¡Boom! Récord del equipo durante los últimos 30 días."
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead__message_bounce
 msgid "Bounce"
-msgstr "Rebote"
+msgstr "Devuelto"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:0
@@ -779,7 +780,7 @@ msgstr "Felicidades, ¡mucha suerte al atrapar peces gordos! :)"
 #. module: crm
 #: model_terms:ir.ui.view,arch_db:crm.res_config_settings_view_form
 msgid "Consider leads created as of the"
-msgstr "Considera las iniciativas creadas a partir de la"
+msgstr "Considera los leads creados a partir del"
 
 #. module: crm
 #: model:ir.model,name:crm.model_res_partner
@@ -921,7 +922,7 @@ msgstr "Crear un nuevo cliente"
 #: model_terms:ir.actions.act_window,help:crm.crm_case_form_view_salesteams_opportunity
 #, python-format
 msgid "Create a new lead"
-msgstr "Crear una nuevo lead"
+msgstr "Crear un nuevo lead"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:0
@@ -1261,8 +1262,8 @@ msgid ""
 "customer). It will appear as a tooltip over the stage's name."
 msgstr ""
 "Ingrese aquí los requerimientos internos para esta etapa (ej: oferta enviada"
-" al cliente). Automáticamente aparecerá como consejo de herramienta sobre el"
-" nombre de la fase."
+" al cliente). Automáticamente aparecerá como información sobre herramienta "
+"sobre el nombre de la fase."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead__date_deadline
@@ -1378,8 +1379,8 @@ msgid ""
 msgstr ""
 "No hay nada peor para un equipo de ventas que una sequía de leads. "
 "Afortunadamente, con solo unos clics, puede generar leads específicamente "
-"dirigidos a sus necesidades: tamaño de compañía, industria, etc. Le "
-"ofrecemos 200 créditos gratis para que pruebe esta función."
+"dirigidos a sus necesidades: tamaño de la empresa, sector, etc. Le ofrecemos"
+" 200 créditos gratis para que pruebe esta función."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead2opportunity_partner__force_assignment
@@ -1631,7 +1632,7 @@ msgstr "Estado de kanban"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_digest_digest__kpi_crm_lead_created_value
 msgid "Kpi Crm Lead Created Value"
-msgstr "Valor creado de iniciativa de KPI del CRM"
+msgstr "KPI de valor creado de lead del CRM"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_digest_digest__kpi_crm_opportunities_won_value
@@ -2034,7 +2035,7 @@ msgstr "Fusionar oportunidades"
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead2opportunity_partner_mass__deduplicate
 msgid "Merge with existing leads/opportunities of each partner"
-msgstr "Combinar con leads / oportunidades existentes de cada partner"
+msgstr "Fusionar con leads/oportunidades existentes de cada partner"
 
 #. module: crm
 #: model:ir.model.fields.selection,name:crm.selection__crm_lead2opportunity_partner__name__merge
@@ -2840,7 +2841,7 @@ msgstr "Mostrar únicamente oportunidades"
 #. module: crm
 #: model_terms:ir.ui.view,arch_db:crm.crm_lead_view_list_activities
 msgid "Snooze 7d"
-msgstr "Snooze 7d"
+msgstr "Silenciar 7d"
 
 #. module: crm
 #: model_terms:ir.actions.act_window,help:crm.crm_lost_reason_action
@@ -2938,7 +2939,7 @@ msgstr ""
 "Estado basado en actividades\n"
 "Vencida: la fecha límite ya ha pasado\n"
 "Hoy: La fecha límite es hoy\n"
-"Planificada: futuras actividades."
+"Planeada: futuras actividades."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead__street
@@ -3413,7 +3414,7 @@ msgstr "Muy alta"
 #. module: crm
 #: model_terms:ir.ui.view,arch_db:crm.res_config_settings_view_form
 msgid "Visits to Leads"
-msgstr "Visitas a los leads"
+msgstr "De visitas a leads"
 
 #. module: crm
 #: model:crm.lost.reason,name:crm.lost_reason_2

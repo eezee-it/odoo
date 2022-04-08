@@ -485,6 +485,8 @@ class StockMove(models.Model):
 
     def _set_lot_ids(self):
         for move in self:
+            if move.product_id.tracking != 'serial':
+                continue
             move_lines_commands = []
             if move.picking_type_id.show_reserved is False:
                 mls = move.move_line_nosuggest_ids
@@ -1394,7 +1396,8 @@ class StockMove(models.Model):
                         grouped_move_lines_out[k] = sum(self.env['stock.move.line'].concat(*list(g)).mapped('product_qty'))
                     available_move_lines = {key: grouped_move_lines_in[key] - grouped_move_lines_out.get(key, 0) for key in grouped_move_lines_in.keys()}
                     # pop key if the quantity available amount to 0
-                    available_move_lines = dict((k, v) for k, v in available_move_lines.items() if v)
+                    rounding = move.product_id.uom_id.rounding
+                    available_move_lines = dict((k, v) for k, v in available_move_lines.items() if float_compare(v, 0, precision_rounding=rounding) > 0)
 
                     if not available_move_lines:
                         continue
@@ -1638,11 +1641,12 @@ class StockMove(models.Model):
     def _recompute_state(self):
         moves_state_to_write = defaultdict(set)
         for move in self:
+            rounding = move.product_uom.rounding
             if move.state in ('cancel', 'done', 'draft'):
                 continue
-            elif move.reserved_availability == move.product_uom_qty:
+            elif float_compare(move.reserved_availability, move.product_uom_qty, precision_rounding=rounding) == 0:
                 moves_state_to_write['assigned'].add(move.id)
-            elif move.reserved_availability and move.reserved_availability <= move.product_uom_qty:
+            elif move.reserved_availability and float_compare(move.reserved_availability, move.product_uom_qty, precision_rounding=rounding) <= 0:
                 moves_state_to_write['partially_available'].add(move.id)
             elif move.procure_method == 'make_to_order' and not move.move_orig_ids:
                 moves_state_to_write['waiting'].add(move.id)

@@ -182,7 +182,10 @@ class SaleOrder(models.Model):
 
     user_id = fields.Many2one(
         'res.users', string='Salesperson', index=True, tracking=2, default=lambda self: self.env.user,
-        domain=lambda self: [('groups_id', 'in', self.env.ref('sales_team.group_sale_salesman').id)])
+        domain=lambda self: "[('groups_id', '=', {}), ('share', '=', False), ('company_ids', '=', company_id)]".format(
+            self.env.ref("sales_team.group_sale_salesman").id
+        ),)
+
     partner_id = fields.Many2one(
         'res.partner', string='Customer', readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
@@ -206,8 +209,9 @@ class SaleOrder(models.Model):
     currency_id = fields.Many2one(related='pricelist_id.currency_id', depends=["pricelist_id"], store=True)
     analytic_account_id = fields.Many2one(
         'account.analytic.account', 'Analytic Account',
-        readonly=True, copy=False, check_company=True,  # Unrequired company
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
+        compute='_compute_analytic_account_id', store=True,
+        readonly=False, copy=False, check_company=True,  # Unrequired company
+        states={'sale': [('readonly', True)], 'done': [('readonly', True)], 'cancel': [('readonly', True)]},
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         help="The analytic account related to a sales order.")
 
@@ -322,6 +326,18 @@ class SaleOrder(models.Model):
             else:
                 order.expected_date = False
 
+    @api.depends('partner_id', 'date_order')
+    def _compute_analytic_account_id(self):
+        for order in self:
+            if not order.analytic_account_id:
+                default_analytic_account = order.env['account.analytic.default'].sudo().account_get(
+                    partner_id=order.partner_id.id,
+                    user_id=order.env.uid,
+                    date=order.date_order,
+                    company_id=order.company_id.id,
+                )
+                order.analytic_account_id = default_analytic_account.analytic_id
+
     @api.onchange('expected_date')
     def _onchange_commitment_date(self):
         self.commitment_date = self.expected_date
@@ -335,7 +351,7 @@ class SaleOrder(models.Model):
         for order in self:
             total = 0.0
             for line in order.order_line:
-                total += line.price_subtotal + line.price_unit * ((line.discount or 0.0) / 100.0) * line.product_uom_qty  # why is there a discount in a field named amount_undiscounted ??
+                total += (line.price_subtotal * 100)/(100-line.discount) if line.discount != 100 else (line.price_unit * line.product_uom_qty)
             order.amount_undiscounted = total
 
     @api.depends('state')
@@ -468,25 +484,16 @@ class SaleOrder(models.Model):
         else:
             self.show_update_pricelist = False
 
+    def _get_update_prices_lines(self):
+        """ Hook to exclude specific lines which should not be updated based on price list recomputation """
+        return self.order_line.filtered(lambda line: not line.display_type)
+
     def update_prices(self):
         self.ensure_one()
-        lines_to_update = []
-        for line in self.order_line.filtered(lambda line: not line.display_type):
-            product = line.product_id.with_context(
-                partner=self.partner_id,
-                quantity=line.product_uom_qty,
-                date=self.date_order,
-                pricelist=self.pricelist_id.id,
-                uom=line.product_uom.id
-            )
-            price_unit = self.env['account.tax']._fix_tax_included_price_company(
-                line._get_display_price(product), line.product_id.taxes_id, line.tax_id, line.company_id)
-            if self.pricelist_id.discount_policy == 'without_discount' and price_unit:
-                discount = max(0, (price_unit - product.price) * 100 / price_unit)
-            else:
-                discount = 0
-            lines_to_update.append((1, line.id, {'price_unit': price_unit, 'discount': discount}))
-        self.update({'order_line': lines_to_update})
+        for line in self._get_update_prices_lines():
+            line.product_uom_change()
+            line.discount = 0  # Force 0 as discount for the cases when _onchange_discount directly returns
+            line._onchange_discount()
         self.show_update_pricelist = False
         self.message_post(body=_("Product prices have been recomputed according to pricelist <b>%s<b> ", self.pricelist_id.display_name))
 
@@ -818,6 +825,9 @@ Reason(s) of this behavior could be:
                 'context': {'default_order_id': self.id},
                 'target': 'new'
             }
+        return self._action_cancel()
+
+    def _action_cancel(self):
         inv = self.invoice_ids.filtered(lambda inv: inv.state == 'draft')
         inv.button_cancel()
         return self.write({'state': 'cancel'})
@@ -1043,11 +1053,11 @@ Reason(s) of this behavior could be:
                 if payment_token and payment_token.acquirer_id != acquirer:
                     raise ValidationError(_('Invalid token found! Token acquirer %s != %s') % (
                     payment_token.acquirer_id.name, acquirer.name))
-                if payment_token and payment_token.partner_id != partner:
-                    raise ValidationError(_('Invalid token found! Token partner %s != %s') % (
-                    payment_token.partner.name, partner.name))
             else:
                 acquirer = payment_token.acquirer_id
+
+            if payment_token and payment_token.partner_id != partner:
+                raise ValidationError(_('Invalid token found!'))
 
         # Check an acquirer is there.
         if not acquirer_id and not acquirer:
@@ -1369,7 +1379,7 @@ class SaleOrderLine(models.Model):
     price_total = fields.Monetary(compute='_compute_amount', string='Total', readonly=True, store=True)
 
     price_reduce = fields.Float(compute='_get_price_reduce', string='Price Reduce', digits='Product Price', readonly=True, store=True)
-    tax_id = fields.Many2many('account.tax', string='Taxes', domain=['|', ('active', '=', False), ('active', '=', True)])
+    tax_id = fields.Many2many('account.tax', string='Taxes', context={'active_test': False})
     price_reduce_taxinc = fields.Monetary(compute='_get_price_reduce_tax', string='Price Reduce Tax inc', readonly=True, store=True)
     price_reduce_taxexcl = fields.Monetary(compute='_get_price_reduce_notax', string='Price Reduce Tax excl', readonly=True, store=True)
 
@@ -1420,6 +1430,7 @@ class SaleOrderLine(models.Model):
     order_partner_id = fields.Many2one(related='order_id.partner_id', store=True, string='Customer', readonly=False)
     analytic_tag_ids = fields.Many2many(
         'account.analytic.tag', string='Analytic Tags',
+        compute='_compute_analytic_tag_ids', store=True, readonly=False,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
     analytic_line_ids = fields.One2many('account.analytic.line', 'so_line', string="Analytic lines")
     is_expense = fields.Boolean('Is expense', help="Is true if the sales order line comes from an expense or a vendor bills")
@@ -1596,6 +1607,19 @@ class SaleOrderLine(models.Model):
 
             line.untaxed_amount_to_invoice = amount_to_invoice
 
+    @api.depends('product_id', 'order_id.date_order', 'order_id.partner_id')
+    def _compute_analytic_tag_ids(self):
+        for line in self:
+            if not line.analytic_tag_ids:
+                default_analytic_account = line.env['account.analytic.default'].sudo().account_get(
+                    product_id=line.product_id.id,
+                    partner_id=line.order_id.partner_id.id,
+                    user_id=self.env.uid,
+                    date=line.order_id.date_order,
+                    company_id=line.company_id.id,
+                )
+                line.analytic_tag_ids = default_analytic_account.analytic_tag_ids
+
     def _get_invoice_line_sequence(self, new=0, old=0):
         """
         Method intended to be overridden in third-party module if we want to prevent the resequencing
@@ -1709,7 +1733,15 @@ class SaleOrderLine(models.Model):
         self._compute_tax_id()
 
         if self.order_id.pricelist_id and self.order_id.partner_id:
-            vals['price_unit'] = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(product), product.taxes_id, self.tax_id, self.company_id)
+            vals['price_unit'] = product._get_tax_included_unit_price(
+                self.company_id,
+                self.order_id.currency_id,
+                self.order_id.date_order,
+                'sale',
+                fiscal_position=self.order_id.fiscal_position_id,
+                product_price_unit=self._get_display_price(product),
+                product_currency=self.order_id.currency_id
+            )
         self.update(vals)
 
         title = False
@@ -1742,7 +1774,15 @@ class SaleOrderLine(models.Model):
                 uom=self.product_uom.id,
                 fiscal_position=self.env.context.get('fiscal_position')
             )
-            self.price_unit = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(product), product.taxes_id, self.tax_id, self.company_id)
+            self.price_unit = product._get_tax_included_unit_price(
+                self.company_id,
+                self.order_id.currency_id,
+                self.order_id.date_order,
+                'sale',
+                fiscal_position=self.order_id.fiscal_position_id,
+                product_price_unit=self._get_display_price(product),
+                product_currency=self.order_id.currency_id
+            )
 
     def name_get(self):
         result = []
@@ -1760,6 +1800,7 @@ class SaleOrderLine(models.Model):
                 args or [],
                 ['|', ('order_id.name', operator, name), ('name', operator, name)]
             ])
+            return self._search(args, limit=limit, access_rights_uid=name_get_uid)
         return super(SaleOrderLine, self)._name_search(name, args=args, operator=operator, limit=limit, name_get_uid=name_get_uid)
 
     def _check_line_unlink(self):

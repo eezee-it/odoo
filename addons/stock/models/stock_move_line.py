@@ -79,7 +79,7 @@ class StockMoveLine(models.Model):
             else:
                 line.lots_visible = line.product_id.tracking != 'none'
 
-    @api.depends('product_id', 'product_uom_id', 'product_uom_qty')
+    @api.depends('product_id', 'product_id.uom_id', 'product_uom_id', 'product_uom_qty')
     def _compute_product_qty(self):
         for line in self:
             line.product_qty = line.product_uom_id._compute_quantity(line.product_uom_qty, line.product_id.uom_id, rounding_method='HALF-UP')
@@ -195,20 +195,7 @@ class StockMoveLine(models.Model):
         mls = super().create(vals_list)
 
         def create_move(move_line):
-            new_move = self.env['stock.move'].create({
-                'name': _('New Move:') + move_line.product_id.display_name,
-                'product_id': move_line.product_id.id,
-                'product_uom_qty': 0 if move_line.picking_id and move_line.picking_id.state != 'done' else move_line.qty_done,
-                'product_uom': move_line.product_uom_id.id,
-                'description_picking': move_line.description_picking,
-                'location_id': move_line.picking_id.location_id.id,
-                'location_dest_id': move_line.picking_id.location_dest_id.id,
-                'picking_id': move_line.picking_id.id,
-                'state': move_line.picking_id.state,
-                'picking_type_id': move_line.picking_id.picking_type_id.id,
-                'restrict_partner_id': move_line.picking_id.owner_id.id,
-                'company_id': move_line.picking_id.company_id.id,
-            })
+            new_move = self.env['stock.move'].create(move_line._prepare_stock_move_vals())
             move_line.move_id = new_move.id
 
         # If the move line is directly create on the picking view.
@@ -438,9 +425,9 @@ class StockMoveLine(models.Model):
             precision_digits = self.env['decimal.precision'].precision_get('Product Unit of Measure')
             qty_done = float_round(ml.qty_done, precision_digits=precision_digits, rounding_method='HALF-UP')
             if float_compare(uom_qty, qty_done, precision_digits=precision_digits) != 0:
-                raise UserError(_('The quantity done for the product "%s" doesn\'t respect the rounding precision \
-                                  defined on the unit of measure "%s". Please change the quantity done or the \
-                                  rounding precision of your unit of measure.') % (ml.product_id.display_name, ml.product_uom_id.name))
+                raise UserError(_('The quantity done for the product "%s" doesn\'t respect the rounding precision '
+                                  'defined on the unit of measure "%s". Please change the quantity done or the '
+                                  'rounding precision of your unit of measure.') % (ml.product_id.display_name, ml.product_uom_id.name))
 
             qty_done_float_compared = float_compare(ml.qty_done, 0, precision_rounding=ml.product_uom_id.rounding)
             if qty_done_float_compared > 0:
@@ -680,6 +667,7 @@ class StockMoveLine(models.Model):
                                                    'description': description,
                                                    'qty_done': move_line.qty_done,
                                                    'product_uom': uom.name,
+                                                   'product_uom_rec': uom,
                                                    'product': move_line.product_id}
             else:
                 aggregated_move_lines[line_key]['qty_done'] += move_line.qty_done
@@ -688,3 +676,21 @@ class StockMoveLine(models.Model):
     def _compute_sale_price(self):
         # To Override
         pass
+
+    @api.model
+    def _prepare_stock_move_vals(self):
+        self.ensure_one()
+        return {
+            'name': _('New Move:') + self.product_id.display_name,
+            'product_id': self.product_id.id,
+            'product_uom_qty': 0 if self.picking_id and self.picking_id.state != 'done' else self.qty_done,
+            'product_uom': self.product_uom_id.id,
+            'description_picking': self.description_picking,
+            'location_id': self.picking_id.location_id.id,
+            'location_dest_id': self.picking_id.location_dest_id.id,
+            'picking_id': self.picking_id.id,
+            'state': self.picking_id.state,
+            'picking_type_id': self.picking_id.picking_type_id.id,
+            'restrict_partner_id': self.picking_id.owner_id.id,
+            'company_id': self.picking_id.company_id.id,
+        }

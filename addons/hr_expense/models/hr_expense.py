@@ -63,7 +63,7 @@ class HrExpense(models.Model):
     # product_id not required to allow create an expense without product via mail alias, but should be required on the view.
     product_id = fields.Many2one('product.product', string='Product', readonly=True, tracking=True, states={'draft': [('readonly', False)], 'reported': [('readonly', False)], 'refused': [('readonly', False)]}, domain="[('can_be_expensed', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]", ondelete='restrict')
     product_uom_id = fields.Many2one('uom.uom', string='Unit of Measure', compute='_compute_from_product_id_company_id',
-        store=True, states={'draft': [('readonly', False)], 'refused': [('readonly', False)]},
+        store=True, copy=True, states={'draft': [('readonly', False)], 'refused': [('readonly', False)]},
         default=_default_product_uom_id, domain="[('category_id', '=', product_uom_category_id)]")
     product_uom_category_id = fields.Many2one(related='product_id.uom_id.category_id', readonly=True)
     unit_amount = fields.Float("Unit Price", compute='_compute_from_product_id_company_id', store=True, required=True, copy=True,
@@ -74,7 +74,7 @@ class HrExpense(models.Model):
         domain="[('company_id', '=', company_id), ('type_tax_use', '=', 'purchase')]", string='Taxes')
     untaxed_amount = fields.Float("Subtotal", store=True, compute='_compute_amount', digits='Account')
     total_amount = fields.Monetary("Total", compute='_compute_amount', store=True, currency_field='currency_id', tracking=True)
-    amount_residual = fields.Monetary(string='Amount Due', compute='_compute_amount_residual')
+    amount_residual = fields.Monetary(string='Amount Due', compute='_compute_amount_residual', compute_sudo=True)
     company_currency_id = fields.Many2one('res.currency', string="Report Company Currency", related='sheet_id.currency_id', store=True, readonly=False)
     total_amount_company = fields.Monetary("Total (Company Currency)", compute='_compute_total_amount_company', store=True, currency_field='company_currency_id')
     company_id = fields.Many2one('res.company', string='Company', required=True, readonly=True, states={'draft': [('readonly', False)], 'refused': [('readonly', False)]}, default=lambda self: self.env.company)
@@ -608,7 +608,7 @@ Or send your receipts at <a href="mailto:%(email)s?subject=Lunch%%20with%%20cust
             'unit_amount': price,
             'product_id': product.id if product else None,
             'product_uom_id': product.uom_id.id,
-            'tax_ids': [(4, tax.id, False) for tax in product.supplier_taxes_id],
+            'tax_ids': [(4, tax.id, False) for tax in product.supplier_taxes_id.filtered(lambda r: r.company_id == company)],
             'quantity': 1,
             'company_id': company.id,
             'currency_id': currency_id.id

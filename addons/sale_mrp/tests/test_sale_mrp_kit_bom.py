@@ -23,14 +23,14 @@ class TestSaleMrpKitBom(TransactionCase):
         #   - Quantity: 3
         #   - Components:
         #     * 2 x Kit B
-        #     * 1 x Component A (Cost: $3)
+        #     * 1 x Component A (Cost: $3, Storable)
         #
         # BoM of Kit B:
         #   - BoM Type: Kit
         #   - Quantity: 10
         #   - Components:
-        #     * 2 x Component B (Cost: $4)
-        #     * 3 x Component BB (Cost: $5)
+        #     * 2 x Component B (Cost: $4, Storable)
+        #     * 3 x Component BB (Cost: $5, Consumable)
         # ----------------------------------------------
 
         self.env.user.company_id.anglo_saxon_accounting = True
@@ -89,8 +89,8 @@ class TestSaleMrpKitBom(TransactionCase):
             'company_id': self.env.user.company_id.id,
         })
 
-        self.component_a = self._create_product('Component A', 'consu', 3.00)
-        self.component_b = self._create_product('Component B', 'consu', 4.00)
+        self.component_a = self._create_product('Component A', 'product', 3.00)
+        self.component_b = self._create_product('Component B', 'product', 4.00)
         self.component_bb = self._create_product('Component BB', 'consu', 5.00)
         self.kit_a = self._create_product('Kit A', 'product', 0.00)
         self.kit_b = self._create_product('Kit B', 'consu', 0.00)
@@ -160,9 +160,9 @@ class TestSaleMrpKitBom(TransactionCase):
         self.assertEqual(len(amls), 4)
         stock_out_aml = amls.filtered(lambda aml: aml.account_id == self.stock_output_account)
         self.assertEqual(stock_out_aml.debit, 0)
-        self.assertAlmostEqual(stock_out_aml.credit, 2.53)
+        self.assertAlmostEqual(stock_out_aml.credit, 1.53, "Should not include the value of consumable component")
         cogs_aml = amls.filtered(lambda aml: aml.account_id == self.expense_account)
-        self.assertAlmostEqual(cogs_aml.debit, 2.53)
+        self.assertAlmostEqual(cogs_aml.debit, 1.53, "Should not include the value of consumable component")
         self.assertEqual(cogs_aml.credit, 0)
 
     def test_reset_avco_kit(self):
@@ -343,3 +343,69 @@ class TestSaleMrpKitBom(TransactionCase):
 
         # Checks the delivery amount (must be 10).
         self.assertEqual(so.order_line.qty_delivered, 10)
+
+    def test_qty_delivered_with_bom_using_kit(self):
+        """Check the quantity delivered, when one product is a kit
+        and his bom uses another product that is also a kit"""
+
+        self.kitA = self._create_product('Kit A', 'consu', 0.00)
+        self.kitB = self._create_product('Kit B', 'consu', 0.00)
+        self.compA = self._create_product('ComponentA', 'consu', 0.00)
+        self.compB = self._create_product('ComponentB', 'consu', 0.00)
+
+        # Create BoM for KitB
+        bom_product_formA = Form(self.env['mrp.bom'])
+        bom_product_formA.product_id = self.kitB
+        bom_product_formA.product_tmpl_id = self.kitB.product_tmpl_id
+        bom_product_formA.product_qty = 1.0
+        bom_product_formA.type = 'phantom'
+        with bom_product_formA.bom_line_ids.new() as bom_line:
+            bom_line.product_id = self.compA
+            bom_line.product_qty = 1
+        with bom_product_formA.bom_line_ids.new() as bom_line:
+            bom_line.product_id = self.compB
+            bom_line.product_qty = 1
+        self.bomA = bom_product_formA.save()
+
+        # Create BoM for KitA
+        bom_product_formB = Form(self.env['mrp.bom'])
+        bom_product_formB.product_id = self.kitA
+        bom_product_formB.product_tmpl_id = self.kitA.product_tmpl_id
+        bom_product_formB.product_qty = 1.0
+        bom_product_formB.type = 'phantom'
+        with bom_product_formB.bom_line_ids.new() as bom_line:
+            bom_line.product_id = self.compA
+            bom_line.product_qty = 1
+        with bom_product_formB.bom_line_ids.new() as bom_line:
+            bom_line.product_id = self.kitB
+            bom_line.product_qty = 1
+        self.bomB = bom_product_formB.save()
+
+        self.customer = self.env['res.partner'].create({
+            'name': 'customer',
+        })
+
+        so = self.env['sale.order'].create({
+            'partner_id': self.customer.id,
+            'order_line': [
+                (0, 0, {
+                    'name': self.kitA.name,
+                    'product_id': self.kitA.id,
+                    'product_uom_qty': 1.0,
+                    'product_uom': self.kitA.uom_id.id,
+                    'price_unit': 1,
+                    'tax_id': False,
+                })],
+        })
+        so.action_confirm()
+
+        self.assertTrue(so.picking_ids)
+        self.assertEqual(so.order_line.qty_delivered, 0)
+
+        picking = so.picking_ids
+        action = picking.button_validate()
+        wizard = Form(self.env[action['res_model']].with_context(action['context'])).save()
+        wizard.process()
+
+        # Checks the delivery amount (must be 1).
+        self.assertEqual(so.order_line.qty_delivered, 1)

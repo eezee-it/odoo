@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 from odoo.tools import mute_logger
 
 from dateutil.relativedelta import relativedelta
+from freezegun import freeze_time
 from functools import reduce
 import json
 import psycopg2
@@ -394,3 +395,35 @@ class TestSequenceMixin(AccountTestInvoicingCommon):
             journal.unlink()
             account.unlink()
             env0.cr.commit()
+
+    def test_resequence_clash(self):
+        """Resequence doesn't clash when it uses a name set in the same batch
+        but that will be overriden later."""
+        moves = self.env['account.move']
+        for i in range(3):
+            moves += self.create_move(name=str(i))
+        moves.action_post()
+
+        mistake = moves[1]
+        mistake.button_draft()
+        mistake.posted_before = False
+        mistake.unlink()
+        moves -= mistake
+
+        self.env['account.resequence.wizard'].create({
+            'move_ids': moves.ids,
+            'first_name': '2',
+        }).resequence()
+
+    @freeze_time('2021-10-01 00:00:00')
+    def test_change_journal_on_first_account_move(self):
+        """Changing the journal on the first move is allowed"""
+        journal = self.env['account.journal'].create({
+            'name': 'awesome journal',
+            'type': 'general',
+            'code': 'AJ',
+        })
+        move = self.env['account.move'].create({})
+        self.assertEqual(move.name, 'MISC/2021/10/0001')
+        with Form(move) as move_form:
+            move_form.journal_id = journal

@@ -3,7 +3,7 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-from odoo.tools import float_is_zero, float_repr
+from odoo.tools import float_is_zero, float_repr, float_compare
 from odoo.exceptions import ValidationError
 from collections import defaultdict
 
@@ -221,7 +221,7 @@ class ProductProduct(models.Model):
             if product.cost_method not in ('standard', 'average'):
                 continue
             quantity_svl = product.sudo().quantity_svl
-            if float_is_zero(quantity_svl, precision_rounding=product.uom_id.rounding):
+            if float_compare(quantity_svl, 0.0, precision_rounding=product.uom_id.rounding) <= 0:
                 continue
             diff = new_price - product.standard_price
             value = company_id.currency_id.round(quantity_svl * diff)
@@ -660,13 +660,16 @@ class ProductProduct(models.Model):
         if not qty_to_invoice:
             return 0.0
 
+        # if True, consider the incoming moves
+        is_returned = self.env.context.get('is_returned', False)
+
         returned_quantities = defaultdict(float)
         for move in stock_moves:
             if move.origin_returned_move_id:
                 returned_quantities[move.origin_returned_move_id.id] += abs(sum(move.sudo().stock_valuation_layer_ids.mapped('quantity')))
         candidates = stock_moves\
             .sudo()\
-            .filtered(lambda m: not (m.origin_returned_move_id and sum(m.stock_valuation_layer_ids.mapped('quantity')) >= 0))\
+            .filtered(lambda m: is_returned == bool(m.origin_returned_move_id and sum(m.stock_valuation_layer_ids.mapped('quantity')) >= 0))\
             .mapped('stock_valuation_layer_ids')\
             .sorted()
         qty_to_take_on_candidates = qty_to_invoice

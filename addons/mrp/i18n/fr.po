@@ -35,7 +35,6 @@
 # omaodoo <oma@odoo.com>, 2020
 # Arnaud Willem <contact@arnaud-willem.eu>, 2020
 # Christophe Ricevuto <cri@nalios.be>, 2021
-# guillaume bauer <guillaume.bauer@syentys.fr>, 2021
 # Benjamin Stienon <tsb@odoo.com>, 2021
 # Sébastien BÜHL <buhlsebastien@gmail.com>, 2021
 # Cécile Perrez <cpe@odoo.com>, 2021
@@ -45,8 +44,9 @@
 # Yann Papouin <ypa@decgroupe.com>, 2021
 # sakodoo <sak@odoo.com>, 2021
 # Cécile Collart <cco@odoo.com>, 2021
-# R HT, 2021
+# RHTodoo, 2021
 # Mathieu Germain <mgm@odoo.com>, 2021
+# guillaume bauer <guillaume.bauer@syentys.fr>, 2021
 # 
 msgid ""
 msgstr ""
@@ -54,7 +54,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-29 15:48+0000\n"
 "PO-Revision-Date: 2020-09-07 08:14+0000\n"
-"Last-Translator: Mathieu Germain <mgm@odoo.com>, 2021\n"
+"Last-Translator: guillaume bauer <guillaume.bauer@syentys.fr>, 2021\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2398,6 +2398,8 @@ msgid ""
 "Lock the manufacturing order to prevent changes to what has been consumed or"
 " produced."
 msgstr ""
+"Bloquez l'ordre de fabrication pour bloquer tout changement sur la quantité "
+"consommée ou produite. "
 
 #. module: mrp
 #: model:res.groups,name:mrp.group_locked_by_default
@@ -3690,7 +3692,7 @@ msgstr "Utilisateur Responsable"
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_consumption_warning_form
 msgid "Review Consumption"
-msgstr ""
+msgstr "Vérification de la consommation"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__routing_line_ids
@@ -4302,6 +4304,8 @@ msgid ""
 "The serial number %(number)s used for byproduct %(product_name)s has already"
 " been produced"
 msgstr ""
+"Le numéro de série%(number)s utilisé par le sous-produit %(product_name)s a "
+"déjà été produit. "
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_production.py:0
@@ -4398,7 +4402,7 @@ msgstr ""
 #: code:addons/mrp/models/mrp_workorder.py:0
 #, python-format
 msgid "This serial number for product %s has already been produced"
-msgstr ""
+msgstr "Le numéro de série pour le produit %s a déjà été produit."
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder__time_ids
@@ -4712,6 +4716,8 @@ msgstr "Déverrouiller"
 msgid ""
 "Unlock the manufacturing order to adjust what has been consumed or produced."
 msgstr ""
+"Débloquez l'ordre de fabrication pour modifier ce qui a été "
+"consommé/produit."
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_production_form_view

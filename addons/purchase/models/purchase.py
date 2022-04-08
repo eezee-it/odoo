@@ -11,7 +11,7 @@ from odoo.osv import expression
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.tools.float_utils import float_is_zero
 from odoo.exceptions import AccessError, UserError, ValidationError
-from odoo.tools.misc import formatLang, get_lang
+from odoo.tools.misc import formatLang, get_lang, format_amount
 
 
 class PurchaseOrder(models.Model):
@@ -547,6 +547,7 @@ class PurchaseOrder(models.Model):
             raise UserError(_('Please define an accounting purchase journal for the company %s (%s).') % (self.company_id.name, self.company_id.id))
 
         partner_invoice_id = self.partner_id.address_get(['invoice'])['invoice']
+        partner_bank_id = self.partner_id.bank_ids.filtered_domain(['|', ('company_id', '=', False), ('company_id', '=', self.company_id.id)])[:1]
         invoice_vals = {
             'ref': self.partner_ref or '',
             'move_type': move_type,
@@ -556,7 +557,7 @@ class PurchaseOrder(models.Model):
             'partner_id': partner_invoice_id,
             'fiscal_position_id': (self.fiscal_position_id or self.fiscal_position_id.get_fiscal_position(partner_invoice_id)).id,
             'payment_reference': self.partner_ref or '',
-            'partner_bank_id': self.partner_id.bank_ids[:1].id,
+            'partner_bank_id': partner_bank_id.id,
             'invoice_origin': self.name,
             'invoice_payment_term_id': self.payment_term_id.id,
             'invoice_line_ids': [],
@@ -648,19 +649,18 @@ class PurchaseOrder(models.Model):
         # This is done via SQL for scalability reasons
         query = """SELECT AVG(COALESCE(po.amount_total / NULLIF(po.currency_rate, 0), po.amount_total)),
                           AVG(extract(epoch from age(po.date_approve,po.create_date)/(24*60*60)::decimal(16,2))),
-                          SUM(CASE WHEN po.date_approve >= %s THEN COALESCE(po.amount_total / NULLIF(po.currency_rate, 0), po.amount_total) ELSE 0 END),
-                          MIN(curr.decimal_places)
+                          SUM(CASE WHEN po.date_approve >= %s THEN COALESCE(po.amount_total / NULLIF(po.currency_rate, 0), po.amount_total) ELSE 0 END)
                    FROM purchase_order po
                    JOIN res_company comp ON (po.company_id = comp.id)
-                   JOIN res_currency curr ON (comp.currency_id = curr.id)
                    WHERE po.state in ('purchase', 'done')
                      AND po.company_id = %s
                 """
         self._cr.execute(query, (one_week_ago, self.env.company.id))
         res = self.env.cr.fetchone()
-        result['all_avg_order_value'] = round(res[0] or 0, res[3])
         result['all_avg_days_to_purchase'] = round(res[1] or 0, 2)
-        result['all_total_last_7_days'] = round(res[2] or 0, res[3])
+        currency = self.env.company.currency_id
+        result['all_avg_order_value'] = format_amount(self.env, res[0] or 0, currency)
+        result['all_total_last_7_days'] = format_amount(self.env, res[2] or 0, currency)
 
         return result
 
@@ -1107,6 +1107,8 @@ class PurchaseOrderLine(models.Model):
             price_unit = seller.product_uom._compute_price(price_unit, self.product_uom)
 
         self.price_unit = price_unit
+        product_ctx = {'seller_id': seller.id, 'lang': get_lang(self.env, self.partner_id.lang).code}
+        self.name = self._get_product_purchase_description(self.product_id.with_context(product_ctx))
 
     @api.depends('product_uom', 'product_qty', 'product_id.uom_id')
     def _compute_product_uom_qty(self):
@@ -1212,7 +1214,7 @@ class PurchaseOrderLine(models.Model):
             lang=partner.lang,
             partner_id=partner.id,
         )
-        name = product_lang.display_name
+        name = product_lang.with_context(seller_id=seller.id).display_name
         if product_lang.description_purchase:
             name += '\n' + product_lang.description_purchase
 
@@ -1233,7 +1235,9 @@ class PurchaseOrderLine(models.Model):
         """Return a datetime which is the noon of the input date(time) according
         to order user's time zone, convert to UTC time.
         """
-        return timezone(self.order_id.user_id.tz or self.company_id.partner_id.tz or 'UTC').localize(datetime.combine(date, time(12))).astimezone(UTC).replace(tzinfo=None)
+        tz = timezone(self.order_id.user_id.tz or self.company_id.partner_id.tz or 'UTC')
+        date = date.astimezone(tz) # date is UTC, applying the offset could change the day
+        return tz.localize(datetime.combine(date, time(12))).astimezone(UTC).replace(tzinfo=None)
 
     def _update_date_planned(self, updated_date):
         self.date_planned = updated_date

@@ -908,9 +908,9 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
 
                             if name == 'id':
                                 xml_ids = [xid for _, xid in value.__ensure_xml_id()]
-                                current[index] = ','.join(xml_ids) or False
+                                current[index] = ','.join(xml_ids)
                             else:
-                                current[index] = field.convert_to_export(value, record) or False
+                                current[index] = field.convert_to_export(value, record)
                             continue
 
                         lines2 = value._export_rows(fields2, _is_toplevel_call=False)
@@ -922,7 +922,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
                             # append the other lines at the end
                             lines += lines2[1:]
                         else:
-                            current[i] = False
+                            current[i] = ''
 
         # if any xid should be exported, only do so at toplevel
         if _is_toplevel_call and any(f[-1] == 'id' for f in fields):
@@ -3415,6 +3415,7 @@ Fields:
             return True
 
         self.check_access_rights('unlink')
+        self.check_access_rule('unlink')
         self._check_concurrency()
 
         # mark fields that depend on 'self' to recompute them after 'self' has
@@ -3423,8 +3424,6 @@ Fields:
         self.modified(self._fields, before=True)
 
         with self.env.norecompute():
-            self.check_access_rule('unlink')
-
             cr = self._cr
             Data = self.env['ir.model.data'].sudo().with_context({})
             Defaults = self.env['ir.default'].sudo()
@@ -3617,6 +3616,14 @@ Fields:
                     protected.update(self.pool.field_computed.get(field, [field]))
             if fname == 'company_id' or (field.relational and field.check_company):
                 check_company = True
+
+        # force the computation of fields that are computed with some assigned
+        # fields, but are not assigned themselves
+        to_compute = [field.name
+                      for field in protected
+                      if field.compute and field.name not in vals]
+        if to_compute:
+            self.recompute(to_compute, self)
 
         # protect fields being written against recomputation
         with env.protecting(protected, self):
@@ -4128,11 +4135,15 @@ Fields:
             FROM {0} node
             WHERE node.id IN %s
             AND child.parent_path LIKE concat(node.parent_path, '%%')
-            RETURNING child.id
+            RETURNING child.id, child.parent_path
         """
         cr.execute(query.format(self._table), [prefix, tuple(self.ids)])
-        modified_ids = {row[0] for row in cr.fetchall()}
-        self.browse(modified_ids).modified(['parent_path'])
+
+        # update the cache of updated nodes, and determine what to recompute
+        updated = dict(cr.fetchall())
+        records = self.browse(updated)
+        self.env.cache.update(records, self._fields['parent_path'], updated.values())
+        records.modified(['parent_path'])
 
     def _load_records_write(self, values):
         self.write(values)
@@ -4186,6 +4197,14 @@ Fields:
                 to_create.append(data)
                 continue
             d_id, d_module, d_name, d_model, d_res_id, d_noupdate, r_id = row
+            if self._name != d_model:
+                _logger.warning((
+                    "For external id %s "
+                    "when trying to create/update a record of model %s "
+                    "found record of different model %s (%s)"
+                    "\nUpdating record %s of target model %s"),
+                    xml_id, self._name, d_model, d_id, d_id, self._name
+                )
             record = self.browse(d_res_id)
             if r_id:
                 data['record'] = record
@@ -6368,9 +6387,9 @@ Fields:
         return self.concat(*records_batches)
 
 
-collections.Set.register(BaseModel)
+collections.abc.Set.register(BaseModel)
 # not exactly true as BaseModel doesn't have __reversed__, index or count
-collections.Sequence.register(BaseModel)
+collections.abc.Sequence.register(BaseModel)
 
 class RecordCache(MutableMapping):
     """ A mapping from field names to values, to read and update the cache of a record. """

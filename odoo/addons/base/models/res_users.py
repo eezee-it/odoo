@@ -21,6 +21,7 @@ import passlib.context
 import pytz
 from lxml import etree
 from lxml.builder import E
+from psycopg2 import sql
 
 from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
@@ -998,6 +999,10 @@ class Users(models.Model):
             return 'base/static/img/user-slash.png'
         return super()._get_placeholder_filename(field=field)
 
+    def _mfa_type(self):
+        """ If an MFA method is enabled, returns its type as a string. """
+        return
+
     def _mfa_url(self):
         """ If an MFA method is enabled, returns the URL for its second step. """
         return
@@ -1078,19 +1083,23 @@ class UsersImplied(models.Model):
         return super(UsersImplied, self).create(vals_list)
 
     def write(self, values):
+        if not values.get('groups_id'):
+            return super(UsersImplied, self).write(values)
         users_before = self.filtered(lambda u: u.has_group('base.group_user'))
         res = super(UsersImplied, self).write(values)
-        if values.get('groups_id'):
-            # add implied groups for all users
-            for user in self:
-                if not user.has_group('base.group_user') and user in users_before:
-                    # if we demoted a user, we strip him of all its previous privileges
-                    # (but we should not do it if we are simply adding a technical group to a portal user)
-                    vals = {'groups_id': [(5, 0, 0)] + values['groups_id']}
-                    super(UsersImplied, user).write(vals)
-                gs = set(concat(g.trans_implied_ids for g in user.groups_id))
-                vals = {'groups_id': [(4, g.id) for g in gs]}
-                super(UsersImplied, user).write(vals)
+        demoted_users = users_before.filtered(lambda u: not u.has_group('base.group_user'))
+        if demoted_users:
+            # demoted users are restricted to the assigned groups only
+            vals = {'groups_id': [(5, 0, 0)] + values['groups_id']}
+            super(UsersImplied, demoted_users).write(vals)
+        # add implied groups for all users (in batches)
+        users_batch = defaultdict(self.browse)
+        for user in self:
+            users_batch[user.groups_id] += user
+        for groups, users in users_batch.items():
+            gs = set(concat(g.trans_implied_ids for g in groups))
+            vals = {'groups_id': [(4, g.id) for g in gs]}
+            super(UsersImplied, users).write(vals)
         return res
 
 #
@@ -1421,6 +1430,13 @@ class UsersView(models.Model):
                     values.pop('groups_id', None)
         return res
 
+    @api.model
+    def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
+        if fields:
+            # ignore reified fields
+            fields = [fname for fname in fields if not is_reified_group(fname)]
+        return super().read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby, lazy=lazy)
+
     def _add_reified_groups(self, fields, values):
         """ add the given reified group fields into `values` """
         gids = set(parse_m2m(values.get('groups_id') or []))
@@ -1624,7 +1640,7 @@ class APIKeys(models.Model):
 
     def init(self):
         # pylint: disable=sql-injection
-        self.env.cr.execute("""
+        self.env.cr.execute(sql.SQL("""
         CREATE TABLE IF NOT EXISTS {table} (
             id serial primary key,
             name varchar not null,
@@ -1635,7 +1651,12 @@ class APIKeys(models.Model):
             create_date timestamp without time zone DEFAULT (now() at time zone 'utc')
         );
         CREATE INDEX IF NOT EXISTS res_users_apikeys_user_id_index_idx ON {table} (user_id, index);
-        """.format(table=self._table, index_size=INDEX_SIZE))
+        """).format(
+            table=sql.Identifier(self._table),
+            index_size=sql.Placeholder('index_size')
+        ), {
+            'index_size': INDEX_SIZE
+        })
 
     @check_identity
     def remove(self):

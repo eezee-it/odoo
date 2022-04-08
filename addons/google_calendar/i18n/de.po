@@ -6,7 +6,7 @@
 # Jérôme JEK <jek@odoo.com>, 2020
 # Martin Trigaux, 2020
 # Kevin Harrings <kha@odoo.com>, 2021
-# Friederike Fasterling-Nesselbosch, 2021
+# Friederike Fasterling-Nesselbosch, 2022
 # 
 msgid ""
 msgstr ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-27 11:24+0000\n"
 "PO-Revision-Date: 2020-09-07 08:12+0000\n"
-"Last-Translator: Friederike Fasterling-Nesselbosch, 2021\n"
+"Last-Translator: Friederike Fasterling-Nesselbosch, 2022\n"
 "Language-Team: German (https://www.transifex.com/odoo/teams/41243/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,19 +26,19 @@ msgstr ""
 #: code:addons/google_calendar/models/calendar.py:0
 #, python-format
 msgid "%(reminder_type)s - %(duration)s Days"
-msgstr ""
+msgstr "%(reminder_type)s - %(duration)s Tage"
 
 #. module: google_calendar
 #: code:addons/google_calendar/models/calendar.py:0
 #, python-format
 msgid "%(reminder_type)s - %(duration)s Hours"
-msgstr ""
+msgstr "%(reminder_type)s - %(duration)s Stunden"
 
 #. module: google_calendar
 #: code:addons/google_calendar/models/calendar.py:0
 #, python-format
 msgid "%(reminder_type)s - %(duration)s Minutes"
-msgstr ""
+msgstr "%(reminder_type)s - %(duration)s Minuten"
 
 #. module: google_calendar
 #: code:addons/google_calendar/models/calendar.py:0
@@ -140,7 +140,7 @@ msgstr "Aus Odoo löschen"
 #. module: google_calendar
 #: model:ir.model.fields.selection,name:google_calendar.selection__google_calendar_account_reset__delete_policy__delete_both
 msgid "Delete from both"
-msgstr ""
+msgstr "Aus beiden löschen"
 
 #. module: google_calendar
 #: model:ir.model.fields.selection,name:google_calendar.selection__google_calendar_account_reset__delete_policy__delete_google
@@ -248,7 +248,7 @@ msgstr "Zuletzt aktualisiert am"
 #. module: google_calendar
 #: model:ir.model.fields.selection,name:google_calendar.selection__google_calendar_account_reset__delete_policy__dont_delete
 msgid "Leave them untouched"
-msgstr ""
+msgstr "Unangetastet lassen"
 
 #. module: google_calendar
 #: model:ir.model.fields,field_description:google_calendar.field_calendar_event__need_sync

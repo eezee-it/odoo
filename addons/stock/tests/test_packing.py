@@ -830,3 +830,153 @@ class TestPacking(TestPackingCommon):
         self.assertEqual(receipt.state, 'assigned')
         receipt.move_ids_without_package[1].product_uom_qty = 0
         self.assertEqual(receipt.state, 'assigned')
+
+    def test_2_steps_and_backorder(self):
+        """ When creating a backorder with a package, the latter should be reserved in the new picking. Moreover,
+         the initial picking shouldn't have any line about this package """
+        def create_picking(type, from_loc, to_loc):
+            picking = self.env['stock.picking'].create({
+                'picking_type_id': type.id,
+                'location_id': from_loc.id,
+                'location_dest_id': to_loc.id,
+            })
+            move_A, move_B = self.env['stock.move'].create([{
+                'name': self.productA.name,
+                'product_id': self.productA.id,
+                'product_uom_qty': 1,
+                'product_uom': self.productA.uom_id.id,
+                'picking_id': picking.id,
+                'location_id': from_loc.id,
+                'location_dest_id': to_loc.id,
+            }, {
+                'name': self.productB.name,
+                'product_id': self.productB.id,
+                'product_uom_qty': 1,
+                'product_uom': self.productB.uom_id.id,
+                'picking_id': picking.id,
+                'location_id': from_loc.id,
+                'location_dest_id': to_loc.id,
+            }])
+            picking.action_confirm()
+            picking.action_assign()
+            return picking, move_A, move_B
+
+        self.warehouse.delivery_steps = 'pick_ship'
+
+        output_location = self.warehouse.wh_output_stock_loc_id
+        pick_type = self.warehouse.pick_type_id
+        delivery_type = self.warehouse.out_type_id
+
+        self.env['stock.quant']._update_available_quantity(self.productA, self.stock_location, 1)
+        self.env['stock.quant']._update_available_quantity(self.productB, self.stock_location, 1)
+
+        picking, moveA, moveB = create_picking(pick_type, pick_type.default_location_src_id, pick_type.default_location_dest_id)
+        moveA.move_line_ids.qty_done = 1
+        picking.action_put_in_pack()
+        moveB.move_line_ids.qty_done = 1
+        picking.action_put_in_pack()
+        picking.button_validate()
+
+        picking, _, _ = create_picking(delivery_type, delivery_type.default_location_src_id, self.customer_location)
+        packB = picking.package_level_ids[1]
+        with Form(picking) as picking_form:
+            with picking_form.package_level_ids_details.edit(0) as package_level:
+                package_level.is_done = True
+        action_data = picking.button_validate()
+        backorder_wizard = Form(self.env['stock.backorder.confirmation'].with_context(action_data['context'])).save()
+        backorder_wizard.process()
+        bo = self.env['stock.picking'].search([('backorder_id', '=', picking.id)])
+
+        self.assertNotIn(packB, picking.package_level_ids)
+        self.assertEqual(packB, bo.package_level_ids)
+        self.assertEqual(bo.package_level_ids.state, 'assigned')
+
+    def test_package_and_sub_location(self):
+        """
+        Suppose there are some products P available in shelf1, a child location of the pack location.
+        When moving these P to another child location of pack location, the source location of the
+        related package level should be shelf1
+        """
+        shelf1_location = self.env['stock.location'].create({
+            'name': 'shelf1',
+            'usage': 'internal',
+            'location_id': self.pack_location.id,
+        })
+        shelf2_location = self.env['stock.location'].create({
+            'name': 'shelf2',
+            'usage': 'internal',
+            'location_id': self.pack_location.id,
+        })
+
+        pack = self.env['stock.quant.package'].create({'name': 'Super Package'})
+        self.env['stock.quant']._update_available_quantity(self.productA, shelf1_location, 20.0, package_id=pack)
+
+        picking = self.env['stock.picking'].create({
+            'picking_type_id': self.warehouse.in_type_id.id,
+            'location_id': self.pack_location.id,
+            'location_dest_id': shelf2_location.id,
+        })
+        package_level = self.env['stock.package_level'].create({
+            'package_id': pack.id,
+            'picking_id': picking.id,
+            'location_dest_id': picking.location_dest_id.id,
+            'company_id': picking.company_id.id,
+        })
+
+        self.assertEqual(package_level.location_id, shelf1_location)
+
+        picking.action_confirm()
+        package_level.is_done = True
+        picking.button_validate()
+
+        self.assertEqual(package_level.location_id, shelf1_location)
+
+    def test_2_steps_and_reservation(self):
+        """ When creating a backorder in a two steps flow, the reservation should be resilient 
+        to the change of quantity in any move of the chain. The test scenario is the following:
+                        
+                                     - move (5 units) CONFIRMED
+                                   /
+        move orig (10 units) DONE -
+                                   \ - move sibling (5 units) DONE
+                                   
+        The confirmed move can be assigned because on the 10 units validated on the move 
+        orig, only 5 have already been validated in the sibling move. If before the 
+        reservation the move orig is unlocked and the quantity is changed from 10 to 1, the 
+        confirmed move cannot reserve any quantity anymore but should be able to call 
+        action_assign without any error."""
+
+        self.env['stock.quant']._update_available_quantity(self.productA, self.stock_location, 20.0)
+        self.env['stock.quant']._update_available_quantity(self.productA, self.pack_location, 30.0)
+        ship_move_a = self.env['stock.move'].create({
+            'name': 'The ship move',
+            'product_id': self.productA.id,
+            'product_uom_qty': 20.0,
+            'product_uom': self.productA.uom_id.id,
+            'location_id': self.ship_location.id,
+            'location_dest_id': self.customer_location.id,
+            'warehouse_id': self.warehouse.id,
+            'picking_type_id': self.warehouse.out_type_id.id,
+            'procure_method': 'make_to_order',
+            'state': 'draft',
+        })
+        ship_move_a._assign_picking()
+        ship_move_a._action_confirm()
+        pack_move_a = ship_move_a.move_orig_ids[0]
+        pick_move_a = pack_move_a.move_orig_ids[0]
+
+        pick_move_a.quantity_done = 20
+        pick_move_a._action_done()
+
+        pack_move_a.quantity_done = 10
+        picking = pack_move_a.picking_id
+        action_data = picking.button_validate()
+        backorder_wizard = Form(self.env['stock.backorder.confirmation'].with_context(action_data['context'])).save()
+        backorder_wizard.process()
+
+        # change validated quantity of the first step
+        pick_move_a.quantity_done = 5
+
+        # check the backorder can still be reserved
+        backorder = (pack_move_a.move_orig_ids.move_dest_ids - pack_move_a).picking_id
+        backorder.action_assign()

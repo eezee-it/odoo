@@ -5,8 +5,8 @@
 # Translators:
 # Lucia Pacheco <lpo@odoo.com>, 2021
 # Cécile Collart <cco@odoo.com>, 2021
-# Braulio D. López Vázquez <bdl@odoo.com>, 2021
-# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2021
+# Braulio D. López Vázquez <bdl@odoo.com>, 2022
+# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-27 13:50+0000\n"
 "PO-Revision-Date: 2020-09-07 08:09+0000\n"
-"Last-Translator: Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2021\n"
+"Last-Translator: Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/odoo/teams/41243/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18997,6 +18997,12 @@ msgid "Invalid model name %r in action definition."
 msgstr "Nombre de modelo %r no valido en la definición de la acción."
 
 #. module: base
+#: code:addons/base/models/ir_actions.py:611
+#, python-format
+msgid "many2many fields cannot be evaluated by reference"
+msgstr ""
+
+#. module: base
 #: code:addons/template_inheritance.py:0
 #, python-format
 msgid "Invalid position attribute: '%s'"
@@ -20039,7 +20045,7 @@ msgstr "Chat en vivo de la empresa"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_base_language_install
 msgid "Load a Translation"
-msgstr "Cargar una traducción"
+msgstr "Descargar una traducción"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.demo_force_install_action
@@ -22976,7 +22982,7 @@ msgstr "Informes de la localización mexicana de Odoo para cerrar"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_mx_edi_landing
 msgid "Odoo Mexico Localization for Stock/Landing"
-msgstr "México - Números de Pedimento/Almacén"
+msgstr "Localización de Odoo México para las existencias/almacenamiento"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_web_mobile

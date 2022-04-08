@@ -9,6 +9,7 @@
 # Pornvibool Tippayawat <pornvibool.t@gmail.com>, 2020
 # Somchart Jabsung <jabsung.s@gmail.com>, 2020
 # Odoo Thaidev <odoothaidev@gmail.com>, 2020
+# Wichanon Jamwutthipreecha, 2022
 # 
 msgid ""
 msgstr ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-29 13:46+0000\n"
 "PO-Revision-Date: 2020-09-07 08:18+0000\n"
-"Last-Translator: Odoo Thaidev <odoothaidev@gmail.com>, 2020\n"
+"Last-Translator: Wichanon Jamwutthipreecha, 2022\n"
 "Language-Team: Thai (https://www.transifex.com/odoo/teams/41243/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgstr ""
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.product_template_view_form_inherit_stock
 msgid "<span class=\"o_stat_text\">Sold</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">ขายแล้ว</span>"
 
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.sale_stock_report_invoice_document
@@ -120,6 +121,11 @@ msgid ""
 "  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
+"ตามการกำหนดค่าผลิตภัณฑ์ ปริมาณที่จัดส่งสามารถคำนวณได้โดยอัตโนมัติโดยใช้กลไก:\n"
+"- ด้วยตนเอง: ปริมาณถูกตั้งค่าด้วยตนเองในบรรทัด\n"
+" - วิเคราะห์จากค่าใช้จ่าย: ปริมาณคือผลรวมปริมาณจากค่าใช้จ่ายที่ลงรายการบัญชี\n"
+"- ใบบันทึกเวลา: ปริมาณคือผลรวมของชั่วโมงที่บันทึกในงานที่เชื่อมโยงกับรายการขายนี้\n"
+"- การย้ายสต็อค: ปริมาณมาจากการเลือกที่ยืนยันแล้ว\n"
 
 #. module: sale_stock
 #: model:ir.ui.menu,name:sale_stock.menu_aftersale
@@ -217,6 +223,10 @@ msgid ""
 "shipping, the shipping policy of the order will be taken into account to "
 "either use the minimum or maximum lead time of the order lines."
 msgstr ""
+"วันที่จัดส่งที่คุณสามารถสัญญากับลูกค้าได้ "
+"โดยคำนวณจากระยะเวลารอคอยสินค้าขั้นต่ำของรายการสั่งซื้อในกรณีของผลิตภัณฑ์บริการ"
+" ในกรณีของการจัดส่ง "
+"นโยบายการจัดส่งของใบสั่งจะถูกนำมาพิจารณาโดยใช้ระยะเวลารอคอยสินค้าขั้นต่ำหรือสูงสุดของรายการใบสั่ง"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_res_config_settings__group_lot_on_invoice
@@ -296,13 +306,13 @@ msgstr ""
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.exception_on_so
 msgid "Exception(s) occurred on the sale order(s):"
-msgstr ""
+msgstr "ข้อยกเว้นเกิดขึ้นในใบสั่งขาย:"
 
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.exception_on_picking
 #: model_terms:ir.ui.view,arch_db:sale_stock.exception_on_so
 msgid "Exception(s):"
-msgstr ""
+msgstr "ข้อยกเว้น:"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order__expected_date
@@ -319,7 +329,7 @@ msgstr ""
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.view_order_form_inherit_sale_stock
 msgid "Expected:"
-msgstr ""
+msgstr "คาดหวัง:"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_line__forecast_expected_date
@@ -499,7 +509,7 @@ msgstr ""
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_line__qty_delivered_method
 msgid "Method to update delivered qty"
-msgstr ""
+msgstr "วิธีการอัปเดตจำนวนที่จัดส่ง"
 
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_stock
@@ -567,7 +577,7 @@ msgstr ""
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_line__qty_to_deliver
 msgid "Qty To Deliver"
-msgstr ""
+msgstr "จำนวนที่จะจัดส่ง"
 
 #. module: sale_stock
 #. openerp-web
@@ -605,12 +615,12 @@ msgstr ""
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_procurement_group__sale_id
 msgid "Sale Order"
-msgstr ""
+msgstr "คำสั่งขาย"
 
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.stock_production_lot_view_form
 msgid "Sale Orders"
-msgstr ""
+msgstr "คำสั่งขาย"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_stock_production_lot__sale_order_count
@@ -620,7 +630,7 @@ msgstr ""
 #. module: sale_stock
 #: model:ir.model,name:sale_stock.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "รายงานการวิเคราะห์การขาย"
 
 #. module: sale_stock
 #: model:ir.model,name:sale_stock.model_sale_order
@@ -631,7 +641,7 @@ msgstr "ใบสั่งขาย"
 #. module: sale_stock
 #: model:ir.model,name:sale_stock.model_sale_order_cancel
 msgid "Sales Order Cancel"
-msgstr ""
+msgstr "ยกเลิกคำสั่งขาย"
 
 #. module: sale_stock
 #: model:ir.model,name:sale_stock.model_sale_order_line
@@ -696,7 +706,7 @@ msgstr "นโยบายการจัดส่ง"
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.product_template_view_form_inherit_stock
 msgid "Sold in the last 365 days"
-msgstr ""
+msgstr "ขายใน 365 วันที่ผ่านมา"
 
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.sale_order_cancel_view_form_inherit
@@ -759,6 +769,8 @@ msgid ""
 "This product is packaged by %(pack_size).2f %(pack_name)s. You should sell "
 "%(quantity).2f %(unit)s."
 msgstr ""
+"สินค้านี้ถูกบรรจุโดย %(pack_size).2f %(pack_name)s คุณควรขาย %(quantity).2f "
+"%(unit)s"
 
 #. module: sale_stock
 #. openerp-web

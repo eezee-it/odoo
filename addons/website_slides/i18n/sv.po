@@ -13,13 +13,15 @@
 # Robert Frykelius <robert.frykelius@linserv.se>, 2021
 # Kristoffer Grundström <lovaren@gmail.com>, 2021
 # Martin Wilderoth <martin.wilderoth@linserv.se>, 2021
-# Chrille Hedberg <hedberg.chrille@gmail.com>, 2021
 # Martin Trigaux, 2021
 # Jakob Krabbe <jakob.krabbe@vertel.se>, 2021
-# STefan Rundgren <stefanrundgren@cellglas.com>, 2021
+# 3eec91a23d05c632ffac786ac42b81b8_b6fff7b <8985b7bc57db860af29969457dbb51b3_1018915>, 2021
 # Anders Wallenquist <anders.wallenquist@vertel.se>, 2021
 # Kim Asplund <kim.asplund@gmail.com>, 2021
+# Daniel Osser <danielosser@gmail.com>, 2021
 # Simon S, 2021
+# Chrille Hedberg <hedberg.chrille@gmail.com>, 2021
+# Victor Ekström, 2022
 # 
 msgid ""
 msgstr ""
@@ -27,7 +29,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-16 13:33+0000\n"
 "PO-Revision-Date: 2020-09-07 08:22+0000\n"
-"Last-Translator: Simon S, 2021\n"
+"Last-Translator: Victor Ekström, 2022\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -584,11 +586,11 @@ msgstr ""
 #. module: website_slides
 #: model_terms:ir.ui.view,arch_db:website_slides.course_sidebar
 msgid ""
-"<span class=\"badge badge-pill badge-success py-1 px-2 mx-auto\" style"
-"=\"font-size: 1em\"><i class=\"fa fa-check\"/> Completed</span>"
+"<span class=\"badge badge-pill badge-success py-1 px-2 mx-auto\" "
+"style=\"font-size: 1em\"><i class=\"fa fa-check\"/> Completed</span>"
 msgstr ""
-"<span class=\"badge badge-pill badge-success py-1 px-2 mx-auto\" style"
-"=\"font-size: 1em\"><i class=\"fa fa-check\"/> Slutförd</span>"
+"<span class=\"badge badge-pill badge-success py-1 px-2 mx-auto\" "
+"style=\"font-size: 1em\"><i class=\"fa fa-check\"/> Slutförd</span>"
 
 #. module: website_slides
 #: model_terms:ir.ui.view,arch_db:website_slides.slide_fullscreen
@@ -1799,7 +1801,7 @@ msgstr "Fortsätt"
 #: code:addons/website_slides/static/src/xml/website_slides_share.xml:0
 #, python-format
 msgid "Copy Link"
-msgstr ""
+msgstr "Kopiera länk"
 
 #. module: website_slides
 #: model:slide.answer,comment:website_slides.slide_slide_demo_1_4_question_0_0
@@ -2507,7 +2509,7 @@ msgstr ""
 #. module: website_slides
 #: model_terms:ir.ui.view,arch_db:website_slides.embed_slide
 msgid "Fullscreen"
-msgstr ""
+msgstr "Helskärm"
 
 #. module: website_slides
 #: model:slide.channel.tag,name:website_slides.slide_channel_tag_role_furniture
@@ -2762,7 +2764,7 @@ msgstr ""
 #: model:ir.model.fields,help:website_slides.field_slide_slide__message_has_error
 #: model:ir.model.fields,help:website_slides.field_slide_slide__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Om markerad så har det blivit ett leveransfel för några  meddelanden."
+msgstr "Om markerad har det uppstått leveransfel för vissa meddelanden."
 
 #. module: website_slides
 #: model:slide.channel,description:website_slides.slide_channel_demo_4_furn1
@@ -4211,6 +4213,12 @@ msgid "Security Token"
 msgstr "Säkerhetstoken"
 
 #. module: website_slides
+#: code:addons/website_slides/models/res_users.py:0
+#, python-format
+msgid "See our eLearning"
+msgstr ""
+
+#. module: website_slides
 #. openerp-web
 #: code:addons/website_slides/static/src/js/tours/slides_tour.js:0
 #, python-format
@@ -4423,7 +4431,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_slides.embed_slide
 #, python-format
 msgid "Slide image"
-msgstr ""
+msgstr "Slide-bild"
 
 #. module: website_slides
 #: code:addons/website_slides/controllers/main.py:0
@@ -4459,7 +4467,7 @@ msgstr "Sortera efter"
 #. module: website_slides
 #: model:ir.model.fields.selection,name:website_slides.selection__slide_channel__promote_strategy__specific
 msgid "Specific"
-msgstr ""
+msgstr "Specifikt"
 
 #. module: website_slides
 #: model_terms:ir.ui.view,arch_db:website_slides.course_sidebar
@@ -4780,7 +4788,7 @@ msgstr "Titel"
 #: model_terms:ir.ui.view,arch_db:website_slides.courses_all
 #: model_terms:ir.ui.view,arch_db:website_slides.courses_home
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Växla navigering"
 
 #. module: website_slides
 #: model:slide.tag,name:website_slides.slide_tag_demo_tools
@@ -5375,7 +5383,7 @@ msgstr "Du är inskriven"
 #. module: website_slides
 #: model_terms:ir.ui.view,arch_db:website_slides.mail_notification_channel_invite
 msgid "Your"
-msgstr ""
+msgstr "Ditt"
 
 #. module: website_slides
 #: code:addons/website_slides/models/slide_slide.py:0
@@ -5478,7 +5486,7 @@ msgstr "t.ex. https://www.odoo.com"
 #: model:ir.ui.menu,name:website_slides.website_slides_menu_root
 #: model_terms:ir.ui.view,arch_db:website_slides.res_config_settings_view_form
 msgid "eLearning"
-msgstr ""
+msgstr "eLearning"
 
 #. module: website_slides
 #: model:ir.model.fields,field_description:website_slides.field_res_partner__slide_channel_ids

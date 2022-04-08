@@ -11,7 +11,7 @@ from datetime import date, datetime
 from lxml import etree
 
 from odoo import api, fields, models, _
-from odoo.tools import float_repr
+from odoo.tools import float_repr, float_compare
 from odoo.exceptions import UserError, ValidationError
 from odoo.addons.base.models.ir_mail_server import MailDeliveryException
 from odoo.tests.common import Form
@@ -37,7 +37,7 @@ class AccountMove(models.Model):
         ('delivered_expired', 'This invoice is delivered and expired (expiry of the maximum term for communication of acceptance/refusal)'),
         ('failed_delivery', 'Delivery impossible, ES certify that it has received the invoice and that the file \
                         could not be delivered to the addressee') # ok we must do nothing
-    ], default='to_send', copy=False)
+    ], default='to_send', copy=False, string="FatturaPA Send State")
 
     l10n_it_stamp_duty = fields.Float(default=0, string="Dati Bollo", readonly=True, states={'draft': [('readonly', False)]})
 
@@ -81,6 +81,12 @@ class AccountMove(models.Model):
         )
         return {'attachment': attachment}
 
+    def _is_commercial_partner_pa(self):
+        """
+            Returns True if the destination of the FatturaPA belongs to the Public Administration.
+        """
+        return len(self.commercial_partner_id.l10n_it_pa_index or '')  == 6
+
     def _prepare_fatturapa_export_values(self):
         self.ensure_one()
 
@@ -120,9 +126,13 @@ class AccountMove(models.Model):
             return False
 
         def get_vat_number(vat):
+            if vat[:2].isdecimal():
+                return vat.replace(' ', '')
             return vat[2:].replace(' ', '')
 
         def get_vat_country(vat):
+            if vat[:2].isdecimal():
+                return 'IT'
             return vat[:2].upper()
 
         def in_eu(partner):
@@ -132,9 +142,7 @@ class AccountMove(models.Model):
                 return True
             return False
 
-        formato_trasmissione = "FPR12"
-        if len(self.commercial_partner_id.l10n_it_pa_index or '1') == 6:
-            formato_trasmissione = "FPA12"
+        formato_trasmissione = "FPA12" if self._is_commercial_partner_pa() else "FPR12"
 
         if self.move_type == 'out_invoice':
             document_type = 'TD01'
@@ -154,6 +162,20 @@ class AccountMove(models.Model):
                 if tax.amount == 0.0:
                     tax_map[tax] = tax_map.get(tax, 0.0) + line.price_subtotal
 
+        # Constraints within the edi make local rounding on price included taxes a problem.
+        # To solve this there is a <Arrotondamento> or 'rounding' field, such that:
+        #   taxable base = sum(taxable base for each unit) + Arrotondamento
+        tax_details = self._prepare_edi_tax_details()
+        for _tax_name, tax_dict in tax_details['tax_details'].items():
+            base_amount = tax_dict['base_amount']
+            tax_amount = tax_dict['tax_amount']
+            tax_rate = tax_dict['tax'].amount
+            if tax_dict['tax'].price_include and tax_dict['tax'].amount_type == 'percent':
+                expected_base_amount = tax_amount * 100 / tax_rate if tax_rate else False
+                if expected_base_amount and float_compare(base_amount, expected_base_amount, 2):
+                    tax_dict['rounding'] = base_amount - (tax_amount * 100 / tax_rate)
+                    tax_dict['base_amount'] = base_amount - tax_dict['rounding']
+
         # Create file content.
         template_values = {
             'record': self,
@@ -172,6 +194,7 @@ class AccountMove(models.Model):
             'pdf': pdf,
             'pdf_name': pdf_name,
             'tax_map': tax_map,
+            'tax_details': tax_details,
         }
         return template_values
 

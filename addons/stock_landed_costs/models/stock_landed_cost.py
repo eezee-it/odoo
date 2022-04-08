@@ -81,6 +81,9 @@ class StockLandedCost(models.Model):
 
     @api.depends('company_id')
     def _compute_allowed_picking_ids(self):
+        # Backport of f329de26: allowed_picking_ids is useless, view_stock_landed_cost_form no longer uses it,
+        # the field and its compute are kept since this is a stable version. Still, this compute has been made
+        # more resilient to MemoryErrors.
         valued_picking_ids_per_company = defaultdict(list)
         if self.company_id:
             self.env.cr.execute("""SELECT sm.picking_id, sm.company_id
@@ -91,7 +94,10 @@ class StockLandedCost(models.Model):
             for res in self.env.cr.fetchall():
                 valued_picking_ids_per_company[res[1]].append(res[0])
         for cost in self:
-            cost.allowed_picking_ids = valued_picking_ids_per_company[cost.company_id.id]
+            n = 5000
+            cost.allowed_picking_ids = valued_picking_ids_per_company[cost.company_id.id][:n]
+            for ids_chunk in tools.split_every(n, valued_picking_ids_per_company[cost.company_id.id][n:]):
+                cost.allowed_picking_ids = [(4, id_) for id_ in ids_chunk]
 
     @api.onchange('target_model')
     def _onchange_target_model(self):
@@ -164,6 +170,9 @@ class StockLandedCost(models.Model):
                 product = line.move_id.product_id
                 if product.cost_method == 'average':
                     cost_to_add_byproduct[product] += cost_to_add
+                # Products with manual inventory valuation are ignored because they do not need to create journal entries.
+                if product.valuation != "real_time":
+                    continue
                 # `remaining_qty` is negative if the move is out and delivered proudcts that were not
                 # in stock.
                 qty_out = 0
@@ -180,16 +189,21 @@ class StockLandedCost(models.Model):
                     product.with_company(cost.company_id).sudo().with_context(disable_auto_svl=True).standard_price += cost_to_add_byproduct[product] / product.quantity_svl
 
             move_vals['stock_valuation_layer_ids'] = [(6, None, valuation_layer_ids)]
-            move = move.create(move_vals)
-            cost.write({'state': 'done', 'account_move_id': move.id})
-            move._post()
+            # We will only create the accounting entry when there are defined lines (the lines will be those linked to products of real_time valuation category).
+            cost_vals = {'state': 'done'}
+            if move_vals.get("line_ids"):
+                move = move.create(move_vals)
+                cost_vals.update({'account_move_id': move.id})
+            cost.write(cost_vals)
+            if cost.account_move_id:
+                move._post()
 
             if cost.vendor_bill_id and cost.vendor_bill_id.state == 'posted' and cost.company_id.anglo_saxon_accounting:
                 all_amls = cost.vendor_bill_id.line_ids | cost.account_move_id.line_ids
                 for product in cost.cost_lines.product_id:
                     accounts = product.product_tmpl_id.get_product_accounts()
                     input_account = accounts['stock_input']
-                    all_amls.filtered(lambda aml: aml.account_id == input_account and not aml.full_reconcile_id).reconcile()
+                    all_amls.filtered(lambda aml: aml.account_id == input_account and not aml.reconciled).reconcile()
 
         return True
 
@@ -199,7 +213,7 @@ class StockLandedCost(models.Model):
 
         for move in self._get_targeted_move_ids():
             # it doesn't make sense to make a landed cost for a product that isn't set as being valuated in real time at real cost
-            if move.product_id.valuation != 'real_time' or move.product_id.cost_method not in ('fifo', 'average') or move.state == 'cancel' or not move.product_qty:
+            if move.product_id.cost_method not in ('fifo', 'average') or move.state == 'cancel' or not move.product_qty:
                 continue
             vals = {
                 'product_id': move.product_id.id,
@@ -213,7 +227,7 @@ class StockLandedCost(models.Model):
 
         if not lines:
             target_model_descriptions = dict(self._fields['target_model']._description_selection(self.env))
-            raise UserError(_("You cannot apply landed costs on the chosen %s(s). Landed costs can only be applied for products with automated inventory valuation and FIFO or average costing method.", target_model_descriptions[self.target_model]))
+            raise UserError(_("You cannot apply landed costs on the chosen %s(s). Landed costs can only be applied for products with FIFO or average costing method.", target_model_descriptions[self.target_model]))
         return lines
 
     def compute_landed_cost(self):

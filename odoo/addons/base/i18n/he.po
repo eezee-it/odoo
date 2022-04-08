@@ -19,9 +19,10 @@
 # דודי מלכה <Dudimalka6@gmail.com>, 2020
 # ZVI BLONDER <ZVIBLONDER@gmail.com>, 2020
 # yotam linder <linder@laylinetech.com>, 2021
-# hed shefetr <hed@laylinetech.com>, 2021
-# Lilach Gilliam <lilach.gilliam@gmail.com>, 2021
+# hed shefer <hed@laylinetech.com>, 2021
 # david danilov, 2021
+# Jonathan Spier, 2021
+# Lilach Gilliam <lilach.gilliam@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -29,7 +30,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-27 13:50+0000\n"
 "PO-Revision-Date: 2020-09-07 08:09+0000\n"
-"Last-Translator: david danilov, 2021\n"
+"Last-Translator: Lilach Gilliam <lilach.gilliam@gmail.com>, 2022\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5901,6 +5902,10 @@ msgid ""
 "It installs sale capabilities, front-end flow, eCommerce, questions and\n"
 "automatic lead generation, full Online support, ...\n"
 msgstr ""
+"\n"
+"מודול זה יבדוק את תהליך זרימת האירועים העיקריות של Odoo, הן בחזית והן ב-backend.\n"
+"הוא מתקין יכולות מכירה, זרימת חזית, מסחר אלקטרוני, שאלות ו\n"
+"יצירת לידים אוטומטית, תמיכה מקוונת מלאה, ...\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_test_main_flows
@@ -10113,7 +10118,7 @@ msgstr "עמודה המתייחסת לרשומה בטבלת המודל"
 #: model_terms:res.partner,website_description:base.res_partner_3
 #: model_terms:res.partner,website_description:base.res_partner_4
 msgid "Come see us live, we hope to meet you !"
-msgstr ""
+msgstr "בוא.י לראות אותנו בשידור חי, מקווים לפגוש אותך!"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__report_paperformat__format__comm10e
@@ -11321,7 +11326,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_fleet_dashboard
 msgid "Dashboard for fleet"
-msgstr ""
+msgstr "לוח מכוונים לצי הרכב"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_board
@@ -13551,7 +13556,7 @@ msgstr "צי רכב"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_fleet_dashboard
 msgid "Fleet Dashboard"
-msgstr ""
+msgstr "לוח מכוונים לצי הרכב"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hr_fleet
@@ -13905,12 +13910,12 @@ msgstr "הגדרות כלליות"
 #. module: base
 #: model:ir.module.module,summary:base.module_crm_iap_lead
 msgid "Generate Leads/Opportunities based on country, industries, size, etc."
-msgstr ""
+msgstr "צור לידים חדשים בהתבסס על המדינה שלהם, תעשיות, גודל וכו '."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_crm_iap_lead_website
 msgid "Generate Leads/Opportunities from your website's traffic"
-msgstr ""
+msgstr "צור לידים / הזדמנויות מהתנועה באתר האינטרנט שלך"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.action_wizard_update_translations
@@ -14315,7 +14320,7 @@ msgstr "לטפל הזמנות צהריים של העובדים שלך"
 #: model_terms:res.partner,website_description:base.res_partner_3
 #: model_terms:res.partner,website_description:base.res_partner_4
 msgid "Happy to be Sponsor"
-msgstr ""
+msgstr "שמח להיות ספונסר של ארוע"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_hw_escpos
@@ -15656,6 +15661,12 @@ msgid "Invalid model name %r in action definition."
 msgstr ""
 
 #. module: base
+#: code:addons/base/models/ir_actions.py:611
+#, python-format
+msgid "many2many fields cannot be evaluated by reference"
+msgstr ""
+
+#. module: base
 #: code:addons/template_inheritance.py:0
 #, python-format
 msgid "Invalid position attribute: '%s'"
@@ -16442,7 +16453,7 @@ msgstr "יצירת לידים"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_crm_iap_lead_website
 msgid "Lead Generation From Website Visits"
-msgstr ""
+msgstr "יצירת לידים מביקורים באתר"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_crm_livechat
@@ -22460,12 +22471,12 @@ msgstr "חפש שותף"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.res_partner_category_view_search
 msgid "Search Partner Category"
-msgstr ""
+msgstr "חיפוש קטגוריית איש קשר"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.res_partner_industry_view_search
 msgid "Search Partner Industry"
-msgstr ""
+msgstr "חיפוש סוג תעשיה של אנשי קשר "
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_actions_act_window__search_view
@@ -22491,7 +22502,7 @@ msgstr "חפש מודול"
 #: code:addons/base/models/ir_ui_view.py:0
 #, python-format
 msgid "Search tag can only contain one search panel"
-msgstr ""
+msgstr "תג חיפוש יכול להכיל רק חלונית חיפוש אחת"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.res_config_settings_view_form
@@ -26865,6 +26876,9 @@ msgid ""
 "\n"
 "(Operation: %(operation)s)"
 msgstr ""
+"אין לך מספיק זכויות לגשת לשדות \"%(fields)s\" ב-%(document_kind)s (%(document_model)s). אנא פנה למנהל המערכת שלך.\n"
+"\n"
+"(פעולה: %(operation)s)"
 
 #. module: base
 #: code:addons/base/models/ir_actions.py:0
@@ -26877,7 +26891,7 @@ msgstr "אין לך מספיק הרשאות כדי לבצע פעולה זו."
 #, python-format
 msgid ""
 "You don't have the rights to export data. Please contact an Administrator."
-msgstr ""
+msgstr "אין לך את הרשאה לייצא נתונים. אנא צור קשר עם מנהל מערכת."
 
 #. module: base
 #: code:addons/base/wizard/base_partner_merge.py:0
@@ -26975,7 +26989,7 @@ msgstr "מיקוד"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_country__zip_required
 msgid "Zip Required"
-msgstr ""
+msgstr "מיקוד נדרש"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_base_import_language
@@ -27006,13 +27020,13 @@ msgstr ""
 #: code:addons/models.py:0
 #, python-format
 msgid "allowed for groups %s"
-msgstr ""
+msgstr "מאושר לקבוצות %s"
 
 #. module: base
 #: code:addons/models.py:0
 #, python-format
 msgid "always forbidden"
-msgstr ""
+msgstr "תמיד תאסור"
 
 #. module: base
 #: code:addons/base/models/res_currency.py:0
@@ -27277,7 +27291,7 @@ msgstr ""
 #: code:addons/base/models/ir_qweb_fields.py:0
 #, python-format
 msgid "minute"
-msgstr ""
+msgstr "דקה"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.demo_failures_dialog
@@ -27486,7 +27500,7 @@ msgstr "test_convert"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_test_search_panel
 msgid "test_search_panel"
-msgstr ""
+msgstr "test_search_panel"
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_model_fields__ttype__text

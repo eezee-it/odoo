@@ -128,6 +128,7 @@ class IrAttachment(models.Model):
 
     def _mark_for_gc(self, fname):
         """ Add ``fname`` in a checklist for the filestore garbage collection. """
+        fname = re.sub('[.]', '', fname).strip('/\\')
         # we use a spooldir: add an empty file in the subdirectory 'checklist'
         full_path = os.path.join(self._full_path('checklist'), fname)
         if not os.path.exists(full_path):
@@ -167,23 +168,26 @@ class IrAttachment(models.Model):
                 fname = "%s/%s" % (dirname, filename)
                 checklist[fname] = os.path.join(dirpath, filename)
 
-        # determine which files to keep among the checklist
-        whitelist = set()
-        for names in cr.split_for_in_conditions(checklist):
-            cr.execute("SELECT store_fname FROM ir_attachment WHERE store_fname IN %s", [names])
-            whitelist.update(row[0] for row in cr.fetchall())
-
-        # remove garbage files, and clean up checklist
+        # Clean up the checklist. The checklist is split in chunks and files are garbage-collected
+        # for each chunk.
         removed = 0
-        for fname, filepath in checklist.items():
-            if fname not in whitelist:
-                try:
-                    os.unlink(self._full_path(fname))
-                    removed += 1
-                except (OSError, IOError):
-                    _logger.info("_file_gc could not unlink %s", self._full_path(fname), exc_info=True)
-            with tools.ignore(OSError):
-                os.unlink(filepath)
+        for names in cr.split_for_in_conditions(checklist):
+            # determine which files to keep among the checklist
+            cr.execute("SELECT store_fname FROM ir_attachment WHERE store_fname IN %s", [names])
+            whitelist = set(row[0] for row in cr.fetchall())
+
+            # remove garbage files, and clean up checklist
+            for fname in names:
+                filepath = checklist[fname]
+                if fname not in whitelist:
+                    try:
+                        os.unlink(self._full_path(fname))
+                        _logger.debug("_file_gc unlinked %s", self._full_path(fname))
+                        removed += 1
+                    except (OSError, IOError):
+                        _logger.info("_file_gc could not unlink %s", self._full_path(fname), exc_info=True)
+                with tools.ignore(OSError):
+                    os.unlink(filepath)
 
         # commit to release the lock
         cr.commit()
@@ -553,14 +557,16 @@ class IrAttachment(models.Model):
     def write(self, vals):
         self.check('write', values=vals)
         # remove computed field depending of datas
-        for field in ('file_size', 'checksum'):
+        for field in ('file_size', 'checksum', 'store_fname'):
             vals.pop(field, False)
         if 'mimetype' in vals or 'datas' in vals or 'raw' in vals:
             vals = self._check_contents(vals)
         return super(IrAttachment, self).write(vals)
 
     def copy(self, default=None):
-        self.check('write')
+        if not (default or {}).keys() & {'datas', 'db_datas', 'raw'}:
+            # ensure the content is kept and recomputes checksum/store_fname
+            default = dict(default or {}, raw=self.raw)
         return super(IrAttachment, self).copy(default)
 
     def unlink(self):
@@ -582,10 +588,16 @@ class IrAttachment(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         record_tuple_set = set()
+
+        # remove computed field depending of datas
+        vals_list = [{
+            key: value
+            for key, value
+            in vals.items()
+            if key not in ('file_size', 'checksum', 'store_fname')
+        } for vals in vals_list]
+
         for values in vals_list:
-            # remove computed field depending of datas
-            for field in ('file_size', 'checksum'):
-                values.pop(field, False)
             values = self._check_contents(values)
             raw, datas = values.pop('raw', None), values.pop('datas', None)
             if raw or datas:
@@ -602,9 +614,11 @@ class IrAttachment(models.Model):
             # creating multiple attachments on a single record.
             record_tuple = (values.get('res_model'), values.get('res_id'))
             record_tuple_set.add(record_tuple)
-        for record_tuple in record_tuple_set:
-            (res_model, res_id) = record_tuple
-            self.check('create', values={'res_model':res_model, 'res_id':res_id})
+
+        # don't use possible contextual recordset for check, see commit for details
+        Attachments = self.browse()
+        for res_model, res_id in record_tuple_set:
+            Attachments.check('create', values={'res_model':res_model, 'res_id':res_id})
         return super(IrAttachment, self).create(vals_list)
 
     def _post_add_create(self):

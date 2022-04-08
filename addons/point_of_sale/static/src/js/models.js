@@ -730,7 +730,7 @@ exports.PosModel = Backbone.Model.extend({
                 if (self.db.add_partners(partners)) {   // check if the partners we got were real updates
                     resolve();
                 } else {
-                    reject('Failed in updating partners.');
+                    reject(new Error('Failed in updating partners.'));
                 }
             }, function (type, err) { reject(); });
         });
@@ -792,7 +792,7 @@ exports.PosModel = Backbone.Model.extend({
         }
         for (var i = 0; i < jsons.length; i++) {
             var json = jsons[i];
-            if (json.pos_session_id !== this.pos_session.id && json.lines.length > 0) {
+            if (json.pos_session_id !== this.pos_session.id && (json.lines.length > 0 || json.statement_ids.length > 0)) {
                 orders.push(new exports.Order({},{
                     pos:  this,
                     json: json,
@@ -1557,7 +1557,7 @@ exports.Product = Backbone.Model.extend({
     // ORM. After that they are added in this order to the pricelists.
     get_price: function(pricelist, quantity, price_extra){
         var self = this;
-        var date = moment().startOf('day');
+        var date = moment();
 
         // In case of nested pricelists, it is necessary that all pricelists are made available in
         // the POS. Display a basic alert to the user in this case.
@@ -1579,8 +1579,8 @@ exports.Product = Backbone.Model.extend({
             return (! item.product_tmpl_id || item.product_tmpl_id[0] === self.product_tmpl_id) &&
                    (! item.product_id || item.product_id[0] === self.id) &&
                    (! item.categ_id || _.contains(category_ids, item.categ_id[0])) &&
-                   (! item.date_start || moment(item.date_start).isSameOrBefore(date)) &&
-                   (! item.date_end || moment(item.date_end).isSameOrAfter(date));
+                   (! item.date_start || moment.utc(item.date_start).isSameOrBefore(date)) &&
+                   (! item.date_end || moment.utc(item.date_end).isSameOrAfter(date));
         });
 
         var price = self.lst_price;
@@ -1760,7 +1760,7 @@ exports.Orderline = Backbone.Model.extend({
     },
     // sets a discount [0,100]%
     set_discount: function(discount){
-        var parsed_discount = isNaN(parseFloat(discount)) ? 0 : field_utils.parse.float('' + discount);
+        var parsed_discount = typeof(discount) === 'number' ? discount : isNaN(parseFloat(discount)) ? 0 : field_utils.parse.float('' + discount);
         var disc = Math.min(Math.max(parsed_discount || 0, 0),100);
         this.discount = disc;
         this.discountStr = '' + disc;
@@ -1813,7 +1813,8 @@ exports.Orderline = Backbone.Model.extend({
         }
 
         // just like in sale.order changing the quantity will recompute the unit price
-        if(! keep_price && ! this.price_manually_set){
+        if (!keep_price && !this.price_manually_set && !(
+            this.pos.config.product_configurator && _.some(this.product.attribute_line_ids, (id) => id in this.pos.attributes_by_ptal_id))){
             this.set_unit_price(this.product.get_price(this.order.pricelist, this.get_quantity(), this.get_price_extra()));
             this.order.fix_tax_included_price(this);
         }
@@ -2103,7 +2104,10 @@ exports.Orderline = Backbone.Model.extend({
             if (tax_mappings && tax_mappings.length) {
                 _.each(tax_mappings, function(tm) {
                     if (tm.tax_dest_id) {
-                        taxes.push(self.pos.taxes_by_id[tm.tax_dest_id[0]]);
+                        var taxe = self.pos.taxes_by_id[tm.tax_dest_id[0]];
+                        if (taxe) {
+                            taxes.push(taxe);
+                        }
                     }
                 });
             } else{
@@ -2125,11 +2129,18 @@ exports.Orderline = Backbone.Model.extend({
         else
             var price_include = !price_exclude;
         if (tax.amount_type === 'fixed') {
-            var sign_base_amount = Math.sign(base_amount) || 1;
-            // Since base amount has been computed with quantity
-            // we take the abs of quantity
-            // Same logic as bb72dea98de4dae8f59e397f232a0636411d37ce
-            return tax.amount * sign_base_amount * Math.abs(quantity);
+            // Use sign on base_amount and abs on quantity to take into account the sign of the base amount,
+            // which includes the sign of the quantity and the sign of the price_unit
+            // Amount is the fixed price for the tax, it can be negative
+            // Base amount included the sign of the quantity and the sign of the unit price and when
+            // a product is returned, it can be done either by changing the sign of quantity or by changing the
+            // sign of the price unit.
+            // When the price unit is equal to 0, the sign of the quantity is absorbed in base_amount then
+            // a "else" case is needed.
+            if (base_amount)
+                return Math.sign(base_amount) * Math.abs(quantity) * tax.amount;
+            else
+                return quantity * tax.amount;
         }
         if (tax.amount_type === 'percent' && !price_include){
             return base_amount * tax.amount / 100;
@@ -2465,6 +2476,7 @@ exports.Paymentline = Backbone.Model.extend({
     init_from_JSON: function(json){
         this.amount = json.amount;
         this.payment_method = this.pos.payment_methods_by_id[json.payment_method_id];
+        this.can_be_reversed = json.can_be_reversed;
         this.name = this.payment_method.name;
         this.payment_status = json.payment_status;
         this.ticket = json.ticket;
@@ -2548,6 +2560,7 @@ exports.Paymentline = Backbone.Model.extend({
             payment_method_id: this.payment_method.id,
             amount: this.get_amount(),
             payment_status: this.payment_status,
+            can_be_reversed: this.can_be_resersed,
             ticket: this.ticket,
             card_type: this.card_type,
             cardholder_name: this.cardholder_name,
@@ -3088,15 +3101,23 @@ exports.Order = Backbone.Model.extend({
     /* ---- Payment Lines --- */
     add_paymentline: function(payment_method) {
         this.assert_editable();
-        var newPaymentline = new exports.Paymentline({},{order: this, payment_method:payment_method, pos: this.pos});
-        newPaymentline.set_amount(this.get_due());
-        this.paymentlines.add(newPaymentline);
-        this.select_paymentline(newPaymentline);
-        if(this.pos.config.cash_rounding){
-          this.selected_paymentline.set_amount(0);
-          this.selected_paymentline.set_amount(this.get_due());
+        if (this.electronic_payment_in_progress()) {
+            return false;
+        } else {
+            var newPaymentline = new exports.Paymentline({},{order: this, payment_method:payment_method, pos: this.pos});
+            newPaymentline.set_amount(this.get_due());
+            this.paymentlines.add(newPaymentline);
+            this.select_paymentline(newPaymentline);
+            if(this.pos.config.cash_rounding){
+              this.selected_paymentline.set_amount(0);
+              this.selected_paymentline.set_amount(this.get_due());
+            }
+
+            if (payment_method.payment_terminal) {
+                newPaymentline.set_payment_status('pending');
+            }
+            return newPaymentline;
         }
-        return newPaymentline;
     },
     get_paymentlines: function(){
         return this.paymentlines.models;
@@ -3346,8 +3367,9 @@ exports.Order = Backbone.Model.extend({
                 if (utils.float_is_zero(rounding_applied, this.pos.currency.decimals)){
                     // https://xkcd.com/217/
                     return 0;
-                }
-                else if(this.pos.cash_rounding[0].rounding_method === "UP" && rounding_applied < 0 && remaining > 0) {
+                } else if(Math.abs(this.get_total_with_tax()) < this.pos.cash_rounding[0].rounding) {
+                    return 0;
+                } else if(this.pos.cash_rounding[0].rounding_method === "UP" && rounding_applied < 0 && remaining > 0) {
                     rounding_applied += this.pos.cash_rounding[0].rounding;
                 }
                 else if(this.pos.cash_rounding[0].rounding_method === "UP" && rounding_applied > 0 && remaining < 0) {
@@ -3368,7 +3390,7 @@ exports.Order = Backbone.Model.extend({
         return 0;
     },
     has_not_valid_rounding: function() {
-        if(!this.pos.config.cash_rounding)
+        if(!this.pos.config.cash_rounding || this.get_total_with_tax() < this.pos.cash_rounding[0].rounding)
             return false;
 
         const only_cash = this.pos.config.only_round_cash_method;
@@ -3399,6 +3421,8 @@ exports.Order = Backbone.Model.extend({
             for(var id in this.get_paymentlines()) {
                 var line = this.get_paymentlines()[id];
                 var diff = round_pr(round_pr(line.amount, cash_rounding) - round_pr(line.amount, default_rounding), default_rounding);
+                if(this.get_total_with_tax() < this.pos.cash_rounding[0].rounding)
+                    return true;
                 if(diff && line.payment_method.is_cash_count) {
                     return false;
                 } else if(!this.pos.config.only_round_cash_method && diff) {

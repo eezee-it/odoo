@@ -37,6 +37,11 @@ class SaleOrder(models.Model):
         if delivery_line:
             self.recompute_delivery_price = True
 
+    def _get_update_prices_lines(self):
+        """ Exclude delivery lines from price list recomputation based on product instead of carrier """
+        lines = super()._get_update_prices_lines()
+        return lines.filtered(lambda line: not line.is_delivery)
+
     def _remove_delivery_line(self):
         delivery_lines = self.env['sale.order.line'].search([('order_id', 'in', self.ids), ('is_delivery', '=', True)])
         if not delivery_lines:
@@ -118,7 +123,7 @@ class SaleOrder(models.Model):
         else:
             values['price_unit'] = price_unit
         if carrier.free_over and self.currency_id.is_zero(price_unit) :
-            values['name'] += '\n' + 'Free Shipping'
+            values['name'] += '\n' + _('Free Shipping')
         if self.order_line:
             values['sequence'] = self.order_line[-1].sequence + 1
         sol = SaleOrderLine.sudo().create(values)

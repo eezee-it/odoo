@@ -4,6 +4,9 @@
 from odoo.tests import Form, tagged
 from odoo.addons.mrp.tests.common import TestMrpCommon
 import uuid
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 @tagged('post_install', '-at_install')
@@ -388,3 +391,109 @@ class TestTraceability(TestMrpCommon):
         # We are not forbidden to use that serial number, so nothing raised here
         mo2.button_mark_done()
 
+    def test_mo_with_used_sn_component(self):
+        """
+        Suppose a tracked-by-usn component has been used to produce a product. Then, using a repair order,
+        this component is removed from the product and returned as available stock. The user should be able to
+        use the component in a new MO
+        """
+        if 'repair.order' not in self.env:
+            # todo in 15.0: move the test in module `mrp_repair`
+            self.skipTest('`repair` is not installed')
+
+        def produce_one(product, component):
+            mo_form = Form(self.env['mrp.production'])
+            mo_form.product_id = product
+            with mo_form.move_raw_ids.new() as raw_line:
+                raw_line.product_id = component
+                raw_line.product_uom_qty = 1
+            mo = mo_form.save()
+            mo.action_confirm()
+            mo.action_assign()
+            action = mo.button_mark_done()
+            wizard = Form(self.env[action['res_model']].with_context(action['context'])).save()
+            wizard.process()
+            return mo
+
+        stock_location = self.env.ref('stock.stock_location_stock')
+
+        finished, component = self.env['product.product'].create([{
+            'name': 'Finished Product',
+            'type': 'product',
+        }, {
+            'name': 'SN Componentt',
+            'type': 'product',
+            'tracking': 'serial',
+        }])
+
+        sn_lot = self.env['stock.production.lot'].create({
+            'product_id': component.id,
+            'name': 'USN01',
+            'company_id': self.env.company.id,
+        })
+        self.env['stock.quant']._update_available_quantity(component, stock_location, 1, lot_id=sn_lot)
+
+        mo = produce_one(finished, component)
+        self.assertEqual(mo.state, 'done')
+        self.assertEqual(mo.move_raw_ids.lot_ids, sn_lot)
+
+        ro_form = Form(self.env['repair.order'])
+        ro_form.product_id = finished
+        with ro_form.operations.new() as ro_line:
+            ro_line.type = 'remove'
+            ro_line.product_id = component
+            ro_line.lot_id = sn_lot
+            ro_line.location_dest_id = stock_location
+        ro = ro_form.save()
+        ro.action_validate()
+        ro.action_repair_start()
+        ro.action_repair_end()
+
+        mo = produce_one(finished, component)
+        self.assertEqual(mo.state, 'done')
+        self.assertEqual(mo.move_raw_ids.lot_ids, sn_lot)
+
+    def test_reuse_unbuilt_usn(self):
+        """
+        Produce a SN product
+        Unbuilt it
+        Produce a new SN product with same lot
+        """
+        mo, bom, p_final, p1, p2 = self.generate_mo(qty_base_1=1, qty_base_2=1, qty_final=1, tracking_final='serial')
+        stock_location = self.env.ref('stock.stock_location_stock')
+        self.env['stock.quant']._update_available_quantity(p1, stock_location, 1)
+        self.env['stock.quant']._update_available_quantity(p2, stock_location, 1)
+        mo.action_assign()
+
+        lot = self.env['stock.production.lot'].create({
+            'name': 'lot1',
+            'product_id': p_final.id,
+            'company_id': self.env.company.id,
+        })
+
+        mo_form = Form(mo)
+        mo_form.qty_producing = 1.0
+        mo_form.lot_producing_id = lot
+        mo = mo_form.save()
+        mo.button_mark_done()
+
+        unbuild_form = Form(self.env['mrp.unbuild'])
+        unbuild_form.mo_id = mo
+        unbuild_form.lot_id = lot
+        unbuild_form.save().action_unbuild()
+
+        mo_form = Form(self.env['mrp.production'])
+        mo_form.bom_id = bom
+        mo = mo_form.save()
+        mo.action_confirm()
+
+        with self.assertLogs(level="WARNING") as log_catcher:
+            mo_form = Form(mo)
+            mo_form.qty_producing = 1.0
+            mo_form.lot_producing_id = lot
+            mo = mo_form.save()
+            _logger.warning('Dummy')
+        self.assertEqual(len(log_catcher.output), 1, "Useless warnings: \n%s" % "\n".join(log_catcher.output[:-1]))
+
+        mo.button_mark_done()
+        self.assertEqual(mo.state, 'done')

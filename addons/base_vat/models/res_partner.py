@@ -145,16 +145,21 @@ class ResPartner(models.Model):
 
     @api.constrains('vat', 'country_id')
     def check_vat(self):
+        # The context key 'no_vat_validation' allows you to store/set a VAT number without doing validations.
+        # This is for API pushes from external platforms where you have no control over VAT numbers.
+        if self.env.context.get('no_vat_validation'):
+            return
+        partners_with_vat = self.filtered('vat')
+        if not partners_with_vat:
+            return
         if self.env.context.get('company_id'):
             company = self.env['res.company'].browse(self.env.context['company_id'])
         else:
             company = self.env.company
         eu_countries = self.env.ref('base.europe').country_ids
-        for partner in self:
-            if not partner.vat:
-                continue
-
-            if company.vat_check_vies and partner.commercial_partner_id.country_id in eu_countries:
+        for partner in partners_with_vat:
+            is_eu_country = partner.commercial_partner_id.country_id in eu_countries
+            if company.vat_check_vies and is_eu_country and partner.is_company:
                 # force full VIES online check
                 check_func = self.vies_vat_check
             else:

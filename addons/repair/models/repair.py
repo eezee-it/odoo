@@ -126,7 +126,8 @@ class Repair(models.Model):
         for order in self:
             total = sum(operation.price_subtotal for operation in order.operations)
             total += sum(fee.price_subtotal for fee in order.fees_lines)
-            order.amount_untaxed = order.pricelist_id.currency_id.round(total)
+            currency = order.pricelist_id.currency_id or self.env.company.currency_id
+            order.amount_untaxed = currency.round(total)
 
     @api.depends('operations.price_unit', 'operations.product_uom_qty', 'operations.product_id',
                  'fees_lines.price_unit', 'fees_lines.product_uom_qty', 'fees_lines.product_id',
@@ -134,14 +135,15 @@ class Repair(models.Model):
     def _amount_tax(self):
         for order in self:
             val = 0.0
+            currency = order.pricelist_id.currency_id or self.env.company.currency_id
             for operation in order.operations:
                 if operation.tax_id:
-                    tax_calculate = operation.tax_id.compute_all(operation.price_unit, order.pricelist_id.currency_id, operation.product_uom_qty, operation.product_id, order.partner_id)
+                    tax_calculate = operation.tax_id.compute_all(operation.price_unit, currency, operation.product_uom_qty, operation.product_id, order.partner_id)
                     for c in tax_calculate['taxes']:
                         val += c['amount']
             for fee in order.fees_lines:
                 if fee.tax_id:
-                    tax_calculate = fee.tax_id.compute_all(fee.price_unit, order.pricelist_id.currency_id, fee.product_uom_qty, fee.product_id, order.partner_id)
+                    tax_calculate = fee.tax_id.compute_all(fee.price_unit, currency, fee.product_uom_qty, fee.product_id, order.partner_id)
                     for c in tax_calculate['taxes']:
                         val += c['amount']
             order.amount_tax = val
@@ -149,7 +151,8 @@ class Repair(models.Model):
     @api.depends('amount_untaxed', 'amount_tax')
     def _amount_total(self):
         for order in self:
-            order.amount_total = order.pricelist_id.currency_id.round(order.amount_untaxed + order.amount_tax)
+            currency = order.pricelist_id.currency_id or self.env.company.currency_id
+            order.amount_total = currency.round(order.amount_untaxed + order.amount_tax)
 
     _sql_constraints = [
         ('name', 'unique (name)', 'The name of the Repair Order must be unique!'),
@@ -229,6 +232,7 @@ class Repair(models.Model):
         self.ensure_one()
         if self.filtered(lambda repair: any(op.product_uom_qty < 0 for op in repair.operations)):
             raise UserError(_("You can not enter negative quantities."))
+        self._check_product_tracking()
         if self.product_id.type == 'consu':
             return self.action_repair_confirm()
         precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
@@ -596,6 +600,15 @@ class Repair(models.Model):
             res[repair.id] = move.id
         return res
 
+    def _check_product_tracking(self):
+        invalid_lines = self.operations.filtered(lambda x: x.product_id.tracking != 'none' and not x.lot_id)
+        if invalid_lines:
+            products = invalid_lines.product_id
+            raise ValidationError(_(
+                "Serial number is required for operation lines with products: %s",
+                ", ".join(products.mapped('display_name')),
+            ))
+
 
 class RepairLine(models.Model):
     _name = 'repair.line'
@@ -651,11 +664,6 @@ class RepairLine(models.Model):
         ('cancel', 'Cancelled')], 'Status', default='draft',
         copy=False, readonly=True, required=True,
         help='The status of a repair line is set automatically to the one of the linked repair order.')
-
-    @api.constrains('lot_id', 'product_id')
-    def constrain_lot_id(self):
-        for line in self.filtered(lambda x: x.product_id.tracking != 'none' and not x.lot_id):
-            raise ValidationError(_("Serial number is required for operation line with product '%s'") % (line.product_id.name))
 
     @api.depends('price_unit', 'repair_id', 'product_uom_qty', 'product_id', 'repair_id.invoice_method')
     def _compute_price_subtotal(self):

@@ -16,7 +16,7 @@ except ImportError:
     slugify_lib = None
 
 import odoo
-from odoo import api, models, registry, exceptions, tools
+from odoo import api, models, registry, exceptions, tools, http
 from odoo.addons.base.models.ir_http import RequestUID, ModelConverter
 from odoo.addons.base.models.qweb import QWebException
 from odoo.http import request
@@ -392,7 +392,7 @@ class IrHttp(models.AbstractModel):
             if nearest_lang:
                 lang = Lang._lang_get(nearest_lang)
             else:
-                nearest_ctx_lg = not is_a_bot and cls.get_nearest_lang(request.env.context['lang'])
+                nearest_ctx_lg = not is_a_bot and cls.get_nearest_lang(request.env.context.get('lang'))
                 nearest_ctx_lg = nearest_ctx_lg in lang_codes and nearest_ctx_lg
                 preferred_lang = Lang._lang_get(cook_lang or nearest_ctx_lg)
                 lang = preferred_lang or cls._get_default_lang()
@@ -653,14 +653,14 @@ class IrHttp(models.AbstractModel):
     @tools.ormcache('path')
     def url_rewrite(self, path):
         new_url = False
-        req = request.httprequest
-        router = req.app.get_db_router(request.db).bind('')
+        router = http.root.get_db_router(request.db).bind('')
         try:
             _ = router.match(path, method='POST')
         except werkzeug.exceptions.MethodNotAllowed:
             _ = router.match(path, method='GET')
         except werkzeug.routing.RequestRedirect as e:
-            new_url = e.new_url[7:]  # remove scheme
+            # get path from http://{path}?{current query string}
+            new_url = e.new_url.split('?')[0][7:]
         except werkzeug.exceptions.NotFound:
             new_url = path
         except Exception as e:
@@ -672,7 +672,7 @@ class IrHttp(models.AbstractModel):
     @api.model
     @tools.cache('path', 'query_args')
     def _get_endpoint_qargs(self, path, query_args=None):
-        router = request.httprequest.app.get_db_router(request.db).bind('')
+        router = http.root.get_db_router(request.db).bind('')
         endpoint = False
         try:
             endpoint = router.match(path, method='POST', query_args=query_args)

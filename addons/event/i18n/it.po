@@ -12,7 +12,8 @@
 # Simone Bernini <simone@aperturelabs.it>, 2020
 # Léonie Bouchat <lbo@odoo.com>, 2020
 # Stefano Consolaro <stefano.consolaro@mymage.it>, 2020
-# Sergio Zanchetta <primes2h@gmail.com>, 2021
+# Sergio Zanchetta <primes2h@gmail.com>, 2022
+# Friederike Fasterling-Nesselbosch, 2022
 # 
 msgid ""
 msgstr ""
@@ -20,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-27 14:12+0000\n"
 "PO-Revision-Date: 2020-09-07 08:12+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>, 2021\n"
+"Last-Translator: Friederike Fasterling-Nesselbosch, 2022\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -238,7 +239,7 @@ msgstr ""
 #. module: event
 #: model_terms:ir.ui.view,arch_db:event.view_event_kanban
 msgid "<i class=\"fa fa-level-up fa-rotate-90\" title=\"Confirmed\"/>"
-msgstr "<i class=\"fa fa-level-up fa-rotate-90\" title=\"Con conferma\"/>"
+msgstr "<i class=\"fa fa-level-up fa-rotate-90\" title=\"Confermati\"/>"
 
 #. module: event
 #: model_terms:ir.ui.view,arch_db:event.view_event_form
@@ -1436,7 +1437,7 @@ msgstr ""
 #. module: event
 #: model:ir.model.fields,field_description:event.field_res_config_settings__module_event_barcode
 msgid "Barcode"
-msgstr "Codice a barre"
+msgstr "Barcode"
 
 #. module: event
 #: model:ir.model.fields.selection,name:event.selection__event_mail__interval_type__before_event
@@ -1627,7 +1628,7 @@ msgstr "Conferma registrazione"
 #: model_terms:ir.ui.view,arch_db:event.view_event_kanban
 #: model_terms:ir.ui.view,arch_db:event.view_registration_search
 msgid "Confirmed"
-msgstr "Con conferma"
+msgstr "Confermato"
 
 #. module: event
 #: model:ir.model,name:event.model_res_partner
@@ -3401,7 +3402,7 @@ msgstr ""
 #. module: event
 #: model:event.stage,description:event.event_stage_booked
 msgid "The place has been reserved"
-msgstr "Il posto è stato prenotato"
+msgstr "Il luogo è stato prenotato"
 
 #. module: event
 #: model_terms:event.event,description:event.event_1
@@ -3457,7 +3458,7 @@ msgid ""
 "This is the perfect place for spending a nice day with your family, we "
 "guarantee you will be leaving with beautiful everlasting memories !"
 msgstr ""
-"È il posto perfetto per trascorrere una bella giornata con la famiglia. Te "
+"È il luogo perfetto per trascorrere una bella giornata con la famiglia. Te "
 "ne andrai con ricordi stupendi che dureranno per sempre, te lo assicuriamo !"
 
 #. module: event
@@ -3466,7 +3467,7 @@ msgid ""
 "This is the perfect place for spending a nice time with your friends while "
 "listening to some of the most iconic rock songs of all times!"
 msgstr ""
-"È il posto perfetto per trascorrere una bella serata con i tuoi amici, "
+"È il luogo perfetto per trascorrere una bella serata con i tuoi amici, "
 "ascoltando alcuni tra i più emblematici brani rock di tutti i tempi."
 
 #. module: event
@@ -3593,7 +3594,7 @@ msgstr "Tipo di attività eccezione sul record."
 #: model_terms:ir.ui.view,arch_db:event.event_event_ticket_view_tree_from_event
 #: model_terms:ir.ui.view,arch_db:event.view_registration_search
 msgid "Unconfirmed"
-msgstr "Nessuna conferma"
+msgstr "Non confermato"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event__seats_unconfirmed
@@ -3816,7 +3817,7 @@ msgstr "eventi@openwood.example.com"
 #: model_terms:event.event,description:event.event_3
 #: model_terms:event.event,description:event.event_5
 msgid "events@yourcompany.com"
-msgstr "eventi@tuaazienda.it"
+msgstr "eventi@azienda.it"
 
 #. module: event
 #: code:addons/event/models/event_registration.py:0

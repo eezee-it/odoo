@@ -9,6 +9,7 @@
 # Eric Antones <eantones@users.noreply.github.com>, 2020
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2020
 # jabelchi, 2021
+# Harcogourmet, 2022
 # 
 msgid ""
 msgstr ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-01 07:29+0000\n"
 "PO-Revision-Date: 2020-09-07 08:12+0000\n"
-"Last-Translator: jabelchi, 2021\n"
+"Last-Translator: Harcogourmet, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,6 +81,8 @@ msgid ""
 "Connections are encrypted with SSL/TLS through a dedicated port (default: "
 "IMAPS=993, POP3S=995)"
 msgstr ""
+"Les connexions s'encripten amb SSL/TLS a través d'un port dedicat (per "
+"defecte: IMAPS=993, POP3S=995)"
 
 #. module: fetchmail
 #: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server__object_id
@@ -175,6 +178,8 @@ msgid ""
 "Invalid server name !\n"
 " %s"
 msgstr ""
+"Nom d'usuari invàlid!\n"
+" %s"
 
 #. module: fetchmail
 #: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server__attach
@@ -290,6 +295,9 @@ msgid ""
 "document type. This will create new documents for new conversations, or "
 "attach follow-up emails to the existing conversations (documents)."
 msgstr ""
+"Processa cada missatge entrant com a part d'una conversa corresponent a "
+"aquest tipus de document. Això crearà nous documents per a noves converses, "
+"o adjuntarà correus de seguiment a les converses existents (documents)."
 
 #. module: fetchmail
 #: model_terms:ir.ui.view,arch_db:fetchmail.view_email_server_form
@@ -381,6 +389,9 @@ msgid ""
 "attached to each processed message. This will usually double the size of "
 "your message database."
 msgstr ""
+"Si s'ha de mantenir una còpia original completa de cada correu electrònic "
+"adjunta a cada missatge processat per referència. Normalment es duplicarà la"
+" mida de la base de dades de missatges."
 
 #. module: fetchmail
 #: model:ir.model.fields,help:fetchmail.field_fetchmail_server__attach
@@ -388,3 +399,5 @@ msgid ""
 "Whether attachments should be downloaded. If not enabled, incoming emails "
 "will be stripped of any attachments before being processed"
 msgstr ""
+"Si s'han de descarregar els adjunts. Si no està habilitat, els correus "
+"entrants es desvincularan de qualsevol adjunt abans de ser processats"

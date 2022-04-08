@@ -12,7 +12,6 @@
 # Andrzej Donczew <a.donczew@hadron.eu.com>, 2020
 # Martin Trigaux, 2020
 # Dariusz Żbikowski <darek@krokus.com.pl>, 2020
-# Grzegorz Grzelak <grzegorz.grzelak@openglobe.pl>, 2020
 # Judyta Kaźmierczak <judyta.kazmierczak@openglobe.pl>, 2020
 # Tomasz Leppich <t.leppich@gmail.com>, 2020
 # Zdzisław Krajewski <zdzichucb@gmail.com>, 2020
@@ -29,6 +28,8 @@
 # Maksym <ms@myodoo.pl>, 2021
 # Wojciech Warczakowski <w.warczakowski@gmail.com>, 2021
 # Rafał Kozak <rafal.kozak@openglobe.pl>, 2021
+# Dawid Prus, 2021
+# Grzegorz Grzelak <grzegorz.grzelak@openglobe.pl>, 2022
 # 
 msgid ""
 msgstr ""
@@ -36,7 +37,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-16 09:00+0000\n"
 "PO-Revision-Date: 2020-09-07 08:19+0000\n"
-"Last-Translator: Rafał Kozak <rafal.kozak@openglobe.pl>, 2021\n"
+"Last-Translator: Grzegorz Grzelak <grzegorz.grzelak@openglobe.pl>, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/odoo/teams/41243/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +124,7 @@ msgstr ""
 #: code:addons/stock/models/stock_warehouse.py:0
 #, python-format
 msgid "%(warehouse)s: Supply Product from %(supplier)s"
-msgstr ""
+msgstr "%(warehouse)s: Dostarcz produkt od %(supplier)s"
 
 #. module: stock
 #: code:addons/stock/models/stock_inventory.py:0
@@ -148,12 +149,12 @@ msgstr ""
 #. module: stock
 #: model:ir.actions.report,print_report_name:stock.action_report_inventory
 msgid "'Inventory - %s' % (object.name)"
-msgstr ""
+msgstr "'Inwentaryzacja - %s' % (object.name)"
 
 #. module: stock
 #: model:ir.actions.report,print_report_name:stock.action_report_location_barcode
 msgid "'Location - %s' % object.name"
-msgstr ""
+msgstr "'Strefa - %s' % object.name"
 
 #. module: stock
 #: model:ir.actions.report,print_report_name:stock.action_report_lot_label
@@ -170,6 +171,7 @@ msgstr ""
 msgid ""
 "'Picking Operations - %s - %s' % (object.partner_id.name or '', object.name)"
 msgstr ""
+"'Operacja pobrania - %s - %s' % (object.partner_id.name or '', object.name)"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_stock_move__state
@@ -459,7 +461,7 @@ msgstr "<span>Nowy</span>"
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_package_barcode_small
 msgid "<span>Package Type: </span>"
-msgstr ""
+msgstr "<span>Typ paczki: </span>"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.stock_report_delivery_no_package_section_line
@@ -560,7 +562,7 @@ msgstr "<strong>Ilość</strong>"
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_picking
 msgid "<strong>Scheduled Date:</strong>"
-msgstr ""
+msgstr "<strong>Planowana data:</strong>"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_delivery_document
@@ -1681,7 +1683,7 @@ msgstr "Strefy klienta"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_res_config_settings__module_delivery_dhl
-msgid "DHL USA Connector"
+msgid "DHL Express Connector"
 msgstr ""
 
 #. module: stock
@@ -3283,18 +3285,24 @@ msgstr "Możliwa edycja wykonanej ilości"
 #: code:addons/stock/models/stock_quant.py:0
 #, python-format
 msgid ""
-"It is not possible to reserve more products of %s than you have in stock."
+"It is not possible to unreserve more products of %s than you have in "
+"stock.The correction could unreserve some operations with problematics "
+"products."
 msgstr ""
-"Nie można zarezerwować więcej produktów typu %s niż istnieje w magazynie."
 
 #. module: stock
 #: code:addons/stock/models/stock_quant.py:0
 #, python-format
 msgid ""
-"It is not possible to unreserve more products of %s than you have in stock."
+"It is not possible to unreserve more products of %s than you have in stock. "
+"Contact an administrator."
 msgstr ""
-"Nie można anulować rezerwacji większej liczby produktów typu %s niż istnieje"
-" w magazynie."
+
+#. module: stock
+#: code:addons/stock/models/stock_quant.py:0
+#, python-format
+msgid "Try our automated action to fix it"
+msgstr ""
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_stock_picking__move_type
@@ -3902,7 +3910,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:stock.field_stock_picking__my_activity_date_deadline
 #: model:ir.model.fields,field_description:stock.field_stock_production_lot__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Ostateczny terminin moich aktywności"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_picking_internal_search

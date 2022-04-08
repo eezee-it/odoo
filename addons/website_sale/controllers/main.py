@@ -649,14 +649,13 @@ class WebsiteSale(http.Controller):
                 if k not in ('field_required', 'partner_id', 'callback', 'submitted'): # classic case
                     _logger.debug("website_sale postprocess: %s value has been dropped (empty or not writable)" % k)
 
-        new_values['team_id'] = request.website.salesteam_id and request.website.salesteam_id.id
-        new_values['user_id'] = request.website.salesperson_id and request.website.salesperson_id.id
-
         if request.website.specific_user_account:
             new_values['website_id'] = request.website.id
 
         if mode[0] == 'new':
             new_values['company_id'] = request.website.company_id.id
+            new_values['team_id'] = request.website.salesteam_id and request.website.salesteam_id.id
+            new_values['user_id'] = request.website.salesperson_id.id
 
         lang = request.lang.code if request.lang.code in request.website.mapped('language_ids.code') else None
         if lang:
@@ -729,6 +728,10 @@ class WebsiteSale(http.Controller):
                     if not kw.get('use_same'):
                         kw['callback'] = kw.get('callback') or \
                             (not order.only_services and (mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
+                    # We need to update the pricelist(by the one selected by the customer), because onchange_partner reset it
+                    # We only need to update the pricelist when it is not redirected to /confirm_order
+                    if kw.get('callback', '') != '/shop/confirm_order':
+                        request.website.sale_get_order(update_pricelist=True)
                 elif mode[1] == 'shipping':
                     order.partner_shipping_id = partner_id
 
@@ -1079,7 +1082,7 @@ class WebsiteSale(http.Controller):
     def print_saleorder(self, **kwargs):
         sale_order_id = request.session.get('sale_last_order_id')
         if sale_order_id:
-            pdf, _ = request.env.ref('sale.action_report_saleorder').sudo()._render_qweb_pdf([sale_order_id])
+            pdf, _ = request.env.ref('sale.action_report_saleorder').with_user(SUPERUSER_ID)._render_qweb_pdf([sale_order_id])
             pdfhttpheaders = [('Content-Type', 'application/pdf'), ('Content-Length', u'%s' % len(pdf))]
             return request.make_response(pdf, headers=pdfhttpheaders)
         else:

@@ -3571,29 +3571,21 @@ class AccountMove(models.Model):
 
     @api.depends('move_type', 'partner_id', 'company_id')
     def _compute_narration(self):
-        print("start")
         use_invoice_terms = self.env['ir.config_parameter'].sudo().get_param('account.use_invoice_terms')
         for move in self:
-            print ("move")
             if not move.is_sale_document(include_receipts=True):
-                print("if not")
                 continue
             if not use_invoice_terms:
-                print("iF not 2")
                 move.narration = False
             else:
-                print("else")
                 lang = move.partner_id.lang or self.env.user.lang
                 if not move.company_id.terms_type == 'html':
-                    print("if not 3")
                     narration = move.company_id.with_context(lang=lang).invoice_terms if not is_html_empty(move.company_id.invoice_terms) else ''
                 else:
-                    print("else 2")
                     baseurl = self.env.company.get_base_url() + '/terms'
                     context = {'lang': lang}
                     narration = _('Terms & Conditions: %s', baseurl)
                     del context
-                print('nar', narration)
                 move.narration = narration or False
 
     def _notify_get_groups(self, msg_vals=None):

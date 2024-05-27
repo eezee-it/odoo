@@ -4,6 +4,8 @@ import { registerNewModel } from '@mail/model/model_core';
 import { attr, many2many, many2one, one2many } from '@mail/model/model_field';
 import { clear, insert } from '@mail/model/model_field_command';
 
+import { session } from '@web/session';
+
 function factory(dependencies) {
 
     class Attachment extends dependencies['mail.model'] {
@@ -28,6 +30,9 @@ function factory(dependencies) {
          */
         static convertData(data) {
             const data2 = {};
+            if ('access_token' in data) {
+                data2.accessToken = data.access_token;
+            }
             if ('checksum' in data) {
                 data2.checksum = data.checksum;
             }
@@ -126,10 +131,10 @@ function factory(dependencies) {
             if (this.isPdf) {
                 const pdf_lib = `/web/static/lib/pdfjs/web/viewer.html?file=`
                 if (!this.accessToken && this.originThread && this.originThread.model === 'mail.channel') {
-                    return `${pdf_lib}/mail/channel/${this.originThread.id}/attachment/${this.id}`;
+                    return `${pdf_lib}/mail/channel/${this.originThread.id}/attachment/${this.id}#pagemode=none`;
                 }
                 const accessToken = this.accessToken ? `?access_token%3D${this.accessToken}` : '';
-                return `${pdf_lib}/web/content/${this.id}${accessToken}`;
+                return `${pdf_lib}/web/content/${this.id}${accessToken}#pagemode=none`;
             }
             if (this.isUrlYoutube) {
                 const urlArr = this.url.split('/');
@@ -194,8 +199,10 @@ function factory(dependencies) {
             if (!this.messaging) {
                 return;
             }
-
-            if (this.messages.length && this.originThread && this.originThread.model === 'mail.channel') {
+            if (session.is_admin) {
+                return true;
+            }
+            if (this.messages.length) {
                 return this.messages.some(message => (
                     message.canBeDeleted ||
                     (message.author && message.author === this.messaging.currentPartner) ||

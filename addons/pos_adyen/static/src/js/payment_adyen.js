@@ -194,7 +194,7 @@ var PaymentAdyen = PaymentInterface.extend({
         return rpc.query({
             model: 'pos.payment.method',
             method: 'get_latest_adyen_status',
-            args: [[this.payment_method.id], this._adyen_get_sale_id()],
+            args: [[this.payment_method.id]],
         }, {
             timeout: 5000,
             shadow: true,
@@ -212,7 +212,7 @@ var PaymentAdyen = PaymentInterface.extend({
         }).then(function (status) {
             var notification = status.latest_response;
             var order = self.pos.get_order();
-            var line = self.pending_adyen_line();
+            var line = self.pending_adyen_line() || resolve(false);
 
             if (notification && notification.SaleToPOIResponse.MessageHeader.ServiceID == line.terminalServiceId) {
                 var response = notification.SaleToPOIResponse.PaymentResponse.Response;

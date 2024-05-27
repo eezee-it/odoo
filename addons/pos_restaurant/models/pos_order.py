@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-from itertools import groupby
+from odoo.tools import groupby
 from re import search
 from functools import partial
 
@@ -54,6 +54,7 @@ class PosOrder(models.Model):
         fields.extend([
             'id',
             'discount',
+            'tax_ids',
             'product_id',
             'price_unit',
             'order_id',
@@ -72,6 +73,7 @@ class PosOrder(models.Model):
         :type order_line: pos.order.line.
         :returns: dict -- dict representing the order line's values.
         """
+        order_line = super(PosOrder, self)._prepare_order_line(order_line)
         order_line["product_id"] = order_line["product_id"][0]
         order_line["server_id"] = order_line["id"]
 
@@ -80,6 +82,8 @@ class PosOrder(models.Model):
             order_line["pack_lot_ids"] = []
         else:
             order_line["pack_lot_ids"] = [[0, 0, lot] for lot in order_line["pack_lot_ids"]]
+
+        order_line["tax_ids"] = [(6, False, [tax for tax in order_line["tax_ids"]])]
         return order_line
 
     def _get_order_lines(self, orders):
@@ -162,6 +166,15 @@ class PosOrder(models.Model):
         return fields
 
     @api.model
+    def _get_domain_for_draft_orders(self, table_id):
+        """ Get the domain to search for draft orders on a table.
+        :param table_id: Id of a table.
+        :type table_id: int.
+        "returns: list -- list of tuples that represents a domain.
+        """
+        return [("state", "=", "draft"), ("table_id", "=", table_id)]
+
+    @api.model
     def get_table_draft_orders(self, table_id):
         """Generate an object of all draft orders for the given table.
 
@@ -172,19 +185,19 @@ class PosOrder(models.Model):
         :type table_id: int.
         :returns: list -- list of dict representing the table orders
         """
+        self = self.with_context(prefetch_fields=False)
         table_orders = self.search_read(
-                domain=[('state', '=', 'draft'), ('table_id', '=', table_id)],
+                domain=self._get_domain_for_draft_orders(table_id),
                 fields=self._get_fields_for_draft_order())
 
         self._get_order_lines(table_orders)
         self._get_payment_lines(table_orders)
 
-        timezone = pytz.timezone(self._context.get('tz') or self.env.user.tz or 'UTC')
         for order in table_orders:
             order['pos_session_id'] = order['session_id'][0]
             order['uid'] = search(r"\d{5,}-\d{3,}-\d{4,}", order['pos_reference']).group(0)
             order['name'] = order['pos_reference']
-            order['creation_date'] = order['create_date'].astimezone(timezone)
+            order['creation_date'] = order['create_date']
             order['server_id'] = order['id']
             if order['fiscal_position_id']:
                 order['fiscal_position_id'] = order['fiscal_position_id'][0]
@@ -259,3 +272,9 @@ class PosOrder(models.Model):
         result = super(PosOrder, self)._export_for_ui(order)
         result['table_id'] = order.table_id.id
         return result
+
+    @api.model
+    def get_all_table_draft_orders(self, pos_config_id):
+        tables = self.env['restaurant.table'].search([('floor_id.pos_config_id', '=', pos_config_id)])
+        order_obj = self.env['pos.order']
+        return [order for table in tables for order in order_obj.get_table_draft_orders(table.id) if order]

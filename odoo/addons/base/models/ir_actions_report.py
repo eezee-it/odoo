@@ -5,9 +5,8 @@ from markupsafe import Markup
 from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.exceptions import UserError, AccessError
 from odoo.tools.safe_eval import safe_eval, time
-from odoo.tools.misc import find_in_path
+from odoo.tools.misc import find_in_path, ustr
 from odoo.tools import config, is_html_empty, parse_version
-from odoo.sql_db import TestCursor
 from odoo.http import request
 from odoo.osv.expression import NEGATIVE_TERM_OPERATORS, FALSE_DOMAIN
 
@@ -24,13 +23,17 @@ import json
 from lxml import etree
 from contextlib import closing
 from reportlab.graphics.barcode import createBarcodeDrawing
-from PyPDF2 import PdfFileWriter, PdfFileReader, utils
+from PyPDF2 import PdfFileWriter, PdfFileReader
 from collections import OrderedDict
 from collections.abc import Iterable
 from PIL import Image, ImageFile
 # Allow truncated images
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+try:
+    from PyPDF2.errors import PdfReadError
+except ImportError:
+    from PyPDF2.utils import PdfReadError
 
 _logger = logging.getLogger(__name__)
 
@@ -87,6 +90,7 @@ class IrActionsReport(models.Model):
     _table = 'ir_act_report_xml'
     _sequence = 'ir_actions_id_seq'
     _order = 'name'
+    _allow_sudo_commands = False
 
     name = fields.Char(translate=True)
     type = fields.Char(default='ir.actions.report')
@@ -327,6 +331,10 @@ class IrActionsReport(models.Model):
             if paperformat_id.disable_shrinking:
                 command_args.extend(['--disable-smart-shrinking'])
 
+        # Add extra time to allow the page to render
+        delay = self.env['ir.config_parameter'].sudo().get_param('report.print_delay', '1000')
+        command_args.extend(['--javascript-delay', delay])
+
         if landscape:
             command_args.extend(['--orientation', 'landscape'])
 
@@ -355,7 +363,7 @@ class IrActionsReport(models.Model):
         layout = self.env['ir.ui.view'].browse(self.env['ir.ui.view'].get_view_id('web.minimal_layout'))
         base_url = IrConfig.get_param('report.url') or layout.get_base_url()
 
-        root = lxml.html.fromstring(html)
+        root = lxml.html.fromstring(html, parser=lxml.html.HTMLParser(encoding='utf-8'))
         match_klass = "//div[contains(concat(' ', normalize-space(@class), ' '), ' {} ')]"
 
         header_node = etree.Element('div', id='minimal_layout_report_headers')
@@ -484,6 +492,7 @@ class IrActionsReport(models.Model):
             wkhtmltopdf = [_get_wkhtmltopdf_bin()] + command_args + files_command_args + paths + [pdf_report_path]
             process = subprocess.Popen(wkhtmltopdf, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = process.communicate()
+            err = ustr(err)
 
             if process.returncode not in [0, 1]:
                 if process.returncode == -11:
@@ -778,7 +787,7 @@ class IrActionsReport(models.Model):
         else:
             try:
                 result = self._merge_pdfs(streams)
-            except utils.PdfReadError:
+            except (PdfReadError, NotImplementedError):
                 raise UserError(_("One of the documents you are trying to merge is encrypted"))
 
         # We have to close the streams after PdfFileWriter's call to write()
@@ -795,7 +804,7 @@ class IrActionsReport(models.Model):
                 reader = PdfFileReader(stream)
                 writer.appendPagesFromReader(reader)
                 writer.write(result_stream)
-            except utils.PdfReadError:
+            except (PdfReadError, TypeError, ValueError, NotImplementedError):
                 unreadable_streams.append(stream)
 
         return unreadable_streams
@@ -846,7 +855,7 @@ class IrActionsReport(models.Model):
         # assets are not in cache and must be generated. To workaround this issue, we manually
         # commit the writes in the `ir.attachment` table. It is done thanks to a key in the context.
         context = dict(self.env.context)
-        if not config['test_enable']:
+        if not config['test_enable'] and 'commit_assetsbundle' not in context:
             context['commit_assetsbundle'] = True
 
         # Disable the debug mode in the PDF rendering in order to not split the assets bundle
@@ -884,7 +893,8 @@ class IrActionsReport(models.Model):
         # - The report is not fully present in attachments.
         if save_in_attachment and not res_ids:
             _logger.info('The PDF report has been generated from attachments.')
-            self._raise_on_unreadable_pdfs(save_in_attachment.values(), stream_record)
+            if len(save_in_attachment) > 1:
+                self._raise_on_unreadable_pdfs(save_in_attachment.values(), stream_record)
             return self_sudo._post_pdf(save_in_attachment), 'pdf'
 
         if self.get_wkhtmltopdf_state() == 'install':

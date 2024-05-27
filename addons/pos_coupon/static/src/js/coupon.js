@@ -273,8 +273,8 @@ odoo.define('pos_coupon.pos', function (require) {
             return this;
         },
         init_from_JSON: function (json) {
-            this.bookedCouponCodes = this.bookedCouponCodes ? this.order.bookedCouponCodes : {};
-            this.activePromoProgramIds = this.activePromoProgramIds ? this.order.activePromoProgramIds : [];
+            this.bookedCouponCodes = json.bookedCouponCodes ? json.bookedCouponCodes : {};
+            this.activePromoProgramIds = json.activePromoProgramIds ? json.activePromoProgramIds : [];
             _order_super.init_from_JSON.apply(this, arguments);
         },
         export_as_JSON: function () {
@@ -311,7 +311,10 @@ odoo.define('pos_coupon.pos', function (require) {
         },
         _getRegularOrderlines: function () {
             const orderlines = _order_super.get_orderlines.apply(this, arguments);
-            return orderlines.filter((line) => !line.is_program_reward && !line.refunded_orderline_id);
+            const is_gift_card_product = (line) => this.pos.config.gift_card_product_id && line.product.id === this.pos.config.gift_card_product_id[0];
+            const is_tips_product = (line) => this.pos.config.tip_product_id && line.product.id === this.pos.config.tip_product_id[0];
+            //reward_id is always false unless the line is a reward from pos_loyalty
+            return orderlines.filter((line) => !line.is_program_reward && !line.reward_id && !line.refunded_orderline_id && !is_gift_card_product(line) && !is_tips_product(line));
         },
         _getRewardLines: function () {
             const orderlines = _order_super.get_orderlines.apply(this, arguments);
@@ -338,6 +341,15 @@ odoo.define('pos_coupon.pos', function (require) {
                 .apply(this, arguments)
                 .filter((line) => !line.is_program_reward);
             return regularLines[regularLines.length - 1];
+        },
+        selectLastOrderline: function(line){
+            if(!line.is_program_reward) {
+                _order_super.selectLastOrderline.apply(this, arguments);
+            }
+        },
+        set_pricelist: function (pricelist) {
+            _order_super.set_pricelist.apply(this, arguments);
+            this.trigger('update-rewards');
         },
 
         // NEW METHODS
@@ -461,7 +473,25 @@ odoo.define('pos_coupon.pos', function (require) {
             return rewardsContainer
                 .getAwarded()
                 .map(({ product, unit_price, quantity, program, tax_ids, coupon_id }) => {
+                    let description;
+                    /**
+                     * Improved description only aplicable for rewards of type discount, and the discount is a percentage
+                     * of the price, those are:
+                     * - % discount on specific products.
+                     * - % discount on the whole order.
+                     * - % discount on the cheapest product.
+                     */
+                    if (tax_ids && program.reward_type === "discount" && program.discount_type === "percentage") {
+                        description =
+                            tax_ids.length > 0
+                                ? _.str.sprintf(
+                                    this.pos.env._t("Tax: %s"),
+                                    tax_ids.map((tax_id) => `%${this.pos.taxes_by_id[tax_id].amount}`).join(", ")
+                                )
+                                : this.pos.env._t("No tax");
+                    }
                     const options = {
+                        description,
                         quantity: quantity,
                         price: unit_price,
                         lst_price: unit_price,
@@ -1106,6 +1136,12 @@ odoo.define('pos_coupon.pos', function (require) {
                     amountsToDiscount[key] += reward.quantity * reward.unit_price;
                 }
             }
+            //Remove entries from amountsToDiscount that are 0
+            for (let key in amountsToDiscount) {
+                if (amountsToDiscount[key] === 0) {
+                    delete amountsToDiscount[key];
+                }
+            }
         },
         _getGroupKey: function (line) {
             return line
@@ -1148,9 +1184,10 @@ odoo.define('pos_coupon.pos', function (require) {
                 this.program_id = json.program_id;
                 this.coupon_id = json.coupon_id;
                 if (this.coupon_id && this.coupon_id[1]) {
-                    this.order.bookedCouponCodes[this.coupon_id[1]] = new CouponCode(this.coupon_id[1], this.coupon_id[0], this.program_id[0]);
-                } else if (json.program_id && json.program_id[0]) {
-                    this.order.activePromoProgramIds.push(json.program_id[0]);
+                    this.order.bookedCouponCodes[this.coupon_id[1]] = new CouponCode(this.coupon_id[1], this.coupon_id[0], this.program_id);
+                    this.coupon_id = json.coupon_id[0];
+                } else if (json.program_id && this.order.activePromoProgramIds.indexOf(json.program_id) === -1) {
+                    this.order.activePromoProgramIds.push(json.program_id);
                 }
             }
             _orderline_super.init_from_JSON.apply(this, [json]);

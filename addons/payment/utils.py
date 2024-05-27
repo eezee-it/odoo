@@ -7,6 +7,8 @@ from odoo.http import request
 from odoo.tools import consteq, float_round, ustr
 from odoo.tools.misc import hmac as hmac_tool
 
+from odoo.addons.payment.const import CURRENCY_MINOR_UNITS
+
 
 # Access token management
 
@@ -55,6 +57,10 @@ def singularize_reference_prefix(prefix='tx', separator='-', max_length=None):
     If the `max_length` argument is passed, the end of the prefix can be stripped before
     singularizing to ensure that the result accounts for no more than `max_length` characters.
 
+    Warning: Generated prefixes are *not* uniques! This function should be used only for making
+    transaction reference prefixes more distinguishable and *not* for operations that require the
+    generated value to be unique.
+
     :param str prefix: The custom prefix to singularize
     :param str separator: The custom separator used to separate the prefix from the suffix
     :param int max_length: The maximum length of the singularized prefix
@@ -87,7 +93,7 @@ def to_major_currency_units(minor_amount, currency, arbitrary_decimal_number=Non
     currency.ensure_one()
 
     if arbitrary_decimal_number is None:
-        decimal_number = currency.decimal_places
+        decimal_number = CURRENCY_MINOR_UNITS.get(currency.name, currency.decimal_places)
     else:
         decimal_number = arbitrary_decimal_number
     return float_round(minor_amount, precision_digits=0) / (10**decimal_number)
@@ -113,7 +119,7 @@ def to_minor_currency_units(major_amount, currency, arbitrary_decimal_number=Non
         decimal_number = arbitrary_decimal_number
     else:
         currency.ensure_one()
-        decimal_number = currency.decimal_places
+        decimal_number = CURRENCY_MINOR_UNITS.get(currency.name, currency.decimal_places)
     return int(float_round(major_amount * (10**decimal_number), precision_digits=0))
 
 

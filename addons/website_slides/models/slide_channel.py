@@ -154,8 +154,8 @@ class Channel(models.Model):
     # description
     name = fields.Char('Name', translate=True, required=True)
     active = fields.Boolean(default=True, tracking=100)
-    description = fields.Html('Description', translate=True, help="The description that is displayed on top of the course page, just below the title")
-    description_short = fields.Html('Short Description', translate=True, help="The description that is displayed on the course card")
+    description = fields.Html('Description', translate=True, sanitize_attributes=False, sanitize_form=False, help="The description that is displayed on top of the course page, just below the title")
+    description_short = fields.Html('Short Description', translate=True, sanitize_attributes=False, sanitize_form=False, help="The description that is displayed on the course card")
     description_html = fields.Html('Detailed Description', translate=tools.html_translate, sanitize_attributes=False, sanitize_form=False)
     channel_type = fields.Selection([
         ('training', 'Training'), ('documentation', 'Documentation')],
@@ -741,7 +741,7 @@ class Channel(models.Model):
             additional_domain=[('request_partner_id', '=', partner.id)]
         ).mapped('res_id')
         for channel in self:
-            if channel.id not in requested_cids:
+            if channel.id not in requested_cids and channel.user_id:
                 activities += channel.activity_schedule(
                     'website_slides.mail_activity_data_access_request',
                     note=_('<b>%s</b> is requesting access to this course.') % partner.name,

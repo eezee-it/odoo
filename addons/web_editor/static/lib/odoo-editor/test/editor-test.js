@@ -3,6 +3,7 @@ import './spec/align.test.js';
 import './spec/color.test.js';
 import './spec/editor.test.js';
 import './spec/copyPaste.test.js';
+import './spec/htmlTables.test.js';
 import './spec/list.test.js';
 import './spec/link.test.js';
 import './spec/format.test.js';
@@ -11,6 +12,7 @@ import './spec/fontAwesome.test.js';
 import './spec/autostep.test.js';
 import './spec/urlRegex.test.js';
 import './spec/collab.test.js';
+import './spec/odooFields.test.js';
 
 mocha.run(failures => {
     if (failures) {

@@ -35,7 +35,7 @@ class ProductProduct(models.Model):
         domain = self._get_lines_domain(location_ids, warehouse_ids)
         groups = self.env['purchase.order.line'].read_group(domain,
             ['product_id', 'product_qty', 'order_id', 'product_uom', 'orderpoint_id'],
-            ['order_id', 'product_id', 'product_uom', 'orderpoint_id'], lazy=False)
+            ['order_id', 'product_id', 'product_uom', 'orderpoint_id'], orderby='id', lazy=False)
         for group in groups:
             if group.get('orderpoint_id'):
                 location = self.env['stock.warehouse.orderpoint'].browse(group['orderpoint_id'][:1]).location_id
@@ -115,7 +115,9 @@ class SupplierInfo(models.Model):
         orderpoint = self.env['stock.warehouse.orderpoint'].browse(orderpoint_id)
         if not orderpoint:
             return
-        orderpoint.route_id = self.env['stock.rule'].search([('action', '=', 'buy')], limit=1).route_id.id
+        if 'buy' not in orderpoint.route_id.rule_ids.mapped('action'):
+            orderpoint.route_id = self.env['stock.rule'].search([('action', '=', 'buy')], limit=1).route_id.id
         orderpoint.supplier_id = self
-        if orderpoint.qty_to_order < self.min_qty:
-            orderpoint.qty_to_order = self.min_qty
+        supplier_min_qty = self.product_uom._compute_quantity(self.min_qty, orderpoint.product_id.uom_id)
+        if orderpoint.qty_to_order < supplier_min_qty:
+            orderpoint.qty_to_order = supplier_min_qty

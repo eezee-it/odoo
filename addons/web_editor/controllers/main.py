@@ -94,6 +94,12 @@ class Web_Editor(http.Controller):
         if icon.isdigit():
             if int(icon) == 57467:
                 font = "/web/static/fonts/tiktok_only.woff"
+            elif int(icon) == 61593:  # F099
+                icon = "59392"  # E800
+                font = "/web/static/fonts/twitter_x_only.woff"
+            elif int(icon) == 61569:  # F081
+                icon = "59395"  # E803
+                font = "/web/static/fonts/twitter_x_only.woff"
 
         size = max(width, height, 1) if width else size
         width = width or size
@@ -124,15 +130,22 @@ class Web_Editor(http.Controller):
         image = Image.new("RGBA", (width, height), color)
         draw = ImageDraw.Draw(image)
 
-        box = draw.textbbox((0, 0), icon, font=font_obj)
-        boxw = box[2] - box[0]
-        boxh = box[3] - box[1]
+        if hasattr(draw, 'textbbox'):
+            box = draw.textbbox((0, 0), icon, font=font_obj)
+            left = box[0]
+            top = box[1]
+            boxw = box[2] - box[0]
+            boxh = box[3] - box[1]
+        else:  # pillow < 8.00 (Focal)
+            left, top, _right, _bottom = image.getbbox()
+            boxw, boxh = draw.textsize(icon, font=font_obj)
+
         draw.text((0, 0), icon, font=font_obj)
 
         # Create an alpha mask
         imagemask = Image.new("L", (boxw, boxh), 0)
         drawmask = ImageDraw.Draw(imagemask)
-        drawmask.text((-box[0], -box[1]), icon, font=font_obj, fill=255)
+        drawmask.text((-left, -top), icon, font=font_obj, fill=255)
 
         # Create a solid color image and apply the mask
         if color.startswith('rgba'):
@@ -143,7 +156,7 @@ class Web_Editor(http.Controller):
 
         # Create output image
         outimage = Image.new("RGBA", (boxw, height), bg or (0, 0, 0, 0))
-        outimage.paste(iconimage, (box[0], box[1]), iconimage)
+        outimage.paste(iconimage, (left, top), iconimage)
 
         # output image
         output = io.BytesIO()
@@ -555,6 +568,17 @@ class Web_Editor(http.Controller):
         return '%s?access_token=%s' % (attachment.image_src, attachment.access_token)
 
     def _get_shape_svg(self, module, *segments):
+        Module = request.env['ir.module.module'].sudo()
+        # Avoid creating a bridge module just for this check.
+        if 'imported' in Module._fields and Module.search([('name', '=', module)]).imported:
+            attachment = request.env['ir.attachment'].sudo().search([
+                ('url', '=', f"/{module.replace('.', '_')}/static/{'/'.join(segments)}"),
+                ('public', '=', True),
+                ('type', '=', 'binary'),
+            ], limit=1)
+            if attachment:
+                return b64decode(attachment.datas)
+            raise werkzeug.exceptions.NotFound()
         shape_path = get_resource_path(module, 'static', *segments)
         if not shape_path:
             raise werkzeug.exceptions.NotFound()

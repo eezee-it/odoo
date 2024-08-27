@@ -12,14 +12,15 @@
 # Lars Aam <lars.aam@vikenfiber.no>, 2022
 # Joar Horvei, 2022
 # Lars Petter Lilleng, 2023
+# Rune Restad, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 08:19+0000\n"
+"POT-Creation-Date: 2024-08-14 15:42+0000\n"
 "PO-Revision-Date: 2021-09-14 12:24+0000\n"
-"Last-Translator: Lars Petter Lilleng, 2023\n"
+"Last-Translator: Rune Restad, 2024\n"
 "Language-Team: Norwegian Bokmål (https://app.transifex.com/odoo/teams/41243/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,11 +117,6 @@ msgstr "%s Kan ikke slettes. Prøv å kansellere først. "
 #: model_terms:ir.ui.view,arch_db:mrp.report_mrp_bom
 msgid "&amp; Cost"
 msgstr "&amp; Kost"
-
-#. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.view_immediate_production
-msgid "&gt;"
-msgstr "&gt;"
 
 #. module: mrp
 #: model:ir.actions.report,print_report_name:mrp.action_report_bom_structure
@@ -922,12 +918,6 @@ msgstr "Bom struktur & kost"
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_bom_filter
 msgid "BoM Type"
 msgstr "Stykkliste type"
-
-#. module: mrp
-#: code:addons/mrp/models/mrp_bom.py:0
-#, python-format
-msgid "BoM line product %s should not be the same as BoM product."
-msgstr "BoM linje proukt %s kan ikke være det samme som Bom produkt."
 
 #. module: mrp
 #: model:product.product,name:mrp.product_product_computer_desk_bolt
@@ -2434,16 +2424,6 @@ msgid "Line of issue consumption"
 msgstr "Linje for problem med forbruk"
 
 #. module: mrp
-#: code:addons/mrp/models/mrp_production.py:0
-#, python-format
-msgid ""
-"Lines need to be deleted, but can not as you still have some quantities to "
-"consume in them. "
-msgstr ""
-"Linjer som trengs å bli slettet, en kan ikke siden du fortsatt har noe "
-"kvantum som skal forbrukes i disse."
-
-#. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_stock_warn_insufficient_qty_unbuild__location_id
 msgid "Location"
 msgstr "Sted"
@@ -2870,6 +2850,7 @@ msgstr "Navn"
 #: code:addons/mrp/models/mrp_unbuild.py:0
 #: code:addons/mrp/models/mrp_unbuild.py:0
 #: code:addons/mrp/models/mrp_unbuild.py:0
+#: code:addons/mrp/models/stock_rule.py:0
 #, python-format
 msgid "New"
 msgstr "Ny"
@@ -3054,19 +3035,11 @@ msgstr "Antall meldinger med leveringsfeil"
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workcenter__capacity
 msgid ""
-"Number of pieces (in product UoM) that can be produced in parallel  (at the "
+"Number of pieces (in product UoM) that can be produced in parallel (at the "
 "same time) at this work center. For example: the capacity is 5 and you need "
 "to produce 10 units, then the operation time listed on the BOM will be "
 "multiplied by two. However, note that both time before and after production "
-"will only be counted once. "
-msgstr ""
-
-#. module: mrp
-#: model:ir.model.fields,help:mrp.field_mrp_bom__product_qty
-msgid ""
-"This should be the smallest quantity that this product can be produced in. "
-"If the BOM contains operations, make sure the work center capacity is "
-"accurate. "
+"will only be counted once."
 msgstr ""
 
 #. module: mrp
@@ -3766,6 +3739,11 @@ msgid "Quantity:"
 msgstr "Antall:"
 
 #. module: mrp
+#: model:ir.model,name:mrp.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder__move_raw_ids
 msgid "Raw Moves"
 msgstr ""
@@ -3890,6 +3868,12 @@ msgid "Responsible User"
 msgstr "Ansvarlig bruker"
 
 #. module: mrp
+#: code:addons/mrp/models/stock_quant.py:0
+#, python-format
+msgid "Return to Inventory"
+msgstr ""
+
+#. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__routing_line_ids
 msgid "Routing Lines"
 msgstr "Ruting-linjer"
@@ -3928,6 +3912,11 @@ msgstr "Planlagt dato"
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_filter
 msgid "Scheduled Date by Month"
 msgstr "Planlagt dato etter måned"
+
+#. module: mrp
+#: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_filter
+msgid "Scheduled Date: Last 365 Days"
+msgstr ""
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__date_planned_finished
@@ -4486,6 +4475,20 @@ msgid "The capacity must be strictly positive."
 msgstr "Kapasiteten må være positiv."
 
 #. module: mrp
+#: code:addons/mrp/models/mrp_production.py:0
+#, python-format
+msgid "The component %s should not be the same as the product to produce."
+msgstr ""
+
+#. module: mrp
+#: code:addons/mrp/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"The current configuration is incorrect because it would create a cycle "
+"between these products: %s."
+msgstr ""
+
+#. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_document__res_model
 msgid "The database object this attachment will be attached to."
 msgstr "Databaseobjektet dette vedlegget vil bli tilknyttet."
@@ -4538,12 +4541,6 @@ msgid ""
 "The product has already been used at least once, editing its structure may "
 "lead to undesirable behaviours. You should rather archive the product and "
 "create a new one with a new bill of materials."
-msgstr ""
-
-#. module: mrp
-#: code:addons/mrp/models/mrp_production.py:0
-#, python-format
-msgid "The quantity produced of by-products must be positive."
 msgstr ""
 
 #. module: mrp
@@ -4680,9 +4677,16 @@ msgstr "Denne produksjonsordren er opprettet fra Påfyllingsrapport"
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_production.py:0
-#: code:addons/mrp/models/mrp_workorder.py:0
 #, python-format
 msgid "This serial number for product %s has already been produced"
+msgstr ""
+
+#. module: mrp
+#: model:ir.model.fields,help:mrp.field_mrp_bom__product_qty
+msgid ""
+"This should be the smallest quantity that this product can be produced in. "
+"If the BOM contains operations, make sure the work center capacity is "
+"accurate."
 msgstr ""
 
 #. module: mrp
@@ -4760,7 +4764,7 @@ msgstr "Til lukking"
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_production_workorder_form_view_inherit
 msgid "To Consume"
-msgstr ""
+msgstr "Planlagt forbruk"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_filter
@@ -5149,12 +5153,12 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields.selection,name:mrp.selection__mrp_workorder__state__pending
 msgid "Waiting for another WO"
-msgstr ""
+msgstr "Venter på annen WO"
 
 #. module: mrp
 #: model:ir.model.fields.selection,name:mrp.selection__mrp_workorder__state__waiting
 msgid "Waiting for components"
-msgstr ""
+msgstr "Venter på komponenter"
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_workorder.py:0
@@ -5174,7 +5178,10 @@ msgstr "Advar om utilstrekkelig kvantum for reversering"
 
 #. module: mrp
 #: code:addons/mrp/models/mrp_bom.py:0 code:addons/mrp/models/mrp_bom.py:0
+#: code:addons/mrp/models/mrp_bom.py:0
 #: code:addons/mrp/models/mrp_production.py:0
+#: code:addons/mrp/models/mrp_unbuild.py:0
+#: code:addons/mrp/models/mrp_unbuild.py:0
 #: code:addons/mrp/models/stock_scrap.py:0
 #, python-format
 msgid "Warning"
@@ -5227,7 +5234,7 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields.selection,name:mrp.selection__mrp_bom__ready_to_produce__asap
 msgid "When components for 1st operation are available"
-msgstr ""
+msgstr "Når første komponenter er klare for neste operasjon"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_stock_warehouse__manufacture_to_resupply
@@ -5674,6 +5681,14 @@ msgstr ""
 #: code:addons/mrp/models/mrp_unbuild.py:0
 #, python-format
 msgid "You should provide a lot number for the final product."
+msgstr ""
+
+#. module: mrp
+#: code:addons/mrp/models/stock_quant.py:0
+#, python-format
+msgid ""
+"You should update the components quantity instead of directly updating the "
+"quantity of the kit product."
 msgstr ""
 
 #. module: mrp

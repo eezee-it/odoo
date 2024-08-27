@@ -12,17 +12,17 @@
 # jay Lee, 2022
 # JH CHOI <hwangtog@gmail.com>, 2022
 # Martin Trigaux, 2023
-# Wil Odoo, 2023
-# Daye Jeong, 2023
 # Sarah Park, 2024
+# Daye Jeong, 2024
+# Wil Odoo, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 09:52+0000\n"
+"POT-Creation-Date: 2024-08-14 15:42+0000\n"
 "PO-Revision-Date: 2021-09-14 12:18+0000\n"
-"Last-Translator: Sarah Park, 2024\n"
+"Last-Translator: Wil Odoo, 2024\n"
 "Language-Team: Korean (https://app.transifex.com/odoo/teams/41243/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,6 +108,12 @@ msgstr "%<span class=\"px-3\"/>("
 #, python-format
 msgid "%d moves"
 msgstr "%d이동"
+
+#. module: account
+#: code:addons/account/models/account_account_tag.py:0
+#, python-format
+msgid "%s (%s)"
+msgstr "%s (%s)"
 
 #. module: account
 #: code:addons/account/models/account_tax.py:0
@@ -250,6 +256,8 @@ msgid ""
 "<br/>\n"
 "                            on this account:"
 msgstr ""
+"<br/>\n"
+"                            이 계정:"
 
 #. module: account
 #: model:mail.template,body_html:account.email_template_edi_credit_note
@@ -981,11 +989,6 @@ msgstr "<strong class=\"text-center\">은행 앱으로 스캔해 주세요.</str
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.report_invoice_document
-msgid "<strong>Amount Due</strong>"
-msgstr "<strong>지불해야 할 금액</strong>"
-
-#. module: account
-#: model_terms:ir.ui.view,arch_db:account.report_invoice_document
 msgid "<strong>Credit Note Date:</strong>"
 msgstr "<strong>대변전표 발행일:</strong>"
 
@@ -1202,16 +1205,6 @@ msgstr "두 번째 지급 항목이 대상 분개장에 자동으로 생성됩�
 #: model:ir.model.constraint,message:account.constraint_account_fiscal_position_tax_tax_src_dest_uniq
 msgid "A tax fiscal position could be defined only one time on same taxes."
 msgstr "세금 재정 상태는 같은 세금들에서 오로지 한번만 선언됩니다."
-
-#. module: account
-#: code:addons/account/models/account_tax.py:0
-#, python-format
-msgid ""
-"A tax should only use tags from its country. You should use another tax and "
-"a fiscal position if you wish to uses the tags from foreign tax reports."
-msgstr ""
-"세금 항목에서는 해당 국가의 태그만 사용해야 합니다. 외국 세금 보고서의 태그를 사용하려면 다른 세금 및 재정 상태 항목을 사용해야 "
-"합니다."
 
 #. module: account
 #: code:addons/account/models/res_users.py:0
@@ -1771,6 +1764,7 @@ msgstr "판매 영수증 생성 기능을 활성화하려면 선택하세요"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account_tag__active
 #: model:ir.model.fields,field_description:account.field_account_fiscal_position__active
+#: model:ir.model.fields,field_description:account.field_account_fiscal_position_tax__tax_dest_active
 #: model:ir.model.fields,field_description:account.field_account_incoterms__active
 #: model:ir.model.fields,field_description:account.field_account_journal__active
 #: model:ir.model.fields,field_description:account.field_account_payment_term__active
@@ -2574,14 +2568,6 @@ msgstr "자산"
 #: model:ir.model.fields,field_description:account.field_account_chart_template__account_ids
 msgid "Associated Account Templates"
 msgstr "관련 계정 템플릿"
-
-#. module: account
-#: code:addons/account/populate/res_company.py:0
-#, python-format
-msgid ""
-"At least one localization is needed to be installed in order to populate the"
-" database with accounting"
-msgstr "회계 데이터베이스 사용을 위해서는 하나 이상의 현지화 항목이 설치되어야 합니다."
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.account_invoice_send_wizard_form
@@ -3799,6 +3785,7 @@ msgstr "협력사"
 #: model:ir.model.fields,field_description:account.field_account_tax_carryover_line__company_id
 #: model:ir.model.fields,field_description:account.field_account_tax_repartition_line__company_id
 #: model_terms:ir.ui.view,arch_db:account.view_account_analytic_default_form_search
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_payment_search
@@ -4028,6 +4015,11 @@ msgstr "이미 계정 항목이 있으므로 새 계정과목 일람표를 설�
 #: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_form
 msgid "Counterpart Entries"
 msgstr "상대 항목"
+
+#. module: account
+#: model:ir.model.fields,help:account.field_res_company__multi_vat_foreign_country_ids
+msgid "Countries for which the company has a VAT number"
+msgstr "회사 VAT 번호의 기준 국가입니다."
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account_tag__country_id
@@ -4393,6 +4385,7 @@ msgstr "작성일자"
 #. module: account
 #: code:addons/account/wizard/account_automatic_entry_wizard.py:0
 #: code:addons/account/wizard/accrued_orders.py:0
+#: model:ir.model.fields,field_description:account.field_account_analytic_account__credit
 #: model:ir.model.fields,field_description:account.field_account_move_line__credit
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #, python-format
@@ -4762,6 +4755,7 @@ msgstr "데이터 일관성 검사"
 #: model:ir.model.fields,field_description:account.field_tax_adjustments_wizard__date
 #: model:ir.model.fields.selection,name:account.selection__account_print_journal__sort_selection__date
 #: model_terms:ir.ui.view,arch_db:account.report_journal
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_line_filter
@@ -4828,6 +4822,7 @@ msgstr ""
 #. module: account
 #: code:addons/account/wizard/account_automatic_entry_wizard.py:0
 #: code:addons/account/wizard/accrued_orders.py:0
+#: model:ir.model.fields,field_description:account.field_account_analytic_account__debit
 #: model:ir.model.fields,field_description:account.field_account_move_line__debit
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #, python-format
@@ -5048,6 +5043,26 @@ msgstr "이메일 삭제"
 #: model:ir.model.fields,field_description:account.field_account_invoice_send__auto_delete_message
 msgid "Delete Message Copy"
 msgstr "메시지 사본 삭제"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_ceo_wages_account
+msgid "Demo CEO Wages Account"
+msgstr "데모용 CEO 급여 계정"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_capital_account
+msgid "Demo Capital Account"
+msgstr "데모용 자본 계정"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_sale_of_land_account
+msgid "Demo Sale of Land Account"
+msgstr "데모용 토지 판매 계정"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_stock_account
+msgid "Demo Stock Account"
+msgstr "데모용 주식 계정"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account__deprecated
@@ -5488,6 +5503,11 @@ msgid "Dynamic Reports"
 msgstr "동적 보고서"
 
 #. module: account
+#: model:ir.model.fields,help:account.field_account_tax_repartition_line__tag_ids_domain
+msgid "Dynamic domain used for the tag that can be set on tax"
+msgstr "세금 설정용 태그에 사용하는 동적 도메인입니다."
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_res_config_settings__module_l10n_eu_oss
 msgid "EU Intra-community Distance Selling"
 msgstr "EU 커뮤니티 내 원거리 판매"
@@ -5823,6 +5843,11 @@ msgid "Financial Tags"
 msgstr "재무 태그"
 
 #. module: account
+#: model:account.account.tag,name:account.account_tag_financing
+msgid "Financing Activities"
+msgstr "재무 활동"
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model_partner_mapping__payment_ref_regex
 msgid "Find Text in Label"
 msgstr "라벨에서 문자 검색"
@@ -5897,6 +5922,7 @@ msgstr "재무 기간"
 #: model:ir.model.fields,field_description:account.field_account_invoice_report__fiscal_position_id
 #: model:ir.model.fields,field_description:account.field_account_move__fiscal_position_id
 #: model:ir.model.fields,field_description:account.field_account_payment__fiscal_position_id
+#: model:ir.model.fields,field_description:account.field_res_company__fiscal_position_ids
 #: model:ir.model.fields,field_description:account.field_res_partner__property_account_position_id
 #: model:ir.model.fields,field_description:account.field_res_users__property_account_position_id
 #: model_terms:ir.ui.view,arch_db:account.view_account_position_filter
@@ -6058,6 +6084,11 @@ msgstr "외화"
 #: model:ir.model.fields,field_description:account.field_account_fiscal_position__foreign_vat
 msgid "Foreign Tax ID"
 msgstr "외국 세금 식별 번호"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_res_company__multi_vat_foreign_country_ids
+msgid "Foreign VAT countries"
+msgstr "해외 VAT 국가"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_fiscal_position__foreign_vat_header_mode
@@ -6979,8 +7010,12 @@ msgstr "인트라스탯(EU 통계자료 공유)"
 #. module: account
 #: code:addons/account/models/partner.py:0
 #, python-format
-msgid "Invalid \"Zip Range\", please configure it properly."
-msgstr "잘못된 \"우편번호 범위\"입니다. 적절히 구성해주십시오."
+msgid ""
+"Invalid \"Zip Range\", You have to configure both \"From\" and \"To\" values"
+" for the zip range and \"To\" should be greater than \"From\"."
+msgstr ""
+"\"우편 번호 범위\"가 잘못되었습니다. 우편 번호 범위에 대해 \"출발지\" 및 \"도착지\" 값을 모두 구성해야 하며 \"도착지\"가"
+" \"출발지\"보다 커야 합니다."
 
 #. module: account
 #: code:addons/account/models/company.py:0
@@ -6992,6 +7027,11 @@ msgstr "잘못된 회계연도 마감일"
 #: model:ir.model.fields,field_description:account.field_account_move_line__tax_tag_invert
 msgid "Invert Tags"
 msgstr "전환 태그"
+
+#. module: account
+#: model:account.account.tag,name:account.account_tag_investing
+msgid "Investing & Extraordinary Activities"
+msgstr "투자 및 기타 활동"
 
 #. module: account
 #: code:addons/account/models/account_move.py:0
@@ -7437,6 +7477,7 @@ msgstr "1월"
 #: model_terms:ir.ui.view,arch_db:account.report_hash_integrity
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #: model_terms:ir.ui.view,arch_db:account.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_journal_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_line_filter
@@ -8418,6 +8459,11 @@ msgid "Memo:"
 msgstr "메모:"
 
 #. module: account
+#: model:ir.model,name:account.model_base_partner_merge_automatic_wizard
+msgid "Merge Partner Wizard"
+msgstr "협력사 병합 마법사"
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_account__message_has_error
 #: model:ir.model.fields,field_description:account.field_account_account_template__message_has_error
 #: model:ir.model.fields,field_description:account.field_account_bank_statement__message_has_error
@@ -8623,6 +8669,12 @@ msgstr "환급세 잔액"
 #: model:ir.model.fields,help:account.field_account_payment__amount_signed
 msgid "Negative value of amount field if payment_type is outbound"
 msgstr "아웃바운드 payment_type인 경우 amount 필드의 음수 값"
+
+#. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr ""
 
 #. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_bank_statement__state__open
@@ -9032,6 +9084,11 @@ msgid "Off-Balance Sheet"
 msgstr "대차대조표에 계상되지 않은 항목"
 
 #. module: account
+#: model:account.account.tag,name:account.demo_office_furniture_account
+msgid "Office Furniture"
+msgstr "사무용 가구"
+
+#. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_reconcile_model__matching_order__old_first
 #: model:ir.model.fields.selection,name:account.selection__account_reconcile_model_template__matching_order__old_first
 msgid "Oldest first"
@@ -9223,6 +9280,11 @@ msgstr "이 계정의 개시 대변 값입니다."
 #: model:ir.model.fields,help:account.field_account_account__opening_debit
 msgid "Opening debit value for this account."
 msgstr "이 계정의 개시 차변 값입니다."
+
+#. module: account
+#: model:account.account.tag,name:account.account_tag_operating
+msgid "Operating Activities"
+msgstr "영업 활동"
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_form
@@ -9575,6 +9637,7 @@ msgstr "일부 지불됨"
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #: model_terms:ir.ui.view,arch_db:account.view_account_analytic_default_form_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_analytic_line_filter_inherit_account
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_line_filter
@@ -9635,6 +9698,12 @@ msgstr "조정 모델을 위한 협력사 맵핑"
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model__match_partner
 msgid "Partner should be set"
 msgstr ""
+
+#. module: account
+#: code:addons/account/models/partner.py:0
+#, python-format
+msgid "Partners that are used in hashed entries cannot be merged."
+msgstr "해시 항목에 사용되는 협력사는 병합할 수 없습니다."
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.res_config_settings_view_form
@@ -10009,14 +10078,6 @@ msgstr "해시 무결성 결과를 출력하려면 회계 담당자에게 문의
 #, python-format
 msgid "Please define a payment method line on your payment."
 msgstr "결제 항목에 결제 방법을 정의하십시오."
-
-#. module: account
-#: code:addons/account/models/account_payment.py:0
-#, python-format
-msgid ""
-"The selected payment method is not available for this payment, please select"
-" the payment method again."
-msgstr ""
 
 #. module: account
 #: code:addons/account/models/chart_template.py:0
@@ -11641,6 +11702,7 @@ msgid "Set active to false to hide the Journal without removing it."
 msgstr "분개장을 제거하지 않고 숨기려면 false로 설정합니다."
 
 #. module: account
+#: model:ir.model.fields,help:account.field_account_fiscal_position_tax__tax_dest_active
 #: model:ir.model.fields,help:account.field_account_tax__active
 #: model:ir.model.fields,help:account.field_account_tax_template__active
 msgid "Set active to false to hide the tax without removing it."
@@ -13226,6 +13288,14 @@ msgid "The company this distribution line belongs to."
 msgstr "이 유통 항목이 속해 있는 회사입니다."
 
 #. module: account
+#: code:addons/account/models/partner.py:0
+#, python-format
+msgid ""
+"The country code of the foreign VAT number does not match any country in the"
+" group."
+msgstr "해외 VAT 번호의 국가 코드가 그룹 내 어떤 국가와도 일치하지 않습니다."
+
+#. module: account
 #: model:ir.model.fields,help:account.field_account_tax_group__country_id
 msgid "The country for which this tax group is applicable."
 msgstr "이 세금 그룹이 적용되는 회사입니다."
@@ -13806,6 +13876,14 @@ msgid ""
 msgstr ""
 "선택한 대상 계정에서 특정 통화를 사용하도록 설정되었습니다. 이 계정으로 전기되는 모든 항목은 해당 항목으로 변환되며, 이로 인하여\n"
 "                기존의 모든 외환 금액 자료는 삭제됨을 확인하시기 바랍니다. "
+
+#. module: account
+#: code:addons/account/models/account_payment.py:0
+#, python-format
+msgid ""
+"The selected payment method is not available for this payment, please select"
+" the payment method again."
+msgstr "선택하신 결제 방법은 이 결제에 사용하실 수 없습니다. 다른 결제 수단을 선택해 주세요."
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_account_payment_form
@@ -15418,7 +15496,7 @@ msgid ""
 msgstr "다른 회사에서 입력한 항목에 대해서는 결제와 관련되어 생성 할 수 없습니다."
 
 #. module: account
-#: code:addons/account/models/account_payment_method.py:0
+#: code:addons/account/models/account_journal.py:0
 #, python-format
 msgid ""
 "You can't have two payment method lines of the same payment type (%s) and "
@@ -15463,7 +15541,7 @@ msgstr "선택한 전표에 결제할 항목이 더 이상 없으므로 결제 �
 msgid ""
 "You can't register payments for both inbound and outbound moves at the same "
 "time."
-msgstr ""
+msgstr "인바운드 및 아웃바운드 이동에 대한 결제를 동시에 등록할 수 없습니다."
 
 #. module: account
 #: code:addons/account/models/account_analytic_line.py:0
@@ -15516,6 +15594,14 @@ msgstr "분개 항목이 이미 포함된 계정의 소유주 회사를 변경�
 #: code:addons/account/models/partner.py:0
 #, python-format
 msgid ""
+"You cannot create a fiscal position with a country outside of the selected "
+"country group."
+msgstr "선택한 국가 그룹 외부에 있는 국가에는 재정 포지션을 생성할 수 없습니다."
+
+#. module: account
+#: code:addons/account/models/partner.py:0
+#, python-format
+msgid ""
 "You cannot create a fiscal position with a foreign VAT within your fiscal "
 "country without assigning it a state."
 msgstr "회계 기준 국가 내에서 주를 설정하지 않으면 해외 VAT 번호를 이용하여 재정 상태를 생성할 수 없습니다."
@@ -15549,7 +15635,7 @@ msgstr "이미 전기된 상태에서는 이동을 만들 수 없습니다. 초�
 #: code:addons/account/models/account_account.py:0
 #, python-format
 msgid "You cannot create recursive groups."
-msgstr ""
+msgstr "재귀 그룹은 만들 수 없습니다."
 
 #. module: account
 #: code:addons/account/models/account_move.py:0
@@ -15563,7 +15649,7 @@ msgstr "게시된 항목에 연결된 항목은 삭제할 수 없습니다."
 msgid ""
 "You cannot delete this account tag (%s), it is used on the chart of account "
 "definition."
-msgstr ""
+msgstr "이 계정 태그(%s)는 계정과목표 정의에서 사용 중이므로 삭제할 수 없습니다."
 
 #. module: account
 #: code:addons/account/models/account_move.py:0
@@ -15580,7 +15666,7 @@ msgstr ""
 msgid ""
 "You cannot delete this report (%s), it is used by the accounting PDF "
 "generation engine."
-msgstr ""
+msgstr "이 보고서 (%s)는 회계 PDF 생성 엔진에서 사용 중이므로 삭제할 수 없습니다."
 
 #. module: account
 #: code:addons/account/models/res_config_settings.py:0
@@ -15650,6 +15736,12 @@ msgid ""
 "You cannot have more than one account with \"Current Year Earnings\" as "
 "type. (accounts: %s)"
 msgstr "\"현재 연도 소득\"을 유형으로 하는 계정을 두 개 이상 가질 수 없습니다. (계정 : %s)"
+
+#. module: account
+#: code:addons/account/models/account_account.py:0
+#, python-format
+msgid "You cannot merge accounts."
+msgstr "계정을 합칠 수 없습니다."
 
 #. module: account
 #: code:addons/account/models/account_move.py:0
@@ -15753,7 +15845,7 @@ msgid ""
 msgstr "일부 부분 조정은 아직 보류 중인 경우 조정을 방지하기 위해 계정을 전환할 수 없습니다."
 
 #. module: account
-#: code:addons/account/models/account_account.py:0
+#: code:addons/account/models/account_move.py:0
 #, python-format
 msgid "You cannot switch the type of a posted document."
 msgstr "문서 발행이 완료된 경우에는 유형을 변경할 수 없습니다."
@@ -16150,6 +16242,11 @@ msgid ""
 "reserves the right to request a fixed interest payment amounting to 10% of "
 "the sum remaining due."
 msgstr "전체 잔여 금액의 10%에 해당하는 고정 이자를 청구할 권리가 있습니다."
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_tax_repartition_line__tag_ids_domain
+msgid "tag domain"
+msgstr "태그 도메인"
 
 #. module: account
 #: code:addons/account/models/account_move.py:0

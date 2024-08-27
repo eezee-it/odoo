@@ -8,16 +8,16 @@
 # Aimée Mendoza Sánchez, 2023
 # Iran Villalobos López, 2023
 # Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2024
-# Fernanda Alvarez, 2024
 # Martin Trigaux, 2024
+# Fernanda Alvarez, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 14:42+0000\n"
+"POT-Creation-Date: 2024-08-14 15:42+0000\n"
 "PO-Revision-Date: 2021-09-14 12:24+0000\n"
-"Last-Translator: Martin Trigaux, 2024\n"
+"Last-Translator: Fernanda Alvarez, 2024\n"
 "Language-Team: Spanish (Mexico) (https://app.transifex.com/odoo/teams/41243/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -761,7 +761,7 @@ msgstr "Código de barras"
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config__barcode_nomenclature_id
 #: model_terms:ir.ui.view,arch_db:point_of_sale.pos_config_view_form
 msgid "Barcode Nomenclature"
-msgstr "Nomenclatura de código de barras"
+msgstr "Nomenclatura del código de barras"
 
 #. module: point_of_sale
 #: model:ir.model,name:point_of_sale.model_barcode_rule
@@ -1258,16 +1258,16 @@ msgid "Close Session Wizard"
 msgstr "Asistente para cerrar sesión"
 
 #. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/models.js:0
+#, python-format
+msgid "Close anyway"
+msgstr "Cerrar"
+
+#. module: point_of_sale
 #: model:ir.model.fields.selection,name:point_of_sale.selection__pos_session__state__closed
 msgid "Closed & Posted"
 msgstr "Cerrado y publicado"
-
-#. module: point_of_sale
-#. openerp-web
-#: code:addons/point_of_sale/static/src/js/Chrome.js:0
-#, python-format
-msgid "Closing ..."
-msgstr "Cierre..."
 
 #. module: point_of_sale
 #: model:ir.model.fields.selection,name:point_of_sale.selection__pos_session__state__closing_control
@@ -2029,6 +2029,13 @@ msgstr "Nombre en pantalla"
 #: model_terms:ir.ui.view,arch_db:point_of_sale.pos_config_view_form
 msgid "Display pictures of product categories"
 msgstr "Mostrar las imágenes de las categorías de los productos"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/models.js:0
+#, python-format
+msgid "Do not close"
+msgstr "No cerrar"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/digest.py:0
@@ -3152,12 +3159,12 @@ msgstr "Número de lote/de serie"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config__module_pos_loyalty
 msgid "Loyalty Program"
-msgstr "Programa de fidelidad"
+msgstr "Programa de lealtad"
 
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.pos_config_view_form
 msgid "Loyalty program to use for this point of sale."
-msgstr "Programa de fidelidad que se utilizará en este punto de venta."
+msgstr "Programa de lealtad a usar en este punto de venta."
 
 #. module: point_of_sale
 #: model:product.product,name:point_of_sale.magnetic_board
@@ -3599,7 +3606,7 @@ msgstr "Error sin conexión"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/js/Chrome.js:0
+#: code:addons/point_of_sale/static/src/js/models.js:0
 #, python-format
 msgid "Offline Orders"
 msgstr "Órdenes sin conexión"
@@ -5662,7 +5669,7 @@ msgstr "Saltar pantalla de vista previa"
 #: code:addons/point_of_sale/static/src/xml/Screens/ProductScreen/CategoryBreadcrumb.xml:0
 #, python-format
 msgid "Slash"
-msgstr "Diagonal"
+msgstr "Barra"
 
 #. module: point_of_sale
 #: model:product.product,name:point_of_sale.small_shelf
@@ -5689,7 +5696,7 @@ msgstr "Faltan algunos números de serie o de lote"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/js/Chrome.js:0
+#: code:addons/point_of_sale/static/src/js/models.js:0
 #, python-format
 msgid ""
 "Some orders could not be submitted to the server due to configuration "
@@ -5702,7 +5709,7 @@ msgstr ""
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/js/Chrome.js:0
+#: code:addons/point_of_sale/static/src/js/models.js:0
 #, python-format
 msgid ""
 "Some orders could not be submitted to the server due to internet connection "
@@ -6952,7 +6959,7 @@ msgstr "Número de mensajes sin leer"
 #: code:addons/point_of_sale/static/src/js/Screens/ClientListScreen/ClientDetailsEdit.js:0
 #, python-format
 msgid "Unsupported File Format"
-msgstr "Formato de archivo no compatible"
+msgstr "Formato de archivo incompatible"
 
 #. module: point_of_sale
 #. openerp-web

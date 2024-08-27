@@ -20,14 +20,15 @@
 # Mohammad Tahmasebi <hit.tah75@gmail.com>, 2022
 # fardin mardani <fmardani0@gmail.com>, 2023
 # Mostafa Barmshory <mostafa.barmshory@gmail.com>, 2024
+# mohammad rahmani <mohammadrahmani2o0@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 08:20+0000\n"
+"POT-Creation-Date: 2024-08-14 15:43+0000\n"
 "PO-Revision-Date: 2021-09-14 12:27+0000\n"
-"Last-Translator: Mostafa Barmshory <mostafa.barmshory@gmail.com>, 2024\n"
+"Last-Translator: mohammad rahmani <mohammadrahmani2o0@gmail.com>, 2024\n"
 "Language-Team: Persian (https://app.transifex.com/odoo/teams/41243/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,6 +49,29 @@ msgstr "رکوردها"
 #, python-format
 msgid "# Code editor"
 msgstr "تعداد ویرایشگر کد"
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/web_calendar.xml:0
+#, python-format
+msgid ""
+"#{ ['all', false].includes(filter.value) or !widget.avatar_field ? "
+"filter.label : '' }"
+msgstr ""
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "#{i.display_name} is current state"
+msgstr ""
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "#{i.display_name} is not current state"
+msgstr ""
 
 #. module: web
 #. openerp-web
@@ -436,7 +460,7 @@ msgstr "دسترسی به همه برنامه‌های سازمانی"
 
 #. module: web
 #. openerp-web
-#: code:addons/web/static/src/legacy/xml/base.xml:0
+#: code:addons/web/static/src/legacy/js/components/action_menus.js:0
 #, python-format
 msgid "Action"
 msgstr "عملیات"
@@ -466,13 +490,6 @@ msgstr "فعال سازی خطا یابی دارایی‌ها"
 #, python-format
 msgid "Activate Tests Assets Debugging"
 msgstr ""
-
-#. module: web
-#. openerp-web
-#: code:addons/web/static/src/core/debug/debug_providers.js:0
-#, python-format
-msgid "Activate debug mode"
-msgstr "فعالسازی دیباگ"
 
 #. module: web
 #. openerp-web
@@ -590,17 +607,17 @@ msgstr "افزودن به محبوبها"
 
 #. module: web
 #. openerp-web
-#: code:addons/web/static/src/legacy/xml/base.xml:0
-#, python-format
-msgid "Additional actions"
-msgstr ""
-
-#. module: web
-#. openerp-web
 #: code:addons/web/static/src/legacy/js/fields/relational_fields.js:0
 #, python-format
 msgid "Add: "
 msgstr "افزودن: "
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/js/components/action_menus.js:0
+#, python-format
+msgid "Additional actions"
+msgstr ""
 
 #. module: web
 #. openerp-web
@@ -733,7 +750,7 @@ msgstr "بایگانی کردن همه"
 #, python-format
 msgid ""
 "Are you sure that you want to archive all the records from this column?"
-msgstr ""
+msgstr "آیا مطمئن هستید که می خواهید تمام رکوردهای این ستون را بایگانی کنید؟"
 
 #. module: web
 #. openerp-web
@@ -797,12 +814,13 @@ msgstr "مطمئنید می‌خواهید این رکورد را حذف کنی�
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
 msgid "Are you sure you want to perform the following update on those"
-msgstr ""
+msgstr "آیا مطمئن هستید که می‌خواهید به‌روزرسانی زیر را روی آن‌ها انجام دهید"
 
 #. module: web
 #. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
+#: code:addons/web/static/src/views/graph/graph_view.xml:0
 #: code:addons/web/static/src/views/graph/graph_view.xml:0
 #, python-format
 msgid "Ascending"
@@ -872,6 +890,7 @@ msgstr "نشان‌ها"
 #. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
+#: code:addons/web/static/src/views/graph/graph_view.xml:0
 #: code:addons/web/static/src/views/graph/graph_view.xml:0
 #, python-format
 msgid "Bar Chart"
@@ -1086,6 +1105,13 @@ msgstr "پاک‌سازی"
 #, python-format
 msgid "Clear Signature"
 msgstr "پاک کردن امضاء"
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "Click to change current state to #{i.display_name}"
+msgstr ""
 
 #. module: web
 #. openerp-web
@@ -1565,6 +1591,7 @@ msgstr "حذف ردیف"
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/views/graph/graph_view.xml:0
+#: code:addons/web/static/src/views/graph/graph_view.xml:0
 #, python-format
 msgid "Descending"
 msgstr "نزولی"
@@ -1703,6 +1730,7 @@ msgstr "دانلود پیش‌نمایش PDF"
 #. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
+#: code:addons/web/static/src/views/pivot/pivot_view.xml:0
 #: code:addons/web/static/src/views/pivot/pivot_view.xml:0
 #, python-format
 msgid "Download xlsx"
@@ -1846,6 +1874,7 @@ msgstr "همه چیز"
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/views/pivot/pivot_view.xml:0
+#: code:addons/web/static/src/views/pivot/pivot_view.xml:0
 #, python-format
 msgid "Expand all"
 msgstr "گسترش همه"
@@ -1978,6 +2007,7 @@ msgstr "فیلترها"
 #. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
+#: code:addons/web/static/src/views/pivot/pivot_view.xml:0
 #: code:addons/web/static/src/views/pivot/pivot_view.xml:0
 #, python-format
 msgid "Flip axis"
@@ -2365,6 +2395,7 @@ msgstr "آبی روشن"
 #. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
+#: code:addons/web/static/src/views/graph/graph_view.xml:0
 #: code:addons/web/static/src/views/graph/graph_view.xml:0
 #, python-format
 msgid "Line Chart"
@@ -2802,7 +2833,7 @@ msgstr "هیچ موردی مطابقت نداشت."
 #: code:addons/web/static/src/webclient/menus/menu_providers.js:0
 #, python-format
 msgid "No menu found"
-msgstr ""
+msgstr "هیچ منویی یافت نشد"
 
 #. module: web
 #. openerp-web
@@ -2877,6 +2908,13 @@ msgstr "حالت فعال نیست، کلیک کنید برای تغییر آن"
 
 #. module: web
 #. openerp-web
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.xml:0
+#, python-format
+msgid "Number using {{ DECIMAL_POINT }} as decimal separator."
+msgstr ""
+
+#. module: web
+#. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
@@ -2926,14 +2964,14 @@ msgstr "خطای اودو"
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, python-format
 msgid "Odoo Network Error"
-msgstr ""
+msgstr "خطای شبکه اودوو"
 
 #. module: web
 #. openerp-web
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, python-format
 msgid "Odoo Server Error"
-msgstr ""
+msgstr "خطای سرور اودوو"
 
 #. module: web
 #. openerp-web
@@ -3219,6 +3257,7 @@ msgstr "انتخاب رنگ"
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/views/graph/graph_view.xml:0
+#: code:addons/web/static/src/views/graph/graph_view.xml:0
 #, python-format
 msgid "Pie Chart"
 msgstr "نمودار دایره‌ای"
@@ -3324,7 +3363,7 @@ msgstr "لطفا بروزرسانی کنید، ترجمه های :"
 #, python-format
 msgid ""
 "Please use the copy button to report the error to your support service."
-msgstr ""
+msgstr "لطفاً از دکمه کپی برای گزارش خطا به خدمات پشتیبانی خود استفاده کنید."
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
@@ -3418,6 +3457,7 @@ msgstr ""
 
 #. module: web
 #. openerp-web
+#: code:addons/web/static/src/legacy/js/components/action_menus.js:0
 #: code:addons/web/static/src/legacy/xml/report.xml:0
 #: code:addons/web/static/src/legacy/xml/report.xml:0
 #, python-format
@@ -3426,7 +3466,7 @@ msgstr "چاپ"
 
 #. module: web
 #. openerp-web
-#: code:addons/web/static/src/legacy/xml/report.xml:0
+#: code:addons/web/static/src/legacy/js/components/action_menus.js:0
 #, python-format
 msgid "Printing options"
 msgstr ""
@@ -4102,6 +4142,7 @@ msgstr "ویژه:"
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/views/graph/graph_view.xml:0
+#: code:addons/web/static/src/views/graph/graph_view.xml:0
 #, python-format
 msgid "Stacked"
 msgstr ""
@@ -4157,6 +4198,14 @@ msgstr "پشتیبانی"
 #, python-format
 msgid "Syntax error"
 msgstr "خطای عبارت"
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "Tag color: #{colornames[color]}"
+msgstr ""
 
 #. module: web
 #. openerp-web
@@ -4292,7 +4341,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/xml/kanban.xml:0
 #, python-format
 msgid "There is no available image to be set as cover."
-msgstr ""
+msgstr "هیچ تصویری برای تنظیم به عنوان جلد وجود ندارد."
 
 #. module: web
 #. openerp-web
@@ -4354,7 +4403,7 @@ msgstr "این نمونه‌ای از گزارش داخلی است."
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
 msgid "This update will only consider the records of the current page."
-msgstr ""
+msgstr "این به روز رسانی فقط سوابق صفحه فعلی را در نظر می گیرد."
 
 #. module: web
 #. openerp-web
@@ -5007,6 +5056,14 @@ msgstr "حدود یک ساعت قبل"
 
 #. module: web
 #. openerp-web
+#: code:addons/web/static/src/core/debug/debug_menu_items.xml:0
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "all"
+msgstr "همه"
+
+#. module: web
+#. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
 msgid "all records"
@@ -5335,6 +5392,13 @@ msgstr "کمتر یا مساوی با"
 
 #. module: web
 #. openerp-web
+#: code:addons/web/static/src/search/search_dropdown_item/search_dropdown_item.xml:0
+#, python-format
+msgid "menuitemcheckbox"
+msgstr ""
+
+#. module: web
+#. openerp-web
 #: code:addons/web/static/src/legacy/js/views/file_upload_mixin.js:0
 #, python-format
 msgid "message: %s"
@@ -5348,6 +5412,13 @@ msgstr "پیام: %s"
 #, python-format
 msgid "ms"
 msgstr "ms"
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "new_template"
+msgstr ""
 
 #. module: web
 #. openerp-web
@@ -5410,6 +5481,13 @@ msgstr "والدِ"
 
 #. module: web
 #. openerp-web
+#: code:addons/web/static/src/search/search_dropdown_item/search_dropdown_item.xml:0
+#, python-format
+msgid "props.checked ? 'true' : 'false'"
+msgstr ""
+
+#. module: web
+#. openerp-web
 #: code:addons/web/static/src/legacy/xml/control_panel.xml:0
 #, python-format
 msgid "props.fields"
@@ -5467,6 +5545,14 @@ msgstr "انتخاب شده"
 #, python-format
 msgid "selected records,"
 msgstr "رکوردهای انتخاب شده."
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/core/debug/debug_menu_items.xml:0
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "self"
+msgstr ""
 
 #. module: web
 #. openerp-web

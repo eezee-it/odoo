@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-05 10:54+0000\n"
+"POT-Creation-Date: 2024-08-14 15:43+0000\n"
 "PO-Revision-Date: 2021-09-14 12:26+0000\n"
 "Last-Translator: Fernanda Alvarez, 2024\n"
 "Language-Team: Spanish (Mexico) (https://app.transifex.com/odoo/teams/41243/es_MX/)\n"
@@ -40,7 +40,6 @@ msgstr "%s (copia)"
 
 #. module: sms
 #. openerp-web
-#: code:addons/sms/static/src/js/fields_sms_widget.js:0
 #: code:addons/sms/static/src/js/fields_sms_widget.js:0
 #, python-format
 msgid "%s characters, fits in %s SMS (%s) "
@@ -506,8 +505,8 @@ msgid ""
 "If the sanitized phone number is on the blacklist, the contact won't receive"
 " mass mailing sms anymore, from any list"
 msgstr ""
-"Si el teléfono depurado está en la lista negra, el contacto ya no recibirá "
-"envío masivo de SMS de ninguna lista."
+"El contacto ya no recibirá SMS de envío masivo de ninguna lista si el "
+"teléfono depurado está en la lista de exclusión."
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_cancel
@@ -537,9 +536,9 @@ msgid ""
 "distinguish which number is blacklisted             when there is both a "
 "mobile and phone field in a model."
 msgstr ""
-"Indica si el número de teléfono válido de la lista de exclusión es un "
-"celular. Sirve para distinguir qué número está en la lista de exclusión "
-"cuando hay un campo de celular y otro de teléfono fijo en un modelo."
+"Indica si el número de teléfono válido en la lista de exclusión es un "
+"celular. Sirve para distinguir el número que está en la lista de exclusión "
+"cuando un modelo tiene los campos de celular y de teléfono fijo."
 
 #. module: sms
 #: model:ir.model.fields,help:sms.field_res_partner__phone_blacklisted

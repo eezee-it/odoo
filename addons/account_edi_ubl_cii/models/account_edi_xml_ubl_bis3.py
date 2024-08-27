@@ -145,6 +145,9 @@ class AccountEdiXmlUBLBIS3(models.AbstractModel):
             vals['endpoint_id'] = partner.l10n_lu_peppol_identifier
         if partner.country_id.code == "SE" and partner.vat:
             vals['endpoint_id'] = partner.vat.replace("SE", "")[:-2]
+        if partner.country_id.code == 'AU' and partner.vat:
+            # PEPPOL-COMMON-R050: Australian Business Number (ABN) should not have country code
+            vals['endpoint_id'] = partner.vat.replace('AU', '').strip()
 
         return vals
 
@@ -249,7 +252,7 @@ class AccountEdiXmlUBLBIS3(models.AbstractModel):
         for val in line_item_vals['classified_tax_category_vals']:
             # [UBL-CR-601] TaxExemptionReason must not appear in InvoiceLine Item ClassifiedTaxCategory
             # [BR-E-10] TaxExemptionReason must only appear in TaxTotal TaxSubtotal TaxCategory
-            val.pop('tax_exemption_reason')
+            val.pop('tax_exemption_reason', None)
 
         return line_item_vals
 

@@ -7,14 +7,15 @@
 # ТАрас <tratatuta@i.ua>, 2021
 # Martin Trigaux, 2023
 # Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024
+# Wil Odoo, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 09:52+0000\n"
+"POT-Creation-Date: 2024-08-14 15:42+0000\n"
 "PO-Revision-Date: 2021-09-14 12:18+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024\n"
+"Last-Translator: Wil Odoo, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/odoo/teams/41243/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,6 +101,12 @@ msgstr "%<span class=\"px-3\"/>("
 #, python-format
 msgid "%d moves"
 msgstr "%d переміщення"
+
+#. module: account
+#: code:addons/account/models/account_account_tag.py:0
+#, python-format
+msgid "%s (%s)"
+msgstr "%s (%s)"
 
 #. module: account
 #: code:addons/account/models/account_tax.py:0
@@ -1085,11 +1092,6 @@ msgstr ""
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.report_invoice_document
-msgid "<strong>Amount Due</strong>"
-msgstr "<strong>Сума боргу</strong>"
-
-#. module: account
-#: model_terms:ir.ui.view,arch_db:account.report_invoice_document
 msgid "<strong>Credit Note Date:</strong>"
 msgstr "<strong>Дата сторно:</strong>"
 
@@ -1313,17 +1315,6 @@ msgstr "Другий платіж буде створено автоматичн
 msgid "A tax fiscal position could be defined only one time on same taxes."
 msgstr ""
 "Схема оподаткування може бути визначена лише один раз на однакові податки."
-
-#. module: account
-#: code:addons/account/models/account_tax.py:0
-#, python-format
-msgid ""
-"A tax should only use tags from its country. You should use another tax and "
-"a fiscal position if you wish to uses the tags from foreign tax reports."
-msgstr ""
-"Податок має використовувати лише теги зі своєї країни. Ви повинні "
-"використовувати інший податок і схему оподаткування, якщо ви хочете "
-"використовувати теги з іноземних податкових звітів."
 
 #. module: account
 #: code:addons/account/models/res_users.py:0
@@ -1900,6 +1891,7 @@ msgstr "Активуйте, щоби створити квитанцію про�
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account_tag__active
 #: model:ir.model.fields,field_description:account.field_account_fiscal_position__active
+#: model:ir.model.fields,field_description:account.field_account_fiscal_position_tax__tax_dest_active
 #: model:ir.model.fields,field_description:account.field_account_incoterms__active
 #: model:ir.model.fields,field_description:account.field_account_journal__active
 #: model:ir.model.fields,field_description:account.field_account_payment_term__active
@@ -2729,16 +2721,6 @@ msgstr "Активи"
 #: model:ir.model.fields,field_description:account.field_account_chart_template__account_ids
 msgid "Associated Account Templates"
 msgstr "Шаблони пов'язаних рахунків"
-
-#. module: account
-#: code:addons/account/populate/res_company.py:0
-#, python-format
-msgid ""
-"At least one localization is needed to be installed in order to populate the"
-" database with accounting"
-msgstr ""
-"Щоб заповнити базу даних бухобліком, необхідно встановити принаймні одну "
-"локалізацію"
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.account_invoice_send_wizard_form
@@ -3997,6 +3979,7 @@ msgstr "Компанії, що стосуються партнера"
 #: model:ir.model.fields,field_description:account.field_account_tax_carryover_line__company_id
 #: model:ir.model.fields,field_description:account.field_account_tax_repartition_line__company_id
 #: model_terms:ir.ui.view,arch_db:account.view_account_analytic_default_form_search
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_payment_search
@@ -4237,6 +4220,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_form
 msgid "Counterpart Entries"
 msgstr "Відповідні записи"
+
+#. module: account
+#: model:ir.model.fields,help:account.field_res_company__multi_vat_foreign_country_ids
+msgid "Countries for which the company has a VAT number"
+msgstr "Країни для яких компанія має номер VAT"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account_tag__country_id
@@ -4606,6 +4594,7 @@ msgstr "Створено на"
 #. module: account
 #: code:addons/account/wizard/account_automatic_entry_wizard.py:0
 #: code:addons/account/wizard/accrued_orders.py:0
+#: model:ir.model.fields,field_description:account.field_account_analytic_account__credit
 #: model:ir.model.fields,field_description:account.field_account_move_line__credit
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #, python-format
@@ -4976,6 +4965,7 @@ msgstr "Перевірка узгодженості даних"
 #: model:ir.model.fields,field_description:account.field_tax_adjustments_wizard__date
 #: model:ir.model.fields.selection,name:account.selection__account_print_journal__sort_selection__date
 #: model_terms:ir.ui.view,arch_db:account.report_journal
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_line_filter
@@ -5045,6 +5035,7 @@ msgstr ""
 #. module: account
 #: code:addons/account/wizard/account_automatic_entry_wizard.py:0
 #: code:addons/account/wizard/accrued_orders.py:0
+#: model:ir.model.fields,field_description:account.field_account_analytic_account__debit
 #: model:ir.model.fields,field_description:account.field_account_move_line__debit
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #, python-format
@@ -5280,6 +5271,26 @@ msgstr "Видалити листи"
 #: model:ir.model.fields,field_description:account.field_account_invoice_send__auto_delete_message
 msgid "Delete Message Copy"
 msgstr "Видалити копію повідомлення"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_ceo_wages_account
+msgid "Demo CEO Wages Account"
+msgstr "Демонстраційний рахунок заробітної плати генерального директора"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_capital_account
+msgid "Demo Capital Account"
+msgstr "Демонстраційни рахунок капіталу"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_sale_of_land_account
+msgid "Demo Sale of Land Account"
+msgstr "Демонстраційний рахунок продажу земельної ділянки"
+
+#. module: account
+#: model:account.account.tag,name:account.demo_stock_account
+msgid "Demo Stock Account"
+msgstr "Демонстраційний складський рахунок"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_account__deprecated
@@ -5730,6 +5741,13 @@ msgid "Dynamic Reports"
 msgstr "Динамічні звіти"
 
 #. module: account
+#: model:ir.model.fields,help:account.field_account_tax_repartition_line__tag_ids_domain
+msgid "Dynamic domain used for the tag that can be set on tax"
+msgstr ""
+"Динамічний домен використовується для тегів, які можуть бути встановлені на "
+"податку"
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_res_config_settings__module_l10n_eu_oss
 msgid "EU Intra-community Distance Selling"
 msgstr "Дистанційні продажі в межах ЄС"
@@ -6077,6 +6095,11 @@ msgid "Financial Tags"
 msgstr "Фінансові теги"
 
 #. module: account
+#: model:account.account.tag,name:account.account_tag_financing
+msgid "Financing Activities"
+msgstr "Фінансові дії"
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model_partner_mapping__payment_ref_regex
 msgid "Find Text in Label"
 msgstr "Знайдіть текст на етикетці"
@@ -6151,6 +6174,7 @@ msgstr "Звітні періоди"
 #: model:ir.model.fields,field_description:account.field_account_invoice_report__fiscal_position_id
 #: model:ir.model.fields,field_description:account.field_account_move__fiscal_position_id
 #: model:ir.model.fields,field_description:account.field_account_payment__fiscal_position_id
+#: model:ir.model.fields,field_description:account.field_res_company__fiscal_position_ids
 #: model:ir.model.fields,field_description:account.field_res_partner__property_account_position_id
 #: model:ir.model.fields,field_description:account.field_res_users__property_account_position_id
 #: model_terms:ir.ui.view,arch_db:account.view_account_position_filter
@@ -6317,6 +6341,11 @@ msgstr "Іноземна валюта"
 #: model:ir.model.fields,field_description:account.field_account_fiscal_position__foreign_vat
 msgid "Foreign Tax ID"
 msgstr "Іноземний ID податку"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_res_company__multi_vat_foreign_country_ids
+msgid "Foreign VAT countries"
+msgstr "Країни іноземного ПДВ"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_fiscal_position__foreign_vat_header_mode
@@ -7289,8 +7318,13 @@ msgstr "Intrastat"
 #. module: account
 #: code:addons/account/models/partner.py:0
 #, python-format
-msgid "Invalid \"Zip Range\", please configure it properly."
-msgstr "Недійсний \"Zip Range\", будь-ласка, налаштуйте його належним чином."
+msgid ""
+"Invalid \"Zip Range\", You have to configure both \"From\" and \"To\" values"
+" for the zip range and \"To\" should be greater than \"From\"."
+msgstr ""
+"Недійсний «Діапазон поштового зв’язку». Ви повинні налаштувати значення "
+"«Від» і «До» для діапазону поштового зв’язку, а «До» має бути більше, ніж "
+"«Від»."
 
 #. module: account
 #: code:addons/account/models/company.py:0
@@ -7302,6 +7336,11 @@ msgstr "Недійсний останній день звітного періо
 #: model:ir.model.fields,field_description:account.field_account_move_line__tax_tag_invert
 msgid "Invert Tags"
 msgstr "Інвертувати теги"
+
+#. module: account
+#: model:account.account.tag,name:account.account_tag_investing
+msgid "Investing & Extraordinary Activities"
+msgstr "Інвестиції та надзвичайна діяльність"
 
 #. module: account
 #: code:addons/account/models/account_move.py:0
@@ -7757,6 +7796,7 @@ msgstr "Січень"
 #: model_terms:ir.ui.view,arch_db:account.report_hash_integrity
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #: model_terms:ir.ui.view,arch_db:account.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_journal_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_line_filter
@@ -8769,6 +8809,11 @@ msgid "Memo:"
 msgstr "Призначення платежу:"
 
 #. module: account
+#: model:ir.model,name:account.model_base_partner_merge_automatic_wizard
+msgid "Merge Partner Wizard"
+msgstr "Помічник злиття партнерів"
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_account__message_has_error
 #: model:ir.model.fields,field_description:account.field_account_account_template__message_has_error
 #: model:ir.model.fields,field_description:account.field_account_bank_statement__message_has_error
@@ -8978,6 +9023,12 @@ msgstr "Негативний податковий баланс"
 #: model:ir.model.fields,help:account.field_account_payment__amount_signed
 msgid "Negative value of amount field if payment_type is outbound"
 msgstr "Поле негативного значення суми якщо payment_type є вихідним"
+
+#. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr ""
 
 #. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_bank_statement__state__open
@@ -9405,6 +9456,11 @@ msgid "Off-Balance Sheet"
 msgstr "Позабалансовий звіт"
 
 #. module: account
+#: model:account.account.tag,name:account.demo_office_furniture_account
+msgid "Office Furniture"
+msgstr "Офісні меблі"
+
+#. module: account
 #: model:ir.model.fields.selection,name:account.selection__account_reconcile_model__matching_order__old_first
 #: model:ir.model.fields.selection,name:account.selection__account_reconcile_model_template__matching_order__old_first
 msgid "Oldest first"
@@ -9603,6 +9659,11 @@ msgstr "Відкриття вартості кредиту для цього р�
 #: model:ir.model.fields,help:account.field_account_account__opening_debit
 msgid "Opening debit value for this account."
 msgstr "Відкриття вартості дебету для цього рахунку."
+
+#. module: account
+#: model:account.account.tag,name:account.account_tag_operating
+msgid "Operating Activities"
+msgstr "Оперативна діяльність"
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_form
@@ -9960,6 +10021,7 @@ msgstr "Частково оплачено"
 #: model_terms:ir.ui.view,arch_db:account.report_journal
 #: model_terms:ir.ui.view,arch_db:account.view_account_analytic_default_form_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_analytic_line_filter_inherit_account
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_filter
 #: model_terms:ir.ui.view,arch_db:account.view_account_move_line_filter
@@ -10020,6 +10082,14 @@ msgstr "Співставлення партнера для моделей узг
 #: model:ir.model.fields,field_description:account.field_account_reconcile_model__match_partner
 msgid "Partner should be set"
 msgstr "Слід встановити партнера"
+
+#. module: account
+#: code:addons/account/models/partner.py:0
+#, python-format
+msgid "Partners that are used in hashed entries cannot be merged."
+msgstr ""
+"Партнери, які використовуються в хешованих записах, не можуть бути "
+"об’єднані."
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.res_config_settings_view_form
@@ -10405,16 +10475,6 @@ msgstr ""
 #, python-format
 msgid "Please define a payment method line on your payment."
 msgstr "Визначіть рядок способу оплати у вашому платежі."
-
-#. module: account
-#: code:addons/account/models/account_payment.py:0
-#, python-format
-msgid ""
-"The selected payment method is not available for this payment, please select"
-" the payment method again."
-msgstr ""
-"Вибраний спосіб оплати недоступний для цього платежу, будь ласка, виберіть "
-"спосіб оплати ще раз."
 
 #. module: account
 #: code:addons/account/models/chart_template.py:0
@@ -12087,6 +12147,7 @@ msgstr ""
 "видаливши його."
 
 #. module: account
+#: model:ir.model.fields,help:account.field_account_fiscal_position_tax__tax_dest_active
 #: model:ir.model.fields,help:account.field_account_tax__active
 #: model:ir.model.fields,help:account.field_account_tax_template__active
 msgid "Set active to false to hide the tax without removing it."
@@ -13810,6 +13871,14 @@ msgid "The company this distribution line belongs to."
 msgstr "Компанія, якій належить цей рядок розповсюдження."
 
 #. module: account
+#: code:addons/account/models/partner.py:0
+#, python-format
+msgid ""
+"The country code of the foreign VAT number does not match any country in the"
+" group."
+msgstr ""
+
+#. module: account
 #: model:ir.model.fields,help:account.field_account_tax_group__country_id
 msgid "The country for which this tax group is applicable."
 msgstr "Країна, для якої застосовується ця група податків."
@@ -14454,6 +14523,16 @@ msgid ""
 msgstr ""
 "Вибраний цільовий рахунок налаштовано на використання певної валюти. Кожен запис, переданий до нього, буде конвертовано в цю валюту, в результаті чого\n"
 "буде втрата будь-якої попередньої суми в іноземній валюті."
+
+#. module: account
+#: code:addons/account/models/account_payment.py:0
+#, python-format
+msgid ""
+"The selected payment method is not available for this payment, please select"
+" the payment method again."
+msgstr ""
+"Вибраний спосіб оплати недоступний для цього платежу, будь ласка, виберіть "
+"спосіб оплати ще раз."
 
 #. module: account
 #: model_terms:ir.ui.view,arch_db:account.view_account_payment_form
@@ -16193,7 +16272,7 @@ msgstr ""
 "Ви не можете створювати платежі для записів, що належать різним компаніям."
 
 #. module: account
-#: code:addons/account/models/account_payment_method.py:0
+#: code:addons/account/models/account_journal.py:0
 #, python-format
 msgid ""
 "You can't have two payment method lines of the same payment type (%s) and "
@@ -16308,6 +16387,14 @@ msgid ""
 "journal items."
 msgstr ""
 "Ви не можете змінити власника рахунку, який вже міститься в проведеннях."
+
+#. module: account
+#: code:addons/account/models/partner.py:0
+#, python-format
+msgid ""
+"You cannot create a fiscal position with a country outside of the selected "
+"country group."
+msgstr ""
 
 #. module: account
 #: code:addons/account/models/partner.py:0
@@ -16475,6 +16562,12 @@ msgstr ""
 " тип. (рахунки: %s)"
 
 #. module: account
+#: code:addons/account/models/account_account.py:0
+#, python-format
+msgid "You cannot merge accounts."
+msgstr "Ви не можете об'єднати рахунки."
+
+#. module: account
 #: code:addons/account/models/account_move.py:0
 #, python-format
 msgid ""
@@ -16594,7 +16687,7 @@ msgstr ""
 "узгодження все ще знаходяться на розгляді."
 
 #. module: account
-#: code:addons/account/models/account_account.py:0
+#: code:addons/account/models/account_move.py:0
 #, python-format
 msgid "You cannot switch the type of a posted document."
 msgstr "Ви не можете змінити тип опублікованого документа."
@@ -17031,6 +17124,11 @@ msgid ""
 msgstr ""
 "залишає за собою право вимагати сплату фіксованих відсотків у розмірі 10% "
 "від суми, що залишилася до сплати."
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_tax_repartition_line__tag_ids_domain
+msgid "tag domain"
+msgstr "домен тегу"
 
 #. module: account
 #: code:addons/account/models/account_move.py:0

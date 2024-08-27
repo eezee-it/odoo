@@ -2356,6 +2356,14 @@ var SnippetsMenu = Widget.extend({
             $logoHeightOptions.insertAfter($logoTypeSelector);
         }
 
+        // TODO adapt in master. This patches the BlogPostTagSelection option
+        // in stable versions. Done here to avoid converting the html back to
+        // a string.
+        const optionEl = $html.find('[data-js="BlogPostTagSelection"][data-selector=".o_wblog_post_page_cover"]')[0];
+        if (optionEl) {
+            optionEl.dataset.selector = '.o_wblog_post_page_cover[data-res-model="blog.post"]';
+        }
+
         this.templateOptions = [];
         var selectors = [];
         var $styles = $html.find('[data-selector]');
@@ -2462,7 +2470,7 @@ var SnippetsMenu = Widget.extend({
             .addClass('oe_snippet')
             .each((i, el) => {
                 const $snippet = $(el);
-                const name = _.escape(el.getAttribute('name'));
+                const name = el.getAttribute('name');
                 const thumbnailSrc = _.escape(el.dataset.oeThumbnail);
                 const $sbody = $snippet.children().addClass('oe_snippet_body');
                 const isCustomSnippet = !!el.closest('#snippet_custom');
@@ -2496,7 +2504,7 @@ var SnippetsMenu = Widget.extend({
                 const $thumbnail = $(`
                     <div class="oe_snippet_thumbnail">
                         <div class="oe_snippet_thumbnail_img" style="background-image: url(${thumbnailSrc});"/>
-                        <span class="oe_snippet_thumbnail_title">${name}</span>
+                        <span class="oe_snippet_thumbnail_title">${_.escape(name)}</span>
                     </div>
                 `);
                 $snippet.prepend($thumbnail);

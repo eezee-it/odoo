@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:39+0000\n"
+"POT-Creation-Date: 2024-08-14 15:42+0000\n"
 "PO-Revision-Date: 2021-09-14 12:23+0000\n"
 "Last-Translator: Fernanda Alvarez, 2024\n"
 "Language-Team: Spanish (Mexico) (https://app.transifex.com/odoo/teams/41243/es_MX/)\n"
@@ -165,9 +165,8 @@ msgstr "800px"
 
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_call_to_action
-msgid "<b>50,000+ companies</b> run Odoo to grow their businesses."
-msgstr ""
-"<b>Más de 50,000 empresas</b> utilizan Odoo para hacer crecer sus negocios."
+msgid "<b>50,000+ companies</b> run Odoo."
+msgstr "<b>Más de 50,000 empresas</b> usan Odoo."
 
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_alert
@@ -491,9 +490,7 @@ msgstr "<span name=\"failed_text\">correo(s) no enviado(s).</span>"
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.view_mail_mass_mailing_form
 msgid "<span name=\"failed_text\">emails could not be sent.</span>"
-msgstr ""
-"<span name=\"failed_text\">No se pudieron enviar los correos "
-"electrónicos.</span>"
+msgstr "<span name=\"failed_text\">correos que no se pudieron enviar.</span>"
 
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.view_mail_mass_mailing_form
@@ -517,7 +514,7 @@ msgstr ""
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.view_mail_mass_mailing_form
 msgid "<span name=\"sent\">emails have been sent.</span>"
-msgstr "<span name=\"sent\">se enviaron los correos.</span>"
+msgstr "<span name=\"sent\">correos enviados.</span>"
 
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_mail_block_discount2
@@ -1355,11 +1352,6 @@ msgstr ""
 "Agregue imágenes o iconos para personalizar los bloques."
 
 #. module: mass_mailing
-#: model_terms:ir.ui.view,arch_db:mass_mailing.snippet_options
-msgid "Colors"
-msgstr "Colores"
-
-#. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_mail_block_three_cols
 msgid "Column Title"
 msgstr "Título de columna"
@@ -1577,6 +1569,13 @@ msgstr "Ciberseguridad"
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_mail_block_comparison_table
 msgid "DEFAULT"
 msgstr "POR DEFECTO"
+
+#. module: mass_mailing
+#. openerp-web
+#: code:addons/mass_mailing/static/src/js/mass_mailing_widget.js:0
+#, python-format
+msgid "DRAG BUILDING BLOCKS HERE"
+msgstr "ARRASTRE BLOQUES DE CREACIÓN AQUÍ"
 
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_alert_options
@@ -2158,8 +2157,8 @@ msgid ""
 "If the email address is on the blacklist, the contact won't receive mass "
 "mailing anymore, from any list"
 msgstr ""
-"Si la dirección de email está en la lista negra, el contacto ya no recibirá "
-"correos masivos de ninguna lista."
+"El contacto ya no recibirá correos masivos de ninguna lista si la dirección "
+"de correo electrónico está en la lista de exclusión."
 
 #. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.mailing_mailing_view_form_full_width
@@ -2748,11 +2747,6 @@ msgid "Models"
 msgstr "Modelos"
 
 #. module: mass_mailing
-#: model:mailing.mailing,sms_subject:mass_mailing.mass_mail_1
-msgid "Monthly Newsletter"
-msgstr "Boletín mensual"
-
-#. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_comparisons
 #: model_terms:ir.ui.view,arch_db:mass_mailing.s_mail_block_comparison_table
 msgid "More"
@@ -2813,7 +2807,7 @@ msgstr "Nuevo nombre de lista de correo"
 #. module: mass_mailing
 #: model:utm.campaign,name:mass_mailing.mass_mail_campaign_1
 msgid "Newsletter"
-msgstr "Boletín de noticias"
+msgstr "Boletín informativo"
 
 #. module: mass_mailing
 #: model:mailing.mailing,name:mass_mailing.mass_mail_1
@@ -3449,7 +3443,7 @@ msgstr "Periodo programado"
 #. module: mass_mailing
 #: model:ir.model.fields,field_description:mass_mailing.field_mailing_mailing__next_departure
 msgid "Scheduled date"
-msgstr "Hora prevista"
+msgstr "Fecha programada"
 
 #. module: mass_mailing
 #: model:ir.model.fields,field_description:mass_mailing.field_mailing_mailing__schedule_date
@@ -4196,12 +4190,6 @@ msgid "Unsubscription Date"
 msgstr "Fecha de cancelación"
 
 #. module: mass_mailing
-#: code:addons/mass_mailing/models/mailing.py:0
-#, python-format
-msgid "Unsupported mass mailing model %s"
-msgstr "Modelo de correo masivo no admitido%s"
-
-#. module: mass_mailing
 #: model_terms:ir.ui.view,arch_db:mass_mailing.unsubscribe
 msgid "Update my subscriptions"
 msgstr "Actualizar mis suscripciones"
@@ -4549,11 +4537,6 @@ msgid ""
 msgstr ""
 "Aún estaba suscrito a esos boletines. Ya no recibirá ninguna noticia de "
 "ellos:"
-
-#. module: mass_mailing
-#: model_terms:ir.ui.view,arch_db:mass_mailing.s_mail_block_header_social
-msgid "Your Logo"
-msgstr "Su logo"
 
 #. module: mass_mailing
 #. openerp-web

@@ -17,8 +17,9 @@
 # Tomáš Píšek, 2023
 # Katerina Horylova, 2024
 # Aleš Fiala <f.ales1@seznam.cz>, 2024
-# Jiří Podhorecký, 2024
+# Jiří Podhorecký <jirka.p@volny.cz>, 2024
 # Wil Odoo, 2024
+# Tereza Mokrá, 2024
 # 
 msgid ""
 msgstr ""
@@ -26,7 +27,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 15:42+0000\n"
 "PO-Revision-Date: 2021-09-14 12:23+0000\n"
-"Last-Translator: Wil Odoo, 2024\n"
+"Last-Translator: Tereza Mokrá, 2024\n"
 "Language-Team: Czech (https://app.transifex.com/odoo/teams/41243/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4859,6 +4860,7 @@ msgstr ""
 #, python-format
 msgid "No user found that is not already a member of this channel."
 msgstr ""
+"Nebyl nalezen žádný uživatel, který by ještě nebyl členem tohoto kanálu."
 
 #. module: mail
 #. openerp-web
@@ -6400,7 +6402,7 @@ msgstr "Vybraná skupina uživatelů"
 #: code:addons/mail/static/src/components/channel_invitation_form/channel_invitation_form.xml:0
 #, python-format
 msgid "Selected users:"
-msgstr ""
+msgstr "Vybraní uživatelé:"
 
 #. module: mail
 #. openerp-web
@@ -6681,7 +6683,7 @@ msgstr "Označeno hvězdičkou"
 #: code:addons/mail/static/src/components/thread_view_topbar/thread_view_topbar.xml:0
 #, python-format
 msgid "Start a Call"
-msgstr ""
+msgstr "Zahájit hovor"
 
 #. module: mail
 #. openerp-web
@@ -6705,7 +6707,7 @@ msgstr "Zahajte konverzaci"
 #: code:addons/mail/static/src/components/discuss_sidebar/discuss_sidebar.xml:0
 #, python-format
 msgid "Start a meeting"
-msgstr ""
+msgstr "Zahájit schůzku"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_activity__state
@@ -7488,7 +7490,7 @@ msgstr "Typ zaznamenané výjimečné aktivity."
 #: code:addons/mail/static/src/components/channel_invitation_form/channel_invitation_form.xml:0
 #, python-format
 msgid "Type the name of a person"
-msgstr ""
+msgstr "Zadejte jméno osoby"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_ice_server__uri
@@ -8176,14 +8178,14 @@ msgstr ""
 #: code:addons/mail/static/src/components/welcome_view/welcome_view.xml:0
 #, python-format
 msgid "You've been invited to a chat!"
-msgstr ""
+msgstr "Byli jste pozváni na chat!"
 
 #. module: mail
 #. openerp-web
 #: code:addons/mail/static/src/components/welcome_view/welcome_view.xml:0
 #, python-format
 msgid "You've been invited to a meeting!"
-msgstr ""
+msgstr "Byli jste pozváni na schůzku!"
 
 #. module: mail
 #. openerp-web
@@ -8203,7 +8205,7 @@ msgstr "Váš"
 #: code:addons/mail/static/src/components/media_preview/media_preview.xml:0
 #, python-format
 msgid "Your browser does not support videoconference"
-msgstr ""
+msgstr "Váš prohlížeč nepodporuje videokonference"
 
 #. module: mail
 #. openerp-web
